@@ -5,6 +5,8 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
   const state: SettingsState = {
     breakPointsExpanded: false,
     breakPointsVisible: false,
+    focus: 0,
+    id: 0,
   }
   SettingsStates.set(id, state, state)
 }

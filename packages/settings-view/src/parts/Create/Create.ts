@@ -1,0 +1,10 @@
+import type { SettingsState } from '../SettingsState/SettingsState.ts'
+import * as SettingsStates from '../SettingsStates/SettingsStates.ts'
+
+export const create = (id: number, uri: string, x: number, y: number, width: number, height: number): void => {
+  const state: SettingsState = {
+    breakPointsExpanded: false,
+    breakPointsVisible: false,
+  }
+  SettingsStates.set(id, state, state)
+}

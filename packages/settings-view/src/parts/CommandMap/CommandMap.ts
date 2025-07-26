@@ -5,6 +5,7 @@ import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import { render2 } from '../Render2/Render2.ts'
 import { renderActions } from '../RenderActions/RenderActions.ts'
+import { renderEventListeners } from '../RenderEventListeners/RenderEventListeners.ts'
 import { getCommandIds, wrapCommand } from '../SettingsStates/SettingsStates.ts'
 
 export const commandMap = {
@@ -16,4 +17,5 @@ export const commandMap = {
   'Settings.loadContent': wrapCommand(LoadContent.loadContent),
   'Settings.renderActions': renderActions,
   'Settings.render2': render2,
+  'Settings.renderEventListeners': renderEventListeners,
 }

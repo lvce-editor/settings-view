@@ -6,7 +6,12 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     breakPointsExpanded: false,
     breakPointsVisible: false,
     focus: 0,
-    id: 0,
+    id,
+    uri,
+    x,
+    y,
+    width,
+    height,
   }
   SettingsStates.set(id, state, state)
 }

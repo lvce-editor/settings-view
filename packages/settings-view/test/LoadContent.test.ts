@@ -21,6 +21,7 @@ test('loadContent should return state with tabs loaded', async () => {
       { id: 'extensions', label: 'Extensions', selected: false },
     ],
     items: expect.any(Array),
+    filteredItems: expect.any(Array),
   })
 })
 
@@ -37,6 +38,7 @@ test('loadContent should preserve other state properties', async () => {
     width: 1200,
     height: 800,
     items: [],
+    filteredItems: [],
     tabs: [{ id: 'old-tab', label: 'old-tab', selected: true }],
   }
   const savedState = null

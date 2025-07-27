@@ -16,6 +16,7 @@ export const getSettingsContentDom = (items: readonly SettingItem[], tabs: reado
     },
     {
       type: VirtualDomElements.H1,
+      className: 'SettingsContentHeading',
       childCount: 1,
     },
     text(headerText),

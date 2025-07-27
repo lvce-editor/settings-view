@@ -1,8 +1,9 @@
 import { test, expect } from '@jest/globals'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
 
 test('saveState returns SavedState object with correct structure', () => {
-  const result = saveState(1)
+  const result = saveState(createDefaultState())
 
   expect(typeof result).toBe('object')
   expect(result).toHaveProperty('expandedPaths')
@@ -13,7 +14,7 @@ test('saveState returns SavedState object with correct structure', () => {
 })
 
 test('saveState returns default values for all properties', () => {
-  const result = saveState(123)
+  const result = saveState(createDefaultState())
 
   expect(result).toEqual({
     expandedPaths: [],
@@ -25,7 +26,7 @@ test('saveState returns default values for all properties', () => {
 })
 
 test('saveState works with zero uid', () => {
-  const result = saveState(0)
+  const result = saveState(createDefaultState())
 
   expect(result).toEqual({
     expandedPaths: [],
@@ -37,7 +38,7 @@ test('saveState works with zero uid', () => {
 })
 
 test('saveState works with negative uid', () => {
-  const result = saveState(-1)
+  const result = saveState(createDefaultState())
 
   expect(result).toEqual({
     expandedPaths: [],
@@ -49,7 +50,7 @@ test('saveState works with negative uid', () => {
 })
 
 test('saveState works with large uid', () => {
-  const result = saveState(999_999)
+  const result = saveState(createDefaultState())
 
   expect(result).toEqual({
     expandedPaths: [],
@@ -61,35 +62,35 @@ test('saveState works with large uid', () => {
 })
 
 test('saveState returns empty array for expandedPaths', () => {
-  const result = saveState(1)
+  const result = saveState(createDefaultState())
 
   expect(Array.isArray(result.expandedPaths)).toBe(true)
   expect(result.expandedPaths.length).toBe(0)
 })
 
 test('saveState returns empty string for root', () => {
-  const result = saveState(1)
+  const result = saveState(createDefaultState())
 
   expect(typeof result.root).toBe('string')
   expect(result.root).toBe('')
 })
 
 test('saveState returns zero for minLineY', () => {
-  const result = saveState(1)
+  const result = saveState(createDefaultState())
 
   expect(typeof result.minLineY).toBe('number')
   expect(result.minLineY).toBe(0)
 })
 
 test('saveState returns zero for maxLineY', () => {
-  const result = saveState(1)
+  const result = saveState(createDefaultState())
 
   expect(typeof result.maxLineY).toBe('number')
   expect(result.maxLineY).toBe(0)
 })
 
 test('saveState returns zero for deltaY', () => {
-  const result = saveState(1)
+  const result = saveState(createDefaultState())
 
   expect(typeof result.deltaY).toBe('number')
   expect(result.deltaY).toBe(0)
@@ -100,9 +101,9 @@ test('saveState returns same structure regardless of uid value', () => {
   const uid2 = 999
   const uid3 = -5
 
-  const result1 = saveState(uid1)
-  const result2 = saveState(uid2)
-  const result3 = saveState(uid3)
+  const result1 = saveState(createDefaultState())
+  const result2 = saveState(createDefaultState())
+  const result3 = saveState(createDefaultState())
 
   expect(result1).toEqual(result2)
   expect(result2).toEqual(result3)
@@ -110,7 +111,7 @@ test('saveState returns same structure regardless of uid value', () => {
 })
 
 test('saveState expandedPaths is readonly array', () => {
-  const result = saveState(1)
+  const result = saveState(createDefaultState())
 
   expect(Array.isArray(result.expandedPaths)).toBe(true)
   // We can't test readonly at runtime, but we can verify it's an array
@@ -118,7 +119,7 @@ test('saveState expandedPaths is readonly array', () => {
 })
 
 test('saveState returns immutable object structure', () => {
-  const result = saveState(1)
+  const result = saveState(createDefaultState())
 
   // Verify all properties have the expected types
   expect(typeof result.expandedPaths).toBe('object')

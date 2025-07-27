@@ -23,7 +23,7 @@ export const commandMap = {
   'Settings.renderActions': renderActions,
   'Settings.renderEventListeners': renderEventListeners,
   'Settings.restoreState': restoreState,
-  'Settings.saveState': saveState,
+  'Settings.saveState': wrapCommand(saveState),
   'Settings.terminate': terminate,
   'Settings.handleClickTab': wrapCommand(handleClickTab),
   'Settings.clear': wrapCommand(clear),

@@ -1,4 +1,5 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
+import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { getUpdatedTabs } from '../GetUpdatedTabs/GetUpdatedTabs.ts'
 
 export const handleClickTab = (state: SettingsState, name: string): SettingsState => {
@@ -6,8 +7,12 @@ export const handleClickTab = (state: SettingsState, name: string): SettingsStat
     return state
   }
 
+  const updatedTabs = getUpdatedTabs(state.tabs, name)
+  const filteredItems = getFilteredItems(state.items, updatedTabs)
+
   return {
     ...state,
-    tabs: getUpdatedTabs(state.tabs, name),
+    tabs: updatedTabs,
+    filteredItems,
   }
 }

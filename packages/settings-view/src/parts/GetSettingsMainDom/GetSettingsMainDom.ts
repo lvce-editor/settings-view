@@ -13,6 +13,6 @@ export const getSettingsMainDom = (tabs: readonly Tab[], items: readonly Setting
       childCount: 2,
     },
     ...getSettingsSideBarDom(tabs),
-    ...getSettingsContentDom(items),
+    ...getSettingsContentDom(items, tabs),
   ]
 }

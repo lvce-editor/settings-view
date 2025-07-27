@@ -4,6 +4,7 @@ export interface SettingItem {
   readonly description: string
   readonly type: number
   readonly value: string // TODO
+  readonly category?: string // TODO
 
   // TODO add defaultValue property
 }

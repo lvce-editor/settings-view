@@ -1,6 +1,5 @@
 import type { SavedState } from '../SavedState/SavedState.ts'
 import { SettingsState } from '../SettingsState/SettingsState.ts'
-import { get } from '../SettingsStates/SettingsStates.ts'
 
 export const saveState = (state: SettingsState): SavedState => {
   const selectedTab = state.tabs.find((tab) => tab.selected)?.id || ''

@@ -1,6 +1,7 @@
 import type { SavedState } from '../SavedState/SavedState.ts'
+import type { SettingsState } from '../SettingsState/SettingsState.ts'
 
-export const saveState = (uid: number): SavedState => {
+export const saveState = (state: SettingsState): SavedState => {
   return {
     expandedPaths: [],
     root: '',

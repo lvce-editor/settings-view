@@ -49,6 +49,57 @@ test('getUpdatedTabs selects the last tab when clicked', () => {
   ])
 })
 
+test('getUpdatedTabs returns original tabs when clicked tab is already selected', () => {
+  const tabs = [
+    { label: 'Tab 1', selected: false },
+    { label: 'Tab 2', selected: true },
+    { label: 'Tab 3', selected: false },
+  ]
+
+  const result = getUpdatedTabs(tabs, 'Tab 2')
+
+  expect(result).toBe(tabs)
+  expect(result).toEqual([
+    { label: 'Tab 1', selected: false },
+    { label: 'Tab 2', selected: true },
+    { label: 'Tab 3', selected: false },
+  ])
+})
+
+test('getUpdatedTabs returns original tabs when first tab is already selected', () => {
+  const tabs = [
+    { label: 'Tab 1', selected: true },
+    { label: 'Tab 2', selected: false },
+    { label: 'Tab 3', selected: false },
+  ]
+
+  const result = getUpdatedTabs(tabs, 'Tab 1')
+
+  expect(result).toBe(tabs)
+  expect(result).toEqual([
+    { label: 'Tab 1', selected: true },
+    { label: 'Tab 2', selected: false },
+    { label: 'Tab 3', selected: false },
+  ])
+})
+
+test('getUpdatedTabs returns original tabs when last tab is already selected', () => {
+  const tabs = [
+    { label: 'Tab 1', selected: false },
+    { label: 'Tab 2', selected: false },
+    { label: 'Tab 3', selected: true },
+  ]
+
+  const result = getUpdatedTabs(tabs, 'Tab 3')
+
+  expect(result).toBe(tabs)
+  expect(result).toEqual([
+    { label: 'Tab 1', selected: false },
+    { label: 'Tab 2', selected: false },
+    { label: 'Tab 3', selected: true },
+  ])
+})
+
 test('getUpdatedTabs handles non-existent tab name', () => {
   const tabs = [
     { label: 'Tab 1', selected: true },
@@ -79,6 +130,15 @@ test('getUpdatedTabs handles single tab', () => {
   expect(result).toEqual([{ label: 'Single Tab', selected: true }])
 })
 
+test('getUpdatedTabs returns original tabs when single tab is already selected', () => {
+  const tabs = [{ label: 'Single Tab', selected: true }]
+
+  const result = getUpdatedTabs(tabs, 'Single Tab')
+
+  expect(result).toBe(tabs)
+  expect(result).toEqual([{ label: 'Single Tab', selected: true }])
+})
+
 test('getUpdatedTabs handles case-sensitive matching', () => {
   const tabs = [
     { label: 'Tab 1', selected: true },
@@ -93,7 +153,7 @@ test('getUpdatedTabs handles case-sensitive matching', () => {
   ])
 })
 
-test('getUpdatedTabs returns new array without mutating input', () => {
+test('getUpdatedTabs returns new array without mutating input when change is needed', () => {
   const tabs = [
     { label: 'Tab 1', selected: false },
     { label: 'Tab 2', selected: true },

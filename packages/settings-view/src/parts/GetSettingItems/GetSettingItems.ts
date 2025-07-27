@@ -9,5 +9,11 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       type: SettingItemType.Number,
       value: '15px',
     },
+    {
+      heading: 'Font Family',
+      description: 'The font family of the editor',
+      type: SettingItemType.String,
+      value: 'Fira Code',
+    },
   ]
 }

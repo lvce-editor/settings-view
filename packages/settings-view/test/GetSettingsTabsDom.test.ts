@@ -29,7 +29,7 @@ test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () =
   const tabs = [
     { label: 'Tab 1', selected: true },
     { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: false }
+    { label: 'Tab 3', selected: false },
   ]
   const virtualDom = getSettingsTabsDom(tabs)
 
@@ -85,7 +85,7 @@ test('getSettingsTabsDom handles empty tabs array', () => {
 test('getSettingsTabsDom handles tabs with special characters', () => {
   const tabs = [
     { label: 'Tab with & chars', selected: false },
-    { label: 'Tab with < > " \'', selected: true }
+    { label: 'Tab with < > " \'', selected: true },
   ]
   const virtualDom = getSettingsTabsDom(tabs)
 

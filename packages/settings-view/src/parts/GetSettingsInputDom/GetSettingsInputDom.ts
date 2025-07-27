@@ -1,14 +1,16 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import { getSettingsInputDom } from '../GetSettingsInputDom/GetSettingsInputDom.ts'
 
-export const getSettingsHeaderDom = (): readonly VirtualDomNode[] => {
+export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsHeader',
+      className: 'SettingsInputWrapper',
       childCount: 1,
     },
-    ...getSettingsInputDom(),
+    {
+      type: VirtualDomElements.Input,
+      className: 'SettingsSearchInput',
+    },
   ]
 }

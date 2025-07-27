@@ -4,8 +4,14 @@ export const handleClickTab = (state: SettingsState, name: string): SettingsStat
   if (!name) {
     return state
   }
-  // TODO mark that tab as selected
+
+  const updatedTabs = state.tabs.map((tab) => ({
+    ...tab,
+    selected: tab.label === name,
+  }))
+
   return {
     ...state,
+    tabs: updatedTabs,
   }
 }

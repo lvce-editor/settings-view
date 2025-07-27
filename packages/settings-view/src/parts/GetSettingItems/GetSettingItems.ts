@@ -4,12 +4,14 @@ import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
   return [
     {
+      id: 'fontSize',
       heading: 'Font Size',
       description: 'The font size of the editor',
       type: SettingItemType.Number,
       value: '15px',
     },
     {
+      id: 'fontFamily',
       heading: 'Font Family',
       description: 'The font family of the editor',
       type: SettingItemType.String,

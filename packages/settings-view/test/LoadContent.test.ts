@@ -26,6 +26,7 @@ test('loadContent should return state with tabs loaded', async () => {
 
 test('loadContent should preserve other state properties', async () => {
   const initialState: SettingsState = {
+    ...createDefaultState(),
     breakPointsExpanded: true,
     breakPointsVisible: false,
     focus: 5,

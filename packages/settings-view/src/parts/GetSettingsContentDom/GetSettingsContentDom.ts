@@ -5,7 +5,7 @@ import type { Tab } from '../Tab/Tab.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-export const getSettingsContentDom = (items: readonly SettingItem[], tabs: readonly Tab[]): readonly VirtualDomNode[] => {
+export const getSettingsContentDom = (items: readonly SettingItem[], tabs: readonly Tab[], searchValue: string): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
 
@@ -21,6 +21,6 @@ export const getSettingsContentDom = (items: readonly SettingItem[], tabs: reado
       childCount: 1,
     },
     text(headerText),
-    ...getSettingsItemsDom(items),
+    ...getSettingsItemsDom(items, searchValue),
   ]
 }

@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals'
-import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
 
 test('loadContent should return state with tabs loaded', async () => {
   const initialState = createDefaultState()

@@ -1,9 +1,9 @@
-import { test, expect } from '@jest/globals'
-import { saveState } from '../src/parts/SaveState/SaveState.ts'
+import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { get, set } from '../src/parts/SettingsStates/SettingsStates.ts'
 import { getTabs } from '../src/parts/GetTabs/GetTabs.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
+import { saveState } from '../src/parts/SaveState/SaveState.ts'
+import { set } from '../src/parts/SettingsStates/SettingsStates.ts'
 
 test('saveState returns SavedState object with correct structure', () => {
   const uid = 1

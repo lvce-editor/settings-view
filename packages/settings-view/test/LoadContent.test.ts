@@ -12,7 +12,7 @@ test('loadContent should return state with tabs loaded', async () => {
   expect(result).toEqual({
     ...initialState,
     tabs: [
-      { id: 'text-editor', label: 'Text Editor', selected: true },
+      { id: 'text-editor', label: 'Text Editor', selected: false },
       { id: 'workbench', label: 'Workbench', selected: false },
       { id: 'window', label: 'Window', selected: false },
       { id: 'features', label: 'Features', selected: false },

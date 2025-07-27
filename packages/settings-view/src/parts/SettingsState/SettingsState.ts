@@ -1,4 +1,5 @@
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import type { Tab } from '../Tab/Tab.ts'
 
 export interface SettingsState {
   readonly breakPointsExpanded: boolean
@@ -7,7 +8,7 @@ export interface SettingsState {
   readonly height: number
   readonly id: number
   readonly items: readonly SettingItem[]
-  readonly tabs: readonly string[]
+  readonly tabs: readonly Tab[]
   readonly uri: string
   readonly width: number
   readonly x: number

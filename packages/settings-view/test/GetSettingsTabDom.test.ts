@@ -3,7 +3,7 @@ import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-wo
 import { getTabVirtualDom } from '../src/parts/GetSettingsTabDom/GetSettingsTabDom.ts'
 
 test('getTabVirtualDom returns expected DOM structure for normal tab', () => {
-  const tab = 'Test Tab'
+  const tab = { label: 'Test Tab', selected: false }
   const virtualDom = getTabVirtualDom(tab)
 
   const expectedDom = [
@@ -19,8 +19,25 @@ test('getTabVirtualDom returns expected DOM structure for normal tab', () => {
   expect(virtualDom).toEqual(expectedDom)
 })
 
+test('getTabVirtualDom returns expected DOM structure for selected tab', () => {
+  const tab = { label: 'Test Tab', selected: true }
+  const virtualDom = getTabVirtualDom(tab)
+
+  const expectedDom = [
+    {
+      type: VirtualDomElements.Li,
+      className: 'Tab TabSelected',
+      childCount: 1,
+      role: AriaRoles.Tab,
+    },
+    text('Test Tab'),
+  ]
+
+  expect(virtualDom).toEqual(expectedDom)
+})
+
 test('getTabVirtualDom handles empty string', () => {
-  const tab = ''
+  const tab = { label: '', selected: false }
   const virtualDom = getTabVirtualDom(tab)
 
   const expectedDom = [
@@ -37,7 +54,7 @@ test('getTabVirtualDom handles empty string', () => {
 })
 
 test('getTabVirtualDom handles special characters', () => {
-  const tab = 'Tab with & special chars < > " \''
+  const tab = { label: 'Tab with & special chars < > " \'', selected: false }
   const virtualDom = getTabVirtualDom(tab)
 
   const expectedDom = [

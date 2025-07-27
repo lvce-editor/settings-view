@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
   const { heading, description } = item
@@ -24,7 +25,7 @@ export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomN
       type: VirtualDomElements.Input,
       className: 'InputBox',
       inputType: 'number',
-      placeholder: 'number value',
+      placeholder: SettingStrings.numberValue(),
       childCount: 0,
     },
   ]

@@ -97,10 +97,6 @@ test('saveState returns zero for deltaY', () => {
 })
 
 test('saveState returns same structure regardless of uid value', () => {
-  const uid1 = 1
-  const uid2 = 999
-  const uid3 = -5
-
   const result1 = saveState(createDefaultState())
   const result2 = saveState(createDefaultState())
   const result3 = saveState(createDefaultState())

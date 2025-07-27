@@ -2,6 +2,7 @@ import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 
 export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
+  const placeholder = 'Search Settings'
   return [
     {
       type: VirtualDomElements.Div,
@@ -11,6 +12,7 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
     {
       type: VirtualDomElements.Input,
       className: 'SettingsSearchInput',
+      placeholder,
     },
   ]
 }

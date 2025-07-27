@@ -1,16 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
-
-const getOptionDom = (option: string): readonly VirtualDomNode[] => {
-  return [
-    {
-      type: VirtualDomElements.Option,
-      childCount: 1,
-    },
-    text(option),
-  ]
-}
+import { getOptionDom } from '../GetOptionDom/GetOptionDom.ts'
 
 export const getItemSelectVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
   const { heading, description } = item

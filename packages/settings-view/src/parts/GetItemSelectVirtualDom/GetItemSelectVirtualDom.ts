@@ -5,7 +5,7 @@ import { getOptionDom } from '../GetOptionDom/GetOptionDom.ts'
 
 export const getItemSelectVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
   const { heading, description } = item
-  const options = ['1', '2', '3']
+  const options = item.options || []
   return [
     {
       type: VirtualDomElements.Div,

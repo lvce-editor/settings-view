@@ -3,8 +3,7 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import { getSettingsContentDom } from '../GetSettingsContentDom/GetSettingsContentDom.ts'
 import { getSettingsSideBarDom } from '../GetSettingsSideBarDom/GetSettingsSideBarDom.ts'
 
-export const getSettingsMainDom = (): readonly VirtualDomNode[] => {
-  const tabs: readonly string[] = []
+export const getSettingsMainDom = (tabs: readonly string[]): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,

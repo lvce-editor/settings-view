@@ -26,17 +26,37 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       id: 'wordWrap',
       heading: SettingStrings.wordWrap(),
       description: SettingStrings.wordWrapDescription(),
-      type: SettingItemType.String,
+      type: SettingItemType.Enum,
       value: 'off',
       category: InputName.TextEditorTab,
+      options: [
+        {
+          id: 'on',
+          label: 'On', // i18n
+        },
+        {
+          id: 'off',
+          label: 'off', // i18n
+        },
+      ],
     },
     {
       id: 'lineNumbers',
       heading: SettingStrings.lineNumbers(),
       description: SettingStrings.lineNumbersDescription(),
-      type: SettingItemType.String,
+      type: SettingItemType.Enum,
       value: 'on',
       category: InputName.TextEditorTab,
+      options: [
+        {
+          id: 'on',
+          label: 'On', // i18n
+        },
+        {
+          id: 'off',
+          label: 'off', // i18n
+        },
+      ],
     },
     {
       id: 'minimap',

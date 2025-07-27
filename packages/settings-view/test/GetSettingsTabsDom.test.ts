@@ -3,7 +3,7 @@ import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-wo
 import { getSettingsTabsDom } from '../src/parts/GetSettingsTabsDom/GetSettingsTabsDom.ts'
 
 test('getSettingsTabsDom returns expected DOM structure for single tab', () => {
-  const tabs = ['Test Tab']
+  const tabs = [{ label: 'Test Tab', selected: false }]
   const virtualDom = getSettingsTabsDom(tabs)
 
   const expectedDom = [
@@ -14,7 +14,7 @@ test('getSettingsTabsDom returns expected DOM structure for single tab', () => {
       childCount: 1,
     },
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Li,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
@@ -26,7 +26,11 @@ test('getSettingsTabsDom returns expected DOM structure for single tab', () => {
 })
 
 test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () => {
-  const tabs = ['Tab 1', 'Tab 2', 'Tab 3']
+  const tabs = [
+    { label: 'Tab 1', selected: true },
+    { label: 'Tab 2', selected: false },
+    { label: 'Tab 3', selected: false },
+  ]
   const virtualDom = getSettingsTabsDom(tabs)
 
   const expectedDom = [
@@ -37,21 +41,21 @@ test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () =
       childCount: 3,
     },
     {
-      type: VirtualDomElements.Div,
-      className: 'Tab',
+      type: VirtualDomElements.Li,
+      className: 'Tab TabSelected',
       childCount: 1,
       role: AriaRoles.Tab,
     },
     text('Tab 1'),
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Li,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
     },
     text('Tab 2'),
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Li,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
@@ -63,7 +67,7 @@ test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () =
 })
 
 test('getSettingsTabsDom handles empty tabs array', () => {
-  const tabs: readonly string[] = []
+  const tabs: readonly { label: string; selected: boolean }[] = []
   const virtualDom = getSettingsTabsDom(tabs)
 
   const expectedDom = [
@@ -79,7 +83,10 @@ test('getSettingsTabsDom handles empty tabs array', () => {
 })
 
 test('getSettingsTabsDom handles tabs with special characters', () => {
-  const tabs = ['Tab with & chars', 'Tab with < > " \'']
+  const tabs = [
+    { label: 'Tab with & chars', selected: false },
+    { label: 'Tab with < > " \'', selected: true },
+  ]
   const virtualDom = getSettingsTabsDom(tabs)
 
   const expectedDom = [
@@ -90,15 +97,15 @@ test('getSettingsTabsDom handles tabs with special characters', () => {
       childCount: 2,
     },
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Li,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
     },
     text('Tab with & chars'),
     {
-      type: VirtualDomElements.Div,
-      className: 'Tab',
+      type: VirtualDomElements.Li,
+      className: 'Tab TabSelected',
       childCount: 1,
       role: AriaRoles.Tab,
     },

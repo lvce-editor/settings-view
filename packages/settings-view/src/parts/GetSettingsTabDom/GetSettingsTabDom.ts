@@ -1,14 +1,17 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { mergeClassNames } from '@lvce-editor/virtual-dom-worker'
+import type { Tab } from '../Tab/Tab.ts'
 
-export const getTabVirtualDom = (tab: string): readonly VirtualDomNode[] => {
+export const getTabVirtualDom = (tab: Tab): readonly VirtualDomNode[] => {
+  const className = tab.selected ? mergeClassNames('Tab', 'TabSelected') : 'Tab'
   return [
     {
-      type: VirtualDomElements.Div,
-      className: 'Tab',
+      type: VirtualDomElements.Li,
+      className,
       childCount: 1,
       role: AriaRoles.Tab,
     },
-    text(tab),
+    text(tab.label),
   ]
 }

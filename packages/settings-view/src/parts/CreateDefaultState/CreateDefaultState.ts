@@ -12,5 +12,6 @@ export const createDefaultState = (): SettingsState => {
     width: 800,
     height: 600,
     tabs: [],
+    items: [],
   }
 }

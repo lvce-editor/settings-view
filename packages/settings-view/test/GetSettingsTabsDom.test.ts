@@ -4,7 +4,7 @@ import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctio
 import { getSettingsTabsDom } from '../src/parts/GetSettingsTabsDom/GetSettingsTabsDom.ts'
 
 test('getSettingsTabsDom returns expected DOM structure for single tab', () => {
-  const tabs = [{ label: 'Test Tab', selected: false }]
+  const tabs = [{ id: 'test-tab', label: 'Test Tab', selected: false }]
   const virtualDom = getSettingsTabsDom(tabs)
 
   const expectedDom = [
@@ -20,6 +20,7 @@ test('getSettingsTabsDom returns expected DOM structure for single tab', () => {
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'test-tab',
     },
     text('Test Tab'),
   ]
@@ -29,9 +30,9 @@ test('getSettingsTabsDom returns expected DOM structure for single tab', () => {
 
 test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () => {
   const tabs = [
-    { label: 'Tab 1', selected: true },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab1', label: 'Tab 1', selected: true },
+    { id: 'tab2', label: 'Tab 2', selected: false },
+    { id: 'tab3', label: 'Tab 3', selected: false },
   ]
   const virtualDom = getSettingsTabsDom(tabs)
 
@@ -48,6 +49,7 @@ test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () =
       className: 'Tab TabSelected',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'tab1',
     },
     text('Tab 1'),
     {
@@ -55,6 +57,7 @@ test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () =
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'tab2',
     },
     text('Tab 2'),
     {
@@ -62,6 +65,7 @@ test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () =
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'tab3',
     },
     text('Tab 3'),
   ]
@@ -70,7 +74,7 @@ test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () =
 })
 
 test('getSettingsTabsDom handles empty tabs array', () => {
-  const tabs: readonly { label: string; selected: boolean }[] = []
+  const tabs: readonly { id: string; label: string; selected: boolean }[] = []
   const virtualDom = getSettingsTabsDom(tabs)
 
   const expectedDom = [
@@ -88,8 +92,8 @@ test('getSettingsTabsDom handles empty tabs array', () => {
 
 test('getSettingsTabsDom handles tabs with special characters', () => {
   const tabs = [
-    { label: 'Tab with & chars', selected: false },
-    { label: 'Tab with < > " \'', selected: true },
+    { id: 'special-tab1', label: 'Tab with & chars', selected: false },
+    { id: 'special-tab2', label: 'Tab with < > " \'', selected: true },
   ]
   const virtualDom = getSettingsTabsDom(tabs)
 
@@ -106,6 +110,7 @@ test('getSettingsTabsDom handles tabs with special characters', () => {
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'special-tab1',
     },
     text('Tab with & chars'),
     {
@@ -113,6 +118,7 @@ test('getSettingsTabsDom handles tabs with special characters', () => {
       className: 'Tab TabSelected',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'special-tab2',
     },
     text('Tab with < > " \''),
   ]

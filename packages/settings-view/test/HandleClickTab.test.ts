@@ -26,18 +26,18 @@ test('handleClickTab updates tabs array correctly when clicking first tab', () =
   const stateWithTabs = {
     ...state,
     tabs: [
-      { label: 'Tab 1', selected: false },
-      { label: 'Tab 2', selected: true },
-      { label: 'Tab 3', selected: false },
+      { id: 'tab-1', label: 'Tab 1', selected: false },
+      { id: 'tab-2', label: 'Tab 2', selected: true },
+      { id: 'tab-3', label: 'Tab 3', selected: false },
     ],
   }
 
-  const result = handleClickTab(stateWithTabs, 'Tab 1')
+  const result = handleClickTab(stateWithTabs, 'tab-1')
 
   expect(result.tabs).toEqual([
-    { label: 'Tab 1', selected: true },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: true },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ])
 })
 
@@ -46,18 +46,18 @@ test('handleClickTab updates tabs array correctly when clicking middle tab', () 
   const stateWithTabs = {
     ...state,
     tabs: [
-      { label: 'Tab 1', selected: true },
-      { label: 'Tab 2', selected: false },
-      { label: 'Tab 3', selected: false },
+      { id: 'tab-1', label: 'Tab 1', selected: true },
+      { id: 'tab-2', label: 'Tab 2', selected: false },
+      { id: 'tab-3', label: 'Tab 3', selected: false },
     ],
   }
 
-  const result = handleClickTab(stateWithTabs, 'Tab 2')
+  const result = handleClickTab(stateWithTabs, 'tab-2')
 
   expect(result.tabs).toEqual([
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: true },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: true },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ])
 })
 
@@ -66,36 +66,36 @@ test('handleClickTab updates tabs array correctly when clicking last tab', () =>
   const stateWithTabs = {
     ...state,
     tabs: [
-      { label: 'Tab 1', selected: true },
-      { label: 'Tab 2', selected: false },
-      { label: 'Tab 3', selected: false },
+      { id: 'tab-1', label: 'Tab 1', selected: true },
+      { id: 'tab-2', label: 'Tab 2', selected: false },
+      { id: 'tab-3', label: 'Tab 3', selected: false },
     ],
   }
 
-  const result = handleClickTab(stateWithTabs, 'Tab 3')
+  const result = handleClickTab(stateWithTabs, 'tab-3')
 
   expect(result.tabs).toEqual([
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: true },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: true },
   ])
 })
 
-test('handleClickTab handles non-existent tab name gracefully', () => {
+test('handleClickTab handles non-existent tab id gracefully', () => {
   const state = createDefaultState()
   const stateWithTabs = {
     ...state,
     tabs: [
-      { label: 'Tab 1', selected: true },
-      { label: 'Tab 2', selected: false },
+      { id: 'tab-1', label: 'Tab 1', selected: true },
+      { id: 'tab-2', label: 'Tab 2', selected: false },
     ],
   }
 
-  const result = handleClickTab(stateWithTabs, 'Non-existent Tab')
+  const result = handleClickTab(stateWithTabs, 'non-existent-tab')
 
   expect(result.tabs).toEqual([
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
   ])
 })
 
@@ -104,19 +104,19 @@ test('handleClickTab preserves other state properties', () => {
   const stateWithTabs = {
     ...state,
     tabs: [
-      { label: 'Tab 1', selected: false },
-      { label: 'Tab 2', selected: true },
+      { id: 'tab-1', label: 'Tab 1', selected: false },
+      { id: 'tab-2', label: 'Tab 2', selected: true },
     ],
     focus: 42,
     height: 100,
   }
 
-  const result = handleClickTab(stateWithTabs, 'Tab 1')
+  const result = handleClickTab(stateWithTabs, 'tab-1')
 
   expect(result.focus).toBe(42)
   expect(result.height).toBe(100)
   expect(result.tabs).toEqual([
-    { label: 'Tab 1', selected: true },
-    { label: 'Tab 2', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: true },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
   ])
 })

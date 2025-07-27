@@ -7,6 +7,7 @@ export const getSettingsItemsDom = (items: readonly SettingItem[]): readonly Vir
   return [
     {
       type: VirtualDomElements.Div,
+      className: 'SettingsItems',
       childCount: items.length,
     },
     ...items.flatMap(getItemNumberVirtualDom),

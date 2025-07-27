@@ -1,6 +1,9 @@
 import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { getTabs } from '../src/parts/GetTabs/GetTabs.ts'
+import * as InputName from '../src/parts/InputName/InputName.ts'
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
+import { set } from '../src/parts/SettingsStates/SettingsStates.ts'
 
 test('saveState returns SavedState object with correct structure', () => {
   const result = saveState(createDefaultState())
@@ -11,6 +14,8 @@ test('saveState returns SavedState object with correct structure', () => {
   expect(result).toHaveProperty('minLineY')
   expect(result).toHaveProperty('maxLineY')
   expect(result).toHaveProperty('deltaY')
+  expect(result).toHaveProperty('searchValue')
+  expect(result).toHaveProperty('selectedTab')
 })
 
 test('saveState returns default values for all properties', () => {
@@ -22,6 +27,8 @@ test('saveState returns default values for all properties', () => {
     minLineY: 0,
     maxLineY: 0,
     deltaY: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
@@ -34,6 +41,8 @@ test('saveState works with zero uid', () => {
     minLineY: 0,
     maxLineY: 0,
     deltaY: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
@@ -46,6 +55,8 @@ test('saveState works with negative uid', () => {
     minLineY: 0,
     maxLineY: 0,
     deltaY: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
@@ -58,6 +69,8 @@ test('saveState works with large uid', () => {
     minLineY: 0,
     maxLineY: 0,
     deltaY: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
@@ -123,4 +136,32 @@ test('saveState returns immutable object structure', () => {
   expect(typeof result.minLineY).toBe('number')
   expect(typeof result.maxLineY).toBe('number')
   expect(typeof result.deltaY).toBe('number')
+  expect(typeof result.searchValue).toBe('string')
+  expect(typeof result.selectedTab).toBe('string')
+})
+
+test('saveState saves searchValue from state', () => {
+  const uid = 1
+  const state = {
+    ...createDefaultState(),
+    searchValue: 'test search',
+  }
+  set(uid, state, state)
+
+  const result = saveState(state)
+
+  expect(result.searchValue).toBe('test search')
+})
+
+test('saveState saves selectedTab from state', () => {
+  const uid = 1
+  const state = {
+    ...createDefaultState(),
+    tabs: getTabs(),
+  }
+  set(uid, state, state)
+
+  const result = saveState(state)
+
+  expect(result.selectedTab).toBe(InputName.TextEditorTab)
 })

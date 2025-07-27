@@ -4,4 +4,6 @@ export interface SavedState {
   readonly minLineY: number
   readonly maxLineY: number
   readonly deltaY: number
+  readonly searchValue: string
+  readonly selectedTab: string
 }

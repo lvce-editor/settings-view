@@ -1,4 +1,4 @@
-import { test, expect } from '@jest/globals'
+import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
 

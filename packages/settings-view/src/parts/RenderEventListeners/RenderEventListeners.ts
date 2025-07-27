@@ -11,5 +11,9 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       name: DomEventListenerFunctions.HandleInput,
       params: ['handleInput', 'event.target.value'],
     },
+    {
+      name: DomEventListenerFunctions.HandleClickClear,
+      params: ['clear'],
+    },
   ]
 }

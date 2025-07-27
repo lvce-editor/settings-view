@@ -33,6 +33,7 @@ export const NoScriptRunning =
   'No script running. To enable debugging, start a Node.js script with debugging enabled (e.g. node --inspect your-script.js) and connect to it.'
 export const NotPaused = 'Not Paused'
 export const NumberValue = 'number value'
+export const StringValue = 'string value'
 export const Pause = 'Pause'
 export const RefreshWatchExpressions = 'Refresh Watch Expressions'
 export const Restart = 'Restart'

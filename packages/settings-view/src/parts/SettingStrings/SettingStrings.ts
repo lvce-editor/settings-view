@@ -77,6 +77,10 @@ export const numberValue = (): string => {
   return I18NString.i18nString(UiStrings.NumberValue)
 }
 
+export const stringValue = (): string => {
+  return I18NString.i18nString(UiStrings.StringValue)
+}
+
 export const refreshWatchExpressions = (): string => {
   return I18NString.i18nString(UiStrings.RefreshWatchExpressions)
 }

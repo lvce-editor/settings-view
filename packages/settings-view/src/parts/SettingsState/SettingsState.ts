@@ -8,6 +8,7 @@ export interface SettingsState {
   readonly focus: number
   readonly height: number
   readonly id: number
+  readonly inputSource: number
   readonly items: readonly SettingItem[]
   readonly preferences: any
   readonly searchValue: string

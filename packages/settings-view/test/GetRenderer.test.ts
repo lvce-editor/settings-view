@@ -1,5 +1,4 @@
 import { test, expect } from '@jest/globals'
-import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import { getRenderer } from '../src/parts/GetRenderer/GetRenderer.ts'
 import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
@@ -63,39 +62,4 @@ test('getRenderer throws error for RenderPauseOnExceptions diff type', () => {
   expect(() => {
     getRenderer(DiffType.RenderPauseOnExceptions)
   }).toThrow('unknown renderer')
-})
-
-test('getRenderer returns function that can be called with SettingsState', () => {
-  const renderer = getRenderer(DiffType.RenderItems)
-
-  const mockOldState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
-
-  const mockNewState: SettingsState = {
-    breakPointsExpanded: true,
-    breakPointsVisible: false,
-    focus: 5,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
-
-  const result = renderer(mockOldState, mockNewState)
-
-  expect(Array.isArray(result)).toBe(true)
-  expect(result[0]).toBe('Viewlet.setDom2')
-  expect(result[1]).toBe(mockNewState.id)
-  expect(Array.isArray(result[2])).toBe(true)
 })

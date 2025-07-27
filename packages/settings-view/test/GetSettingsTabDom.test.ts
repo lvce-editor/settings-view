@@ -8,7 +8,7 @@ test('getTabVirtualDom returns expected DOM structure for normal tab', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Li,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
@@ -25,7 +25,7 @@ test('getTabVirtualDom handles empty string', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Li,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
@@ -42,7 +42,7 @@ test('getTabVirtualDom handles special characters', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Li,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,

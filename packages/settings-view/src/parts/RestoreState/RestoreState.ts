@@ -6,6 +6,14 @@ const getSavedMinLineY = (savedState: unknown): number => {
   }
   return 0
 }
+
+const getSavedSearchValue = (savedState: unknown): string => {
+  if (savedState && typeof savedState === 'object' && 'searchValue' in savedState && typeof savedState.searchValue === 'string') {
+    return savedState.searchValue
+  }
+  return ''
+}
+
 const getSavedDeltaY = (savedState: unknown): number => {
   if (savedState && typeof savedState === 'object' && 'deltaY' in savedState && typeof savedState.deltaY === 'number') {
     return savedState.deltaY
@@ -34,6 +42,7 @@ export const restoreState = (savedState: unknown): RestoredState => {
       minLineY: 0,
       deltaY: 0,
       tabId: '',
+      searchValue: '',
     }
   }
 
@@ -41,10 +50,12 @@ export const restoreState = (savedState: unknown): RestoredState => {
   const minLineY = getSavedMinLineY(savedState)
   const deltaY = getSavedDeltaY(savedState)
   const tabId = getSavedTabId(savedState)
+  const searchValue = getSavedSearchValue(savedState)
   return {
     root,
     minLineY,
     deltaY,
     tabId,
+    searchValue,
   }
 }

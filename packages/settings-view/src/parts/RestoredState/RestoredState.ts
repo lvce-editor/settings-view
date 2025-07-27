@@ -3,4 +3,5 @@ export interface RestoredState {
   readonly minLineY: number
   readonly deltaY: number
   readonly tabId: string
+  readonly searchValue: string
 }

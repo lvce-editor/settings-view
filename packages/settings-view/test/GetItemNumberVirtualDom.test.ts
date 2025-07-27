@@ -9,6 +9,7 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
     description: 'Test Description',
     type: 1,
     value: '42',
+    category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
@@ -48,6 +49,7 @@ test('getItemNumberVirtualDom handles empty strings', () => {
     description: '',
     type: 1,
     value: '',
+    category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
@@ -87,6 +89,7 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
     description: 'Description with & < > " \' chars',
     type: 1,
     value: '123',
+    category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
@@ -126,6 +129,7 @@ test('getItemNumberVirtualDom handles long text', () => {
     description: 'This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface',
     type: 1,
     value: '999999',
+    category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
@@ -165,6 +169,7 @@ test('getItemNumberVirtualDom handles numeric values in item', () => {
     description: 'Testing with numeric values',
     type: 42,
     value: '0',
+    category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
@@ -205,6 +210,7 @@ test('getItemNumberVirtualDom maintains consistent structure regardless of conte
       description: 'Description 1',
       type: 1,
       value: '1',
+      category: 'test',
     },
     {
       id: 'item2',
@@ -212,6 +218,7 @@ test('getItemNumberVirtualDom maintains consistent structure regardless of conte
       description: 'Description 2',
       type: 2,
       value: '2',
+      category: 'test',
     },
     {
       id: 'item3',
@@ -219,6 +226,7 @@ test('getItemNumberVirtualDom maintains consistent structure regardless of conte
       description: 'Description 3',
       type: 3,
       value: '3',
+      category: 'test',
     },
   ]
 

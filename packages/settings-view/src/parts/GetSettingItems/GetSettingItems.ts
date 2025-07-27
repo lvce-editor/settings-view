@@ -1,4 +1,5 @@
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import * as InputName from '../InputName/InputName.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 
 export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
@@ -9,6 +10,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       description: 'The font size of the editor',
       type: SettingItemType.Number,
       value: '15px',
+      category: InputName.TextEditorTab,
     },
     {
       id: 'fontFamily',
@@ -16,6 +18,103 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       description: 'The font family of the editor',
       type: SettingItemType.String,
       value: 'Fira Code',
+      category: InputName.TextEditorTab,
+    },
+    {
+      id: 'theme',
+      heading: 'Theme',
+      description: 'The color theme of the workbench',
+      type: SettingItemType.String,
+      value: 'Dark',
+      category: InputName.WorkbenchTab,
+    },
+    {
+      id: 'sidebarPosition',
+      heading: 'Sidebar Position',
+      description: 'The position of the sidebar',
+      type: SettingItemType.String,
+      value: 'Left',
+      category: InputName.WorkbenchTab,
+    },
+    {
+      id: 'windowTitle',
+      heading: 'Window Title',
+      description: 'The title shown in the window',
+      type: SettingItemType.String,
+      value: 'Settings View',
+      category: InputName.WindowTab,
+    },
+    {
+      id: 'windowSize',
+      heading: 'Window Size',
+      description: 'The default window size',
+      type: SettingItemType.String,
+      value: '1024x768',
+      category: InputName.WindowTab,
+    },
+    {
+      id: 'autoSave',
+      heading: 'Auto Save',
+      description: 'Automatically save files',
+      type: SettingItemType.Boolean,
+      value: 'true',
+      category: InputName.FeaturesTab,
+    },
+    {
+      id: 'formatOnSave',
+      heading: 'Format on Save',
+      description: 'Format code when saving',
+      type: SettingItemType.Boolean,
+      value: 'false',
+      category: InputName.FeaturesTab,
+    },
+    {
+      id: 'telemetry',
+      heading: 'Telemetry',
+      description: 'Enable telemetry collection',
+      type: SettingItemType.Boolean,
+      value: 'true',
+      category: InputName.ApplicationsTab,
+    },
+    {
+      id: 'updates',
+      heading: 'Auto Updates',
+      description: 'Automatically check for updates',
+      type: SettingItemType.Boolean,
+      value: 'true',
+      category: InputName.ApplicationsTab,
+    },
+    {
+      id: 'encryption',
+      heading: 'File Encryption',
+      description: 'Encrypt sensitive files',
+      type: SettingItemType.Boolean,
+      value: 'false',
+      category: InputName.SecurityTab,
+    },
+    {
+      id: 'twoFactor',
+      heading: 'Two Factor Auth',
+      description: 'Enable two factor authentication',
+      type: SettingItemType.Boolean,
+      value: 'false',
+      category: InputName.SecurityTab,
+    },
+    {
+      id: 'extensionsAutoUpdate',
+      heading: 'Auto Update Extensions',
+      description: 'Automatically update extensions',
+      type: SettingItemType.Boolean,
+      value: 'true',
+      category: InputName.ExtensionsTab,
+    },
+    {
+      id: 'extensionRecommendations',
+      heading: 'Extension Recommendations',
+      description: 'Show extension recommendations',
+      type: SettingItemType.Boolean,
+      value: 'true',
+      category: InputName.ExtensionsTab,
     },
   ]
 }

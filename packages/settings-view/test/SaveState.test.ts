@@ -1,8 +1,16 @@
 import { test, expect } from '@jest/globals'
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { get, set } from '../src/parts/SettingsStates/SettingsStates.ts'
+import { getTabs } from '../src/parts/GetTabs/GetTabs.ts'
+import * as InputName from '../src/parts/InputName/InputName.ts'
 
 test('saveState returns SavedState object with correct structure', () => {
-  const result = saveState(1)
+  const uid = 1
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(typeof result).toBe('object')
   expect(result).toHaveProperty('expandedPaths')
@@ -10,10 +18,16 @@ test('saveState returns SavedState object with correct structure', () => {
   expect(result).toHaveProperty('minLineY')
   expect(result).toHaveProperty('maxLineY')
   expect(result).toHaveProperty('deltaY')
+  expect(result).toHaveProperty('searchValue')
+  expect(result).toHaveProperty('selectedTab')
 })
 
 test('saveState returns default values for all properties', () => {
-  const result = saveState(123)
+  const uid = 123
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(result).toEqual({
     expandedPaths: [],
@@ -21,11 +35,17 @@ test('saveState returns default values for all properties', () => {
     minLineY: 0,
     maxLineY: 0,
     deltaY: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
 test('saveState works with zero uid', () => {
-  const result = saveState(0)
+  const uid = 0
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(result).toEqual({
     expandedPaths: [],
@@ -33,11 +53,17 @@ test('saveState works with zero uid', () => {
     minLineY: 0,
     maxLineY: 0,
     deltaY: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
 test('saveState works with negative uid', () => {
-  const result = saveState(-1)
+  const uid = -1
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(result).toEqual({
     expandedPaths: [],
@@ -45,11 +71,17 @@ test('saveState works with negative uid', () => {
     minLineY: 0,
     maxLineY: 0,
     deltaY: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
 test('saveState works with large uid', () => {
-  const result = saveState(999_999)
+  const uid = 999_999
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(result).toEqual({
     expandedPaths: [],
@@ -57,39 +89,61 @@ test('saveState works with large uid', () => {
     minLineY: 0,
     maxLineY: 0,
     deltaY: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
 test('saveState returns empty array for expandedPaths', () => {
-  const result = saveState(1)
+  const uid = 1
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(Array.isArray(result.expandedPaths)).toBe(true)
   expect(result.expandedPaths.length).toBe(0)
 })
 
 test('saveState returns empty string for root', () => {
-  const result = saveState(1)
+  const uid = 1
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(typeof result.root).toBe('string')
   expect(result.root).toBe('')
 })
 
 test('saveState returns zero for minLineY', () => {
-  const result = saveState(1)
+  const uid = 1
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(typeof result.minLineY).toBe('number')
   expect(result.minLineY).toBe(0)
 })
 
 test('saveState returns zero for maxLineY', () => {
-  const result = saveState(1)
+  const uid = 1
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(typeof result.maxLineY).toBe('number')
   expect(result.maxLineY).toBe(0)
 })
 
 test('saveState returns zero for deltaY', () => {
-  const result = saveState(1)
+  const uid = 1
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(typeof result.deltaY).toBe('number')
   expect(result.deltaY).toBe(0)
@@ -99,6 +153,11 @@ test('saveState returns same structure regardless of uid value', () => {
   const uid1 = 1
   const uid2 = 999
   const uid3 = -5
+  const state = createDefaultState()
+
+  set(uid1, state, state)
+  set(uid2, state, state)
+  set(uid3, state, state)
 
   const result1 = saveState(uid1)
   const result2 = saveState(uid2)
@@ -110,7 +169,11 @@ test('saveState returns same structure regardless of uid value', () => {
 })
 
 test('saveState expandedPaths is readonly array', () => {
-  const result = saveState(1)
+  const uid = 1
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   expect(Array.isArray(result.expandedPaths)).toBe(true)
   // We can't test readonly at runtime, but we can verify it's an array
@@ -118,7 +181,11 @@ test('saveState expandedPaths is readonly array', () => {
 })
 
 test('saveState returns immutable object structure', () => {
-  const result = saveState(1)
+  const uid = 1
+  const state = createDefaultState()
+  set(uid, state, state)
+
+  const result = saveState(uid)
 
   // Verify all properties have the expected types
   expect(typeof result.expandedPaths).toBe('object')
@@ -126,4 +193,32 @@ test('saveState returns immutable object structure', () => {
   expect(typeof result.minLineY).toBe('number')
   expect(typeof result.maxLineY).toBe('number')
   expect(typeof result.deltaY).toBe('number')
+  expect(typeof result.searchValue).toBe('string')
+  expect(typeof result.selectedTab).toBe('string')
+})
+
+test('saveState saves searchValue from state', () => {
+  const uid = 1
+  const state = {
+    ...createDefaultState(),
+    searchValue: 'test search',
+  }
+  set(uid, state, state)
+
+  const result = saveState(uid)
+
+  expect(result.searchValue).toBe('test search')
+})
+
+test('saveState saves selectedTab from state', () => {
+  const uid = 1
+  const state = {
+    ...createDefaultState(),
+    tabs: getTabs(),
+  }
+  set(uid, state, state)
+
+  const result = saveState(uid)
+
+  expect(result.selectedTab).toBe(InputName.TextEditorTab)
 })

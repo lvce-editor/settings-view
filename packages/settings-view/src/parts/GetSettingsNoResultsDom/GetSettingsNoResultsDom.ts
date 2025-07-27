@@ -1,4 +1,4 @@
-import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker';
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 

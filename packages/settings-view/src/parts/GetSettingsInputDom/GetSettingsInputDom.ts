@@ -13,6 +13,7 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
       type: VirtualDomElements.Input,
       className: 'InputBox SettingsSearchInput',
       placeholder,
+      childCount: 0,
     },
   ]
 }

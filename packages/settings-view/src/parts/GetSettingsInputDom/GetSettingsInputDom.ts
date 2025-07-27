@@ -22,11 +22,15 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
     },
     {
       type: VirtualDomElements.Button,
-      className: 'Button InputButton',
+      className: 'Button InputButton SearchFieldButton',
       childCount: 1,
-      ariaLabel: SettingStrings.clear(), // TODO i18n string
+      ariaLabel: SettingStrings.clear(),
       name: InputName.Clear, // TODO add click event listener
     },
-    text(SettingStrings.clear()), // TODO use icon
+    {
+      type: VirtualDomElements.Div,
+      className: 'MaskIcon MaskIconClearAll',
+      childCount: 0,
+    },
   ]
 }

@@ -272,3 +272,13 @@ test('functions return consistent results on multiple calls', () => {
     expect(firstCall).toBe(thirdCall)
   }
 })
+
+test('noSettingsMatching returns correct string with numbers', () => {
+  const result = SettingStrings.noSettingsMatching('123')
+  expect(result).toBe('No settings matching "123" found')
+})
+
+test('noSettingsMatching returns correct string with mixed content', () => {
+  const result = SettingStrings.noSettingsMatching('Test123@#$%')
+  expect(result).toBe('No settings matching "Test123@#$%" found')
+})

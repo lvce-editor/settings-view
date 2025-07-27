@@ -18,6 +18,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     filteredItems: [],
     preferences: {},
     inputSource: 0,
+    filteredItemsCount: 0,
   }
   SettingsStates.set(id, state, state)
 }

@@ -1,4 +1,5 @@
 import { terminate } from '@lvce-editor/viewlet-registry'
+import { clear } from '../Clear/Clear.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
@@ -24,4 +25,5 @@ export const commandMap = {
   'Settings.saveState': saveState,
   'Settings.terminate': terminate,
   'Settings.handleClickTab': wrapCommand(handleClickTab),
+  'Settings.clear': wrapCommand(clear),
 }

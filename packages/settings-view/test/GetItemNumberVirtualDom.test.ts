@@ -4,6 +4,7 @@ import { getItemNumberVirtualDom } from '../src/parts/GetItemNumberVirtualDom/Ge
 
 test('getItemNumberVirtualDom returns expected DOM structure for normal item', () => {
   const item = {
+    id: 'testItem',
     heading: 'Test Heading',
     description: 'Test Description',
     type: 1,
@@ -42,6 +43,7 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
 
 test('getItemNumberVirtualDom handles empty strings', () => {
   const item = {
+    id: 'emptyItem',
     heading: '',
     description: '',
     type: 1,
@@ -80,6 +82,7 @@ test('getItemNumberVirtualDom handles empty strings', () => {
 
 test('getItemNumberVirtualDom handles special characters in heading and description', () => {
   const item = {
+    id: 'specialCharsItem',
     heading: 'Heading with & < > " \' chars',
     description: 'Description with & < > " \' chars',
     type: 1,
@@ -118,6 +121,7 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
 
 test('getItemNumberVirtualDom handles long text', () => {
   const item = {
+    id: 'longTextItem',
     heading: 'This is a very long heading that might wrap to multiple lines in the UI',
     description: 'This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface',
     type: 1,
@@ -156,6 +160,7 @@ test('getItemNumberVirtualDom handles long text', () => {
 
 test('getItemNumberVirtualDom handles numeric values in item', () => {
   const item = {
+    id: 'numericItem',
     heading: 'Numeric Test',
     description: 'Testing with numeric values',
     type: 42,
@@ -195,18 +200,21 @@ test('getItemNumberVirtualDom handles numeric values in item', () => {
 test('getItemNumberVirtualDom maintains consistent structure regardless of content', () => {
   const items = [
     {
+      id: 'item1',
       heading: 'Item 1',
       description: 'Description 1',
       type: 1,
       value: '1',
     },
     {
+      id: 'item2',
       heading: 'Item 2',
       description: 'Description 2',
       type: 2,
       value: '2',
     },
     {
+      id: 'item3',
       heading: 'Item 3',
       description: 'Description 3',
       type: 3,

@@ -1,6 +1,8 @@
 import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleInput } from '../src/parts/HandleInput/HandleInput.ts'
+import * as InputName from '../src/parts/InputName/InputName.ts'
+import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
 test('handleInput updates searchValue with empty string', () => {
   const state = createDefaultState()
@@ -65,4 +67,88 @@ test('handleInput handles null value', () => {
 
   expect(result.searchValue).toBe(null)
   expect(result).not.toBe(state)
+})
+
+test('handleInput updates filteredItems when search value changes', () => {
+  const state = createDefaultState()
+  const stateWithItems = {
+    ...state,
+    items: [
+      {
+        id: 'fontSize',
+        heading: 'Font Size',
+        description: 'The font size of the editor',
+        type: SettingItemType.Number,
+        value: '15px',
+        category: InputName.TextEditorTab,
+      },
+      {
+        id: 'fontFamily',
+        heading: 'Font Family',
+        description: 'The font family of the editor',
+        type: SettingItemType.String,
+        value: 'Monaco',
+        category: InputName.TextEditorTab,
+      },
+      {
+        id: 'theme',
+        heading: 'Theme',
+        description: 'The color theme of the workbench',
+        type: SettingItemType.String,
+        value: 'Dark',
+        category: InputName.TextEditorTab,
+      },
+    ],
+    tabs: [
+      {
+        id: InputName.TextEditorTab,
+        label: 'Text Editor',
+        selected: true,
+      },
+    ],
+  }
+
+  const result = handleInput(stateWithItems, 'font')
+
+  expect(result.searchValue).toBe('font')
+  expect(result.filteredItems).toHaveLength(2)
+  expect(result.filteredItems[0].id).toBe('fontSize')
+  expect(result.filteredItems[1].id).toBe('fontFamily')
+})
+
+test('handleInput clears filteredItems when search value is empty', () => {
+  const state = createDefaultState()
+  const stateWithItems = {
+    ...state,
+    items: [
+      {
+        id: 'fontSize',
+        heading: 'Font Size',
+        description: 'The font size of the editor',
+        type: SettingItemType.Number,
+        value: '15px',
+        category: InputName.TextEditorTab,
+      },
+      {
+        id: 'theme',
+        heading: 'Theme',
+        description: 'The color theme of the workbench',
+        type: SettingItemType.String,
+        value: 'Dark',
+        category: InputName.TextEditorTab,
+      },
+    ],
+    tabs: [
+      {
+        id: InputName.TextEditorTab,
+        label: 'Text Editor',
+        selected: true,
+      },
+    ],
+  }
+
+  const result = handleInput(stateWithItems, '')
+
+  expect(result.searchValue).toBe('')
+  expect(result.filteredItems).toHaveLength(2)
 })

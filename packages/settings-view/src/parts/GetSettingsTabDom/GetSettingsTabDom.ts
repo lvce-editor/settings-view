@@ -4,7 +4,7 @@ import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-wo
 export const getTabVirtualDom = (tab: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Li,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,

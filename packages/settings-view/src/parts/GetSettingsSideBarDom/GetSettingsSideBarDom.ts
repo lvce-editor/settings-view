@@ -22,6 +22,7 @@ export const getSettingsSideBarDom = (tabs: readonly string[]): readonly Virtual
     },
     {
       type: VirtualDomElements.H2,
+      className: 'SettingsSideBarHeading',
       childCount: 1,
     },
     text(sideBarHeading),

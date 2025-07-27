@@ -2,6 +2,7 @@ import { test, expect } from '@jest/globals'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
 import { getItemCheckBoxVirtualDom } from '../src/parts/GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
+import { getInputId } from '../src/parts/GetInputId/GetInputId.ts'
 
 test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', () => {
   const item: SettingItem = {
@@ -14,6 +15,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
   }
 
   const result = getItemCheckBoxVirtualDom(item)
+  const domId = getInputId(item.id)
 
   const expectedDom = [
     {
@@ -36,10 +38,12 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
       className: 'CheckBox',
       inputType: 'checkbox',
       childCount: 0,
+      id: domId,
     },
     {
       type: VirtualDomElements.Label,
       childCount: 1,
+      htmlFor: domId,
     },
     text('Test Description'),
   ]
@@ -58,6 +62,7 @@ test('getItemCheckBoxVirtualDom handles empty strings', () => {
   }
 
   const result = getItemCheckBoxVirtualDom(item)
+  const domId = getInputId(item.id)
 
   const expectedDom = [
     {
@@ -80,10 +85,12 @@ test('getItemCheckBoxVirtualDom handles empty strings', () => {
       className: 'CheckBox',
       inputType: 'checkbox',
       childCount: 0,
+      id: domId,
     },
     {
       type: VirtualDomElements.Label,
       childCount: 1,
+      htmlFor: domId,
     },
     text(''),
   ]
@@ -102,6 +109,7 @@ test('getItemCheckBoxVirtualDom handles special characters in heading and descri
   }
 
   const result = getItemCheckBoxVirtualDom(item)
+  const domId = getInputId(item.id)
 
   const expectedDom = [
     {
@@ -124,10 +132,12 @@ test('getItemCheckBoxVirtualDom handles special characters in heading and descri
       className: 'CheckBox',
       inputType: 'checkbox',
       childCount: 0,
+      id: domId,
     },
     {
       type: VirtualDomElements.Label,
       childCount: 1,
+      htmlFor: domId,
     },
     text('Description with & < > " \' chars'),
   ]
@@ -146,6 +156,7 @@ test('getItemCheckBoxVirtualDom handles long text', () => {
   }
 
   const result = getItemCheckBoxVirtualDom(item)
+  const domId = getInputId(item.id)
 
   const expectedDom = [
     {
@@ -168,10 +179,12 @@ test('getItemCheckBoxVirtualDom handles long text', () => {
       className: 'CheckBox',
       inputType: 'checkbox',
       childCount: 0,
+      id: domId,
     },
     {
       type: VirtualDomElements.Label,
       childCount: 1,
+      htmlFor: domId,
     },
     text('This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface'),
   ]
@@ -209,6 +222,7 @@ test('getItemCheckBoxVirtualDom maintains consistent structure regardless of con
 
   for (const item of items) {
     const result = getItemCheckBoxVirtualDom(item)
+    const domId = getInputId(item.id)
 
     expect(result).toHaveLength(7)
     expect(result[0]).toEqual({
@@ -231,10 +245,12 @@ test('getItemCheckBoxVirtualDom maintains consistent structure regardless of con
       className: 'CheckBox',
       inputType: 'checkbox',
       childCount: 0,
+      id: domId,
     })
     expect(result[5]).toEqual({
       type: VirtualDomElements.Label,
       childCount: 1,
+      htmlFor: domId,
     })
     expect(result[6]).toEqual(text(item.description))
   }
@@ -251,6 +267,7 @@ test('getItemCheckBoxVirtualDom handles different item types', () => {
   }
 
   const result = getItemCheckBoxVirtualDom(item)
+  const domId = getInputId(item.id)
 
   expect(result).toHaveLength(7)
   expect(result[0]).toEqual({
@@ -264,6 +281,7 @@ test('getItemCheckBoxVirtualDom handles different item types', () => {
     className: 'CheckBox',
     inputType: 'checkbox',
     childCount: 0,
+    id: domId,
   })
   expect(result[6]).toEqual(text('This item has a different type value'))
 })

@@ -1,16 +1,6 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-
-const getTabVirtualDom = (tab: string): readonly VirtualDomNode[] => {
-  return [
-    {
-      type: VirtualDomElements.Div,
-      className: 'Tab',
-      childCount: 1,
-    },
-    text(tab),
-  ]
-}
+import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { getSettingsTabsDom } from '../GetSettingsTabsDom/GetSettingsTabsDom.ts'
 
 export const getSettingsSideBarDom = (tabs: readonly string[]): readonly VirtualDomNode[] => {
   const sideBarHeading = 'Settings SideBar'
@@ -26,12 +16,6 @@ export const getSettingsSideBarDom = (tabs: readonly string[]): readonly Virtual
       childCount: 1,
     },
     text(sideBarHeading),
-    {
-      type: VirtualDomElements.Ul,
-      className: 'SettingsTabs',
-      role: AriaRoles.TabList,
-      childCount: tabs.length,
-    },
-    ...tabs.flatMap(getTabVirtualDom),
+    ...getSettingsTabsDom(tabs),
   ]
 }

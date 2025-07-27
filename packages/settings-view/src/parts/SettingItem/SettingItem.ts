@@ -1,3 +1,8 @@
+export interface SettingItemOption {
+  readonly id: string
+  readonly label: string
+}
+
 export interface SettingItem {
   readonly id: string
   readonly heading: string
@@ -5,6 +10,7 @@ export interface SettingItem {
   readonly type: number
   readonly value: string // TODO
   readonly category: string
+  readonly options?: readonly SettingItemOption[]
 
   // TODO add defaultValue property
 }

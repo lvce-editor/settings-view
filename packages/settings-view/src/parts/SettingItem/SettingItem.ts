@@ -3,4 +3,7 @@ export interface SettingItem {
   readonly description: string
   readonly type: number
   readonly value: string // TODO
+
+  // TODO add defaultValue property
+  // TODO add setting id property
 }

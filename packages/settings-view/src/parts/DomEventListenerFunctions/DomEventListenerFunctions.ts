@@ -22,5 +22,6 @@ export const HandleSectionHeaderContextMenu = 'handleSectionHeaderContextMenu'
 export const HandleWatchExpressionDoubleClick = 'handleWatchExpressionDoubleClick'
 export const HandleWatchExpressionContextMenu = 'handleWatchExpressionContextMenu'
 export const HandleClickTab = 'handleClickTab'
+export const HandleInput = 'handleInput'
 
 // TODo use numeric ids

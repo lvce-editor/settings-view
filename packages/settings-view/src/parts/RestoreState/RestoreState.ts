@@ -45,6 +45,6 @@ export const restoreState = (savedState: unknown): RestoredState => {
     root,
     minLineY,
     deltaY,
-    tabId: '',
+    tabId,
   }
 }

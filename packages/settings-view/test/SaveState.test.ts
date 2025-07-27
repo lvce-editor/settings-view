@@ -2,6 +2,8 @@ import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
 import { set } from '../src/parts/SettingsStates/SettingsStates.ts'
+import { getTabs } from '../src/parts/GetTabs/GetTabs.ts'
+import * as InputName from '../src/parts/InputName/InputName.ts'
 
 test('saveState returns SavedState object with correct structure', () => {
   const result = saveState(createDefaultState())
@@ -80,84 +82,37 @@ test('saveState returns empty array for expandedPaths', () => {
 })
 
 test('saveState returns empty string for root', () => {
-<<<<<<< HEAD
-  const uid = 1
-  const state = createDefaultState()
-  set(uid, state, state)
-
-  const result = saveState(uid)
-=======
   const result = saveState(createDefaultState())
->>>>>>> origin/main
 
   expect(typeof result.root).toBe('string')
   expect(result.root).toBe('')
 })
 
 test('saveState returns zero for minLineY', () => {
-<<<<<<< HEAD
-  const uid = 1
-  const state = createDefaultState()
-  set(uid, state, state)
-
-  const result = saveState(uid)
-=======
   const result = saveState(createDefaultState())
->>>>>>> origin/main
 
   expect(typeof result.minLineY).toBe('number')
   expect(result.minLineY).toBe(0)
 })
 
 test('saveState returns zero for maxLineY', () => {
-<<<<<<< HEAD
-  const uid = 1
-  const state = createDefaultState()
-  set(uid, state, state)
-
-  const result = saveState(uid)
-=======
   const result = saveState(createDefaultState())
->>>>>>> origin/main
 
   expect(typeof result.maxLineY).toBe('number')
   expect(result.maxLineY).toBe(0)
 })
 
 test('saveState returns zero for deltaY', () => {
-<<<<<<< HEAD
-  const uid = 1
-  const state = createDefaultState()
-  set(uid, state, state)
-
-  const result = saveState(uid)
-=======
   const result = saveState(createDefaultState())
->>>>>>> origin/main
 
   expect(typeof result.deltaY).toBe('number')
   expect(result.deltaY).toBe(0)
 })
 
 test('saveState returns same structure regardless of uid value', () => {
-<<<<<<< HEAD
-  const uid1 = 1
-  const uid2 = 999
-  const uid3 = -5
-  const state = createDefaultState()
-
-  set(uid1, state, state)
-  set(uid2, state, state)
-  set(uid3, state, state)
-
-  const result1 = saveState(uid1)
-  const result2 = saveState(uid2)
-  const result3 = saveState(uid3)
-=======
   const result1 = saveState(createDefaultState())
   const result2 = saveState(createDefaultState())
   const result3 = saveState(createDefaultState())
->>>>>>> origin/main
 
   expect(result1).toEqual(result2)
   expect(result2).toEqual(result3)
@@ -165,15 +120,7 @@ test('saveState returns same structure regardless of uid value', () => {
 })
 
 test('saveState expandedPaths is readonly array', () => {
-<<<<<<< HEAD
-  const uid = 1
-  const state = createDefaultState()
-  set(uid, state, state)
-
-  const result = saveState(uid)
-=======
   const result = saveState(createDefaultState())
->>>>>>> origin/main
 
   expect(Array.isArray(result.expandedPaths)).toBe(true)
   // We can't test readonly at runtime, but we can verify it's an array
@@ -181,15 +128,7 @@ test('saveState expandedPaths is readonly array', () => {
 })
 
 test('saveState returns immutable object structure', () => {
-<<<<<<< HEAD
-  const uid = 1
-  const state = createDefaultState()
-  set(uid, state, state)
-
-  const result = saveState(uid)
-=======
   const result = saveState(createDefaultState())
->>>>>>> origin/main
 
   // Verify all properties have the expected types
   expect(typeof result.expandedPaths).toBe('object')
@@ -209,7 +148,7 @@ test('saveState saves searchValue from state', () => {
   }
   set(uid, state, state)
 
-  const result = saveState(uid)
+  const result = saveState(state)
 
   expect(result.searchValue).toBe('test search')
 })
@@ -222,7 +161,7 @@ test('saveState saves selectedTab from state', () => {
   }
   set(uid, state, state)
 
-  const result = saveState(uid)
+  const result = saveState(state)
 
   expect(result.selectedTab).toBe(InputName.TextEditorTab)
 })

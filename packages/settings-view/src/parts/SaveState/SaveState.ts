@@ -1,9 +1,10 @@
+import { getSelectedTabId } from '../GetSelectedTab/GetSelectedTab.ts'
 import type { SavedState } from '../SavedState/SavedState.ts'
 import { SettingsState } from '../SettingsState/SettingsState.ts'
 
 export const saveState = (state: SettingsState): SavedState => {
   const { tabs, searchValue } = state
-  const selectedTab = tabs.find((tab) => tab.selected)?.id || ''
+  const selectedTab = getSelectedTabId(tabs)
   return {
     expandedPaths: [],
     root: '',

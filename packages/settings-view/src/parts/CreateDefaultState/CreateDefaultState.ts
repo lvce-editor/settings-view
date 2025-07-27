@@ -17,5 +17,6 @@ export const createDefaultState = (): SettingsState => {
     searchValue: '',
     preferences: {},
     inputSource: 0,
+    filteredItemsCount: 0,
   }
 }

@@ -5,6 +5,7 @@ export interface SettingsState {
   readonly breakPointsExpanded: boolean
   readonly breakPointsVisible: boolean
   readonly filteredItems: readonly SettingItem[]
+  readonly filteredItemsCount: number
   readonly focus: number
   readonly height: number
   readonly id: number

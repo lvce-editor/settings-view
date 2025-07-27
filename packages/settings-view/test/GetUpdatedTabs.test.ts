@@ -3,163 +3,163 @@ import { getUpdatedTabs } from '../src/parts/GetUpdatedTabs/GetUpdatedTabs.ts'
 
 test('getUpdatedTabs selects the first tab when clicked', () => {
   const tabs = [
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: true },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: true },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ]
 
-  const result = getUpdatedTabs(tabs, 'Tab 1')
+  const result = getUpdatedTabs(tabs, 'tab-1')
 
   expect(result).toEqual([
-    { label: 'Tab 1', selected: true },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: true },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ])
 })
 
 test('getUpdatedTabs selects the middle tab when clicked', () => {
   const tabs = [
-    { label: 'Tab 1', selected: true },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: true },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ]
 
-  const result = getUpdatedTabs(tabs, 'Tab 2')
+  const result = getUpdatedTabs(tabs, 'tab-2')
 
   expect(result).toEqual([
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: true },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: true },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ])
 })
 
 test('getUpdatedTabs selects the last tab when clicked', () => {
   const tabs = [
-    { label: 'Tab 1', selected: true },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: true },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ]
 
-  const result = getUpdatedTabs(tabs, 'Tab 3')
+  const result = getUpdatedTabs(tabs, 'tab-3')
 
   expect(result).toEqual([
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: true },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: true },
   ])
 })
 
 test('getUpdatedTabs returns original tabs when clicked tab is already selected', () => {
   const tabs = [
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: true },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: true },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ]
 
-  const result = getUpdatedTabs(tabs, 'Tab 2')
+  const result = getUpdatedTabs(tabs, 'tab-2')
 
   expect(result).toBe(tabs)
   expect(result).toEqual([
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: true },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: true },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ])
 })
 
 test('getUpdatedTabs returns original tabs when first tab is already selected', () => {
   const tabs = [
-    { label: 'Tab 1', selected: true },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: true },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ]
 
-  const result = getUpdatedTabs(tabs, 'Tab 1')
+  const result = getUpdatedTabs(tabs, 'tab-1')
 
   expect(result).toBe(tabs)
   expect(result).toEqual([
-    { label: 'Tab 1', selected: true },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: true },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: false },
   ])
 })
 
 test('getUpdatedTabs returns original tabs when last tab is already selected', () => {
   const tabs = [
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: true },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: true },
   ]
 
-  const result = getUpdatedTabs(tabs, 'Tab 3')
+  const result = getUpdatedTabs(tabs, 'tab-3')
 
   expect(result).toBe(tabs)
   expect(result).toEqual([
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: false },
-    { label: 'Tab 3', selected: true },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
+    { id: 'tab-3', label: 'Tab 3', selected: true },
   ])
 })
 
-test('getUpdatedTabs handles non-existent tab name', () => {
+test('getUpdatedTabs handles non-existent tab id', () => {
   const tabs = [
-    { label: 'Tab 1', selected: true },
-    { label: 'Tab 2', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: true },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
   ]
 
-  const result = getUpdatedTabs(tabs, 'Non-existent Tab')
+  const result = getUpdatedTabs(tabs, 'non-existent-tab')
 
   expect(result).toEqual([
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: false },
   ])
 })
 
 test('getUpdatedTabs handles empty tabs array', () => {
-  const tabs: readonly { label: string; selected: boolean }[] = []
+  const tabs: readonly { id: string; label: string; selected: boolean }[] = []
 
-  const result = getUpdatedTabs(tabs, 'Any Tab')
+  const result = getUpdatedTabs(tabs, 'any-tab')
 
   expect(result).toEqual([])
 })
 
 test('getUpdatedTabs handles single tab', () => {
-  const tabs = [{ label: 'Single Tab', selected: false }]
+  const tabs = [{ id: 'single-tab', label: 'Single Tab', selected: false }]
 
-  const result = getUpdatedTabs(tabs, 'Single Tab')
+  const result = getUpdatedTabs(tabs, 'single-tab')
 
-  expect(result).toEqual([{ label: 'Single Tab', selected: true }])
+  expect(result).toEqual([{ id: 'single-tab', label: 'Single Tab', selected: true }])
 })
 
 test('getUpdatedTabs returns original tabs when single tab is already selected', () => {
-  const tabs = [{ label: 'Single Tab', selected: true }]
+  const tabs = [{ id: 'single-tab', label: 'Single Tab', selected: true }]
 
-  const result = getUpdatedTabs(tabs, 'Single Tab')
+  const result = getUpdatedTabs(tabs, 'single-tab')
 
   expect(result).toBe(tabs)
-  expect(result).toEqual([{ label: 'Single Tab', selected: true }])
+  expect(result).toEqual([{ id: 'single-tab', label: 'Single Tab', selected: true }])
 })
 
 test('getUpdatedTabs handles case-sensitive matching', () => {
   const tabs = [
-    { label: 'Tab 1', selected: true },
-    { label: 'tab 1', selected: false },
+    { id: 'tab-1', label: 'Tab 1', selected: true },
+    { id: 'tab-1-lower', label: 'tab 1', selected: false },
   ]
 
-  const result = getUpdatedTabs(tabs, 'tab 1')
+  const result = getUpdatedTabs(tabs, 'tab-1-lower')
 
   expect(result).toEqual([
-    { label: 'Tab 1', selected: false },
-    { label: 'tab 1', selected: true },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-1-lower', label: 'tab 1', selected: true },
   ])
 })
 
 test('getUpdatedTabs returns new array without mutating input when change is needed', () => {
   const tabs = [
-    { label: 'Tab 1', selected: false },
-    { label: 'Tab 2', selected: true },
+    { id: 'tab-1', label: 'Tab 1', selected: false },
+    { id: 'tab-2', label: 'Tab 2', selected: true },
   ]
 
-  const result = getUpdatedTabs(tabs, 'Tab 1')
+  const result = getUpdatedTabs(tabs, 'tab-1')
 
   expect(result).not.toBe(tabs)
   expect(result[0]).not.toBe(tabs[0])

@@ -12,13 +12,13 @@ test('loadContent should return state with tabs loaded', async () => {
   expect(result).toEqual({
     ...initialState,
     tabs: [
-      { label: 'Text Editor', selected: true },
-      { label: 'Workbench', selected: false },
-      { label: 'Window', selected: false },
-      { label: 'Features', selected: false },
-      { label: 'Applications', selected: false },
-      { label: 'Security', selected: false },
-      { label: 'Extensions', selected: false },
+      { id: 'text-editor', label: 'Text Editor', selected: true },
+      { id: 'workbench', label: 'Workbench', selected: false },
+      { id: 'window', label: 'Window', selected: false },
+      { id: 'features', label: 'Features', selected: false },
+      { id: 'applications', label: 'Applications', selected: false },
+      { id: 'security', label: 'Security', selected: false },
+      { id: 'extensions', label: 'Extensions', selected: false },
     ],
     items: expect.any(Array),
   })
@@ -37,7 +37,7 @@ test('loadContent should preserve other state properties', async () => {
     width: 1200,
     height: 800,
     items: [],
-    tabs: [{ label: 'old-tab', selected: true }],
+    tabs: [{ id: 'old-tab', label: 'old-tab', selected: true }],
   }
   const savedState = null
 
@@ -53,12 +53,12 @@ test('loadContent should preserve other state properties', async () => {
   expect(result.width).toBe(1200)
   expect(result.height).toBe(800)
   expect(result.tabs).toEqual([
-    { label: 'Text Editor', selected: true },
-    { label: 'Workbench', selected: false },
-    { label: 'Window', selected: false },
-    { label: 'Features', selected: false },
-    { label: 'Applications', selected: false },
-    { label: 'Security', selected: false },
-    { label: 'Extensions', selected: false },
+    { id: 'text-editor', label: 'Text Editor', selected: true },
+    { id: 'workbench', label: 'Workbench', selected: false },
+    { id: 'window', label: 'Window', selected: false },
+    { id: 'features', label: 'Features', selected: false },
+    { id: 'applications', label: 'Applications', selected: false },
+    { id: 'security', label: 'Security', selected: false },
+    { id: 'extensions', label: 'Extensions', selected: false },
   ])
 })

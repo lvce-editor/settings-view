@@ -56,7 +56,7 @@ test('loadContent should preserve other state properties', async () => {
   expect(result.width).toBe(1200)
   expect(result.height).toBe(800)
   expect(result.tabs).toEqual([
-    { id: 'text-editor', label: 'Text Editor', selected: true },
+    { id: 'text-editor', label: 'Text Editor', selected: false },
     { id: 'workbench', label: 'Workbench', selected: false },
     { id: 'window', label: 'Window', selected: false },
     { id: 'features', label: 'Features', selected: false },

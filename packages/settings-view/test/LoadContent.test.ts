@@ -22,6 +22,7 @@ test('loadContent should return state with tabs loaded', async () => {
     ],
     items: expect.any(Array),
     filteredItems: expect.any(Array),
+    inputSource: 2,
   })
 })
 

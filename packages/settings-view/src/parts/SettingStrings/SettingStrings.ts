@@ -140,3 +140,7 @@ export const windowTitle = (): string => {
 export const windowTitleDescription = (): string => {
   return I18NString.i18nString(UiStrings.WindowTitleDescription)
 }
+
+export const noSettingsMatching = (searchTerm: string): string => {
+  return I18NString.i18nString(UiStrings.NoSettingsMatching, { PH1: searchTerm })
+}

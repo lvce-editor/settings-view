@@ -5,7 +5,7 @@ import type { Tab } from '../Tab/Tab.ts'
 import { getSettingsContentDom } from '../GetSettingsContentDom/GetSettingsContentDom.ts'
 import { getSettingsSideBarDom } from '../GetSettingsSideBarDom/GetSettingsSideBarDom.ts'
 
-export const getSettingsMainDom = (tabs: readonly Tab[], items: readonly SettingItem[]): readonly VirtualDomNode[] => {
+export const getSettingsMainDom = (tabs: readonly Tab[], items: readonly SettingItem[], searchValue: string): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
@@ -13,6 +13,6 @@ export const getSettingsMainDom = (tabs: readonly Tab[], items: readonly Setting
       childCount: 2,
     },
     ...getSettingsSideBarDom(tabs),
-    ...getSettingsContentDom(items, tabs),
+    ...getSettingsContentDom(items, tabs, searchValue),
   ]
 }

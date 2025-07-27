@@ -3,10 +3,11 @@ import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
+import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getSettingsContentDom = (items: readonly SettingItem[], tabs: readonly Tab[]): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
-  const headerText = selectedTab ? selectedTab.label : 'Settings Content'
+  const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
 
   return [
     {

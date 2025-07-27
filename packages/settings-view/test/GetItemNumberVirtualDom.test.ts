@@ -1,6 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import { getItemNumberVirtualDom } from '../src/parts/GetItemNumberVirtualDom/GetItemNumberVirtualDom.ts'
+import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
 test('getItemNumberVirtualDom returns expected DOM structure for normal item', () => {
   const item = {
@@ -34,7 +35,7 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
       type: VirtualDomElements.Input,
       className: 'InputBox',
       inputType: 'number',
-      placeholder: 'number value',
+      placeholder: SettingStrings.numberValue(),
       childCount: 0,
     },
   ]
@@ -74,7 +75,7 @@ test('getItemNumberVirtualDom handles empty strings', () => {
       type: VirtualDomElements.Input,
       className: 'InputBox',
       inputType: 'number',
-      placeholder: 'number value',
+      placeholder: SettingStrings.numberValue(),
       childCount: 0,
     },
   ]
@@ -114,7 +115,7 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
       type: VirtualDomElements.Input,
       className: 'InputBox',
       inputType: 'number',
-      placeholder: 'number value',
+      placeholder: SettingStrings.numberValue(),
       childCount: 0,
     },
   ]
@@ -154,7 +155,7 @@ test('getItemNumberVirtualDom handles long text', () => {
       type: VirtualDomElements.Input,
       className: 'InputBox',
       inputType: 'number',
-      placeholder: 'number value',
+      placeholder: SettingStrings.numberValue(),
       childCount: 0,
     },
   ]
@@ -194,7 +195,7 @@ test('getItemNumberVirtualDom handles numeric values in item', () => {
       type: VirtualDomElements.Input,
       className: 'InputBox',
       inputType: 'number',
-      placeholder: 'number value',
+      placeholder: SettingStrings.numberValue(),
       childCount: 0,
     },
   ]
@@ -253,7 +254,7 @@ test('getItemNumberVirtualDom maintains consistent structure regardless of conte
       type: VirtualDomElements.Input,
       className: 'InputBox',
       inputType: 'number',
-      placeholder: 'number value',
+      placeholder: SettingStrings.numberValue(),
       childCount: 0,
     })
   }

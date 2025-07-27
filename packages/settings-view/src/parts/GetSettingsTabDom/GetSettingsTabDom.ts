@@ -11,6 +11,7 @@ export const getTabVirtualDom = (tab: Tab): readonly VirtualDomNode[] => {
       className,
       childCount: 1,
       role: AriaRoles.Tab,
+      name: tab.id,
     },
     text(tab.label),
   ]

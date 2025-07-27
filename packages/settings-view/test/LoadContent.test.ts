@@ -11,7 +11,15 @@ test('loadContent should return state with tabs loaded', async () => {
 
   expect(result).toEqual({
     ...initialState,
-    tabs: ['Text Editor', 'Workbench', 'Window', 'Features', 'Applications', 'Security', 'Extensions'],
+    tabs: [
+      { label: 'Text Editor', selected: true },
+      { label: 'Workbench', selected: false },
+      { label: 'Window', selected: false },
+      { label: 'Features', selected: false },
+      { label: 'Applications', selected: false },
+      { label: 'Security', selected: false },
+      { label: 'Extensions', selected: false },
+    ],
   })
 })
 
@@ -26,7 +34,8 @@ test('loadContent should preserve other state properties', async () => {
     y: 200,
     width: 1200,
     height: 800,
-    tabs: ['old-tab'],
+    items: [],
+    tabs: [{ label: 'old-tab', selected: true }],
   }
   const savedState = null
 
@@ -41,5 +50,13 @@ test('loadContent should preserve other state properties', async () => {
   expect(result.y).toBe(200)
   expect(result.width).toBe(1200)
   expect(result.height).toBe(800)
-  expect(result.tabs).toEqual(['Text Editor', 'Workbench', 'Window', 'Features', 'Applications', 'Security', 'Extensions'])
+  expect(result.tabs).toEqual([
+    { label: 'Text Editor', selected: true },
+    { label: 'Workbench', selected: false },
+    { label: 'Window', selected: false },
+    { label: 'Features', selected: false },
+    { label: 'Applications', selected: false },
+    { label: 'Security', selected: false },
+    { label: 'Extensions', selected: false },
+  ])
 })

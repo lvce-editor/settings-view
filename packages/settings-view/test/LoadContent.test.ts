@@ -20,6 +20,7 @@ test('loadContent should return state with tabs loaded', async () => {
       { label: 'Security', selected: false },
       { label: 'Extensions', selected: false },
     ],
+    items: expect.any(Array),
   })
 })
 

@@ -29,8 +29,8 @@ const getSavedWorkspacePath = (savedState: unknown): string => {
 }
 
 const getSavedTabId = (savedState: unknown): string => {
-  if (savedState && typeof savedState === 'object' && 'tabId' in savedState && typeof savedState.tabId === 'string') {
-    return savedState.tabId
+  if (savedState && typeof savedState === 'object' && 'selectedTab' in savedState && typeof savedState.selectedTab === 'string') {
+    return savedState.selectedTab
   }
   return ''
 }

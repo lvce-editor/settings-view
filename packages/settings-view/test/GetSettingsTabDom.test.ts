@@ -8,11 +8,13 @@ test('getTabVirtualDom returns expected DOM structure for normal tab', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Li,
+      type: VirtualDomElements.Button,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
       name: 'test-tab',
+      id: 'test-tab',
+      ariaSelected: false,
     },
     text('Test Tab'),
   ]
@@ -26,11 +28,13 @@ test('getTabVirtualDom returns expected DOM structure for selected tab', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Li,
+      type: VirtualDomElements.Button,
       className: 'Tab TabSelected',
       childCount: 1,
       role: AriaRoles.Tab,
       name: 'selected-tab',
+      id: 'selected-tab',
+      ariaSelected: true,
     },
     text('Test Tab'),
   ]
@@ -44,11 +48,13 @@ test('getTabVirtualDom handles empty string', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Li,
+      type: VirtualDomElements.Button,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
       name: 'empty-tab',
+      id: 'empty-tab',
+      ariaSelected: false,
     },
     text(''),
   ]
@@ -62,11 +68,13 @@ test('getTabVirtualDom handles special characters', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Li,
+      type: VirtualDomElements.Button,
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
       name: 'special-tab',
+      id: 'special-tab',
+      ariaSelected: false,
     },
     text('Tab with & special chars < > " \''),
   ]

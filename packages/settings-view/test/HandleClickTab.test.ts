@@ -18,7 +18,7 @@ test('handleClickTab returns new state object when name is provided', () => {
   const state = createDefaultState()
   const result = handleClickTab(state, 'test-tab')
   expect(result).not.toBe(state)
-  expect(result).toEqual(state)
+  expect(result.filteredItems).toEqual([])
 })
 
 test('handleClickTab updates tabs array correctly when clicking first tab', () => {

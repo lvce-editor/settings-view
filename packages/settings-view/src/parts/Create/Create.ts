@@ -15,6 +15,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     tabs: [],
     items: [],
     searchValue: '',
+    filteredItems: [],
   }
   SettingsStates.set(id, state, state)
 }

@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
@@ -22,11 +22,15 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
     },
     {
       type: VirtualDomElements.Button,
-      className: 'Button InputButton',
+      className: 'Button InputButton SearchFieldButton',
       childCount: 1,
-      ariaLabel: SettingStrings.clear(), // TODO i18n string
+      ariaLabel: SettingStrings.clear(),
       name: InputName.Clear, // TODO add click event listener
     },
-    text(SettingStrings.clear()), // TODO use icon
+    {
+      type: VirtualDomElements.Div,
+      className: 'MaskIcon MaskIconClearAll',
+      childCount: 0,
+    },
   ]
 }

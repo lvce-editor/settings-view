@@ -1,19 +1,18 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { mergeClassNames, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import { getSettingsHeaderDom } from '../GetSettingsHeaderDom/GetSettingsHeaderDom.ts'
+import { getSettingsMainDom } from '../GetSettingsMainDom/GetSettingsMainDom.ts'
 
 export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
-      childCount: 1,
+      childCount: 2,
       className: mergeClassNames(ClassNames.Viewlet, ClassNames.Settings),
     },
-    {
-      type: VirtualDomElements.H1,
-      childCount: 1,
-    },
-    text('Settings Dom: TODO'),
+    ...getSettingsHeaderDom(),
+    ...getSettingsMainDom(),
   ]
 }

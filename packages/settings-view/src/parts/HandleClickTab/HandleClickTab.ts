@@ -5,7 +5,7 @@ export const handleClickTab = (state: SettingsState, name: string): SettingsStat
     return state
   }
 
-  const updatedTabs = state.tabs.map(tab => ({
+  const updatedTabs = state.tabs.map((tab) => ({
     ...tab,
     selected: tab.label === name,
   }))

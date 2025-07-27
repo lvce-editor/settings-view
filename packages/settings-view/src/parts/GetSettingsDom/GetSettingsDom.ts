@@ -6,7 +6,7 @@ import { getSettingsHeaderDom } from '../GetSettingsHeaderDom/GetSettingsHeaderD
 import { getSettingsMainDom } from '../GetSettingsMainDom/GetSettingsMainDom.ts'
 
 export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] => {
-  const { tabs, items } = state
+  const { tabs, filteredItems } = state
   return [
     {
       type: VirtualDomElements.Div,
@@ -14,6 +14,6 @@ export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] 
       className: mergeClassNames(ClassNames.Viewlet, ClassNames.Settings),
     },
     ...getSettingsHeaderDom(),
-    ...getSettingsMainDom(tabs, items),
+    ...getSettingsMainDom(tabs, filteredItems),
   ]
 }

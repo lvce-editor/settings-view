@@ -1,7 +1,7 @@
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 
-export const getSettingItems = (): readonly SettingItem[] => {
+export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
   return [
     {
       heading: 'Font Size',

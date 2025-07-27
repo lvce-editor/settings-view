@@ -6,6 +6,7 @@ test('restoreState returns default values when savedState is null', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -17,6 +18,7 @@ test('restoreState returns default values when savedState is undefined', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -28,6 +30,7 @@ test('restoreState returns default values when savedState is empty object', () =
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -39,6 +42,7 @@ test('restoreState returns default values when savedState is not an object', () 
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -50,6 +54,7 @@ test('restoreState returns default values when savedState is a number', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -61,6 +66,7 @@ test('restoreState returns default values when savedState is a boolean', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -78,6 +84,7 @@ test('restoreState extracts workspacePath correctly', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '/path/to/workspace',
     minLineY: 100,
     deltaY: 50,
@@ -94,6 +101,7 @@ test('restoreState extracts minLineY correctly', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 200,
     deltaY: 75,
@@ -109,6 +117,7 @@ test('restoreState extracts deltaY correctly', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 150,
@@ -126,6 +135,7 @@ test('restoreState handles all properties correctly', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '/home/user/project',
     minLineY: 300,
     deltaY: 200,
@@ -143,6 +153,7 @@ test('restoreState handles workspacePath as non-string', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 100,
     deltaY: 50,
@@ -160,6 +171,7 @@ test('restoreState handles minLineY as non-number', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '/path/to/workspace',
     minLineY: 0,
     deltaY: 50,
@@ -177,6 +189,7 @@ test('restoreState handles deltaY as non-number', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '/path/to/workspace',
     minLineY: 100,
     deltaY: 0,
@@ -194,6 +207,7 @@ test('restoreState handles negative values', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '/negative/path',
     minLineY: -100,
     deltaY: -50,
@@ -211,6 +225,7 @@ test('restoreState handles zero values', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -228,6 +243,7 @@ test('restoreState handles large values', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '/very/long/path/to/workspace',
     minLineY: 999_999,
     deltaY: 999_999,
@@ -247,6 +263,7 @@ test('restoreState handles extra properties in savedState', () => {
 
   expect(result).toEqual({
     tabId: '',
+    searchValue: '',
     root: '/path/to/workspace',
     minLineY: 100,
     deltaY: 50,

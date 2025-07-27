@@ -13,4 +13,5 @@ export interface SettingsState {
   readonly width: number
   readonly x: number
   readonly y: number
+  readonly searchValue: string
 }

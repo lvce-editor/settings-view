@@ -13,5 +13,6 @@ export const createDefaultState = (): SettingsState => {
     height: 600,
     tabs: [],
     items: [],
+    searchValue: '',
   }
 }

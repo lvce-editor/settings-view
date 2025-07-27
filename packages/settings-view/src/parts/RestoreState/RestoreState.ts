@@ -6,6 +6,14 @@ const getSavedMinLineY = (savedState: unknown): number => {
   }
   return 0
 }
+
+const getSavedSearchValue = (savedState: unknown): string => {
+  if (savedState && typeof savedState === 'object' && 'searchValue' in savedState && typeof savedState.searchValue === 'string') {
+    return savedState.searchValue
+  }
+  return ''
+}
+
 const getSavedDeltaY = (savedState: unknown): number => {
   if (savedState && typeof savedState === 'object' && 'deltaY' in savedState && typeof savedState.deltaY === 'number') {
     return savedState.deltaY
@@ -20,21 +28,34 @@ const getSavedWorkspacePath = (savedState: unknown): string => {
   return ''
 }
 
+const getSavedTabId = (savedState: unknown): string => {
+  if (savedState && typeof savedState === 'object' && 'tabId' in savedState && typeof savedState.tabId === 'string') {
+    return savedState.tabId
+  }
+  return ''
+}
+
 export const restoreState = (savedState: unknown): RestoredState => {
   if (!savedState) {
     return {
       root: '',
       minLineY: 0,
       deltaY: 0,
+      tabId: '',
+      searchValue: '',
     }
   }
 
   const root = getSavedWorkspacePath(savedState)
   const minLineY = getSavedMinLineY(savedState)
   const deltaY = getSavedDeltaY(savedState)
+  const tabId = getSavedTabId(savedState)
+  const searchValue = getSavedSearchValue(savedState)
   return {
     root,
     minLineY,
     deltaY,
+    tabId,
+    searchValue,
   }
 }

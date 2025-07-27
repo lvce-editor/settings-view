@@ -5,6 +5,8 @@ test('restoreState returns default values when savedState is null', () => {
   const result = restoreState(null)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -15,6 +17,8 @@ test('restoreState returns default values when savedState is undefined', () => {
   const result = restoreState(undefined)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -25,6 +29,8 @@ test('restoreState returns default values when savedState is empty object', () =
   const result = restoreState({})
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -35,6 +41,8 @@ test('restoreState returns default values when savedState is not an object', () 
   const result = restoreState('not an object')
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -45,6 +53,8 @@ test('restoreState returns default values when savedState is a number', () => {
   const result = restoreState(123)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -55,6 +65,8 @@ test('restoreState returns default values when savedState is a boolean', () => {
   const result = restoreState(true)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -71,6 +83,8 @@ test('restoreState extracts workspacePath correctly', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '/path/to/workspace',
     minLineY: 100,
     deltaY: 50,
@@ -86,6 +100,8 @@ test('restoreState extracts minLineY correctly', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 200,
     deltaY: 75,
@@ -100,6 +116,8 @@ test('restoreState extracts deltaY correctly', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 150,
@@ -116,6 +134,8 @@ test('restoreState handles all properties correctly', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '/home/user/project',
     minLineY: 300,
     deltaY: 200,
@@ -132,6 +152,8 @@ test('restoreState handles workspacePath as non-string', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 100,
     deltaY: 50,
@@ -148,6 +170,8 @@ test('restoreState handles minLineY as non-number', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '/path/to/workspace',
     minLineY: 0,
     deltaY: 50,
@@ -164,6 +188,8 @@ test('restoreState handles deltaY as non-number', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '/path/to/workspace',
     minLineY: 100,
     deltaY: 0,
@@ -180,6 +206,8 @@ test('restoreState handles negative values', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '/negative/path',
     minLineY: -100,
     deltaY: -50,
@@ -196,6 +224,8 @@ test('restoreState handles zero values', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '',
     minLineY: 0,
     deltaY: 0,
@@ -212,6 +242,8 @@ test('restoreState handles large values', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '/very/long/path/to/workspace',
     minLineY: 999_999,
     deltaY: 999_999,
@@ -230,6 +262,8 @@ test('restoreState handles extra properties in savedState', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
+    tabId: '',
+    searchValue: '',
     root: '/path/to/workspace',
     minLineY: 100,
     deltaY: 50,

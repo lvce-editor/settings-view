@@ -26,6 +26,7 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
       childCount: 1,
       ariaLabel: SettingStrings.clear(),
       name: InputName.Clear, // TODO add click event listener
+      onClick: DomEventListenerFunctions.HandleClickClear,
     },
     {
       type: VirtualDomElements.Div,

@@ -24,6 +24,7 @@ export const getItemSelectVirtualDom = (item: SettingItem): readonly VirtualDomN
     text(description),
     {
       type: VirtualDomElements.Select,
+      className: 'Select',
       childCount: options.length,
     },
     ...options.flatMap(getOptionDom),

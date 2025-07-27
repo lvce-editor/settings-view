@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'

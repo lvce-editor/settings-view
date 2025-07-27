@@ -20,21 +20,31 @@ const getSavedWorkspacePath = (savedState: unknown): string => {
   return ''
 }
 
+const getSavedTabId = (savedState: unknown): string => {
+  if (savedState && typeof savedState === 'object' && 'tabId' in savedState && typeof savedState.tabId === 'string') {
+    return savedState.tabId
+  }
+  return ''
+}
+
 export const restoreState = (savedState: unknown): RestoredState => {
   if (!savedState) {
     return {
       root: '',
       minLineY: 0,
       deltaY: 0,
+      tabId: '',
     }
   }
 
   const root = getSavedWorkspacePath(savedState)
   const minLineY = getSavedMinLineY(savedState)
   const deltaY = getSavedDeltaY(savedState)
+  const tabId = getSavedTabId(savedState)
   return {
     root,
     minLineY,
     deltaY,
+    tabId: '',
   }
 }

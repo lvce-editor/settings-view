@@ -1,5 +1,5 @@
-import { getSelectedTabId } from '../GetSelectedTab/GetSelectedTab.ts'
 import type { Tab } from '../Tab/Tab.ts'
+import { getSelectedTabId } from '../GetSelectedTab/GetSelectedTab.ts'
 
 export const getUpdatedTabs = (tabs: readonly Tab[], selectedTabId: string): readonly Tab[] => {
   // Check if the clicked tab is already selected

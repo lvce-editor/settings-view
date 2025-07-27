@@ -3,6 +3,7 @@ import { clear } from '../Clear/Clear.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
+import { handleInput } from '../HandleInput/HandleInput.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import { render2 } from '../Render2/Render2.ts'
@@ -26,4 +27,5 @@ export const commandMap = {
   'Settings.terminate': terminate,
   'Settings.handleClickTab': wrapCommand(handleClickTab),
   'Settings.clear': wrapCommand(clear),
+  'Settings.handleInput': wrapCommand(handleInput),
 }

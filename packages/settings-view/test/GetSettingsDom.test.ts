@@ -2,20 +2,11 @@ import { test, expect } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getSettingsDom } from '../src/parts/GetSettingsDom/GetSettingsDom.ts'
 
 test('getSettingsDom returns array of VirtualDomNode objects', () => {
-  const mockState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
+  const mockState: SettingsState = createDefaultState()
 
   const domNodes = getSettingsDom(mockState)
 
@@ -24,17 +15,7 @@ test('getSettingsDom returns array of VirtualDomNode objects', () => {
 })
 
 test('getSettingsDom first element is a div with correct properties', () => {
-  const mockState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
+  const mockState: SettingsState = createDefaultState()
 
   const domNodes = getSettingsDom(mockState)
   const firstNode = domNodes[0]
@@ -47,17 +28,7 @@ test('getSettingsDom first element is a div with correct properties', () => {
 })
 
 test('getSettingsDom second element is an h1 with correct properties', () => {
-  const mockState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
+  const mockState: SettingsState = createDefaultState()
 
   const domNodes = getSettingsDom(mockState)
   const secondNode = domNodes[1]
@@ -67,17 +38,7 @@ test('getSettingsDom second element is an h1 with correct properties', () => {
 })
 
 test('getSettingsDom third element is text with correct content', () => {
-  const mockState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
+  const mockState: SettingsState = createDefaultState()
 
   const domNodes = getSettingsDom(mockState)
   const thirdNode = domNodes[2]
@@ -89,6 +50,7 @@ test('getSettingsDom third element is text with correct content', () => {
 
 test('getSettingsDom works with different state values', () => {
   const mockState: SettingsState = {
+    ...createDefaultState(),
     breakPointsExpanded: true,
     breakPointsVisible: false,
     focus: 5,

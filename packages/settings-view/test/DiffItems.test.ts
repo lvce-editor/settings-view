@@ -1,49 +1,19 @@
 import { test, expect } from '@jest/globals'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { isEqual } from '../src/parts/DiffItems/DiffItems.ts'
 
 test('isEqual returns true for same state reference', () => {
-  const mockState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
+  const mockState: SettingsState = createDefaultState()
 
   const result = isEqual(mockState, mockState)
 
   expect(result).toBe(true)
 })
 
-test('isEqual returns false for different state references with same values', () => {
-  const oldState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
-
-  const newState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
+test('isEqual returns false for different state objects with same values', () => {
+  const oldState: SettingsState = createDefaultState()
+  const newState: SettingsState = createDefaultState()
 
   const result = isEqual(oldState, newState)
 
@@ -51,19 +21,9 @@ test('isEqual returns false for different state references with same values', ()
 })
 
 test('isEqual returns false for states with different values', () => {
-  const oldState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
-
+  const oldState: SettingsState = createDefaultState()
   const newState: SettingsState = {
+    ...createDefaultState(),
     breakPointsExpanded: true,
     breakPointsVisible: false,
     focus: 5,
@@ -80,29 +40,13 @@ test('isEqual returns false for states with different values', () => {
   expect(result).toBe(false)
 })
 
-test('isEqual returns false when only one property differs', () => {
-  const oldState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
-  }
-
+test('isEqual returns false for states with different focus values', () => {
+  const oldState: SettingsState = createDefaultState()
   const newState: SettingsState = {
+    ...createDefaultState(),
     breakPointsExpanded: true,
     breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
+    focus: 5,
   }
 
   const result = isEqual(oldState, newState)
@@ -110,18 +54,49 @@ test('isEqual returns false when only one property differs', () => {
   expect(result).toBe(false)
 })
 
-test('isEqual handles null and undefined states', () => {
-  const mockState: SettingsState = {
-    breakPointsExpanded: false,
-    breakPointsVisible: true,
-    focus: 0,
-    id: 1,
-    uri: 'test://uri',
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
+test('isEqual returns false for states with different boolean values', () => {
+  const mockState: SettingsState = createDefaultState()
+  const differentState: SettingsState = {
+    ...createDefaultState(),
+    breakPointsExpanded: true,
+    breakPointsVisible: false,
   }
+
+  const result = isEqual(mockState, differentState)
+
+  expect(result).toBe(false)
+})
+
+test('isEqual returns false for states with different numeric values', () => {
+  const mockState: SettingsState = createDefaultState()
+  const differentState: SettingsState = {
+    ...createDefaultState(),
+    id: 999,
+    x: 999,
+    y: 999,
+    width: 999,
+    height: 999,
+  }
+
+  const result = isEqual(mockState, differentState)
+
+  expect(result).toBe(false)
+})
+
+test('isEqual returns false for states with different string values', () => {
+  const mockState: SettingsState = createDefaultState()
+  const differentState: SettingsState = {
+    ...createDefaultState(),
+    uri: 'completely://different',
+  }
+
+  const result = isEqual(mockState, differentState)
+
+  expect(result).toBe(false)
+})
+
+test('isEqual handles null and undefined states', () => {
+  const mockState: SettingsState = createDefaultState()
 
   // @ts-expect-error - testing with null
   expect(isEqual(null, mockState)).toBe(false)

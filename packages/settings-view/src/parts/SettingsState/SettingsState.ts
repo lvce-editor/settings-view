@@ -8,4 +8,5 @@ export interface SettingsState {
   readonly y: number
   readonly width: number
   readonly height: number
+  readonly tabs: readonly string[]
 }

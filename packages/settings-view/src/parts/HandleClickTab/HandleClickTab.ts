@@ -7,8 +7,9 @@ export const handleClickTab = (state: SettingsState, name: string): SettingsStat
     return state
   }
 
-  const updatedTabs = getUpdatedTabs(state.tabs, name)
-  const filteredItems = getFilteredItems(state.items, updatedTabs)
+  const { items, tabs, searchValue } = state
+  const updatedTabs = getUpdatedTabs(tabs, name)
+  const filteredItems = getFilteredItems(items, updatedTabs, searchValue)
 
   return {
     ...state,

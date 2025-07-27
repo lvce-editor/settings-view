@@ -1,39 +1,40 @@
 import type { Tab } from '../Tab/Tab.ts'
+import * as InputName from '../InputName/InputName.ts'
 
 export const getTabs = (): readonly Tab[] => {
   const tabs: readonly Tab[] = [
     {
-      id: 'text-editor',
+      id: InputName.TextEditorTab,
       label: 'Text Editor',
       selected: true,
     },
     {
-      id: 'workbench',
+      id: InputName.WorkbenchTab,
       label: 'Workbench',
       selected: false,
     },
     {
-      id: 'window',
+      id: InputName.WindowTab,
       label: 'Window',
       selected: false,
     },
     {
-      id: 'features',
+      id: InputName.FeaturesTab,
       label: 'Features',
       selected: false,
     },
     {
-      id: 'applications',
+      id: InputName.ApplicationsTab,
       label: 'Applications',
       selected: false,
     },
     {
-      id: 'security',
+      id: InputName.SecurityTab,
       label: 'Security',
       selected: false,
     },
     {
-      id: 'extensions',
+      id: InputName.ExtensionsTab,
       label: 'Extensions',
       selected: false,
     },

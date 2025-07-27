@@ -13,8 +13,8 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const tabs = getTabs()
   const newTabs = getUpdatedTabs(tabs, tabId)
   const items: readonly SettingItem[] = await getSettingItems()
-  const filteredItems = getFilteredItems(items, newTabs, searchValue)
   const preferences = await getPreferences()
+  const filteredItems = getFilteredItems(items, newTabs, searchValue, preferences)
   return {
     ...state,
     tabs: newTabs,

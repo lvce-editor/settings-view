@@ -11,7 +11,7 @@ import { renderActions } from '../RenderActions/RenderActions.ts'
 import { renderEventListeners } from '../RenderEventListeners/RenderEventListeners.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
 import { saveState } from '../SaveState/SaveState.ts'
-import { getCommandIds, wrapCommand } from '../SettingsStates/SettingsStates.ts'
+import { getCommandIds, wrapCommand, wrapGetter } from '../SettingsStates/SettingsStates.ts'
 
 export const commandMap = {
   'Initialize.initialize': Initialize.initialize,
@@ -23,7 +23,7 @@ export const commandMap = {
   'Settings.renderActions': renderActions,
   'Settings.renderEventListeners': renderEventListeners,
   'Settings.restoreState': restoreState,
-  'Settings.saveState': saveState,
+  'Settings.saveState': wrapGetter(saveState),
   'Settings.terminate': terminate,
   'Settings.handleClickTab': wrapCommand(handleClickTab),
   'Settings.clear': wrapCommand(clear),

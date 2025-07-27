@@ -15,13 +15,10 @@ export const getItemCheckBoxVirtualDom = (item: SettingItem): readonly VirtualDo
       childCount: 1,
     },
     text(heading),
-    {
-      type: VirtualDomElements.P,
-      childCount: 1,
-    },
-    text(description),
+
     {
       type: VirtualDomElements.Div,
+      className: 'SettingsItemCheckBox',
       childCount: 2,
     },
     {
@@ -34,6 +31,6 @@ export const getItemCheckBoxVirtualDom = (item: SettingItem): readonly VirtualDo
       type: VirtualDomElements.Label,
       childCount: 1,
     },
-    text('Check '),
+    text(description),
   ]
 }

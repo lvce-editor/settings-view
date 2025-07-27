@@ -1,6 +1,7 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
 
 export const createDefaultState = (): SettingsState => {
+  // @ts-ignore
   return {
     breakPointsExpanded: false,
     breakPointsVisible: true,

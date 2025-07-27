@@ -1,5 +1,6 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
@@ -16,7 +17,8 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
       className: 'InputBox SettingsSearchInput',
       placeholder,
       childCount: 0,
-      name: InputName.SettingsSearch, // TODO add input event listener
+      name: InputName.SettingsSearch,
+      onInput: DomEventListenerFunctions.HandleInput,
     },
     {
       type: VirtualDomElements.Button,

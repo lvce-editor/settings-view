@@ -7,5 +7,9 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       name: DomEventListenerFunctions.HandleClickTab,
       params: ['handleClickTab', 'event.target.name'],
     },
+    {
+      name: DomEventListenerFunctions.HandleInput,
+      params: ['handleInput', 'event.target.value'],
+    },
   ]
 }

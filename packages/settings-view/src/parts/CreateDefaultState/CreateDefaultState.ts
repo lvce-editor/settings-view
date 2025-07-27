@@ -1,7 +1,6 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
 
 export const createDefaultState = (): SettingsState => {
-  // @ts-ignore
   return {
     breakPointsExpanded: false,
     breakPointsVisible: true,
@@ -12,7 +11,6 @@ export const createDefaultState = (): SettingsState => {
     y: 0,
     width: 800,
     height: 600,
-    // @ts-ignore
     tabs: [],
   }
 }

@@ -22,6 +22,7 @@ export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomN
     text(description),
     {
       type: VirtualDomElements.Input,
+      className: 'InputBox',
       inputType: 'number',
       placeholder: 'number value',
       childCount: 0,

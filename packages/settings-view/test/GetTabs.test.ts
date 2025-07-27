@@ -5,13 +5,13 @@ test('getTabs should return the correct array of tab objects', () => {
   const result = getTabs()
 
   expect(result).toEqual([
-    { label: 'Text Editor', selected: true },
-    { label: 'Workbench', selected: false },
-    { label: 'Window', selected: false },
-    { label: 'Features', selected: false },
-    { label: 'Applications', selected: false },
-    { label: 'Security', selected: false },
-    { label: 'Extensions', selected: false },
+    { id: 'text-editor', label: 'Text Editor', selected: true },
+    { id: 'workbench', label: 'Workbench', selected: false },
+    { id: 'window', label: 'Window', selected: false },
+    { id: 'features', label: 'Features', selected: false },
+    { id: 'applications', label: 'Applications', selected: false },
+    { id: 'security', label: 'Security', selected: false },
+    { id: 'extensions', label: 'Extensions', selected: false },
   ])
 })
 

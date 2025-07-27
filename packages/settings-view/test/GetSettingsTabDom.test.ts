@@ -3,7 +3,7 @@ import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-wo
 import { getTabVirtualDom } from '../src/parts/GetSettingsTabDom/GetSettingsTabDom.ts'
 
 test('getTabVirtualDom returns expected DOM structure for normal tab', () => {
-  const tab = { label: 'Test Tab', selected: false }
+  const tab = { id: 'test-tab', label: 'Test Tab', selected: false }
   const virtualDom = getTabVirtualDom(tab)
 
   const expectedDom = [
@@ -12,6 +12,7 @@ test('getTabVirtualDom returns expected DOM structure for normal tab', () => {
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'test-tab',
     },
     text('Test Tab'),
   ]
@@ -20,7 +21,7 @@ test('getTabVirtualDom returns expected DOM structure for normal tab', () => {
 })
 
 test('getTabVirtualDom returns expected DOM structure for selected tab', () => {
-  const tab = { label: 'Test Tab', selected: true }
+  const tab = { id: 'selected-tab', label: 'Test Tab', selected: true }
   const virtualDom = getTabVirtualDom(tab)
 
   const expectedDom = [
@@ -29,6 +30,7 @@ test('getTabVirtualDom returns expected DOM structure for selected tab', () => {
       className: 'Tab TabSelected',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'selected-tab',
     },
     text('Test Tab'),
   ]
@@ -37,7 +39,7 @@ test('getTabVirtualDom returns expected DOM structure for selected tab', () => {
 })
 
 test('getTabVirtualDom handles empty string', () => {
-  const tab = { label: '', selected: false }
+  const tab = { id: 'empty-tab', label: '', selected: false }
   const virtualDom = getTabVirtualDom(tab)
 
   const expectedDom = [
@@ -46,6 +48,7 @@ test('getTabVirtualDom handles empty string', () => {
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'empty-tab',
     },
     text(''),
   ]
@@ -54,7 +57,7 @@ test('getTabVirtualDom handles empty string', () => {
 })
 
 test('getTabVirtualDom handles special characters', () => {
-  const tab = { label: 'Tab with & special chars < > " \'', selected: false }
+  const tab = { id: 'special-tab', label: 'Tab with & special chars < > " \'', selected: false }
   const virtualDom = getTabVirtualDom(tab)
 
   const expectedDom = [
@@ -63,6 +66,7 @@ test('getTabVirtualDom handles special characters', () => {
       className: 'Tab',
       childCount: 1,
       role: AriaRoles.Tab,
+      name: 'special-tab',
     },
     text('Tab with & special chars < > " \''),
   ]

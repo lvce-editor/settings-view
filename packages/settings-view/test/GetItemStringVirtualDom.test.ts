@@ -61,6 +61,8 @@ test('getItemStringVirtualDom handles empty strings', () => {
     description: '',
     id: 'empty-id',
     type: 2,
+    value: '',
+    category: 'test',
   }
 
   const result = getItemStringVirtualDom(item)
@@ -107,6 +109,8 @@ test('getItemStringVirtualDom handles special characters in heading and descript
     description: 'Description with & < > " \' characters',
     id: 'special-id',
     type: 2,
+    value: 'special value',
+    category: 'test',
   }
 
   const result = getItemStringVirtualDom(item)
@@ -154,6 +158,8 @@ test('getItemStringVirtualDom handles long text', () => {
     description: longText,
     id: 'long-id',
     type: 2,
+    value: 'long value',
+    category: 'test',
   }
 
   const result = getItemStringVirtualDom(item)
@@ -201,12 +207,16 @@ test('getItemStringVirtualDom maintains consistent structure regardless of conte
       description: 'Description 1',
       id: 'item-1',
       type: 2,
+      value: 'value1',
+      category: 'test',
     },
     {
       heading: 'Item 2',
       description: 'Description 2',
       id: 'item-2',
       type: 2,
+      value: 'value2',
+      category: 'test',
     },
   ]
 
@@ -234,6 +244,8 @@ test('getItemStringVirtualDom handles different item types', () => {
     description: 'Test Description',
     id: 'test-id',
     type: 2,
+    value: 'test value',
+    category: 'test',
   }
 
   const result = getItemStringVirtualDom(item)
@@ -253,6 +265,8 @@ test('getItemStringVirtualDom shows modification indicator when item is modified
     description: 'This item is modified',
     id: 'modified-id',
     type: 2,
+    value: 'modified value',
+    category: 'test',
     modified: true,
   }
 

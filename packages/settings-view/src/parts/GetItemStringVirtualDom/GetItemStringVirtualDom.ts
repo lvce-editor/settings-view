@@ -26,7 +26,7 @@ export const getItemStringVirtualDom = (item: SettingItem): readonly VirtualDomN
       type: VirtualDomElements.Input,
       className: ClassNames.InputBox,
       inputType: 'text',
-      placeholder: SettingStrings.numberValue(),
+      placeholder: SettingStrings.stringValue(),
       childCount: 0,
       name: id,
     },

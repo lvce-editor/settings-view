@@ -21,6 +21,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     scrollOffset: 0,
     filteredItemsCount: 0,
     history: [],
+    modifiedSettings: {},
   }
   SettingsStates.set(id, state, state)
 }

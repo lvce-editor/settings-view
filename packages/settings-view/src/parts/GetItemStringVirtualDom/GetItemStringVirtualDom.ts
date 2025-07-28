@@ -2,6 +2,7 @@ import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getItemStringVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
@@ -29,6 +30,7 @@ export const getItemStringVirtualDom = (item: SettingItem): readonly VirtualDomN
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
       name: id,
+      onInput: DomEventListenerFunctions.HandleSettingInput,
     },
   ]
 }

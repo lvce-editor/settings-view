@@ -21,11 +21,11 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleSettingChecked,
-      params: ['handleSettingInput', 'event.target.name', 'event.target.value'],
+      params: ['handleSettingChecked', 'event.target.name', 'event.target.value'],
     },
     {
       name: DomEventListenerFunctions.HandleSettingSelect,
-      params: ['handleSettingInput', 'event.target.name', 'event.target.value'],
+      params: ['handleSettingSelect', 'event.target.name', 'event.target.value'],
     },
   ]
 }

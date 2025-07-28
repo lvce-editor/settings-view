@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as GetSettingsInputBadgeDom from '../src/parts/GetSettingsInputBadgeDom/GetSettingsInputBadgeDom.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as GetSettingsInputBadgeDom from '../src/parts/GetSettingsInputBadgeDom/GetSettingsInputBadgeDom.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
 test('getSettingsInputBadgeDom returns correct virtual DOM structure', () => {

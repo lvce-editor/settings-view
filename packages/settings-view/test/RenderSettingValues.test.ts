@@ -5,7 +5,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { renderSettingValues } from '../src/parts/RenderSettingValues/RenderSettingValues.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
-test('renderSettingValues returns correct ViewletCommand for numeric settings', () => {
+test('renderSettingValues returns correct ViewletCommand for numeric and string settings', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {
     ...createDefaultState(),
@@ -50,7 +50,7 @@ test('renderSettingValues returns correct ViewletCommand for numeric settings', 
   ])
 })
 
-test('renderSettingValues returns empty array when no numeric settings', () => {
+test('renderSettingValues returns empty array when no numeric or string settings', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {
     ...createDefaultState(),
@@ -65,11 +65,11 @@ test('renderSettingValues returns empty array when no numeric settings', () => {
         category: 'editor',
       },
       {
-        id: 'theme',
-        heading: 'Theme',
-        description: 'Theme description',
-        type: SettingItemType.String,
-        value: 'dark',
+        id: 'enableMinimap',
+        heading: 'Enable Minimap',
+        description: 'Enable minimap description',
+        type: SettingItemType.Boolean,
+        value: 'false',
         category: 'editor',
       },
     ],
@@ -141,6 +141,7 @@ test('renderSettingValues handles mixed setting types', () => {
     1,
     [
       { name: 'fontSize', value: '12' },
+      { name: 'theme', value: 'light' },
       { name: 'lineHeight', value: '1.5' },
     ],
   ])

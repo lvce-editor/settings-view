@@ -3,6 +3,7 @@ import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { diff } from '../src/parts/Diff/Diff.ts'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
+import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
 test('diff returns RenderItems when states are different objects with same values', () => {
   const oldState: SettingsState = createDefaultState()
@@ -106,4 +107,27 @@ test('diff returns readonly array', () => {
   // The return type should be readonly, but we can't test that at runtime
   // We just verify it's an array with the expected content
   expect(result).toContain(DiffType.RenderFocus)
+})
+
+test('diff returns RenderSettingValues when filteredItems change', () => {
+  const oldState = createDefaultState()
+  const newState: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        id: 'fontSize',
+        heading: 'Font Size',
+        description: 'Font size description',
+        type: SettingItemType.Number,
+        value: '15',
+        category: 'editor',
+      },
+    ],
+  }
+
+  const result = diff(oldState, newState)
+
+  expect(Array.isArray(result)).toBe(true)
+  expect(result).toContain(DiffType.RenderSettingValues)
+  expect(result).toContain(DiffType.RenderItems)
 })

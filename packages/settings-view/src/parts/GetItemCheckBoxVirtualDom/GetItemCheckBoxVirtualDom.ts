@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getInputId } from '../GetInputId/GetInputId.ts'
 
 export const getItemCheckBoxVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
@@ -9,7 +10,7 @@ export const getItemCheckBoxVirtualDom = (item: SettingItem): readonly VirtualDo
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
+      className: ClassNames.SettingsItem,
       childCount: 3,
     },
     {
@@ -20,12 +21,12 @@ export const getItemCheckBoxVirtualDom = (item: SettingItem): readonly VirtualDo
 
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItemCheckBox',
+      className: ClassNames.SettingsItemCheckBox,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Input,
-      className: 'CheckBox',
+      className: ClassNames.CheckBox,
       inputType: 'checkbox',
       childCount: 0,
       id: domId,

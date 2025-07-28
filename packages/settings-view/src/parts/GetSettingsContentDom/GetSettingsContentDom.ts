@@ -2,6 +2,7 @@ import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
@@ -12,12 +13,12 @@ export const getSettingsContentDom = (items: readonly SettingItem[], tabs: reado
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsContent',
+      className: ClassNames.SettingsContent,
       childCount: 2,
     },
     {
       type: VirtualDomElements.H1,
-      className: 'SettingsContentHeading',
+      className: ClassNames.SettingsContentHeading,
       childCount: 1,
     },
     text(headerText),

@@ -1,5 +1,6 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
@@ -9,12 +10,12 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsInputWrapper',
+      className: ClassNames.SettingsInputWrapper,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox SettingsSearchInput',
+      className: mergeClassNames(ClassNames.InputBox, ClassNames.SettingsSearchInput),
       placeholder,
       childCount: 0,
       name: InputName.SettingsSearch,
@@ -22,7 +23,7 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
     },
     {
       type: VirtualDomElements.Button,
-      className: 'Button InputButton SearchFieldButton',
+      className: mergeClassNames(ClassNames.Button, ClassNames.InputButton, ClassNames.SearchFieldButton),
       childCount: 1,
       ariaLabel: SettingStrings.clear(),
       name: InputName.Clear, // TODO add click event listener
@@ -30,7 +31,7 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
     },
     {
       type: VirtualDomElements.Div,
-      className: 'MaskIcon MaskIconClearAll',
+      className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconClearAll),
       childCount: 0,
     },
   ]

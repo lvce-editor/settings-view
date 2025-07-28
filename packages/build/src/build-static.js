@@ -1,4 +1,4 @@
-import { cp, readFile } from 'node:fs/promises'
+import { cp, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { root } from './root.js'
@@ -22,19 +22,17 @@ export const getRemoteUrl = (path) => {
   return `/remote/${url}`
 }
 
-// @ts-ignore
 const content = await readFile(rendererWorkerPath, 'utf8')
 const workerPath = join(root, '.tmp/dist/dist/settingsViewWorkerMain.js')
-// @ts-ignore
 const remoteUrl = getRemoteUrl(workerPath)
 
-// const occurrence = `// const settingsWorkerUrl = \`\${assetDir}/packages/explorer-worker/dist/settingsViewWorkerMain.js\`
-// const settingsWorkerUrl = \`${remoteUrl}\``
-// const replacement = `const settingsWorkerUrl = \`\${assetDir}/packages/explorer-worker/dist/settingsViewWorkerMain.js\``
-// if (!content.includes(occurrence)) {
-//   throw new Error('occurrence not found')
-// }
-// const newContent = content.replace(occurrence, replacement)
-// await writeFile(rendererWorkerPath, newContent)
+const occurrence = `// const settingsWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\`
+const settingsWorkerUrl = \`${remoteUrl}\``
+const replacement = `const settingsWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\``
+if (!content.includes(occurrence)) {
+  throw new Error('occurrence not found')
+}
+const newContent = content.replace(occurrence, replacement)
+await writeFile(rendererWorkerPath, newContent)
 
 await cp(join(root, 'dist'), join(root, '.tmp', 'static'), { recursive: true })

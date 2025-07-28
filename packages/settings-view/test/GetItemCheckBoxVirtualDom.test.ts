@@ -40,6 +40,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
       childCount: 0,
       id: domId,
       name: 'testItem',
+      onChange: 'handleSettingChecked',
     },
     {
       type: VirtualDomElements.Label,
@@ -88,6 +89,7 @@ test('getItemCheckBoxVirtualDom handles empty strings', () => {
       childCount: 0,
       id: domId,
       name: 'emptyItem',
+      onChange: 'handleSettingChecked',
     },
     {
       type: VirtualDomElements.Label,
@@ -136,6 +138,7 @@ test('getItemCheckBoxVirtualDom handles special characters in heading and descri
       childCount: 0,
       id: domId,
       name: 'specialCharsItem',
+      onChange: 'handleSettingChecked',
     },
     {
       type: VirtualDomElements.Label,
@@ -184,6 +187,7 @@ test('getItemCheckBoxVirtualDom handles long text', () => {
       childCount: 0,
       id: domId,
       name: 'longTextItem',
+      onChange: 'handleSettingChecked',
     },
     {
       type: VirtualDomElements.Label,
@@ -251,6 +255,7 @@ test('getItemCheckBoxVirtualDom maintains consistent structure regardless of con
       childCount: 0,
       id: domId,
       name: item.id,
+      onChange: 'handleSettingChecked',
     })
     expect(result[5]).toEqual({
       type: VirtualDomElements.Label,
@@ -288,6 +293,7 @@ test('getItemCheckBoxVirtualDom handles different item types', () => {
     childCount: 0,
     id: domId,
     name: 'differentTypeItem',
+    onChange: 'handleSettingChecked',
   })
   expect(result[6]).toEqual(text('This item has a different type value'))
 })

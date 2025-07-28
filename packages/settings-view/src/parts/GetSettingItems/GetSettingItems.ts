@@ -6,7 +6,7 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
   return [
     {
-      id: 'fontSize',
+      id: 'Editor.fontSize',
       heading: SettingStrings.fontSize(),
       description: SettingStrings.fontSizeDescription(),
       type: SettingItemType.Number,

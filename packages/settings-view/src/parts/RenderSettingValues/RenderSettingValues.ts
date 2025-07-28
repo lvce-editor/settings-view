@@ -3,7 +3,7 @@ import type { ViewletCommand } from '../ViewletCommand/ViewletCommand.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 
 export const renderSettingValues = (oldState: SettingsState, newState: SettingsState): ViewletCommand => {
-  const { filteredItems } = newState
+  const { filteredItems, id } = newState
   const numericSettings = filteredItems.filter((item) => item.type === SettingItemType.Number)
 
   const inputValues = numericSettings.map((item) => ({
@@ -11,5 +11,5 @@ export const renderSettingValues = (oldState: SettingsState, newState: SettingsS
     value: item.value,
   }))
 
-  return ['Viewlet.setInputValues', inputValues]
+  return ['Viewlet.setInputValues', id, inputValues]
 }

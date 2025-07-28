@@ -9,6 +9,7 @@ test('renderSettingValues returns correct ViewletCommand for numeric settings', 
   const oldState = createDefaultState()
   const newState: SettingsState = {
     ...createDefaultState(),
+    id: 1,
     filteredItems: [
       {
         id: 'fontSize',
@@ -41,6 +42,7 @@ test('renderSettingValues returns correct ViewletCommand for numeric settings', 
 
   expect(result).toEqual([
     'Viewlet.setInputValues',
+    1,
     [
       { name: 'fontSize', value: '15' },
       { name: 'tabSize', value: '4' },
@@ -52,6 +54,7 @@ test('renderSettingValues returns empty array when no numeric settings', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {
     ...createDefaultState(),
+    id: 1,
     filteredItems: [
       {
         id: 'wordWrap',
@@ -74,25 +77,27 @@ test('renderSettingValues returns empty array when no numeric settings', () => {
 
   const result: ViewletCommand = renderSettingValues(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.setInputValues', []])
+  expect(result).toEqual(['Viewlet.setInputValues', 1, []])
 })
 
 test('renderSettingValues handles empty filteredItems', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {
     ...createDefaultState(),
+    id: 1,
     filteredItems: [],
   }
 
   const result: ViewletCommand = renderSettingValues(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.setInputValues', []])
+  expect(result).toEqual(['Viewlet.setInputValues', 1, []])
 })
 
 test('renderSettingValues handles mixed setting types', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {
     ...createDefaultState(),
+    id: 1,
     filteredItems: [
       {
         id: 'fontSize',
@@ -133,6 +138,7 @@ test('renderSettingValues handles mixed setting types', () => {
 
   expect(result).toEqual([
     'Viewlet.setInputValues',
+    1,
     [
       { name: 'fontSize', value: '12' },
       { name: 'lineHeight', value: '1.5' },

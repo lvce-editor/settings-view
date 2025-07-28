@@ -25,7 +25,7 @@ export const getSettingsHeaderDom = (filteredSettingsCount: number, hasSearchVal
       childCount,
     },
     ...getSettingsInputDom(),
-    ...getSettingsInputButtonsDom(),
+    ...getSettingsInputButtonsDom(hasSearchValue),
     ...badgeDom,
   ]
 }

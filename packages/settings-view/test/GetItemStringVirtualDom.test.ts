@@ -1,6 +1,7 @@
 import { test, expect } from '@jest/globals'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getItemStringVirtualDom } from '../src/parts/GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
@@ -19,7 +20,7 @@ test('getItemStringVirtualDom returns correct DOM structure for normal item', ()
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
+      className: ClassNames.SettingsItem,
       childCount: 3,
     },
     {
@@ -34,7 +35,7 @@ test('getItemStringVirtualDom returns correct DOM structure for normal item', ()
     text('Test Description'),
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
@@ -61,7 +62,7 @@ test('getItemStringVirtualDom handles empty strings', () => {
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
+      className: ClassNames.SettingsItem,
       childCount: 3,
     },
     {
@@ -76,7 +77,7 @@ test('getItemStringVirtualDom handles empty strings', () => {
     text(''),
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
@@ -103,7 +104,7 @@ test('getItemStringVirtualDom handles special characters in heading and descript
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
+      className: ClassNames.SettingsItem,
       childCount: 3,
     },
     {
@@ -118,7 +119,7 @@ test('getItemStringVirtualDom handles special characters in heading and descript
     text('Description with & < > " \' chars'),
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
@@ -145,7 +146,7 @@ test('getItemStringVirtualDom handles long text', () => {
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
+      className: ClassNames.SettingsItem,
       childCount: 3,
     },
     {
@@ -160,7 +161,7 @@ test('getItemStringVirtualDom handles long text', () => {
     text('This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface'),
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
@@ -206,7 +207,7 @@ test('getItemStringVirtualDom maintains consistent structure regardless of conte
     expect(result).toHaveLength(6)
     expect(result[0]).toEqual({
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
+      className: ClassNames.SettingsItem,
       childCount: 3,
     })
     expect(result[1]).toEqual({
@@ -221,7 +222,7 @@ test('getItemStringVirtualDom maintains consistent structure regardless of conte
     expect(result[4]).toEqual(text(item.description))
     expect(result[5]).toEqual({
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
@@ -246,14 +247,14 @@ test('getItemStringVirtualDom handles different item types', () => {
   expect(result).toHaveLength(6)
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
-    className: 'SettingsItem',
+    className: ClassNames.SettingsItem,
     childCount: 3,
   })
   expect(result[2]).toEqual(text('Different Type Item'))
   expect(result[4]).toEqual(text('This item has a different type value'))
   expect(result[5]).toEqual({
     type: VirtualDomElements.Input,
-    className: 'InputBox',
+    className: ClassNames.InputBox,
     inputType: 'text',
     placeholder: SettingStrings.stringValue(),
     childCount: 0,

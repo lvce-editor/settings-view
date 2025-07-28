@@ -30,6 +30,7 @@ export const getItemCheckBoxVirtualDom = (item: SettingItem): readonly VirtualDo
       inputType: 'checkbox',
       childCount: 0,
       id: domId,
+      name: id,
     },
     {
       type: VirtualDomElements.Label,

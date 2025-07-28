@@ -15,5 +15,17 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       name: DomEventListenerFunctions.HandleClickClear,
       params: ['clear'],
     },
+    {
+      name: DomEventListenerFunctions.HandleSettingInput,
+      params: ['handleSettingInput', 'event.target.name', 'event.target.value'],
+    },
+    {
+      name: DomEventListenerFunctions.HandleSettingChecked,
+      params: ['handleSettingInput', 'event.target.name', 'event.target.value'],
+    },
+    {
+      name: DomEventListenerFunctions.HandleSettingSelect,
+      params: ['handleSettingInput', 'event.target.name', 'event.target.value'],
+    },
   ]
 }

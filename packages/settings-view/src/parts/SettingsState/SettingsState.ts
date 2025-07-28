@@ -1,6 +1,10 @@
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
 
+export interface ModifiedSettings {
+  readonly [key: string]: any
+}
+
 export interface SettingsState {
   readonly breakPointsExpanded: boolean
   readonly breakPointsVisible: boolean
@@ -20,4 +24,5 @@ export interface SettingsState {
   readonly y: number
   readonly scrollOffset: number
   readonly history: readonly string[]
+  readonly modifiedSettings: ModifiedSettings
 }

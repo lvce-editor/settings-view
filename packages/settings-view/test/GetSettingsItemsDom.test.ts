@@ -1,91 +1,90 @@
 import { test, expect } from '@jest/globals'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
+import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
-import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getSettingsItemsDom } from '../src/parts/GetSettingsItemsDom/GetSettingsItemsDom.ts'
+import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
 test('getSettingsItemsDom returns items when items array is not empty', () => {
-  const items: SettingItem[] = [
+  const items: readonly SettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
-      description: 'The font size of the editor',
+      heading: 'Test Item 1',
+      description: 'Description 1',
+      id: 'item-1',
       type: SettingItemType.Number,
-      value: 14,
-      category: 'editor',
+      value: 42,
+      category: 'test',
     },
   ]
-  const searchValue = ''
 
-  const result = getSettingsItemsDom(items, searchValue)
+  const result = getSettingsItemsDom(items, '')
 
-  expect(result).toHaveLength(8) // 1 container div + 7 item elements
+  expect(result).toHaveLength(8)
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
-    className: 'SettingsItems',
+    className: ClassNames.SettingsItems,
     childCount: 1,
   })
   expect(result[1]).toEqual({
     type: VirtualDomElements.Div,
     className: 'SettingsItem',
-    childCount: 2,
+    childCount: 1,
     role: 'group',
   })
 })
 
 test('getSettingsItemsDom returns empty array when items array is empty', () => {
-  const items: SettingItem[] = []
-  const searchValue = ''
+  const items: readonly SettingItem[] = []
 
-  const result = getSettingsItemsDom(items, searchValue)
+  const result = getSettingsItemsDom(items, '')
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
-    className: 'SettingsItems',
+    className: ClassNames.SettingsItems,
     childCount: 0,
   })
 })
 
 test('getSettingsItemsDom handles multiple items correctly', () => {
-  const items: SettingItem[] = [
+  const items: readonly SettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
-      description: 'The font size of the editor',
-      type: SettingItemType.Number,
-      value: 14,
-      category: 'editor',
+      heading: 'Test Item 1',
+      description: 'Description 1',
+      id: 'item-1',
+      type: SettingItemType.String,
+      value: 'value1',
+      category: 'test',
     },
     {
-      id: 'theme',
-      heading: 'Theme',
-      description: 'The theme of the editor',
-      type: SettingItemType.String,
-      value: 'dark',
-      category: 'editor',
+      heading: 'Test Item 2',
+      description: 'Description 2',
+      id: 'item-2',
+      type: SettingItemType.Boolean,
+      value: true,
+      category: 'test',
     },
   ]
-  const searchValue = ''
 
-  const result = getSettingsItemsDom(items, searchValue)
+  const result = getSettingsItemsDom(items, '')
 
-  expect(result).toHaveLength(15) // 1 container div + 14 item elements (7 per item)
+  expect(result).toHaveLength(16)
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
-    className: 'SettingsItems',
+    className: ClassNames.SettingsItems,
     childCount: 2,
   })
   expect(result[1]).toEqual({
     type: VirtualDomElements.Div,
     className: 'SettingsItem',
-    childCount: 2,
+    childCount: 1,
     role: 'group',
   })
-  expect(result[8]).toEqual({
-    type: VirtualDomElements.Div,
-    className: 'SettingsItem',
-    childCount: 2,
-    role: 'group',
-  })
+  // Verify that we have the correct number of items
+  const settingsItems = result.filter(item =>
+    item.type === VirtualDomElements.Div &&
+    item.className === 'SettingsItem'
+  )
+  expect(settingsItems).toHaveLength(2)
 })

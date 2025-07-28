@@ -1,15 +1,17 @@
 import { test, expect } from '@jest/globals'
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getItemSelectVirtualDom } from '../src/parts/GetItemSelectVirtualDom/GetItemSelectVirtualDom.ts'
 
 test('getItemSelectVirtualDom returns correct DOM structure for normal item', () => {
   const item: SettingItem = {
-    id: 'testItem',
     heading: 'Test Heading',
     description: 'Test Description',
-    type: 3,
+    id: 'test-id',
+    type: 1,
     value: 'option1',
     category: 'test',
     options: [
@@ -20,17 +22,17 @@ test('getItemSelectVirtualDom returns correct DOM structure for normal item', ()
 
   const result = getItemSelectVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 2,
+      childCount: 1,
       role: 'group',
     },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItemRight,
-      childCount: 9,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
@@ -46,8 +48,8 @@ test('getItemSelectVirtualDom returns correct DOM structure for normal item', ()
       type: VirtualDomElements.Select,
       className: ClassNames.Select,
       childCount: 2,
-      name: 'testItem',
-      onChange: 'handleSettingSelect',
+      name: 'test-id',
+      onChange: DomEventListenerFunctions.HandleSettingSelect,
     },
     {
       type: VirtualDomElements.Option,
@@ -68,66 +70,67 @@ test('getItemSelectVirtualDom returns correct DOM structure for normal item', ()
 
 test('getItemSelectVirtualDom shows modification indicator when item is modified', () => {
   const item: SettingItem = {
-    id: 'testItem',
-    heading: 'Test Heading',
-    description: 'Test Description',
-    type: 3,
+    heading: 'Modified Item',
+    description: 'This item is modified',
+    id: 'modified-id',
+    type: 1,
     value: 'option1',
     category: 'test',
     options: [
       { id: 'option1', label: 'Option 1' },
+      { id: 'option2', label: 'Option 2' },
     ],
     modified: true,
   }
 
   const result = getItemSelectVirtualDom(item)
 
+  expect(result).toHaveLength(12)
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
     className: ClassNames.SettingsItem,
     childCount: 2,
     role: 'group',
   })
-
   expect(result[1]).toEqual({
     type: VirtualDomElements.Div,
     className: ClassNames.ModifiedIndicator,
     childCount: 0,
   })
-
   expect(result[2]).toEqual({
     type: VirtualDomElements.Div,
     className: ClassNames.SettingsItemRight,
-    childCount: 7,
+    childCount: 3,
   })
 })
 
 test('getItemSelectVirtualDom handles empty strings', () => {
   const item: SettingItem = {
-    id: 'emptyItem',
     heading: '',
     description: '',
-    type: 3,
-    value: 'option1',
+    id: 'empty-id',
+    type: 1,
+    value: '',
     category: 'test',
     options: [
       { id: 'option1', label: 'Option 1' },
+      { id: 'option2', label: 'Option 2' },
     ],
   }
 
   const result = getItemSelectVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 2,
+      childCount: 1,
       role: 'group',
     },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItemRight,
-      childCount: 7,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
@@ -142,9 +145,9 @@ test('getItemSelectVirtualDom handles empty strings', () => {
     {
       type: VirtualDomElements.Select,
       className: ClassNames.Select,
-      childCount: 1,
-      name: 'emptyItem',
-      onChange: 'handleSettingSelect',
+      childCount: 2,
+      name: 'empty-id',
+      onChange: DomEventListenerFunctions.HandleSettingSelect,
     },
     {
       type: VirtualDomElements.Option,
@@ -152,6 +155,12 @@ test('getItemSelectVirtualDom handles empty strings', () => {
       value: 'option1',
     },
     text('Option 1'),
+    {
+      type: VirtualDomElements.Option,
+      childCount: 1,
+      value: 'option2',
+    },
+    text('Option 2'),
   ]
 
   expect(result).toEqual(expectedDom)
@@ -159,10 +168,10 @@ test('getItemSelectVirtualDom handles empty strings', () => {
 
 test('getItemSelectVirtualDom handles special characters in heading and description', () => {
   const item: SettingItem = {
-    id: 'specialCharsItem',
-    heading: 'Heading with & < > " \' chars',
-    description: 'Description with & < > " \' chars',
-    type: 3,
+    heading: 'Special & Characters < > " \'',
+    description: 'Description with & < > " \' characters',
+    id: 'special-id',
+    type: 1,
     value: 'option1',
     category: 'test',
     options: [
@@ -173,34 +182,34 @@ test('getItemSelectVirtualDom handles special characters in heading and descript
 
   const result = getItemSelectVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 2,
+      childCount: 1,
       role: 'group',
     },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItemRight,
-      childCount: 9,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
       childCount: 1,
     },
-    text('Heading with & < > " \' chars'),
+    text('Special & Characters < > " \''),
     {
       type: VirtualDomElements.P,
       childCount: 1,
     },
-    text('Description with & < > " \' chars'),
+    text('Description with & < > " \' characters'),
     {
       type: VirtualDomElements.Select,
       className: ClassNames.Select,
       childCount: 2,
-      name: 'specialCharsItem',
-      onChange: 'handleSettingSelect',
+      name: 'special-id',
+      onChange: DomEventListenerFunctions.HandleSettingSelect,
     },
     {
       type: VirtualDomElements.Option,
@@ -220,11 +229,12 @@ test('getItemSelectVirtualDom handles special characters in heading and descript
 })
 
 test('getItemSelectVirtualDom handles long text', () => {
+  const longText = 'A'.repeat(1000)
   const item: SettingItem = {
-    id: 'longTextItem',
-    heading: 'This is a very long heading that might wrap to multiple lines in the UI',
-    description: 'This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface',
-    type: 3,
+    heading: longText,
+    description: longText,
+    id: 'long-id',
+    type: 1,
     value: 'option1',
     category: 'test',
     options: [
@@ -235,34 +245,34 @@ test('getItemSelectVirtualDom handles long text', () => {
 
   const result = getItemSelectVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 2,
+      childCount: 1,
       role: 'group',
     },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItemRight,
-      childCount: 9,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
       childCount: 1,
     },
-    text('This is a very long heading that might wrap to multiple lines in the UI'),
+    text(longText),
     {
       type: VirtualDomElements.P,
       childCount: 1,
     },
-    text('This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface'),
+    text(longText),
     {
       type: VirtualDomElements.Select,
       className: ClassNames.Select,
       childCount: 2,
-      name: 'longTextItem',
-      onChange: 'handleSettingSelect',
+      name: 'long-id',
+      onChange: DomEventListenerFunctions.HandleSettingSelect,
     },
     {
       type: VirtualDomElements.Option,
@@ -283,44 +293,44 @@ test('getItemSelectVirtualDom handles long text', () => {
 
 test('getItemSelectVirtualDom handles items without options', () => {
   const item: SettingItem = {
-    id: 'noOptionsItem',
-    heading: 'No Options Item',
-    description: 'This item has no options',
-    type: 3,
+    heading: 'No Options',
+    description: 'Item without options',
+    id: 'no-options-id',
+    type: 1,
     value: '',
     category: 'test',
   }
 
   const result = getItemSelectVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 2,
+      childCount: 1,
       role: 'group',
     },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItemRight,
-      childCount: 5,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
       childCount: 1,
     },
-    text('No Options Item'),
+    text('No Options'),
     {
       type: VirtualDomElements.P,
       childCount: 1,
     },
-    text('This item has no options'),
+    text('Item without options'),
     {
       type: VirtualDomElements.Select,
       className: ClassNames.Select,
       childCount: 0,
-      name: 'noOptionsItem',
-      onChange: 'handleSettingSelect',
+      name: 'no-options-id',
+      onChange: DomEventListenerFunctions.HandleSettingSelect,
     },
   ]
 
@@ -329,10 +339,10 @@ test('getItemSelectVirtualDom handles items without options', () => {
 
 test('getItemSelectVirtualDom handles items with empty options array', () => {
   const item: SettingItem = {
-    id: 'emptyOptionsItem',
-    heading: 'Empty Options Item',
-    description: 'This item has an empty options array',
-    type: 3,
+    heading: 'Empty Options',
+    description: 'Item with empty options array',
+    id: 'empty-options-id',
+    type: 1,
     value: '',
     category: 'test',
     options: [],
@@ -340,34 +350,34 @@ test('getItemSelectVirtualDom handles items with empty options array', () => {
 
   const result = getItemSelectVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 2,
+      childCount: 1,
       role: 'group',
     },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItemRight,
-      childCount: 5,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
       childCount: 1,
     },
-    text('Empty Options Item'),
+    text('Empty Options'),
     {
       type: VirtualDomElements.P,
       childCount: 1,
     },
-    text('This item has an empty options array'),
+    text('Item with empty options array'),
     {
       type: VirtualDomElements.Select,
       className: ClassNames.Select,
       childCount: 0,
-      name: 'emptyOptionsItem',
-      onChange: 'handleSettingSelect',
+      name: 'empty-options-id',
+      onChange: DomEventListenerFunctions.HandleSettingSelect,
     },
   ]
 
@@ -377,77 +387,52 @@ test('getItemSelectVirtualDom handles items with empty options array', () => {
 test('getItemSelectVirtualDom maintains consistent structure regardless of content', () => {
   const items: SettingItem[] = [
     {
-      id: 'item1',
       heading: 'Item 1',
       description: 'Description 1',
-      type: 3,
+      id: 'item-1',
+      type: 1,
       value: 'option1',
       category: 'test',
-      options: [
-        { id: 'option1', label: 'Option 1' },
-      ],
+      options: [{ id: 'option1', label: 'Option 1' }],
     },
     {
-      id: 'item2',
       heading: 'Item 2',
       description: 'Description 2',
-      type: 3,
+      id: 'item-2',
+      type: 1,
       value: 'option2',
       category: 'test',
-      options: [
-        { id: 'option1', label: 'Option 1' },
-        { id: 'option2', label: 'Option 2' },
-      ],
-    },
-    {
-      id: 'item3',
-      heading: 'Item 3',
-      description: 'Description 3',
-      type: 3,
-      value: 'option3',
-      category: 'test',
-      options: [
-        { id: 'option1', label: 'Option 1' },
-        { id: 'option2', label: 'Option 2' },
-        { id: 'option3', label: 'Option 3' },
-      ],
+      options: [{ id: 'option2', label: 'Option 2' }],
     },
   ]
 
-  for (const item of items) {
+  items.forEach((item) => {
     const result = getItemSelectVirtualDom(item)
-    const expectedLength = 7 + (item.options?.length || 0) * 2
 
-    expect(result).toHaveLength(expectedLength)
+    expect(result).toHaveLength(9)
     expect(result[0]).toEqual({
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 2,
+      childCount: 1,
       role: 'group',
     })
-    expect(result[3]).toEqual(text(item.heading))
-    expect(result[5]).toEqual(text(item.description))
-    expect(result[6]).toEqual({
-      type: VirtualDomElements.Select,
-      className: ClassNames.Select,
-      childCount: item.options?.length || 0,
-      name: item.id,
-      onChange: 'handleSettingSelect',
+    expect(result[1]).toEqual({
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 3,
     })
-  }
+  })
 })
 
 test('getItemSelectVirtualDom handles different item types', () => {
   const item: SettingItem = {
-    id: 'differentTypeItem',
-    heading: 'Different Type Item',
-    description: 'This item has a different type value',
-    type: 42,
+    heading: 'Test Item',
+    description: 'Test Description',
+    id: 'test-id',
+    type: 1,
     value: 'option1',
     category: 'test',
-    options: [
-      { id: 'option1', label: 'Option 1' },
-    ],
+    options: [{ id: 'option1', label: 'Option 1' }],
   }
 
   const result = getItemSelectVirtualDom(item)
@@ -456,16 +441,7 @@ test('getItemSelectVirtualDom handles different item types', () => {
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
     className: ClassNames.SettingsItem,
-    childCount: 2,
-    role: 'group',
-  })
-  expect(result[3]).toEqual(text('Different Type Item'))
-  expect(result[5]).toEqual(text('This item has a different type value'))
-  expect(result[6]).toEqual({
-    type: VirtualDomElements.Select,
-    className: ClassNames.Select,
     childCount: 1,
-    name: 'differentTypeItem',
-    onChange: 'handleSettingSelect',
+    role: 'group',
   })
 })

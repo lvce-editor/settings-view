@@ -5,7 +5,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getItemStringVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
-  const { heading, description } = item
+  const { heading, description, id } = item
   return [
     {
       type: VirtualDomElements.Div,
@@ -28,6 +28,7 @@ export const getItemStringVirtualDom = (item: SettingItem): readonly VirtualDomN
       inputType: 'text',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
+      name: id,
     },
   ]
 }

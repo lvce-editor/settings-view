@@ -5,7 +5,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getOptionDom } from '../GetOptionDom/GetOptionDom.ts'
 
 export const getItemSelectVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
-  const { heading, description } = item
+  const { heading, description, id } = item
   const options = item.options || []
   return [
     {
@@ -27,6 +27,7 @@ export const getItemSelectVirtualDom = (item: SettingItem): readonly VirtualDomN
       type: VirtualDomElements.Select,
       className: ClassNames.Select,
       childCount: options.length,
+      name: id,
     },
     ...options.flatMap(getOptionDom),
   ]

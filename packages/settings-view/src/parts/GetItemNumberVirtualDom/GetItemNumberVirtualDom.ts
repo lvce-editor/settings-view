@@ -33,6 +33,7 @@ export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomN
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
       id: domId,
+      name: id,
     },
   ]
 }

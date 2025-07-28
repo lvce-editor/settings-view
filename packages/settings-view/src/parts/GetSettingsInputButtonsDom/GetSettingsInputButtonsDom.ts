@@ -5,14 +5,22 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-export const getSettingsInputButtonsDom = (): readonly VirtualDomNode[] => {
+const getButtonClassName = (hasSearchValue: boolean): string => {
+  if (hasSearchValue) {
+    return mergeClassNames(ClassNames.Button, ClassNames.InputButton, ClassNames.SearchFieldButton)
+  }
+  return mergeClassNames(ClassNames.Button, ClassNames.InputButton, ClassNames.SearchFieldButton, ClassNames.Disabled)
+}
+
+export const getSettingsInputButtonsDom = (hasSearchValue: boolean): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Button,
-      className: mergeClassNames(ClassNames.Button, ClassNames.InputButton, ClassNames.SearchFieldButton),
+      className: getButtonClassName(hasSearchValue),
       childCount: 1,
       ariaLabel: SettingStrings.clear(),
-      name: InputName.Clear, // TODO add click event listener
+      name: InputName.Clear,
+      disabled: !hasSearchValue,
       onClick: DomEventListenerFunctions.HandleClickClear,
     },
     {

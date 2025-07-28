@@ -13,4 +13,7 @@ export const test: Test = async ({ Main, Locator, expect }) => {
   await expect(settingsHeader).toBeVisible()
   const settingsMain = Locator('.SettingsMain')
   await expect(settingsMain).toBeVisible()
+  const clearButton = Locator('.Button[name="Clear"]')
+  await expect(clearButton).toBeVisible()
+  await expect(clearButton).toHaveAttribute('disabled', '')
 }

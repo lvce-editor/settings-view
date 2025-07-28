@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getSettingsHeaderDom } from '../src/parts/GetSettingsHeaderDom/GetSettingsHeaderDom.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'

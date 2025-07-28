@@ -67,6 +67,7 @@ export const NoWatchExpression = 'No Watch Expression'
 export const DeleteWatchExpression = 'Delete Watch Expression'
 export const DeleteAllWatchExpressions = 'Delete All Watch Expressions'
 export const NoSettingsMatching = 'No settings matching "{PH1}" found'
+export const MatchingSettings = '{PH1} matching settings'
 
 // Text Editor Settings
 export const WordWrap = 'Word Wrap'

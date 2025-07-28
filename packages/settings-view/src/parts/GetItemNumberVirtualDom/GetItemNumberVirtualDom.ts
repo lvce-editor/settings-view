@@ -4,17 +4,26 @@ import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getInputId } from '../GetInputId/GetInputId.ts'
+import { getSettingsModifiedIndicatorDom } from '../GetSettingsModifiedIndicatorDom/GetSettingsModifiedIndicatorDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
-  const { heading, description, id } = item
+  const { heading, description, id, modified } = item
   const domId = getInputId(id)
+  const isModified = modified || false
+
   return [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3,
+      childCount: isModified ? 2 : 1,
       role: 'group',
+    },
+    ...getSettingsModifiedIndicatorDom(isModified),
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,

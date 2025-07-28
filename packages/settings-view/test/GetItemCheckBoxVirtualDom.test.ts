@@ -2,6 +2,7 @@ import { test, expect } from '@jest/globals'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
 import { getInputId } from '../src/parts/GetInputId/GetInputId.ts'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getItemCheckBoxVirtualDom } from '../src/parts/GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
 
 test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', () => {
@@ -20,9 +21,14 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 6,
     },
     {
       type: VirtualDomElements.H3,
@@ -31,12 +37,12 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
     text('Test Heading'),
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItemCheckBox',
+      className: ClassNames.SettingsItemCheckBox,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Input,
-      className: 'CheckBox',
+      className: ClassNames.CheckBox,
       inputType: 'checkbox',
       childCount: 0,
       id: domId,
@@ -70,9 +76,14 @@ test('getItemCheckBoxVirtualDom handles empty strings', () => {
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 6,
     },
     {
       type: VirtualDomElements.H3,
@@ -81,12 +92,12 @@ test('getItemCheckBoxVirtualDom handles empty strings', () => {
     text(''),
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItemCheckBox',
+      className: ClassNames.SettingsItemCheckBox,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Input,
-      className: 'CheckBox',
+      className: ClassNames.CheckBox,
       inputType: 'checkbox',
       childCount: 0,
       id: domId,
@@ -120,9 +131,14 @@ test('getItemCheckBoxVirtualDom handles special characters in heading and descri
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 6,
     },
     {
       type: VirtualDomElements.H3,
@@ -131,12 +147,12 @@ test('getItemCheckBoxVirtualDom handles special characters in heading and descri
     text('Heading with & < > " \' chars'),
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItemCheckBox',
+      className: ClassNames.SettingsItemCheckBox,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Input,
-      className: 'CheckBox',
+      className: ClassNames.CheckBox,
       inputType: 'checkbox',
       childCount: 0,
       id: domId,
@@ -170,9 +186,14 @@ test('getItemCheckBoxVirtualDom handles long text', () => {
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 6,
     },
     {
       type: VirtualDomElements.H3,
@@ -181,12 +202,12 @@ test('getItemCheckBoxVirtualDom handles long text', () => {
     text('This is a very long heading that might wrap to multiple lines in the UI'),
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItemCheckBox',
+      className: ClassNames.SettingsItemCheckBox,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Input,
-      className: 'CheckBox',
+      className: ClassNames.CheckBox,
       inputType: 'checkbox',
       childCount: 0,
       id: domId,
@@ -236,38 +257,24 @@ test('getItemCheckBoxVirtualDom maintains consistent structure regardless of con
     const result = getItemCheckBoxVirtualDom(item)
     const domId = getInputId(item.id)
 
-    expect(result).toHaveLength(7)
+    expect(result).toHaveLength(8)
     expect(result[0]).toEqual({
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
     })
-    expect(result[1]).toEqual({
-      type: VirtualDomElements.H3,
-      childCount: 1,
-    })
-    expect(result[2]).toEqual(text(item.heading))
-    expect(result[3]).toEqual({
-      type: VirtualDomElements.Div,
-      className: 'SettingsItemCheckBox',
-      childCount: 2,
-    })
-    expect(result[4]).toEqual({
+    expect(result[3]).toEqual(text(item.heading))
+    expect(result[5]).toEqual({
       type: VirtualDomElements.Input,
-      className: 'CheckBox',
+      className: ClassNames.CheckBox,
       inputType: 'checkbox',
       childCount: 0,
       id: domId,
       name: item.id,
       onChange: 'handleSettingChecked',
     })
-    expect(result[5]).toEqual({
-      type: VirtualDomElements.Label,
-      childCount: 1,
-      htmlFor: domId,
-    })
-    expect(result[6]).toEqual(text(item.description))
+    expect(result[7]).toEqual(text(item.description))
   }
 })
 
@@ -284,22 +291,55 @@ test('getItemCheckBoxVirtualDom handles different item types', () => {
   const result = getItemCheckBoxVirtualDom(item)
   const domId = getInputId(item.id)
 
-  expect(result).toHaveLength(7)
+  expect(result).toHaveLength(8)
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
-    className: 'SettingsItem',
-    childCount: 3,
+    className: ClassNames.SettingsItem,
+    childCount: 2,
     role: 'group',
   })
-  expect(result[2]).toEqual(text('Different Type Item'))
-  expect(result[4]).toEqual({
+  expect(result[3]).toEqual(text('Different Type Item'))
+  expect(result[7]).toEqual(text('This item has a different type value'))
+  expect(result[5]).toEqual({
     type: VirtualDomElements.Input,
-    className: 'CheckBox',
+    className: ClassNames.CheckBox,
     inputType: 'checkbox',
     childCount: 0,
     id: domId,
     name: 'differentTypeItem',
     onChange: 'handleSettingChecked',
   })
-  expect(result[6]).toEqual(text('This item has a different type value'))
+})
+
+test('getItemCheckBoxVirtualDom shows modification indicator when item is modified', () => {
+  const item: SettingItem = {
+    id: 'testItem',
+    heading: 'Test Heading',
+    description: 'Test Description',
+    type: 2,
+    value: 'true',
+    category: 'test',
+    modified: true,
+  }
+
+  const result = getItemCheckBoxVirtualDom(item)
+
+  expect(result[0]).toEqual({
+    type: VirtualDomElements.Div,
+    className: ClassNames.SettingsItem,
+    childCount: 2,
+    role: 'group',
+  })
+
+  expect(result[1]).toEqual({
+    type: VirtualDomElements.Div,
+    className: ClassNames.ModifiedIndicator,
+    childCount: 0,
+  })
+
+  expect(result[2]).toEqual({
+    type: VirtualDomElements.Div,
+    className: ClassNames.SettingsItemRight,
+    childCount: 6,
+  })
 })

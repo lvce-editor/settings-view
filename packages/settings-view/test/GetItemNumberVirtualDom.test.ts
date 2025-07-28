@@ -1,26 +1,35 @@
-import { expect, test } from '@jest/globals'
+import { test, expect } from '@jest/globals'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
+import { getInputId } from '../src/parts/GetInputId/GetInputId.ts'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getItemNumberVirtualDom } from '../src/parts/GetItemNumberVirtualDom/GetItemNumberVirtualDom.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
 test('getItemNumberVirtualDom returns expected DOM structure for normal item', () => {
-  const item = {
+  const item: SettingItem = {
     id: 'testItem',
     heading: 'Test Heading',
     description: 'Test Description',
     type: 1,
-    value: '42',
+    value: 42,
     category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
+  const domId = getInputId(item.id)
 
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 6,
     },
     {
       type: VirtualDomElements.H3,
@@ -29,18 +38,18 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
     text('Test Heading'),
     {
       type: VirtualDomElements.Label,
-      htmlFor: 'testItem',
+      htmlFor: domId,
       childCount: 1,
       className: 'Label',
     },
     text('Test Description'),
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: 'testItem',
+      id: domId,
       name: 'testItem',
       onInput: 'handleSettingInput',
     },
@@ -49,24 +58,63 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
   expect(virtualDom).toEqual(expectedDom)
 })
 
+test('getItemNumberVirtualDom shows modification indicator when item is modified', () => {
+  const item: SettingItem = {
+    id: 'testItem',
+    heading: 'Test Heading',
+    description: 'Test Description',
+    type: 1,
+    value: 42,
+    category: 'test',
+    modified: true,
+  }
+
+  const result = getItemNumberVirtualDom(item)
+
+  expect(result[0]).toEqual({
+    type: VirtualDomElements.Div,
+    className: ClassNames.SettingsItem,
+    childCount: 2,
+    role: 'group',
+  })
+
+  expect(result[1]).toEqual({
+    type: VirtualDomElements.Div,
+    className: ClassNames.ModifiedIndicator,
+    childCount: 0,
+  })
+
+  expect(result[2]).toEqual({
+    type: VirtualDomElements.Div,
+    className: ClassNames.SettingsItemRight,
+    childCount: 6,
+  })
+})
+
 test('getItemNumberVirtualDom handles empty strings', () => {
-  const item = {
+  const item: SettingItem = {
     id: 'emptyItem',
     heading: '',
     description: '',
     type: 1,
-    value: '',
+    value: 0,
     category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
+  const domId = getInputId(item.id)
 
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 6,
     },
     {
       type: VirtualDomElements.H3,
@@ -75,18 +123,18 @@ test('getItemNumberVirtualDom handles empty strings', () => {
     text(''),
     {
       type: VirtualDomElements.Label,
-      htmlFor: 'emptyItem',
+      htmlFor: domId,
       childCount: 1,
       className: 'Label',
     },
     text(''),
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: 'emptyItem',
+      id: domId,
       name: 'emptyItem',
       onInput: 'handleSettingInput',
     },
@@ -96,23 +144,29 @@ test('getItemNumberVirtualDom handles empty strings', () => {
 })
 
 test('getItemNumberVirtualDom handles special characters in heading and description', () => {
-  const item = {
+  const item: SettingItem = {
     id: 'specialCharsItem',
     heading: 'Heading with & < > " \' chars',
     description: 'Description with & < > " \' chars',
     type: 1,
-    value: '123',
+    value: 42,
     category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
+  const domId = getInputId(item.id)
 
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 6,
     },
     {
       type: VirtualDomElements.H3,
@@ -121,18 +175,18 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
     text('Heading with & < > " \' chars'),
     {
       type: VirtualDomElements.Label,
-      htmlFor: 'specialCharsItem',
+      htmlFor: domId,
       childCount: 1,
       className: 'Label',
     },
     text('Description with & < > " \' chars'),
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: 'specialCharsItem',
+      id: domId,
       name: 'specialCharsItem',
       onInput: 'handleSettingInput',
     },
@@ -142,23 +196,29 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
 })
 
 test('getItemNumberVirtualDom handles long text', () => {
-  const item = {
+  const item: SettingItem = {
     id: 'longTextItem',
     heading: 'This is a very long heading that might wrap to multiple lines in the UI',
     description: 'This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface',
     type: 1,
-    value: '999',
+    value: 42,
     category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
+  const domId = getInputId(item.id)
 
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 6,
     },
     {
       type: VirtualDomElements.H3,
@@ -167,18 +227,18 @@ test('getItemNumberVirtualDom handles long text', () => {
     text('This is a very long heading that might wrap to multiple lines in the UI'),
     {
       type: VirtualDomElements.Label,
-      htmlFor: 'longTextItem',
+      htmlFor: domId,
       childCount: 1,
       className: 'Label',
     },
     text('This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface'),
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: 'longTextItem',
+      id: domId,
       name: 'longTextItem',
       onInput: 'handleSettingInput',
     },
@@ -188,44 +248,50 @@ test('getItemNumberVirtualDom handles long text', () => {
 })
 
 test('getItemNumberVirtualDom handles numeric values in item', () => {
-  const item = {
-    id: 'numericItem',
-    heading: 'Numeric Test',
-    description: 'Testing with numeric values',
-    type: 42,
-    value: '0',
+  const item: SettingItem = {
+    id: 'numericValueItem',
+    heading: 'Numeric Value Item',
+    description: 'This item has a numeric value',
+    type: 1,
+    value: 123.45,
     category: 'test',
   }
 
   const virtualDom = getItemNumberVirtualDom(item)
+  const domId = getInputId(item.id)
 
   const expectedDom = [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 6,
     },
     {
       type: VirtualDomElements.H3,
       childCount: 1,
     },
-    text('Numeric Test'),
+    text('Numeric Value Item'),
     {
       type: VirtualDomElements.Label,
-      htmlFor: 'numericItem',
+      htmlFor: domId,
       childCount: 1,
       className: 'Label',
     },
-    text('Testing with numeric values'),
+    text('This item has a numeric value'),
     {
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: 'numericItem',
-      name: 'numericItem',
+      id: domId,
+      name: 'numericValueItem',
       onInput: 'handleSettingInput',
     },
   ]
@@ -234,62 +300,53 @@ test('getItemNumberVirtualDom handles numeric values in item', () => {
 })
 
 test('getItemNumberVirtualDom maintains consistent structure regardless of content', () => {
-  const items = [
+  const items: SettingItem[] = [
     {
       id: 'item1',
       heading: 'Item 1',
       description: 'Description 1',
       type: 1,
-      value: '1',
+      value: 1,
       category: 'test',
     },
     {
       id: 'item2',
       heading: 'Item 2',
       description: 'Description 2',
-      type: 2,
-      value: '2',
+      type: 1,
+      value: 2,
       category: 'test',
     },
     {
       id: 'item3',
       heading: 'Item 3',
       description: 'Description 3',
-      type: 3,
-      value: '3',
+      type: 1,
+      value: 3,
       category: 'test',
     },
   ]
 
   for (const item of items) {
     const virtualDom = getItemNumberVirtualDom(item)
+    const domId = getInputId(item.id)
 
-    expect(virtualDom).toHaveLength(6)
+    expect(virtualDom).toHaveLength(7)
     expect(virtualDom[0]).toEqual({
       type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
+      className: ClassNames.SettingsItem,
+      childCount: 2,
       role: 'group',
     })
-    expect(virtualDom[1]).toEqual({
-      type: VirtualDomElements.H3,
-      childCount: 1,
-    })
-    expect(virtualDom[2]).toEqual(text(item.heading))
-    expect(virtualDom[3]).toEqual({
-      type: VirtualDomElements.Label,
-      htmlFor: item.id,
-      childCount: 1,
-      className: 'Label',
-    })
-    expect(virtualDom[4]).toEqual(text(item.description))
-    expect(virtualDom[5]).toEqual({
+    expect(virtualDom[3]).toEqual(text(item.heading))
+    expect(virtualDom[5]).toEqual(text(item.description))
+    expect(virtualDom[6]).toEqual({
       type: VirtualDomElements.Input,
-      className: 'InputBox',
+      className: ClassNames.InputBox,
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: item.id,
+      id: domId,
       name: item.id,
       onInput: 'handleSettingInput',
     })

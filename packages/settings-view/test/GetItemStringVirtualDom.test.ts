@@ -1,28 +1,35 @@
 import { test, expect } from '@jest/globals'
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getItemStringVirtualDom } from '../src/parts/GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
 test('getItemStringVirtualDom returns correct DOM structure for normal item', () => {
   const item: SettingItem = {
-    id: 'testItem',
     heading: 'Test Heading',
     description: 'Test Description',
-    type: 0,
+    id: 'test-id',
+    type: 2,
     value: 'test value',
     category: 'test',
   }
 
   const result = getItemStringVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3,
+      childCount: 1,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
@@ -40,8 +47,8 @@ test('getItemStringVirtualDom returns correct DOM structure for normal item', ()
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
-      name: 'testItem',
-      onInput: 'handleSettingInput',
+      name: 'test-id',
+      onInput: DomEventListenerFunctions.HandleSettingInput,
     },
   ]
 
@@ -50,22 +57,25 @@ test('getItemStringVirtualDom returns correct DOM structure for normal item', ()
 
 test('getItemStringVirtualDom handles empty strings', () => {
   const item: SettingItem = {
-    id: 'emptyItem',
     heading: '',
     description: '',
-    type: 0,
-    value: '',
-    category: 'test',
+    id: 'empty-id',
+    type: 2,
   }
 
   const result = getItemStringVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3,
+      childCount: 1,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
@@ -83,8 +93,8 @@ test('getItemStringVirtualDom handles empty strings', () => {
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
-      name: 'emptyItem',
-      onInput: 'handleSettingInput',
+      name: 'empty-id',
+      onInput: DomEventListenerFunctions.HandleSettingInput,
     },
   ]
 
@@ -93,41 +103,44 @@ test('getItemStringVirtualDom handles empty strings', () => {
 
 test('getItemStringVirtualDom handles special characters in heading and description', () => {
   const item: SettingItem = {
-    id: 'specialCharsItem',
-    heading: 'Heading with & < > " \' chars',
-    description: 'Description with & < > " \' chars',
-    type: 0,
-    value: 'special value',
-    category: 'test',
+    heading: 'Special & Characters < > " \'',
+    description: 'Description with & < > " \' characters',
+    id: 'special-id',
+    type: 2,
   }
 
   const result = getItemStringVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3,
+      childCount: 1,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
       childCount: 1,
     },
-    text('Heading with & < > " \' chars'),
+    text('Special & Characters < > " \''),
     {
       type: VirtualDomElements.P,
       childCount: 1,
     },
-    text('Description with & < > " \' chars'),
+    text('Description with & < > " \' characters'),
     {
       type: VirtualDomElements.Input,
       className: ClassNames.InputBox,
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
-      name: 'specialCharsItem',
-      onInput: 'handleSettingInput',
+      name: 'special-id',
+      onInput: DomEventListenerFunctions.HandleSettingInput,
     },
   ]
 
@@ -135,42 +148,46 @@ test('getItemStringVirtualDom handles special characters in heading and descript
 })
 
 test('getItemStringVirtualDom handles long text', () => {
+  const longText = 'A'.repeat(1000)
   const item: SettingItem = {
-    id: 'longTextItem',
-    heading: 'This is a very long heading that might wrap to multiple lines in the UI',
-    description: 'This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface',
-    type: 0,
-    value: 'long value',
-    category: 'test',
+    heading: longText,
+    description: longText,
+    id: 'long-id',
+    type: 2,
   }
 
   const result = getItemStringVirtualDom(item)
 
-  const expectedDom = [
+  const expectedDom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3,
+      childCount: 1,
       role: 'group',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.H3,
       childCount: 1,
     },
-    text('This is a very long heading that might wrap to multiple lines in the UI'),
+    text(longText),
     {
       type: VirtualDomElements.P,
       childCount: 1,
     },
-    text('This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface'),
+    text(longText),
     {
       type: VirtualDomElements.Input,
       className: ClassNames.InputBox,
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
-      name: 'longTextItem',
-      onInput: 'handleSettingInput',
+      name: 'long-id',
+      onInput: DomEventListenerFunctions.HandleSettingInput,
     },
   ]
 
@@ -180,91 +197,82 @@ test('getItemStringVirtualDom handles long text', () => {
 test('getItemStringVirtualDom maintains consistent structure regardless of content', () => {
   const items: SettingItem[] = [
     {
-      id: 'item1',
       heading: 'Item 1',
       description: 'Description 1',
-      type: 0,
-      value: 'value1',
-      category: 'test',
+      id: 'item-1',
+      type: 2,
     },
     {
-      id: 'item2',
       heading: 'Item 2',
       description: 'Description 2',
-      type: 0,
-      value: 'value2',
-      category: 'test',
-    },
-    {
-      id: 'item3',
-      heading: 'Item 3',
-      description: 'Description 3',
-      type: 0,
-      value: 'value3',
-      category: 'test',
+      id: 'item-2',
+      type: 2,
     },
   ]
 
-  for (const item of items) {
+  items.forEach((item) => {
     const result = getItemStringVirtualDom(item)
 
-    expect(result).toHaveLength(6)
+    expect(result).toHaveLength(7)
     expect(result[0]).toEqual({
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3,
+      childCount: 1,
       role: 'group',
     })
     expect(result[1]).toEqual({
-      type: VirtualDomElements.H3,
-      childCount: 1,
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemRight,
+      childCount: 3,
     })
-    expect(result[2]).toEqual(text(item.heading))
-    expect(result[3]).toEqual({
-      type: VirtualDomElements.P,
-      childCount: 1,
-    })
-    expect(result[4]).toEqual(text(item.description))
-    expect(result[5]).toEqual({
-      type: VirtualDomElements.Input,
-      className: ClassNames.InputBox,
-      inputType: 'text',
-      placeholder: SettingStrings.stringValue(),
-      childCount: 0,
-      name: item.id,
-      onInput: 'handleSettingInput',
-    })
-  }
+  })
 })
 
 test('getItemStringVirtualDom handles different item types', () => {
   const item: SettingItem = {
-    id: 'differentTypeItem',
-    heading: 'Different Type Item',
-    description: 'This item has a different type value',
-    type: 42,
-    value: 'different value',
-    category: 'test',
+    heading: 'Test Item',
+    description: 'Test Description',
+    id: 'test-id',
+    type: 2,
   }
 
   const result = getItemStringVirtualDom(item)
 
-  expect(result).toHaveLength(6)
+  expect(result).toHaveLength(7)
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
     className: ClassNames.SettingsItem,
-    childCount: 3,
+    childCount: 1,
     role: 'group',
   })
-  expect(result[2]).toEqual(text('Different Type Item'))
-  expect(result[4]).toEqual(text('This item has a different type value'))
-  expect(result[5]).toEqual({
-    type: VirtualDomElements.Input,
-    className: ClassNames.InputBox,
-    inputType: 'text',
-    placeholder: SettingStrings.stringValue(),
+})
+
+test('getItemStringVirtualDom shows modification indicator when item is modified', () => {
+  const item: SettingItem = {
+    heading: 'Modified Item',
+    description: 'This item is modified',
+    id: 'modified-id',
+    type: 2,
+    modified: true,
+  }
+
+  const result = getItemStringVirtualDom(item)
+
+  expect(result).toHaveLength(8)
+  expect(result[0]).toEqual({
+    type: VirtualDomElements.Div,
+    className: ClassNames.SettingsItem,
+    childCount: 2,
+    role: 'group',
+  })
+  expect(result[1]).toEqual({
+    type: VirtualDomElements.Div,
+    className: ClassNames.ModifiedIndicator,
     childCount: 0,
-    name: 'differentTypeItem',
-    onInput: 'handleSettingInput',
+  })
+  expect(result[2]).toEqual({
+    type: VirtualDomElements.Div,
+    className: ClassNames.SettingsItemRight,
+    childCount: 3,
   })
 })

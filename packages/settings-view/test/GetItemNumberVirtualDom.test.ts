@@ -20,6 +20,7 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -65,6 +66,7 @@ test('getItemNumberVirtualDom handles empty strings', () => {
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -110,6 +112,7 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -144,7 +147,7 @@ test('getItemNumberVirtualDom handles long text', () => {
     heading: 'This is a very long heading that might wrap to multiple lines in the UI',
     description: 'This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface',
     type: 1,
-    value: '999999',
+    value: '999',
     category: 'test',
   }
 
@@ -155,6 +158,7 @@ test('getItemNumberVirtualDom handles long text', () => {
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -200,6 +204,7 @@ test('getItemNumberVirtualDom handles numeric values in item', () => {
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -264,6 +269,7 @@ test('getItemNumberVirtualDom maintains consistent structure regardless of conte
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     })
     expect(virtualDom[1]).toEqual({
       type: VirtualDomElements.H3,

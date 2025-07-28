@@ -22,6 +22,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -71,6 +72,7 @@ test('getItemCheckBoxVirtualDom handles empty strings', () => {
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -120,6 +122,7 @@ test('getItemCheckBoxVirtualDom handles special characters in heading and descri
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -157,7 +160,7 @@ test('getItemCheckBoxVirtualDom handles long text', () => {
     heading: 'This is a very long heading that might wrap to multiple lines in the UI',
     description: 'This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface',
     type: 2,
-    value: 'false',
+    value: 'true',
     category: 'test',
   }
 
@@ -169,6 +172,7 @@ test('getItemCheckBoxVirtualDom handles long text', () => {
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -237,6 +241,7 @@ test('getItemCheckBoxVirtualDom maintains consistent structure regardless of con
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
+      role: 'group',
     })
     expect(result[1]).toEqual({
       type: VirtualDomElements.H3,
@@ -284,6 +289,7 @@ test('getItemCheckBoxVirtualDom handles different item types', () => {
     type: VirtualDomElements.Div,
     className: 'SettingsItem',
     childCount: 3,
+    role: 'group',
   })
   expect(result[2]).toEqual(text('Different Type Item'))
   expect(result[4]).toEqual({

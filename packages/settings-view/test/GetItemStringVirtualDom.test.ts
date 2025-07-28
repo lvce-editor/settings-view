@@ -22,6 +22,7 @@ test('getItemStringVirtualDom returns correct DOM structure for normal item', ()
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -64,6 +65,7 @@ test('getItemStringVirtualDom handles empty strings', () => {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -106,6 +108,7 @@ test('getItemStringVirtualDom handles special characters in heading and descript
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -148,6 +151,7 @@ test('getItemStringVirtualDom handles long text', () => {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,
@@ -209,6 +213,7 @@ test('getItemStringVirtualDom maintains consistent structure regardless of conte
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
       childCount: 3,
+      role: 'group',
     })
     expect(result[1]).toEqual({
       type: VirtualDomElements.H3,
@@ -249,6 +254,7 @@ test('getItemStringVirtualDom handles different item types', () => {
     type: VirtualDomElements.Div,
     className: ClassNames.SettingsItem,
     childCount: 3,
+    role: 'group',
   })
   expect(result[2]).toEqual(text('Different Type Item'))
   expect(result[4]).toEqual(text('This item has a different type value'))

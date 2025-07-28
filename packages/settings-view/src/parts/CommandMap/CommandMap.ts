@@ -4,6 +4,9 @@ import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
+import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
+import { handleSettingInput } from '../HandleSettingInput/HandleSettingInput.ts'
+import { handleSettingSelect } from '../HandleSettingSelect/HandleSettingSelect.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import { render2 } from '../Render2/Render2.ts'
@@ -28,4 +31,7 @@ export const commandMap = {
   'Settings.handleClickTab': wrapCommand(handleClickTab),
   'Settings.clear': wrapCommand(clear),
   'Settings.handleInput': wrapCommand(handleInput),
+  'Settings.handleSettingInput': wrapCommand(handleSettingInput),
+  'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),
+  'Settings.handleSettingSelect': wrapCommand(handleSettingSelect),
 }

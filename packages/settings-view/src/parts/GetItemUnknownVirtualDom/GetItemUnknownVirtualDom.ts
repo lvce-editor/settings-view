@@ -8,6 +8,7 @@ export const getItemUnknownVirtualDom = (): readonly VirtualDomNode[] => {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
       childCount: 1,
+      role: 'group',
     },
     text('unknown setting type'),
   ]

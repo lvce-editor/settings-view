@@ -14,6 +14,7 @@ export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomN
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
       childCount: 3,
+      role: 'group',
     },
     {
       type: VirtualDomElements.H3,

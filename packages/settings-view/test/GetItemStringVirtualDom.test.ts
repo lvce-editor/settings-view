@@ -1,9 +1,9 @@
 import { test, expect } from '@jest/globals'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getItemStringVirtualDom } from '../src/parts/GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
-import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 
 test('getItemStringVirtualDom returns correct DOM structure for normal item', () => {
   const item: SettingItem = {

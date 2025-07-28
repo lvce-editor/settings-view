@@ -10,7 +10,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       heading: SettingStrings.fontSize(),
       description: SettingStrings.fontSizeDescription(),
       type: SettingItemType.Number,
-      value: '15px',
+      value: 15,
       category: InputName.TextEditorTab,
     },
     {

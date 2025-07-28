@@ -1,5 +1,6 @@
+import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
-import type { ModifiedSettings, SettingsState } from '../SettingsState/SettingsState.ts'
+import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { getPreferences } from '../GetPreferences/GetPreferences.ts'
 import { getSettingItems } from '../GetSettingItems/GetSettingItems.ts'

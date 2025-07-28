@@ -5,7 +5,14 @@ import { getSettingsInputBadgeDom } from '../GetSettingsInputBadgeDom/GetSetting
 import { getSettingsInputButtonsDom } from '../GetSettingsInputButtonsDom/GetSettingsInputButtonsDom.ts'
 import { getSettingsInputDom } from '../GetSettingsInputDom/GetSettingsInputDom.ts'
 
-export const getSettingsHeaderDom = (filteredSettingsCount: number): readonly VirtualDomNode[] => {
+const getChildCount = (hasSearchValue: boolean): number => {
+  return hasSearchValue ? 5 : 3
+}
+
+export const getSettingsHeaderDom = (filteredSettingsCount: number, hasSearchValue: boolean): readonly VirtualDomNode[] => {
+  const badgeDom = getSettingsInputBadgeDom(filteredSettingsCount, hasSearchValue)
+  const childCount = getChildCount(hasSearchValue)
+
   return [
     {
       type: VirtualDomElements.Div,
@@ -15,10 +22,10 @@ export const getSettingsHeaderDom = (filteredSettingsCount: number): readonly Vi
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsInputWrapper,
-      childCount: 3,
+      childCount,
     },
     ...getSettingsInputDom(),
     ...getSettingsInputButtonsDom(),
-    ...getSettingsInputBadgeDom(filteredSettingsCount),
+    ...badgeDom,
   ]
 }

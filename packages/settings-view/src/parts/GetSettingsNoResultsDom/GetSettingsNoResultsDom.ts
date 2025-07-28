@@ -11,7 +11,7 @@ export const getSettingsNoResultsDom = (searchValue: string): readonly VirtualDo
       childCount: 1,
     },
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.P,
       className: ClassNames.SettingsNoResults,
       childCount: 1,
     },

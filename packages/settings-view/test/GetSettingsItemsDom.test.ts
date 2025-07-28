@@ -42,7 +42,7 @@ test('getSettingsItemsDom shows no settings matching message when items is empty
     childCount: 1,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Div,
+    type: VirtualDomElements.P,
     className: 'SettingsNoResults',
     childCount: 1,
   })

@@ -1,6 +1,8 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import { getSettingsInputBadgeDom } from '../GetSettingsInputBadgeDom/GetSettingsInputBadgeDom.ts'
+import { getSettingsInputButtonsDom } from '../GetSettingsInputButtonsDom/GetSettingsInputButtonsDom.ts'
 import { getSettingsInputDom } from '../GetSettingsInputDom/GetSettingsInputDom.ts'
 
 export const getSettingsHeaderDom = (filteredSettingsCount: number): readonly VirtualDomNode[] => {
@@ -10,6 +12,13 @@ export const getSettingsHeaderDom = (filteredSettingsCount: number): readonly Vi
       className: ClassNames.SettingsHeader,
       childCount: 1,
     },
-    ...getSettingsInputDom(filteredSettingsCount),
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsInputWrapper,
+      childCount: 3,
+    },
+    ...getSettingsInputDom(),
+    ...getSettingsInputButtonsDom(),
+    ...getSettingsInputBadgeDom(filteredSettingsCount),
   ]
 }

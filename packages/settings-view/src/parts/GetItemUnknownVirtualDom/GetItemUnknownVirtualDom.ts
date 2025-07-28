@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getItemUnknownVirtualDom = (): readonly VirtualDomNode[] => {
   return [
@@ -10,6 +11,6 @@ export const getItemUnknownVirtualDom = (): readonly VirtualDomNode[] => {
       childCount: 1,
       role: 'group',
     },
-    text('unknown setting type'),
+    text(SettingStrings.unknownSettingType()),
   ]
 }

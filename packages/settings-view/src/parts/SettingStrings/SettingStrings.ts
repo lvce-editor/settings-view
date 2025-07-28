@@ -1218,3 +1218,7 @@ export const wrappingIndent = (): string => {
 export const wrappingIndentDescription = (): string => {
   return I18NString.i18nString(UiStrings.WrappingIndentDescription)
 }
+
+export const unknownSettingType = (): string => {
+  return I18NString.i18nString(UiStrings.UnknownSettingType)
+}

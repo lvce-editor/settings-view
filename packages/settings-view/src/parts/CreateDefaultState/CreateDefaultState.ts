@@ -19,5 +19,6 @@ export const createDefaultState = (): SettingsState => {
     inputSource: 0,
     filteredItemsCount: 0,
     scrollOffset: 0,
+    history: [],
   }
 }

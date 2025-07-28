@@ -19,4 +19,5 @@ export interface SettingsState {
   readonly x: number
   readonly y: number
   readonly scrollOffset: number
+  readonly history: readonly string[]
 }

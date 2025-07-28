@@ -1,19 +1,20 @@
-import { expect, test } from '@jest/globals'
+import { test, expect } from '@jest/globals'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import { getItemNumberVirtualDom } from '../src/parts/GetItemNumberVirtualDom/GetItemNumberVirtualDom.ts'
+import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
+import { getItemStringVirtualDom } from '../src/parts/GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
-test('getItemNumberVirtualDom returns expected DOM structure for normal item', () => {
-  const item = {
+test('getItemStringVirtualDom returns correct DOM structure for normal item', () => {
+  const item: SettingItem = {
     id: 'testItem',
     heading: 'Test Heading',
     description: 'Test Description',
-    type: 1,
-    value: '42',
+    type: 0,
+    value: 'test value',
     category: 'test',
   }
 
-  const virtualDom = getItemNumberVirtualDom(item)
+  const result = getItemStringVirtualDom(item)
 
   const expectedDom = [
     {
@@ -27,37 +28,34 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
     },
     text('Test Heading'),
     {
-      type: VirtualDomElements.Label,
-      htmlFor: 'testItem',
+      type: VirtualDomElements.P,
       childCount: 1,
-      className: 'Label',
     },
     text('Test Description'),
     {
       type: VirtualDomElements.Input,
       className: 'InputBox',
-      inputType: 'number',
+      inputType: 'text',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: 'testItem',
       name: 'testItem',
     },
   ]
 
-  expect(virtualDom).toEqual(expectedDom)
+  expect(result).toEqual(expectedDom)
 })
 
-test('getItemNumberVirtualDom handles empty strings', () => {
-  const item = {
+test('getItemStringVirtualDom handles empty strings', () => {
+  const item: SettingItem = {
     id: 'emptyItem',
     heading: '',
     description: '',
-    type: 1,
+    type: 0,
     value: '',
     category: 'test',
   }
 
-  const virtualDom = getItemNumberVirtualDom(item)
+  const result = getItemStringVirtualDom(item)
 
   const expectedDom = [
     {
@@ -71,37 +69,34 @@ test('getItemNumberVirtualDom handles empty strings', () => {
     },
     text(''),
     {
-      type: VirtualDomElements.Label,
-      htmlFor: 'emptyItem',
+      type: VirtualDomElements.P,
       childCount: 1,
-      className: 'Label',
     },
     text(''),
     {
       type: VirtualDomElements.Input,
       className: 'InputBox',
-      inputType: 'number',
+      inputType: 'text',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: 'emptyItem',
       name: 'emptyItem',
     },
   ]
 
-  expect(virtualDom).toEqual(expectedDom)
+  expect(result).toEqual(expectedDom)
 })
 
-test('getItemNumberVirtualDom handles special characters in heading and description', () => {
-  const item = {
+test('getItemStringVirtualDom handles special characters in heading and description', () => {
+  const item: SettingItem = {
     id: 'specialCharsItem',
     heading: 'Heading with & < > " \' chars',
     description: 'Description with & < > " \' chars',
-    type: 1,
-    value: '123',
+    type: 0,
+    value: 'special value',
     category: 'test',
   }
 
-  const virtualDom = getItemNumberVirtualDom(item)
+  const result = getItemStringVirtualDom(item)
 
   const expectedDom = [
     {
@@ -115,37 +110,34 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
     },
     text('Heading with & < > " \' chars'),
     {
-      type: VirtualDomElements.Label,
-      htmlFor: 'specialCharsItem',
+      type: VirtualDomElements.P,
       childCount: 1,
-      className: 'Label',
     },
     text('Description with & < > " \' chars'),
     {
       type: VirtualDomElements.Input,
       className: 'InputBox',
-      inputType: 'number',
+      inputType: 'text',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: 'specialCharsItem',
       name: 'specialCharsItem',
     },
   ]
 
-  expect(virtualDom).toEqual(expectedDom)
+  expect(result).toEqual(expectedDom)
 })
 
-test('getItemNumberVirtualDom handles long text', () => {
-  const item = {
+test('getItemStringVirtualDom handles long text', () => {
+  const item: SettingItem = {
     id: 'longTextItem',
     heading: 'This is a very long heading that might wrap to multiple lines in the UI',
     description: 'This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface',
-    type: 1,
-    value: '999999',
+    type: 0,
+    value: 'long value',
     category: 'test',
   }
 
-  const virtualDom = getItemNumberVirtualDom(item)
+  const result = getItemStringVirtualDom(item)
 
   const expectedDom = [
     {
@@ -159,127 +151,107 @@ test('getItemNumberVirtualDom handles long text', () => {
     },
     text('This is a very long heading that might wrap to multiple lines in the UI'),
     {
-      type: VirtualDomElements.Label,
-      htmlFor: 'longTextItem',
+      type: VirtualDomElements.P,
       childCount: 1,
-      className: 'Label',
     },
     text('This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface'),
     {
       type: VirtualDomElements.Input,
       className: 'InputBox',
-      inputType: 'number',
+      inputType: 'text',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: 'longTextItem',
       name: 'longTextItem',
     },
   ]
 
-  expect(virtualDom).toEqual(expectedDom)
+  expect(result).toEqual(expectedDom)
 })
 
-test('getItemNumberVirtualDom handles numeric values in item', () => {
-  const item = {
-    id: 'numericItem',
-    heading: 'Numeric Test',
-    description: 'Testing with numeric values',
-    type: 42,
-    value: '0',
-    category: 'test',
-  }
-
-  const virtualDom = getItemNumberVirtualDom(item)
-
-  const expectedDom = [
-    {
-      type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
-    },
-    {
-      type: VirtualDomElements.H3,
-      childCount: 1,
-    },
-    text('Numeric Test'),
-    {
-      type: VirtualDomElements.Label,
-      htmlFor: 'numericItem',
-      childCount: 1,
-      className: 'Label',
-    },
-    text('Testing with numeric values'),
-    {
-      type: VirtualDomElements.Input,
-      className: 'InputBox',
-      inputType: 'number',
-      placeholder: SettingStrings.numberValue(),
-      childCount: 0,
-      id: 'numericItem',
-      name: 'numericItem',
-    },
-  ]
-
-  expect(virtualDom).toEqual(expectedDom)
-})
-
-test('getItemNumberVirtualDom maintains consistent structure regardless of content', () => {
-  const items = [
+test('getItemStringVirtualDom maintains consistent structure regardless of content', () => {
+  const items: SettingItem[] = [
     {
       id: 'item1',
       heading: 'Item 1',
       description: 'Description 1',
-      type: 1,
-      value: '1',
+      type: 0,
+      value: 'value1',
       category: 'test',
     },
     {
       id: 'item2',
       heading: 'Item 2',
       description: 'Description 2',
-      type: 2,
-      value: '2',
+      type: 0,
+      value: 'value2',
       category: 'test',
     },
     {
       id: 'item3',
       heading: 'Item 3',
       description: 'Description 3',
-      type: 3,
-      value: '3',
+      type: 0,
+      value: 'value3',
       category: 'test',
     },
   ]
 
   for (const item of items) {
-    const virtualDom = getItemNumberVirtualDom(item)
+    const result = getItemStringVirtualDom(item)
 
-    expect(virtualDom).toHaveLength(6)
-    expect(virtualDom[0]).toEqual({
+    expect(result).toHaveLength(6)
+    expect(result[0]).toEqual({
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
     })
-    expect(virtualDom[1]).toEqual({
+    expect(result[1]).toEqual({
       type: VirtualDomElements.H3,
       childCount: 1,
     })
-    expect(virtualDom[2]).toEqual(text(item.heading))
-    expect(virtualDom[3]).toEqual({
-      type: VirtualDomElements.Label,
-      htmlFor: item.id,
+    expect(result[2]).toEqual(text(item.heading))
+    expect(result[3]).toEqual({
+      type: VirtualDomElements.P,
       childCount: 1,
-      className: 'Label',
     })
-    expect(virtualDom[4]).toEqual(text(item.description))
-    expect(virtualDom[5]).toEqual({
+    expect(result[4]).toEqual(text(item.description))
+    expect(result[5]).toEqual({
       type: VirtualDomElements.Input,
       className: 'InputBox',
-      inputType: 'number',
+      inputType: 'text',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
-      id: item.id,
       name: item.id,
     })
   }
+})
+
+test('getItemStringVirtualDom handles different item types', () => {
+  const item: SettingItem = {
+    id: 'differentTypeItem',
+    heading: 'Different Type Item',
+    description: 'This item has a different type value',
+    type: 42,
+    value: 'different value',
+    category: 'test',
+  }
+
+  const result = getItemStringVirtualDom(item)
+
+  expect(result).toHaveLength(6)
+  expect(result[0]).toEqual({
+    type: VirtualDomElements.Div,
+    className: 'SettingsItem',
+    childCount: 3,
+  })
+  expect(result[2]).toEqual(text('Different Type Item'))
+  expect(result[4]).toEqual(text('This item has a different type value'))
+  expect(result[5]).toEqual({
+    type: VirtualDomElements.Input,
+    className: 'InputBox',
+    inputType: 'text',
+    placeholder: SettingStrings.numberValue(),
+    childCount: 0,
+    name: 'differentTypeItem',
+  })
 })

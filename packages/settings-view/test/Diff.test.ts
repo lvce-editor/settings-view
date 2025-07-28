@@ -3,6 +3,7 @@ import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { diff } from '../src/parts/Diff/Diff.ts'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
+import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
 test('diff returns RenderItems when states are different objects with same values', () => {
   const oldState: SettingsState = createDefaultState()
@@ -11,8 +12,9 @@ test('diff returns RenderItems when states are different objects with same value
   const result = diff(oldState, newState)
 
   expect(Array.isArray(result)).toBe(true)
-  expect(result.length).toBe(1)
+  expect(result.length).toBe(2)
   expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderSettingValues)
 })
 
 test('diff returns both RenderFocus and RenderItems when focus values differ', () => {
@@ -22,9 +24,10 @@ test('diff returns both RenderFocus and RenderItems when focus values differ', (
   const result = diff(oldState, newState)
 
   expect(Array.isArray(result)).toBe(true)
-  expect(result.length).toBe(2)
+  expect(result.length).toBe(3)
   expect(result).toContain(DiffType.RenderFocus)
   expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderSettingValues)
 })
 
 test('diff returns RenderItems when states are different objects', () => {
@@ -34,8 +37,9 @@ test('diff returns RenderItems when states are different objects', () => {
   const result = diff(oldState, newState)
 
   expect(Array.isArray(result)).toBe(true)
-  expect(result.length).toBe(1)
+  expect(result.length).toBe(2)
   expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderSettingValues)
 })
 
 test('diff returns both RenderFocus and RenderItems when both conditions are met', () => {
@@ -56,9 +60,10 @@ test('diff returns both RenderFocus and RenderItems when both conditions are met
   const result = diff(oldState, newState)
 
   expect(Array.isArray(result)).toBe(true)
-  expect(result.length).toBe(2)
+  expect(result.length).toBe(3)
   expect(result).toContain(DiffType.RenderFocus)
   expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderSettingValues)
 })
 
 test('diff returns RenderFocus when only focus differs', () => {
@@ -68,9 +73,10 @@ test('diff returns RenderFocus when only focus differs', () => {
   const result = diff(oldState, newState)
 
   expect(Array.isArray(result)).toBe(true)
-  expect(result.length).toBe(2) // Both RenderFocus and RenderItems
+  expect(result.length).toBe(3) // RenderFocus, RenderItems, and RenderSettingValues
   expect(result).toContain(DiffType.RenderFocus)
   expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderSettingValues)
 })
 
 test('diff works with negative focus values', () => {
@@ -80,9 +86,10 @@ test('diff works with negative focus values', () => {
   const result = diff(oldState, newState)
 
   expect(Array.isArray(result)).toBe(true)
-  expect(result.length).toBe(2) // Both RenderFocus and RenderItems
+  expect(result.length).toBe(3) // RenderFocus, RenderItems, and RenderSettingValues
   expect(result).toContain(DiffType.RenderFocus)
   expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderSettingValues)
 })
 
 test('diff works with zero focus values', () => {
@@ -92,8 +99,9 @@ test('diff works with zero focus values', () => {
   const result = diff(oldState, newState)
 
   expect(Array.isArray(result)).toBe(true)
-  expect(result.length).toBe(1) // Only RenderItems (different objects)
+  expect(result.length).toBe(2) // RenderItems and RenderSettingValues (different objects)
   expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderSettingValues)
 })
 
 test('diff returns readonly array', () => {
@@ -106,4 +114,27 @@ test('diff returns readonly array', () => {
   // The return type should be readonly, but we can't test that at runtime
   // We just verify it's an array with the expected content
   expect(result).toContain(DiffType.RenderFocus)
+})
+
+test('diff returns RenderSettingValues when filteredItems change', () => {
+  const oldState = createDefaultState()
+  const newState: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        id: 'fontSize',
+        heading: 'Font Size',
+        description: 'Font size description',
+        type: SettingItemType.Number,
+        value: '15',
+        category: 'editor',
+      },
+    ],
+  }
+
+  const result = diff(oldState, newState)
+
+  expect(Array.isArray(result)).toBe(true)
+  expect(result).toContain(DiffType.RenderSettingValues)
+  expect(result).toContain(DiffType.RenderItems)
 })

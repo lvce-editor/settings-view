@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getItemVirtualDom } from '../GetItemVirtualDom/GetItemVirtualDom.ts'
 import { getSettingsNoResultsDom } from '../GetSettingsNoResultsDom/GetSettingsNoResultsDom.ts'
 
@@ -11,7 +12,7 @@ export const getSettingsItemsDom = (items: readonly SettingItem[], searchValue: 
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'SettingsItems',
+      className: ClassNames.SettingsItems,
       childCount: items.length,
     },
     ...items.flatMap(getItemVirtualDom),

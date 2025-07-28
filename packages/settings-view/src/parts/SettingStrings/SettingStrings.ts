@@ -149,6 +149,10 @@ export const noSettingsMatching = (searchTerm: string): string => {
   return I18NString.i18nString(UiStrings.NoSettingsMatching, { PH1: searchTerm })
 }
 
+export const matchingSettings = (count: number): string => {
+  return I18NString.i18nString(UiStrings.MatchingSettings, { PH1: count.toString() })
+}
+
 // Text Editor Settings
 export const wordWrap = (): string => {
   return I18NString.i18nString(UiStrings.WordWrap)

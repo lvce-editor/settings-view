@@ -6,14 +6,15 @@ import { getSettingsHeaderDom } from '../GetSettingsHeaderDom/GetSettingsHeaderD
 import { getSettingsMainDom } from '../GetSettingsMainDom/GetSettingsMainDom.ts'
 
 export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] => {
-  const { tabs, filteredItems, searchValue } = state
+  const { tabs, filteredItems, searchValue, filteredItemsCount } = state
+  const hasSearchValue = searchValue.trim().length > 0
   return [
     {
       type: VirtualDomElements.Div,
       childCount: 2,
       className: mergeClassNames(ClassNames.Viewlet, ClassNames.Settings),
     },
-    ...getSettingsHeaderDom(),
+    ...getSettingsHeaderDom(filteredItemsCount, hasSearchValue),
     ...getSettingsMainDom(tabs, filteredItems, searchValue),
   ]
 }

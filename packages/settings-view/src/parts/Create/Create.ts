@@ -20,6 +20,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     inputSource: 0,
     scrollOffset: 0,
     filteredItemsCount: 0,
+    history: [],
   }
   SettingsStates.set(id, state, state)
 }

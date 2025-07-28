@@ -41,6 +41,7 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
       childCount: 0,
       id: 'testItem',
       name: 'testItem',
+      onInput: 'handleSettingInput',
     },
   ]
 
@@ -85,6 +86,7 @@ test('getItemNumberVirtualDom handles empty strings', () => {
       childCount: 0,
       id: 'emptyItem',
       name: 'emptyItem',
+      onInput: 'handleSettingInput',
     },
   ]
 
@@ -129,6 +131,7 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
       childCount: 0,
       id: 'specialCharsItem',
       name: 'specialCharsItem',
+      onInput: 'handleSettingInput',
     },
   ]
 
@@ -173,6 +176,7 @@ test('getItemNumberVirtualDom handles long text', () => {
       childCount: 0,
       id: 'longTextItem',
       name: 'longTextItem',
+      onInput: 'handleSettingInput',
     },
   ]
 
@@ -217,6 +221,7 @@ test('getItemNumberVirtualDom handles numeric values in item', () => {
       childCount: 0,
       id: 'numericItem',
       name: 'numericItem',
+      onInput: 'handleSettingInput',
     },
   ]
 
@@ -280,6 +285,7 @@ test('getItemNumberVirtualDom maintains consistent structure regardless of conte
       childCount: 0,
       id: item.id,
       name: item.id,
+      onInput: 'handleSettingInput',
     })
   }
 })

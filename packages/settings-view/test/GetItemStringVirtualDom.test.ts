@@ -39,6 +39,7 @@ test('getItemStringVirtualDom returns correct DOM structure for normal item', ()
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
       name: 'testItem',
+      onInput: 'handleSettingInput',
     },
   ]
 
@@ -80,6 +81,7 @@ test('getItemStringVirtualDom handles empty strings', () => {
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
       name: 'emptyItem',
+      onInput: 'handleSettingInput',
     },
   ]
 
@@ -121,6 +123,7 @@ test('getItemStringVirtualDom handles special characters in heading and descript
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
       name: 'specialCharsItem',
+      onInput: 'handleSettingInput',
     },
   ]
 
@@ -162,6 +165,7 @@ test('getItemStringVirtualDom handles long text', () => {
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
       name: 'longTextItem',
+      onInput: 'handleSettingInput',
     },
   ]
 
@@ -222,6 +226,7 @@ test('getItemStringVirtualDom maintains consistent structure regardless of conte
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
       name: item.id,
+      onInput: 'handleSettingInput',
     })
   }
 })
@@ -253,5 +258,6 @@ test('getItemStringVirtualDom handles different item types', () => {
     placeholder: SettingStrings.stringValue(),
     childCount: 0,
     name: 'differentTypeItem',
+    onInput: 'handleSettingInput',
   })
 })

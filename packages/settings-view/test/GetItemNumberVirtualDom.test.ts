@@ -27,8 +27,10 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
     },
     text('Test Heading'),
     {
-      type: VirtualDomElements.P,
+      type: VirtualDomElements.Label,
+      htmlFor: 'testItem',
       childCount: 1,
+      className: 'Label',
     },
     text('Test Description'),
     {
@@ -37,6 +39,7 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
+      id: 'testItem',
     },
   ]
 
@@ -67,8 +70,10 @@ test('getItemNumberVirtualDom handles empty strings', () => {
     },
     text(''),
     {
-      type: VirtualDomElements.P,
+      type: VirtualDomElements.Label,
+      htmlFor: 'emptyItem',
       childCount: 1,
+      className: 'Label',
     },
     text(''),
     {
@@ -77,6 +82,7 @@ test('getItemNumberVirtualDom handles empty strings', () => {
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
+      id: 'emptyItem',
     },
   ]
 
@@ -107,8 +113,10 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
     },
     text('Heading with & < > " \' chars'),
     {
-      type: VirtualDomElements.P,
+      type: VirtualDomElements.Label,
+      htmlFor: 'specialCharsItem',
       childCount: 1,
+      className: 'Label',
     },
     text('Description with & < > " \' chars'),
     {
@@ -117,6 +125,7 @@ test('getItemNumberVirtualDom handles special characters in heading and descript
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
+      id: 'specialCharsItem',
     },
   ]
 
@@ -147,8 +156,10 @@ test('getItemNumberVirtualDom handles long text', () => {
     },
     text('This is a very long heading that might wrap to multiple lines in the UI'),
     {
-      type: VirtualDomElements.P,
+      type: VirtualDomElements.Label,
+      htmlFor: 'longTextItem',
       childCount: 1,
+      className: 'Label',
     },
     text('This is a very long description that contains a lot of text and might also wrap to multiple lines in the user interface'),
     {
@@ -157,6 +168,7 @@ test('getItemNumberVirtualDom handles long text', () => {
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
+      id: 'longTextItem',
     },
   ]
 
@@ -187,8 +199,10 @@ test('getItemNumberVirtualDom handles numeric values in item', () => {
     },
     text('Numeric Test'),
     {
-      type: VirtualDomElements.P,
+      type: VirtualDomElements.Label,
+      htmlFor: 'numericItem',
       childCount: 1,
+      className: 'Label',
     },
     text('Testing with numeric values'),
     {
@@ -197,6 +211,7 @@ test('getItemNumberVirtualDom handles numeric values in item', () => {
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
+      id: 'numericItem',
     },
   ]
 
@@ -246,8 +261,10 @@ test('getItemNumberVirtualDom maintains consistent structure regardless of conte
     })
     expect(virtualDom[2]).toEqual(text(item.heading))
     expect(virtualDom[3]).toEqual({
-      type: VirtualDomElements.P,
+      type: VirtualDomElements.Label,
+      htmlFor: item.id,
       childCount: 1,
+      className: 'Label',
     })
     expect(virtualDom[4]).toEqual(text(item.description))
     expect(virtualDom[5]).toEqual({
@@ -256,6 +273,7 @@ test('getItemNumberVirtualDom maintains consistent structure regardless of conte
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
+      id: item.id,
     })
   }
 })

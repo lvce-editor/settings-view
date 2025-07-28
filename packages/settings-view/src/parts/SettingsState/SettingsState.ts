@@ -2,7 +2,7 @@ import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
 
 export interface ModifiedSettings {
-  readonly [key: string]: any
+  readonly [key: string]: boolean
 }
 
 export interface SettingsState {

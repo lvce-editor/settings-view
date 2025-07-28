@@ -6,7 +6,7 @@ import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.t
 
 test('isEqual returns true when filteredItems are the same reference', () => {
   const oldState = createDefaultState()
-  const newState = createDefaultState()
+  const newState = { ...oldState }
 
   const result = isEqual(oldState, newState)
 
@@ -16,7 +16,7 @@ test('isEqual returns true when filteredItems are the same reference', () => {
 test('isEqual returns false when filteredItems are different', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {
-    ...createDefaultState(),
+    ...oldState,
     filteredItems: [
       {
         id: 'test',
@@ -49,7 +49,7 @@ test('isEqual returns false when filteredItems have different content but same l
     ],
   }
   const newState: SettingsState = {
-    ...createDefaultState(),
+    ...oldState,
     filteredItems: [
       {
         id: 'item2',
@@ -70,7 +70,7 @@ test('isEqual returns false when filteredItems have different content but same l
 test('isEqual returns true when other properties change but filteredItems remain the same', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {
-    ...createDefaultState(),
+    ...oldState,
     searchValue: 'different search',
     focus: 5,
     width: 1000,
@@ -122,7 +122,7 @@ test('isEqual returns false when filteredItems have different lengths', () => {
   expect(result).toBe(false)
 })
 
-test('isEqual returns true when filteredItems have same length and same items', () => {
+test('isEqual returns false when filteredItems have same length and same items', () => {
   const sharedItem = {
     id: 'item1',
     heading: 'Item 1',
@@ -143,5 +143,5 @@ test('isEqual returns true when filteredItems have same length and same items', 
 
   const result = isEqual(oldState, newState)
 
-  expect(result).toBe(true)
+  expect(result).toBe(false)
 })

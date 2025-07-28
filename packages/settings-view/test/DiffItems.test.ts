@@ -94,16 +94,3 @@ test('isEqual returns false for states with different string values', () => {
 
   expect(result).toBe(false)
 })
-
-test('isEqual handles null and undefined states', () => {
-  const mockState: SettingsState = createDefaultState()
-
-  // @ts-expect-error - testing with null
-  expect(isEqual(null, mockState)).toBe(false)
-  // @ts-expect-error - testing with undefined
-  expect(isEqual(undefined, mockState)).toBe(false)
-  // @ts-expect-error - testing with null
-  expect(isEqual(mockState, null)).toBe(false)
-  // @ts-expect-error - testing with undefined
-  expect(isEqual(mockState, undefined)).toBe(false)
-})

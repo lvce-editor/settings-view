@@ -8,7 +8,7 @@ export const renderSettingValues = (oldState: SettingsState, newState: SettingsS
   const { filteredItems, id, preferences } = newState
   const enabledSettings = filteredItems.filter((item) => enabledTypes.includes(item.type))
   const inputValues = enabledSettings.map((item) => {
-    const value = preferences[item.id]
+    const value = preferences[item.id] || item.value
     return {
       name: item.id,
       value,

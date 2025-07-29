@@ -6,8 +6,9 @@ import { getSettingsHeaderDom } from '../GetSettingsHeaderDom/GetSettingsHeaderD
 import { getSettingsMainDom } from '../GetSettingsMainDom/GetSettingsMainDom.ts'
 
 export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] => {
-  const { tabs, filteredItems, searchValue, filteredItemsCount } = state
+  const { tabs, filteredItems, searchValue } = state
   const hasSearchValue = searchValue.trim().length > 0
+  const filteredItemsCount = filteredItems.length
   return [
     {
       type: VirtualDomElements.Div,

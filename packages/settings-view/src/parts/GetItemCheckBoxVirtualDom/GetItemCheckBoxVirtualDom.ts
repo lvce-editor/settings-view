@@ -15,7 +15,7 @@ export const getItemCheckBoxVirtualDom = (item: SettingItem): readonly VirtualDo
       className: ClassNames.SettingsItem,
       childCount: 3,
       role: 'group',
-      dataModified: isModified,
+      'data-modified': isModified,
     },
     {
       type: VirtualDomElements.H3,

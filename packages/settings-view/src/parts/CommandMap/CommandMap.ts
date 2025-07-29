@@ -16,6 +16,8 @@ import { renderEventListeners } from '../RenderEventListeners/RenderEventListene
 import { restoreState } from '../RestoreState/RestoreState.ts'
 import { saveState } from '../SaveState/SaveState.ts'
 import { getCommandIds, wrapCommand, wrapGetter } from '../SettingsStates/SettingsStates.ts'
+import { useNextSearchValue } from '../UseNextSearchValue/UseNextSearchValue.ts'
+import { usePreviousSearchValue } from '../UsePreviousSearchValue/UsePreviousSearchValue.ts'
 
 export const commandMap = {
   'Initialize.initialize': Initialize.initialize,
@@ -36,4 +38,6 @@ export const commandMap = {
   'Settings.restoreState': restoreState,
   'Settings.saveState': wrapGetter(saveState),
   'Settings.terminate': terminate,
+  'Settings.useNextSearchValue': wrapCommand(useNextSearchValue),
+  'Settings.usePreviousSearchValue': wrapCommand(usePreviousSearchValue),
 }

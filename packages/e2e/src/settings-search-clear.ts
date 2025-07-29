@@ -17,4 +17,5 @@ export const test: Test = async ({ Main, Locator, expect, Command }) => {
   await expect(input).toHaveValue('')
   const wordWrapSetting = Locator('[name="Editor.wordWrap"]')
   await expect(wordWrapSetting).toBeVisible()
+  // TODO input should be focused
 }

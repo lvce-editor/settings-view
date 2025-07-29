@@ -44,6 +44,7 @@ test('getItemSelectVirtualDom returns correct DOM structure for normal item', ()
       className: 'Select',
       childCount: 2,
       name: 'testItem',
+      id: 'testItem',
       onChange: DomEventListenerFunctions.HandleSettingSelect,
     },
     {

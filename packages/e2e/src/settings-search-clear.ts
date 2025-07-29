@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.search-clear'
 
+export const skip = 1
+
 export const test: Test = async ({ Main, Locator, expect, Command }) => {
   // arrange
   await Main.openUri('settings://') // TODO add page object

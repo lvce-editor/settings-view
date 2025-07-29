@@ -1,7 +1,8 @@
 export interface RestoredState {
-  readonly root: string
-  readonly minLineY: number
   readonly deltaY: number
-  readonly tabId: string
+  readonly minLineY: number
+  readonly root: string
+  readonly scrollOffset: number
   readonly searchValue: string
+  readonly tabId: string
 }

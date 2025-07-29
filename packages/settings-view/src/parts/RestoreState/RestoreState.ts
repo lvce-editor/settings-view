@@ -50,6 +50,7 @@ export const restoreState = (savedState: unknown): RestoredState => {
       deltaY: 0,
       tabId: '',
       searchValue: '',
+      scrollOffset: 0,
     }
   }
 

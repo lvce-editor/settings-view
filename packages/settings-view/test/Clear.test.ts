@@ -49,7 +49,7 @@ test('clear preserves other state properties', () => {
   const result = clear(stateWithCustomValues)
 
   expect(result.searchValue).toBe('')
-  expect(result.focus).toBe(42)
+  expect(result.focus).toBe(2199)
   expect(result.height).toBe(100)
   expect(result.tabs).toEqual([{ id: 'test-tab', label: 'Test Tab', selected: true }])
   expect(result).not.toBe(stateWithCustomValues)

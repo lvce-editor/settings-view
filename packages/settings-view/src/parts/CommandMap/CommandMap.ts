@@ -1,5 +1,6 @@
 import { terminate } from '@lvce-editor/viewlet-registry'
 import { clear } from '../Clear/Clear.ts'
+import { clearHistory } from '../ClearHistory/ClearHistory.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
@@ -22,6 +23,7 @@ import { usePreviousSearchValue } from '../UsePreviousSearchValue/UsePreviousSea
 export const commandMap = {
   'Initialize.initialize': Initialize.initialize,
   'Settings.clear': wrapCommand(clear),
+  'Settings.clearHistory': wrapCommand(clearHistory),
   'Settings.create': Create.create,
   'Settings.diff2': Diff2.diff2,
   'Settings.getCommandIds': getCommandIds,

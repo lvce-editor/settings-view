@@ -5,6 +5,5 @@ export const renderScrollOffset = (oldState: SettingsState, newState: SettingsSt
   const { id, scrollOffset } = newState
   const selector = '.SettingsContent'
   const property = 'scrollTop'
-  const value = `${scrollOffset}px`
-  return ['Viewlet.setProperty', id, selector, property, value]
+  return ['Viewlet.setProperty', id, selector, property, scrollOffset]
 }

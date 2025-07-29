@@ -40,7 +40,6 @@ export const addToHistory = (
     const firstPrefixIndex = history.findIndex((historyItem) => trimmedValue.startsWith(historyItem) && historyItem !== trimmedValue)
 
     // Remove all prefix items and add the complete value at the first prefix position
-    const nonPrefixItems = history.filter((historyItem) => !trimmedValue.startsWith(historyItem) || historyItem === trimmedValue)
 
     // Insert the new value at the position where the first prefix was
     const beforePrefix = history.slice(0, firstPrefixIndex)

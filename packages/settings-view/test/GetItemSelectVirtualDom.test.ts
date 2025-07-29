@@ -33,7 +33,9 @@ test('getItemSelectVirtualDom returns correct DOM structure for normal item', ()
     },
     text('Test Heading'),
     {
-      type: VirtualDomElements.P,
+      type: VirtualDomElements.Label,
+      className: 'Label',
+      htmlFor: 'testItem',
       childCount: 1,
     },
     text('Test Description'),

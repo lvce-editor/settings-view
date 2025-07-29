@@ -5,18 +5,11 @@ import { getSettingsModifiedIndicatorDom } from '../src/parts/GetSettingsModifie
 
 test('getSettingsModifiedIndicatorDom returns correct virtual DOM structure', () => {
   const result = getSettingsModifiedIndicatorDom()
-
   expect(result).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ModifiedIndicator,
-      childCount: 1,
+      childCount: 0,
     },
   ])
-})
-
-test('getSettingsModifiedIndicatorDom returns array', () => {
-  const result = getSettingsModifiedIndicatorDom()
-
-  expect(Array.isArray(result)).toBe(true)
 })

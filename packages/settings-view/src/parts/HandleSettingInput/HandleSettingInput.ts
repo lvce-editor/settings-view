@@ -1,13 +1,15 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
+import { getNewModifiedSettings } from '../GetNewModifiedSettings/GetNewModifiedSettings.ts'
 import { User } from '../InputSource/InputSource.ts'
 
 export const handleSettingInput = (state: SettingsState, name: string, value: string, inputSource = User): SettingsState => {
   // TODO update value
-  const { modifiedSettings, items, tabs, searchValue } = state
-  const newModifiedSettings = {
-    ...modifiedSettings,
-    [name]: true,
+  const { modifiedSettings, items, tabs, searchValue, preferences } = state
+  const newModifiedSettings = getNewModifiedSettings(modifiedSettings, name)
+  const newPreferences = {
+    ...preferences,
+    [name]: value,
   }
 
   // TODO don't need to update items if it was already modified
@@ -17,5 +19,6 @@ export const handleSettingInput = (state: SettingsState, name: string, value: st
     ...state,
     inputSource,
     filteredItems,
+    preferences: newPreferences,
   }
 }

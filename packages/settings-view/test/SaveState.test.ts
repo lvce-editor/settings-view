@@ -30,6 +30,7 @@ test('saveState returns default values for all properties', () => {
     searchValue: '',
     selectedTab: '',
     scrollOffset: 0,
+    focus: 0,
   })
 })
 
@@ -45,6 +46,7 @@ test('saveState works with zero uid', () => {
     searchValue: '',
     selectedTab: '',
     scrollOffset: 0,
+    focus: 0,
   })
 })
 
@@ -60,6 +62,7 @@ test('saveState works with negative uid', () => {
     searchValue: '',
     selectedTab: '',
     scrollOffset: 0,
+    focus: 0,
   })
 })
 
@@ -75,6 +78,7 @@ test('saveState works with large uid', () => {
     searchValue: '',
     selectedTab: '',
     scrollOffset: 0,
+    focus: 0,
   })
 })
 

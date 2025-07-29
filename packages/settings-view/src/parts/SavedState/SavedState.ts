@@ -7,4 +7,5 @@ export interface SavedState {
   readonly searchValue: string
   readonly selectedTab: string
   readonly scrollOffset: number
+  readonly focus: number
 }

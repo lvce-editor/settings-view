@@ -3,7 +3,7 @@ import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { getSelectedTabId } from '../GetSelectedTab/GetSelectedTab.ts'
 
 export const saveState = (state: SettingsState): SavedState => {
-  const { tabs, searchValue, scrollOffset } = state
+  const { tabs, searchValue, scrollOffset, focus } = state
   const selectedTab = getSelectedTabId(tabs)
   return {
     expandedPaths: [],
@@ -14,5 +14,6 @@ export const saveState = (state: SettingsState): SavedState => {
     searchValue,
     selectedTab,
     scrollOffset,
+    focus,
   }
 }

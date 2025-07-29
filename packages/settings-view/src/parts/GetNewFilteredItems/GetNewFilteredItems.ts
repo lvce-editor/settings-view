@@ -10,8 +10,10 @@ export const getNewFilteredItems = (
   tabs: readonly Tab[],
   searchValue: string,
   oldFilteredItems: readonly SettingItem[],
+  oldPreferences: Readonly<Record<string, any>>,
+  newPreferences: Readonly<Record<string, any>>,
 ): readonly SettingItem[] => {
-  if (oldModifiedSetings === newModifiedSettings) {
+  if (oldModifiedSetings === newModifiedSettings && oldPreferences === newPreferences) {
     return oldFilteredItems
   }
   return getFilteredItems(items, tabs, searchValue, newModifiedSettings)

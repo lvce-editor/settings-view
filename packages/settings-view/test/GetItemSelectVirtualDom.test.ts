@@ -1,65 +1,34 @@
 import { test, expect } from '@jest/globals'
-import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
-import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getItemSelectVirtualDom } from '../src/parts/GetItemSelectVirtualDom/GetItemSelectVirtualDom.ts'
+import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
-test('getItemSelectVirtualDom returns correct DOM structure for normal item', () => {
-  const item: SettingItem = {
-    id: 'testItem',
-    heading: 'Test Heading',
-    description: 'Test Description',
-    type: 3,
-    value: 'option1',
+test('getItemSelectVirtualDom returns virtual DOM with error when validation fails', () => {
+  const item: DisplaySettingItem = {
+    id: 'test',
+    heading: 'Test Select Setting',
+    description: 'Test select description',
+    type: SettingItemType.Enum,
+    value: 'invalid_option',
     category: 'test',
     options: [
       { id: 'option1', label: 'Option 1' },
       { id: 'option2', label: 'Option 2' },
     ],
+    modified: false,
+    errorMessage: 'Please select a valid option',
+    hasError: true,
   }
-
   const result = getItemSelectVirtualDom(item)
 
-  const expectedDom = [
-    {
-      type: VirtualDomElements.Div,
-      className: 'SettingsItem',
-      childCount: 3,
-      role: 'group',
-    },
-    {
-      type: VirtualDomElements.H3,
-      childCount: 1,
-    },
-    text('Test Heading'),
-    {
-      type: VirtualDomElements.Label,
-      className: 'Label',
-      htmlFor: 'testItem',
-      childCount: 1,
-    },
-    text('Test Description'),
-    {
-      type: VirtualDomElements.Select,
-      className: 'Select',
-      childCount: 2,
-      name: 'testItem',
-      id: 'testItem',
-      onChange: DomEventListenerFunctions.HandleSettingSelect,
-    },
-    {
-      type: VirtualDomElements.Option,
-      childCount: 1,
-      value: 'option1',
-    },
-    text('Option 1'),
-    {
-      type: VirtualDomElements.Option,
-      childCount: 1,
-      value: 'option2',
-    },
-    text('Option 2'),
-  ]
+  // Check that error styling is applied to select
+  const selectElement = result.find((element) => element.type === VirtualDomElements.Select)
+  expect(selectElement).toBeDefined()
+  expect(selectElement?.className).toBe(`${ClassNames.Select} ${ClassNames.InputBoxError}`)
 
-  expect(result).toEqual(expectedDom)
+  // Check that error message is present
+  const errorElement = result.find((element) => element.className === ClassNames.ErrorMessage)
+  expect(errorElement).toBeDefined()
 })

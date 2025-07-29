@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
 import type { Tab } from '../src/parts/Tab/Tab.ts'
-import { getFilteredItems, filterByTab, addModifiedProperty, filterBySearch } from '../src/parts/GetFilteredItems/GetFilteredItems.ts'
+import { getFilteredItems, filterByTab, filterBySearch } from '../src/parts/GetFilteredItems/GetFilteredItems.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
@@ -78,36 +78,6 @@ test('filterByTab should return all items when no tab is selected', () => {
 
   const result = filterByTab(items, tabs)
   expect(result).toHaveLength(2)
-})
-
-test('addModifiedProperty should compute modified property based on preferences', () => {
-  const items: readonly SettingItem[] = [
-    {
-      id: 'fontSize',
-      heading: 'Font Size',
-      description: 'The font size of the editor',
-      type: SettingItemType.Number,
-      value: '15px',
-      category: InputName.TextEditorTab,
-    },
-    {
-      id: 'fontFamily',
-      heading: 'Font Family',
-      description: 'The font family of the editor',
-      type: SettingItemType.String,
-      value: 'Monaco',
-      category: InputName.TextEditorTab,
-    },
-  ]
-
-  const preferences = { fontSize: true }
-
-  const result = addModifiedProperty(items, preferences)
-  expect(result).toHaveLength(2)
-  expect(result[0].id).toBe('fontSize')
-  expect(result[0].modified).toBe(true)
-  expect(result[1].id).toBe('fontFamily')
-  expect(result[1].modified).toBe(false)
 })
 
 test('filterBySearch should filter items by search value when provided', () => {
@@ -217,7 +187,7 @@ test('filterBySearch should return all items when search value is only whitespac
   expect(result).toHaveLength(2)
 })
 
-test('getFilteredItems should combine all three operations correctly', () => {
+test('getFilteredItems should combine all operations correctly and return DisplaySettingItem', () => {
   const items: readonly SettingItem[] = [
     {
       id: 'fontSize',
@@ -259,6 +229,10 @@ test('getFilteredItems should combine all three operations correctly', () => {
   expect(result).toHaveLength(2)
   expect(result[0].id).toBe('theme')
   expect(result[0].modified).toBe(true)
+  expect(result[0].hasError).toBe(false)
+  expect(result[0].errorMessage).toBe('')
   expect(result[1].id).toBe('workbenchTheme')
   expect(result[1].modified).toBe(false)
+  expect(result[1].hasError).toBe(false)
+  expect(result[1].errorMessage).toBe('')
 })

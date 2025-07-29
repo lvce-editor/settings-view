@@ -67,32 +67,87 @@ test('addToHistory handles undefined value', () => {
   expect(result.newHistoryIndex).toBe(-1)
 })
 
-test('addToHistory limits history to 10 items', () => {
-  const history: readonly string[] = ['search1', 'search2', 'search3', 'search4', 'search5', 'search6', 'search7', 'search8', 'search9', 'search10']
-  const result = addToHistory(history, 'search11')
+test('addToHistory does not add prefix of existing history item', () => {
+  const history: readonly string[] = ['fontSize', 'theme']
+  const result = addToHistory(history, 'font')
 
-  expect(result.newHistory).toHaveLength(10)
-  expect(result.newHistory).toEqual(['search2', 'search3', 'search4', 'search5', 'search6', 'search7', 'search8', 'search9', 'search10', 'search11'])
-  expect(result.newHistoryIndex).toBe(9)
+  expect(result.newHistory).toHaveLength(2)
+  expect(result.newHistoryIndex).toBe(0) // Should point to 'fontSize'
 })
 
-test('addToHistory limits history to 10 items when adding to already full history', () => {
-  const history: readonly string[] = [
-    'search1',
-    'search2',
-    'search3',
-    'search4',
-    'search5',
-    'search6',
-    'search7',
-    'search8',
-    'search9',
-    'search10',
-    'search11',
-  ]
-  const result = addToHistory(history, 'search12')
+test('addToHistory replaces prefix item with complete value', () => {
+  const history: readonly string[] = ['font', 'theme']
+  const result = addToHistory(history, 'fontSize')
 
-  expect(result.newHistory).toHaveLength(10)
-  expect(result.newHistory).toEqual(['search3', 'search4', 'search5', 'search6', 'search7', 'search8', 'search9', 'search10', 'search11', 'search12'])
-  expect(result.newHistoryIndex).toBe(9)
+  expect(result.newHistory).toHaveLength(2)
+  expect(result.newHistory).toContain('fontSize')
+  expect(result.newHistory).not.toContain('font')
+  expect(result.newHistoryIndex).toBe(0)
+})
+
+test('addToHistory handles multiple prefix replacements', () => {
+  const history: readonly string[] = ['f', 'fo', 'font', 'theme']
+  const result = addToHistory(history, 'fontSize')
+
+  expect(result.newHistory).toHaveLength(2)
+  expect(result.newHistory).toContain('fontSize')
+  expect(result.newHistory).toContain('theme')
+  expect(result.newHistory).not.toContain('f')
+  expect(result.newHistory).not.toContain('fo')
+  expect(result.newHistory).not.toContain('font')
+  expect(result.newHistoryIndex).toBe(0)
+})
+
+test('addToHistory trims whitespace from input', () => {
+  const history: readonly string[] = []
+  const result = addToHistory(history, '  search value  ')
+
+  expect(result.newHistory).toContain('search value')
+  expect(result.newHistory).toHaveLength(1)
+  expect(result.newHistoryIndex).toBe(0)
+})
+
+test('addToHistory simulates user typing letter by letter', () => {
+  // Simulate user typing "font" letter by letter, then "theme"
+  let history: readonly string[] = []
+
+  // User types 'f'
+  let result = addToHistory(history, 'f')
+  history = result.newHistory
+  expect(history).toHaveLength(1)
+  expect(history).toContain('f')
+
+  // User types 'fo'
+  result = addToHistory(history, 'fo')
+  history = result.newHistory
+  expect(history).toHaveLength(1)
+  expect(history).toContain('fo')
+  expect(history).not.toContain('f')
+
+  // User types 'fon'
+  result = addToHistory(history, 'fon')
+  history = result.newHistory
+  expect(history).toHaveLength(1)
+  expect(history).toContain('fon')
+  expect(history).not.toContain('fo')
+
+  // User types 'font'
+  result = addToHistory(history, 'font')
+  history = result.newHistory
+  expect(history).toHaveLength(1)
+  expect(history).toContain('font')
+  expect(history).not.toContain('fon')
+
+  // User types 'theme' (different search)
+  result = addToHistory(history, 'theme')
+  history = result.newHistory
+  expect(history).toHaveLength(2)
+  expect(history).toContain('font')
+  expect(history).toContain('theme')
+
+  // User types 'font' again (should find existing)
+  result = addToHistory(history, 'font')
+  history = result.newHistory
+  expect(history).toHaveLength(2)
+  expect(result.newHistoryIndex).toBe(0) // Should point to 'font'
 })

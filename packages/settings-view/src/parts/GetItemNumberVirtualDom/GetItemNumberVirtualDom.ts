@@ -4,6 +4,8 @@ import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getInputId } from '../GetInputId/GetInputId.ts'
+import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
+import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
@@ -16,18 +18,8 @@ export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomN
       childCount: 3,
       role: 'group',
     },
-    {
-      type: VirtualDomElements.H3,
-      childCount: 1,
-    },
-    text(heading),
-    {
-      type: VirtualDomElements.Label,
-      htmlFor: domId,
-      childCount: 1,
-      className: 'Label',
-    },
-    text(description),
+    ...getItemHeadingDom(heading),
+    ...getItemLabelDom(domId, description),
     {
       type: VirtualDomElements.Input,
       className: ClassNames.InputBox,

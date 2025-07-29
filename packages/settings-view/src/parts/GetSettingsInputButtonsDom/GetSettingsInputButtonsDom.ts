@@ -6,6 +6,12 @@ import { getClearButtonClassName } from '../GetClearButtonClassName/GetClearButt
 import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
+const icon: VirtualDomNode = {
+  type: VirtualDomElements.Div,
+  className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconClearAll),
+  childCount: 0,
+}
+
 export const getSettingsInputButtonsDom = (hasSearchValue: boolean): readonly VirtualDomNode[] => {
   return [
     {
@@ -17,10 +23,6 @@ export const getSettingsInputButtonsDom = (hasSearchValue: boolean): readonly Vi
       disabled: !hasSearchValue,
       onClick: DomEventListenerFunctions.HandleClickClear,
     },
-    {
-      type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconClearAll),
-      childCount: 0,
-    },
+    icon,
   ]
 }

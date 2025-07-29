@@ -77,6 +77,10 @@ export const numberValue = (): string => {
   return I18NString.i18nString(UiStrings.NumberValue)
 }
 
+export const colorValue = (): string => {
+  return I18NString.i18nString(UiStrings.ColorValue)
+}
+
 export const stringValue = (): string => {
   return I18NString.i18nString(UiStrings.StringValue)
 }

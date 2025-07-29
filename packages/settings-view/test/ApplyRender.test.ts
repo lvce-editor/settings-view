@@ -1,8 +1,8 @@
 import { test, expect } from '@jest/globals'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { applyRender } from '../src/parts/ApplyRender/ApplyRender.ts'
-import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 
 test('applyRender calls getRenderer for each diff result and returns commands', () => {
   const oldState = createDefaultState()

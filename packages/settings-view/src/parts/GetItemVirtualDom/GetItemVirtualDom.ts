@@ -7,6 +7,7 @@ import { getItemSelectVirtualDom } from '../GetItemSelectVirtualDom/GetItemSelec
 import { getItemStringVirtualDom } from '../GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import { getItemUnknownVirtualDom } from '../GetItemUnknownVirtualDom/GetItemUnknownVirtualDom.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
+import { getItemUrlVirtualDom } from '../GetItemUrlDom/GetItemUrlDom.ts'
 
 export const getItemVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
   if (item.type === SettingItemType.Number) {
@@ -23,6 +24,9 @@ export const getItemVirtualDom = (item: SettingItem): readonly VirtualDomNode[] 
   }
   if (item.type === SettingItemType.Color) {
     return getItemColorVirtualDom(item)
+  }
+  if (item.type === SettingItemType.Url) {
+    return getItemUrlVirtualDom(item)
   }
   return getItemUnknownVirtualDom()
 }

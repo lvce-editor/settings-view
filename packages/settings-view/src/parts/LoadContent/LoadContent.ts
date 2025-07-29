@@ -24,7 +24,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const items: readonly SettingItem[] = await getSettingItems()
   const preferences = await getPreferences()
   const modifiedSettings: ModifiedSettings = getModifiedSettings(preferences)
-  const filteredItems = getFilteredItems(items, newTabs, searchValue, preferences)
+  const filteredItems = getFilteredItems(items, newTabs, searchValue, modifiedSettings)
   return {
     ...state,
     filteredItems,

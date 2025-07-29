@@ -4,8 +4,8 @@ import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { User } from '../InputSource/InputSource.ts'
 
 export const handleInput = (state: SettingsState, value: string, inputSource = User): SettingsState => {
-  const { items, tabs, preferences, history } = state
-  const filteredItems = getFilteredItems(items, tabs, value, preferences)
+  const { items, tabs, history, modifiedSettings } = state
+  const filteredItems = getFilteredItems(items, tabs, value, modifiedSettings)
 
   const { newHistory, newHistoryIndex } = addToHistory(history, value)
 

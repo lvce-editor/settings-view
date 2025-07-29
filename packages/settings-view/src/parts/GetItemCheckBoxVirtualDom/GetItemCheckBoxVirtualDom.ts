@@ -6,7 +6,8 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 import { getInputId } from '../GetInputId/GetInputId.ts'
 
 export const getItemCheckBoxVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
-  const { heading, description, id } = item
+  const { heading, description, id, modified } = item
+  const isModified = modified || false
   const domId = getInputId(id)
   return [
     {
@@ -14,6 +15,7 @@ export const getItemCheckBoxVirtualDom = (item: SettingItem): readonly VirtualDo
       className: ClassNames.SettingsItem,
       childCount: 3,
       role: 'group',
+      dataModified: isModified,
     },
     {
       type: VirtualDomElements.H3,

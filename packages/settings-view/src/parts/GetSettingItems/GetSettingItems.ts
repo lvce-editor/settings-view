@@ -884,6 +884,14 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
+      id: 'Editor.background',
+      heading: 'Editor background',
+      description: 'Editor background color',
+      type: SettingItemType.Color,
+      value: '#567567',
+      category: InputName.TextEditorTab,
+    },
+    {
       id: 'showUnused',
       heading: SettingStrings.showUnused(),
       description: SettingStrings.showUnusedDescription(),

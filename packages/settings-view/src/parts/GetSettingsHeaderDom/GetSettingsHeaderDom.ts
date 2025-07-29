@@ -10,9 +10,7 @@ const getChildCount = (hasSearchValue: boolean): number => {
 }
 
 export const getSettingsHeaderDom = (filteredSettingsCount: number, hasSearchValue: boolean): readonly VirtualDomNode[] => {
-  const badgeDom = getSettingsInputBadgeDom(filteredSettingsCount, hasSearchValue)
   const childCount = getChildCount(hasSearchValue)
-
   return [
     {
       type: VirtualDomElements.Div,
@@ -26,6 +24,6 @@ export const getSettingsHeaderDom = (filteredSettingsCount: number, hasSearchVal
     },
     ...getSettingsInputDom(),
     ...getSettingsInputButtonsDom(hasSearchValue),
-    ...badgeDom,
+    ...getSettingsInputBadgeDom(filteredSettingsCount, hasSearchValue),
   ]
 }

@@ -13,6 +13,7 @@ export const test: Test = async ({ Main, Locator, expect, Command }) => {
   // assert
   const input = Locator('.SettingsSearchInput')
   await expect(input).toHaveValue('')
-  const wordWrapSetting = Locator('[name="Editor.wordWrap"]')
+  await expect(input).toBeFocused()
+  const wordWrapSetting = Locator('[name="editor.wordWrap"]')
   await expect(wordWrapSetting).toBeVisible()
 }

@@ -1,71 +1,40 @@
 import type { RestoredState } from '../RestoredState/RestoredState.ts'
-
-const getSavedMinLineY = (savedState: unknown): number => {
-  if (savedState && typeof savedState === 'object' && 'minLineY' in savedState && typeof savedState.minLineY === 'number') {
-    return savedState.minLineY
-  }
-  return 0
-}
-
-const getSavedSearchValue = (savedState: unknown): string => {
-  if (savedState && typeof savedState === 'object' && 'searchValue' in savedState && typeof savedState.searchValue === 'string') {
-    return savedState.searchValue
-  }
-  return ''
-}
-
-const getSavedDeltaY = (savedState: unknown): number => {
-  if (savedState && typeof savedState === 'object' && 'deltaY' in savedState && typeof savedState.deltaY === 'number') {
-    return savedState.deltaY
-  }
-  return 0
-}
-
-const getSavedWorkspacePath = (savedState: unknown): string => {
-  if (savedState && typeof savedState === 'object' && 'workspacePath' in savedState && typeof savedState.workspacePath === 'string') {
-    return savedState.workspacePath
-  }
-  return ''
-}
-
-const getSavedTabId = (savedState: unknown): string => {
-  if (savedState && typeof savedState === 'object' && 'selectedTab' in savedState && typeof savedState.selectedTab === 'string') {
-    return savedState.selectedTab
-  }
-  return ''
-}
-
-const getSavedScrollOffset = (savedState: unknown): number => {
-  if (savedState && typeof savedState === 'object' && 'scrollOffset' in savedState && typeof savedState.scrollOffset === 'number') {
-    return savedState.scrollOffset
-  }
-  return 0
-}
+import { getSavedDeltaY } from './GetSavedDeltaY.ts'
+import { getSavedHistory } from './GetSavedHistory.ts'
+import { getSavedHistoryIndex } from './GetSavedHistoryIndex.ts'
+import { getSavedMinLineY } from './GetSavedMinLineY.ts'
+import { getSavedScrollOffset } from './GetSavedScrollOffset.ts'
+import { getSavedSearchValue } from './GetSavedSearchValue.ts'
+import { getSavedTabId } from './GetSavedTabId.ts'
 
 export const restoreState = (savedState: unknown): RestoredState => {
   if (!savedState) {
     return {
-      root: '',
       minLineY: 0,
       deltaY: 0,
       tabId: '',
       searchValue: '',
       scrollOffset: 0,
+      history: [],
+      historyIndex: -1,
     }
   }
 
-  const root = getSavedWorkspacePath(savedState)
   const minLineY = getSavedMinLineY(savedState)
   const deltaY = getSavedDeltaY(savedState)
   const tabId = getSavedTabId(savedState)
   const searchValue = getSavedSearchValue(savedState)
   const scrollOffset = getSavedScrollOffset(savedState)
+  const history = getSavedHistory(savedState)
+  const historyIndex = getSavedHistoryIndex(savedState, history)
+
   return {
-    root,
     minLineY,
     deltaY,
     tabId,
     searchValue,
     scrollOffset,
+    history,
+    historyIndex,
   }
 }

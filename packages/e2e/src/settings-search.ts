@@ -20,5 +20,5 @@ export const test: Test = async ({ Main, Locator, expect, Command }) => {
   await expect(input).toHaveValue('Fira Code')
   const badge = Locator('.SettingsHeader .Badge')
   await expect(badge).toBeVisible()
-  await expect(badge).toHaveText('0 matching settings') // TODO should be 1
+  await expect(badge).toHaveText('1 matching settings') // TODO should be 1 matching setting
 }

@@ -1,11 +1,12 @@
+import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
 
-const isItemModified = (item: Readonly<SettingItem>, preferences: Readonly<Record<string, any>>): boolean => {
+const isItemModified = (item: Readonly<SettingItem>, preferences: ModifiedSettings): boolean => {
   return item.id in preferences
 }
 
-export const addModifiedProperty = (items: readonly SettingItem[], preferences: Readonly<Record<string, any>>): readonly SettingItem[] => {
+export const addModifiedProperty = (items: readonly SettingItem[], preferences: ModifiedSettings): readonly SettingItem[] => {
   return items.map((item) => ({
     ...item,
     modified: isItemModified(item, preferences),
@@ -34,7 +35,7 @@ export const getFilteredItems = (
   items: readonly SettingItem[],
   tabs: readonly Tab[],
   searchValue: string = '',
-  preferences: Readonly<Record<string, any>> = {},
+  preferences: ModifiedSettings,
 ): readonly SettingItem[] => {
   const tabFilteredItems = filterByTab(items, tabs)
   const itemsWithModifiedProperty = addModifiedProperty(tabFilteredItems, preferences)

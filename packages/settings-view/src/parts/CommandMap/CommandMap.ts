@@ -3,8 +3,11 @@ import { clear } from '../Clear/Clear.ts'
 import { clearHistory } from '../ClearHistory/ClearHistory.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
+import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
+import { getName } from '../GetName/GetName.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
+import { handleInputBlur } from '../HandleInputBlur/HandleInputBlur.ts'
 import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
 import { handleScroll } from '../HandleScroll/HandleScroll.ts'
 import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
@@ -26,8 +29,10 @@ export const commandMap = {
   'Settings.clearHistory': wrapCommand(clearHistory),
   'Settings.create': Create.create,
   'Settings.diff2': Diff2.diff2,
+  'Settings.getName': getName,
   'Settings.getCommandIds': getCommandIds,
   'Settings.handleClickTab': wrapCommand(handleClickTab),
+  'Settings.handleInputBlur': wrapCommand(handleInputBlur),
   'Settings.handleInput': wrapCommand(handleInput),
   'Settings.handleScroll': wrapCommand(handleScroll),
   'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),
@@ -42,4 +47,5 @@ export const commandMap = {
   'Settings.terminate': terminate,
   'Settings.useNextSearchValue': wrapCommand(useNextSearchValue),
   'Settings.usePreviousSearchValue': wrapCommand(usePreviousSearchValue),
+  'Settings.getKeyBindings': getKeyBindings,
 }

@@ -1,6 +1,4 @@
 export interface SavedState {
-  readonly expandedPaths: readonly string[]
-  readonly root: string
   readonly minLineY: number
   readonly maxLineY: number
   readonly deltaY: number
@@ -8,4 +6,6 @@ export interface SavedState {
   readonly selectedTab: string
   readonly scrollOffset: number
   readonly focus: number
+  readonly history: readonly string[]
+  readonly historyIndex: number
 }

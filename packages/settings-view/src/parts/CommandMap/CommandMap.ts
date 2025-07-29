@@ -7,6 +7,7 @@ import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getName } from '../GetName/GetName.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
+import { handleInputBlur } from '../HandleInputBlur/HandleInputBlur.ts'
 import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
 import { handleScroll } from '../HandleScroll/HandleScroll.ts'
 import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
@@ -32,6 +33,7 @@ export const commandMap = {
   'Settings.getName': getName,
   'Settings.getCommandIds': getCommandIds,
   'Settings.handleClickTab': wrapCommand(handleClickTab),
+  'Settings.handleInputBlur': wrapCommand(handleInputBlur),
   'Settings.handleInput': wrapCommand(handleInput),
   'Settings.handleScroll': wrapCommand(handleScroll),
   'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),

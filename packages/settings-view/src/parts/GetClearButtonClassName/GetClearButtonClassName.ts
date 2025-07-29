@@ -1,13 +1,13 @@
 import { mergeClassNames } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 
-const enabledClass = mergeClassNames(ClassNames.Button, ClassNames.InputButton, ClassNames.SearchFieldButton)
+const enabledClass = ClassNames.SearchFieldButton
 
-const disabledClass = mergeClassNames(enabledClass, ClassNames.Disabled)
+const disabledClass = mergeClassNames(enabledClass, 'SearchFieldButtonDisabled')
 
 export const getClearButtonClassName = (hasSearchValue: boolean): string => {
   if (hasSearchValue) {
-    return disabledClass
+    return enabledClass
   }
-  return enabledClass
+  return disabledClass
 }

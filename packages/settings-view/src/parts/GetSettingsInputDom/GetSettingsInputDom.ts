@@ -10,7 +10,7 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Input,
-      className: mergeClassNames(ClassNames.InputBox, ClassNames.SettingsSearchInput),
+      className: mergeClassNames(ClassNames.InputBox, ClassNames.SettingsSearchInput, 'MultilineInputBox'),
       placeholder,
       childCount: 0,
       name: InputName.SettingsSearch,

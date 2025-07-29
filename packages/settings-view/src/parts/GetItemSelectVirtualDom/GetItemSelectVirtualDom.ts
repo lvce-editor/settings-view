@@ -2,6 +2,7 @@ import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getOptionDom } from '../GetOptionDom/GetOptionDom.ts'
 
 export const getItemSelectVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
@@ -29,6 +30,7 @@ export const getItemSelectVirtualDom = (item: SettingItem): readonly VirtualDomN
       className: ClassNames.Select,
       childCount: options.length,
       name: id,
+      onChange: DomEventListenerFunctions.HandleSettingSelect,
     },
     ...options.flatMap(getOptionDom),
   ]

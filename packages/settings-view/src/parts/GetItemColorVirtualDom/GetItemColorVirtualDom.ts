@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
@@ -21,10 +21,15 @@ export const getItemColorVirtualDom = (item: SettingItem): readonly VirtualDomNo
       'data-modified': isModified,
     },
     ...getItemHeadingDom(heading),
-    ...getItemLabelDom(domId, description),
+
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemCheckBox,
+      childCount: 2,
+    },
     {
       type: VirtualDomElements.Input,
-      className: ClassNames.InputBox,
+      className: mergeClassNames('ColorInput'),
       inputType: 'color',
       placeholder: SettingStrings.colorValue(),
       childCount: 0,
@@ -32,5 +37,6 @@ export const getItemColorVirtualDom = (item: SettingItem): readonly VirtualDomNo
       name: id,
       onInput: DomEventListenerFunctions.HandleSettingInput,
     },
+    ...getItemLabelDom(domId, description),
   ]
 }

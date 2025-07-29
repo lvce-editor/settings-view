@@ -16,6 +16,8 @@ test('saveState returns SavedState object with correct structure', () => {
   expect(result).toHaveProperty('deltaY')
   expect(result).toHaveProperty('searchValue')
   expect(result).toHaveProperty('selectedTab')
+  expect(result).toHaveProperty('history')
+  expect(result).toHaveProperty('historyIndex')
 })
 
 test('saveState returns default values for all properties', () => {
@@ -31,6 +33,8 @@ test('saveState returns default values for all properties', () => {
     selectedTab: '',
     scrollOffset: 0,
     focus: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -47,6 +51,8 @@ test('saveState works with zero uid', () => {
     selectedTab: '',
     scrollOffset: 0,
     focus: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -63,6 +69,8 @@ test('saveState works with negative uid', () => {
     selectedTab: '',
     scrollOffset: 0,
     focus: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -79,6 +87,8 @@ test('saveState works with large uid', () => {
     selectedTab: '',
     scrollOffset: 0,
     focus: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -146,6 +156,8 @@ test('saveState returns immutable object structure', () => {
   expect(typeof result.deltaY).toBe('number')
   expect(typeof result.searchValue).toBe('string')
   expect(typeof result.selectedTab).toBe('string')
+  expect(typeof result.history).toBe('object')
+  expect(typeof result.historyIndex).toBe('number')
 })
 
 test('saveState saves searchValue from state', () => {
@@ -172,4 +184,19 @@ test('saveState saves selectedTab from state', () => {
   const result = saveState(state)
 
   expect(result.selectedTab).toBe(InputName.TextEditorTab)
+})
+
+test('saveState saves history from state', () => {
+  const uid = 1
+  const state = {
+    ...createDefaultState(),
+    history: ['search1', 'search2', 'search3'],
+    historyIndex: 1,
+  }
+  set(uid, state, state)
+
+  const result = saveState(state)
+
+  expect(result.history).toEqual(['search1', 'search2', 'search3'])
+  expect(result.historyIndex).toBe(1)
 })

@@ -18,7 +18,7 @@ const getModifiedSettings = (preferences: any): ModifiedSettings => {
 }
 
 export const loadContent = async (state: SettingsState, savedState: unknown): Promise<SettingsState> => {
-  const { searchValue, tabId } = restoreState(savedState)
+  const { searchValue, tabId, scrollOffset } = restoreState(savedState)
   const tabs = getTabs()
   const newTabs = getUpdatedTabs(tabs, tabId)
   const items: readonly SettingItem[] = await getSettingItems()
@@ -32,6 +32,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
     items,
     modifiedSettings,
     preferences,
+    scrollOffset,
     searchValue,
     tabs: newTabs,
   }

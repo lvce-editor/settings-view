@@ -6,8 +6,6 @@ export const saveState = (state: SettingsState): SavedState => {
   const { tabs, searchValue, scrollOffset, focus, history, historyIndex } = state
   const selectedTab = getSelectedTabId(tabs)
   return {
-    expandedPaths: [],
-    root: '',
     minLineY: 0,
     maxLineY: 0,
     deltaY: 0,

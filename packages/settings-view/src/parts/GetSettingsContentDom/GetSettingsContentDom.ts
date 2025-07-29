@@ -3,6 +3,7 @@ import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
@@ -15,6 +16,7 @@ export const getSettingsContentDom = (items: readonly SettingItem[], tabs: reado
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsContent,
       childCount: 2,
+      onScroll: DomEventListenerFunctions.HandleScroll,
     },
     {
       type: VirtualDomElements.H1,

@@ -21,6 +21,7 @@ test('getItemNumberVirtualDom returns expected DOM structure for normal item', (
       className: 'SettingsItem',
       childCount: 3,
       role: 'group',
+      'data-modified': false,
     },
     {
       type: VirtualDomElements.H3,

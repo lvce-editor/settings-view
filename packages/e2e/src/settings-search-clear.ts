@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.search-clear'
 
-export const skip = 1
-
 export const test: Test = async ({ Main, Locator, expect, Command }) => {
   // arrange
   await Main.openUri('settings://') // TODO add page object
@@ -15,7 +13,7 @@ export const test: Test = async ({ Main, Locator, expect, Command }) => {
   // assert
   const input = Locator('.SettingsSearchInput')
   await expect(input).toHaveValue('')
+  await expect(input).toBeFocused()
   const wordWrapSetting = Locator('[name="Editor.wordWrap"]')
   await expect(wordWrapSetting).toBeVisible()
-  // TODO input should be focused
 }

@@ -5,6 +5,7 @@ import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
+import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
 import { handleScroll } from '../HandleScroll/HandleScroll.ts'
 import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
 import { handleSettingInput } from '../HandleSettingInput/HandleSettingInput.ts'
@@ -32,6 +33,7 @@ export const commandMap = {
   'Settings.handleScroll': wrapCommand(handleScroll),
   'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),
   'Settings.handleSettingInput': wrapCommand(handleSettingInput),
+  'Settings.handleInputFocus': wrapCommand(handleInputFocus),
   'Settings.handleSettingSelect': wrapCommand(handleSettingSelect),
   'Settings.loadContent': wrapCommand(LoadContent.loadContent),
   'Settings.render2': render2,

@@ -22,5 +22,6 @@ export const createDefaultState = (): SettingsState => {
     history: [],
     historyIndex: -1,
     modifiedSettings: {},
+    focusSource: 0,
   }
 }

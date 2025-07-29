@@ -23,6 +23,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     history: [],
     historyIndex: -1,
     modifiedSettings: {},
+    focusSource: 0,
   }
   SettingsStates.set(id, state, state)
 }

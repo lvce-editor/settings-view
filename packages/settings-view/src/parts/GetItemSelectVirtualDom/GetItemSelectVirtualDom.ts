@@ -25,6 +25,7 @@ export const getItemSelectVirtualDom = (item: SettingItem): readonly VirtualDomN
       type: VirtualDomElements.Select,
       className: ClassNames.Select,
       childCount: options.length,
+      id: domId,
       name: id,
       onChange: DomEventListenerFunctions.HandleSettingSelect,
     },

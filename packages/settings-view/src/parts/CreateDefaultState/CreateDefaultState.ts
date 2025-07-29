@@ -20,6 +20,7 @@ export const createDefaultState = (): SettingsState => {
     filteredItemsCount: 0,
     scrollOffset: 0,
     history: [],
+    historyIndex: -1,
     modifiedSettings: {},
   }
 }

@@ -26,6 +26,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     {
       name: DomEventListenerFunctions.HandleScroll,
       params: ['handleScroll', 'event.target.scrollTop'],
+      passive: true,
     },
     {
       name: DomEventListenerFunctions.HandleSettingSelect,

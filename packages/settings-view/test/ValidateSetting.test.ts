@@ -1,6 +1,6 @@
 import { test, expect } from '@jest/globals'
-import { validateSetting } from '../src/parts/ValidateSetting/ValidateSetting.ts'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
+import { validateSetting } from '../src/parts/ValidateSetting/ValidateSetting.ts'
 
 test('validateSetting returns empty string when no validate function is provided', () => {
   const item: SettingItem = {

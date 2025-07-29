@@ -691,14 +691,6 @@ export const contextmenuDescription = (): string => {
   return I18NString.i18nString(UiStrings.ContextmenuDescription)
 }
 
-export const copyWithSyntaxHighlighting_2 = (): string => {
-  return I18NString.i18nString(UiStrings.CopyWithSyntaxHighlighting_2)
-}
-
-export const copyWithSyntaxHighlighting_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.CopyWithSyntaxHighlighting_2Description)
-}
-
 export const cursorSmoothCaretAnimation = (): string => {
   return I18NString.i18nString(UiStrings.CursorSmoothCaretAnimation)
 }
@@ -729,14 +721,6 @@ export const disableMonospaceOptimizations = (): string => {
 
 export const disableMonospaceOptimizationsDescription = (): string => {
   return I18NString.i18nString(UiStrings.DisableMonospaceOptimizationsDescription)
-}
-
-export const dragAndDrop_2 = (): string => {
-  return I18NString.i18nString(UiStrings.DragAndDrop_2)
-}
-
-export const dragAndDrop_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.DragAndDrop_2Description)
 }
 
 export const emptySelectionClipboard = (): string => {
@@ -867,14 +851,6 @@ export const lineHeightDescription = (): string => {
   return I18NString.i18nString(UiStrings.LineHeightDescription)
 }
 
-export const links_2 = (): string => {
-  return I18NString.i18nString(UiStrings.Links_2)
-}
-
-export const links_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.Links_2Description)
-}
-
 export const matchBrackets = (): string => {
   return I18NString.i18nString(UiStrings.MatchBrackets)
 }
@@ -915,14 +891,6 @@ export const multiCursorMergeOverlappingDescription = (): string => {
   return I18NString.i18nString(UiStrings.MultiCursorMergeOverlappingDescription)
 }
 
-export const occurrencesHighlight_2 = (): string => {
-  return I18NString.i18nString(UiStrings.OccurrencesHighlight_2)
-}
-
-export const occurrencesHighlight_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.OccurrencesHighlight_2Description)
-}
-
 export const overviewRulerBorder = (): string => {
   return I18NString.i18nString(UiStrings.OverviewRulerBorder)
 }
@@ -939,28 +907,12 @@ export const overviewRulerLanesDescription = (): string => {
   return I18NString.i18nString(UiStrings.OverviewRulerLanesDescription)
 }
 
-export const parameterHints_2 = (): string => {
-  return I18NString.i18nString(UiStrings.ParameterHints_2)
-}
-
-export const parameterHints_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.ParameterHints_2Description)
-}
-
 export const peekWidgetDefaultFocus = (): string => {
   return I18NString.i18nString(UiStrings.PeekWidgetDefaultFocus)
 }
 
 export const peekWidgetDefaultFocusDescription = (): string => {
   return I18NString.i18nString(UiStrings.PeekWidgetDefaultFocusDescription)
-}
-
-export const quickSuggestions_2 = (): string => {
-  return I18NString.i18nString(UiStrings.QuickSuggestions_2)
-}
-
-export const quickSuggestions_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.QuickSuggestions_2Description)
 }
 
 export const quickSuggestionsDelay = (): string => {
@@ -971,22 +923,6 @@ export const quickSuggestionsDelayDescription = (): string => {
   return I18NString.i18nString(UiStrings.QuickSuggestionsDelayDescription)
 }
 
-export const readOnly_2 = (): string => {
-  return I18NString.i18nString(UiStrings.ReadOnly_2)
-}
-
-export const readOnly_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.ReadOnly_2Description)
-}
-
-export const renderControlCharacters_2 = (): string => {
-  return I18NString.i18nString(UiStrings.RenderControlCharacters_2)
-}
-
-export const renderControlCharacters_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.RenderControlCharacters_2Description)
-}
-
 export const renderFinalNewline = (): string => {
   return I18NString.i18nString(UiStrings.RenderFinalNewline)
 }
@@ -995,28 +931,12 @@ export const renderFinalNewlineDescription = (): string => {
   return I18NString.i18nString(UiStrings.RenderFinalNewlineDescription)
 }
 
-export const renderLineHighlight_2 = (): string => {
-  return I18NString.i18nString(UiStrings.RenderLineHighlight_2)
-}
-
-export const renderLineHighlight_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.RenderLineHighlight_2Description)
-}
-
 export const renderValidationDecorations = (): string => {
   return I18NString.i18nString(UiStrings.RenderValidationDecorations)
 }
 
 export const renderValidationDecorationsDescription = (): string => {
   return I18NString.i18nString(UiStrings.RenderValidationDecorationsDescription)
-}
-
-export const renderWhitespace_2 = (): string => {
-  return I18NString.i18nString(UiStrings.RenderWhitespace_2)
-}
-
-export const renderWhitespace_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.RenderWhitespace_2Description)
 }
 
 export const revealHorizontalRightPadding = (): string => {
@@ -1051,14 +971,6 @@ export const scrollBeyondLastColumnDescription = (): string => {
   return I18NString.i18nString(UiStrings.ScrollBeyondLastColumnDescription)
 }
 
-export const scrollBeyondLastLine_2 = (): string => {
-  return I18NString.i18nString(UiStrings.ScrollBeyondLastLine_2)
-}
-
-export const scrollBeyondLastLine_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.ScrollBeyondLastLine_2Description)
-}
-
 export const scrollbar = (): string => {
   return I18NString.i18nString(UiStrings.Scrollbar)
 }
@@ -1083,22 +995,6 @@ export const selectionClipboardDescription = (): string => {
   return I18NString.i18nString(UiStrings.SelectionClipboardDescription)
 }
 
-export const selectionHighlight_2 = (): string => {
-  return I18NString.i18nString(UiStrings.SelectionHighlight_2)
-}
-
-export const selectionHighlight_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.SelectionHighlight_2Description)
-}
-
-export const showFoldingControls_2 = (): string => {
-  return I18NString.i18nString(UiStrings.ShowFoldingControls_2)
-}
-
-export const showFoldingControls_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.ShowFoldingControls_2Description)
-}
-
 export const showUnused = (): string => {
   return I18NString.i18nString(UiStrings.ShowUnused)
 }
@@ -1113,14 +1009,6 @@ export const snippetSuggestions = (): string => {
 
 export const snippetSuggestionsDescription = (): string => {
   return I18NString.i18nString(UiStrings.SnippetSuggestionsDescription)
-}
-
-export const smoothScrolling_2 = (): string => {
-  return I18NString.i18nString(UiStrings.SmoothScrolling_2)
-}
-
-export const smoothScrolling_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.SmoothScrolling_2Description)
 }
 
 export const suggest = (): string => {
@@ -1147,36 +1035,12 @@ export const suggestLineHeightDescription = (): string => {
   return I18NString.i18nString(UiStrings.SuggestLineHeightDescription)
 }
 
-export const suggestOnTriggerCharacters_2 = (): string => {
-  return I18NString.i18nString(UiStrings.SuggestOnTriggerCharacters_2)
-}
-
-export const suggestOnTriggerCharacters_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.SuggestOnTriggerCharacters_2Description)
-}
-
 export const suggestSelection = (): string => {
   return I18NString.i18nString(UiStrings.SuggestSelection)
 }
 
 export const suggestSelectionDescription = (): string => {
   return I18NString.i18nString(UiStrings.SuggestSelectionDescription)
-}
-
-export const tabCompletion_2 = (): string => {
-  return I18NString.i18nString(UiStrings.TabCompletion_2)
-}
-
-export const tabCompletion_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.TabCompletion_2Description)
-}
-
-export const unfoldOnClickAfterEnd_3 = (): string => {
-  return I18NString.i18nString(UiStrings.UnfoldOnClickAfterEnd_3)
-}
-
-export const unfoldOnClickAfterEnd_3Description = (): string => {
-  return I18NString.i18nString(UiStrings.UnfoldOnClickAfterEnd_3Description)
 }
 
 export const useTabStops = (): string => {
@@ -1187,28 +1051,12 @@ export const useTabStopsDescription = (): string => {
   return I18NString.i18nString(UiStrings.UseTabStopsDescription)
 }
 
-export const wordBasedSuggestions_2 = (): string => {
-  return I18NString.i18nString(UiStrings.WordBasedSuggestions_2)
-}
-
-export const wordBasedSuggestions_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.WordBasedSuggestions_2Description)
-}
-
 export const wordSeparators = (): string => {
   return I18NString.i18nString(UiStrings.WordSeparators)
 }
 
 export const wordSeparatorsDescription = (): string => {
   return I18NString.i18nString(UiStrings.WordSeparatorsDescription)
-}
-
-export const wordWrap_2 = (): string => {
-  return I18NString.i18nString(UiStrings.WordWrap_2)
-}
-
-export const wordWrap_2Description = (): string => {
-  return I18NString.i18nString(UiStrings.WordWrap_2Description)
 }
 
 export const wrappingIndent = (): string => {

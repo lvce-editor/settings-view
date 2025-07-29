@@ -1,10 +1,10 @@
 import { test, expect } from '@jest/globals'
-import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
-import { handleSettingInput } from '../src/parts/HandleSettingInput/HandleSettingInput.ts'
+import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
+import { handleSettingInput } from '../src/parts/HandleSettingInput/HandleSettingInput.ts'
 import { User } from '../src/parts/InputSource/InputSource.ts'
+import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
 test('handleSettingInput converts string to number for number-type settings', () => {
   const numberSetting: SettingItem = {

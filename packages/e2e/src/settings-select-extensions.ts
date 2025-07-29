@@ -11,5 +11,5 @@ export const test: Test = async ({ Main, Locator, expect, Command }) => {
 
   // assert
   const heading = Locator('.SettingsContentHeading')
-  await expect(heading).toHaveText('extensions')
+  await expect(heading).toHaveText('Extensions')
 }

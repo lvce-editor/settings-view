@@ -35,6 +35,13 @@ const getSavedTabId = (savedState: unknown): string => {
   return ''
 }
 
+const getSavedScrollOffset = (savedState: unknown): number => {
+  if (savedState && typeof savedState === 'object' && 'scrollOffset' in savedState && typeof savedState.scrollOffset === 'number') {
+    return savedState.scrollOffset
+  }
+  return 0
+}
+
 export const restoreState = (savedState: unknown): RestoredState => {
   if (!savedState) {
     return {
@@ -51,11 +58,13 @@ export const restoreState = (savedState: unknown): RestoredState => {
   const deltaY = getSavedDeltaY(savedState)
   const tabId = getSavedTabId(savedState)
   const searchValue = getSavedSearchValue(savedState)
+  const scrollOffset = getSavedScrollOffset(savedState)
   return {
     root,
     minLineY,
     deltaY,
     tabId,
     searchValue,
+    scrollOffset,
   }
 }

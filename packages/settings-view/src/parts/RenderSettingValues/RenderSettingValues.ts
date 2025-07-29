@@ -5,11 +5,14 @@ import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 const enabledTypes: readonly number[] = [SettingItemType.Number, SettingItemType.String, SettingItemType.Color]
 
 export const renderSettingValues = (oldState: SettingsState, newState: SettingsState): ViewletCommand => {
-  const { filteredItems, id } = newState
-  const numericSettings = filteredItems.filter((item) => enabledTypes.includes(item.type))
-  const inputValues = numericSettings.map((item) => ({
-    name: item.id,
-    value: item.value,
-  }))
+  const { filteredItems, id, preferences } = newState
+  const enabledSettings = filteredItems.filter((item) => enabledTypes.includes(item.type))
+  const inputValues = enabledSettings.map((item) => {
+    const value = preferences[item.id]
+    return {
+      name: item.id,
+      value,
+    }
+  })
   return ['Viewlet.setInputValues', id, inputValues]
 }

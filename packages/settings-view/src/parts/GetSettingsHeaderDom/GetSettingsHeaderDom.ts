@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getSettingsInputBadgeDom } from '../GetSettingsInputBadgeDom/GetSettingsInputBadgeDom.ts'
 import { getSettingsInputButtonsDom } from '../GetSettingsInputButtonsDom/GetSettingsInputButtonsDom.ts'
@@ -19,11 +19,11 @@ export const getSettingsHeaderDom = (filteredSettingsCount: number, hasSearchVal
     },
     {
       type: VirtualDomElements.Div,
-      className: ClassNames.SettingsInputWrapper,
+      className: mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField'),
       childCount,
     },
     ...getSettingsInputDom(),
-    ...getSettingsInputButtonsDom(hasSearchValue),
     ...getSettingsInputBadgeDom(filteredSettingsCount, hasSearchValue),
+    ...getSettingsInputButtonsDom(hasSearchValue),
   ]
 }

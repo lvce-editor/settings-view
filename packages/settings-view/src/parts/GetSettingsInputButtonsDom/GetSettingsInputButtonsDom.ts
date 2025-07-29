@@ -11,7 +11,7 @@ const enabledClass = mergeClassNames(ClassNames.Button, ClassNames.InputButton, 
 
 const getButtonClassName = (hasSearchValue: boolean): string => {
   if (hasSearchValue) {
-    disabledClass
+    return disabledClass
   }
   return enabledClass
 }

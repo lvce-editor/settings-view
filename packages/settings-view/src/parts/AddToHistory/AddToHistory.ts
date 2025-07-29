@@ -7,6 +7,10 @@ export const addToHistory = (
 
   if (value && value.trim() && !history.includes(value)) {
     newHistory = [...history, value]
+    // Keep only the last 10 items to limit memory usage
+    if (newHistory.length > 10) {
+      newHistory = newHistory.slice(-10)
+    }
     newHistoryIndex = newHistory.length - 1
   } else if (value && value.trim()) {
     // If value already exists in history, find its index

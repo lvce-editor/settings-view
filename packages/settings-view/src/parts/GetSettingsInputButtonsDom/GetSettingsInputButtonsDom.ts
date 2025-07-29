@@ -5,9 +5,9 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-const disabledClass = mergeClassNames(ClassNames.Button, ClassNames.InputButton, ClassNames.SearchFieldButton)
+const enabledClass = mergeClassNames(ClassNames.Button, ClassNames.InputButton, ClassNames.SearchFieldButton)
 
-const enabledClass = mergeClassNames(ClassNames.Button, ClassNames.InputButton, ClassNames.SearchFieldButton, ClassNames.Disabled)
+const disabledClass = mergeClassNames(enabledClass, ClassNames.Disabled)
 
 const getButtonClassName = (hasSearchValue: boolean): string => {
   if (hasSearchValue) {

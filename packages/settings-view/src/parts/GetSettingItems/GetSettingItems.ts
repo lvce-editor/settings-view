@@ -6,7 +6,7 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
   return [
     {
-      id: 'Editor.fontSize',
+      id: 'editor.fontSize',
       heading: SettingStrings.fontSize(),
       description: SettingStrings.fontSizeDescription(),
       type: SettingItemType.Number,
@@ -14,7 +14,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.fontFamily',
+      id: 'editor.fontFamily',
       heading: SettingStrings.fontFamily(),
       description: SettingStrings.fontFamilyDescription(),
       type: SettingItemType.String,
@@ -23,7 +23,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
     },
     // Text Editor Settings
     {
-      id: 'Editor.wordWrap',
+      id: 'editor.wordWrap',
       heading: SettingStrings.wordWrap(),
       description: SettingStrings.wordWrapDescription(),
       type: SettingItemType.Enum,
@@ -41,7 +41,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       ],
     },
     {
-      id: 'Editor.lineNumbers',
+      id: 'editor.lineNumbers',
       heading: SettingStrings.lineNumbers(),
       description: SettingStrings.lineNumbersDescription(),
       type: SettingItemType.Enum,
@@ -59,7 +59,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       ],
     },
     {
-      id: 'Editor.minimap',
+      id: 'editor.minimap',
       heading: SettingStrings.minimap(),
       description: SettingStrings.minimapDescription(),
       type: SettingItemType.Boolean,
@@ -67,7 +67,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.scrollBeyondLastLine',
+      id: 'editor.scrollBeyondLastLine',
       heading: SettingStrings.scrollBeyondLastLine(),
       description: SettingStrings.scrollBeyondLastLineDescription(),
       type: SettingItemType.Boolean,
@@ -75,7 +75,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.smoothScrolling',
+      id: 'editor.smoothScrolling',
       heading: SettingStrings.smoothScrolling(),
       description: SettingStrings.smoothScrollingDescription(),
       type: SettingItemType.Boolean,
@@ -83,7 +83,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.cursorBlinking',
+      id: 'editor.cursorBlinking',
       heading: SettingStrings.cursorBlinking(),
       description: SettingStrings.cursorBlinkingDescription(),
       type: SettingItemType.String,
@@ -91,7 +91,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.cursorStyle',
+      id: 'editor.cursorStyle',
       heading: SettingStrings.cursorStyle(),
       description: SettingStrings.cursorStyleDescription(),
       type: SettingItemType.String,
@@ -99,7 +99,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.cursorWidth',
+      id: 'editor.cursorWidth',
       heading: SettingStrings.cursorWidth(),
       description: SettingStrings.cursorWidthDescription(),
       type: SettingItemType.Number,
@@ -107,7 +107,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.tabSize',
+      id: 'editor.tabSize',
       heading: SettingStrings.tabSize(),
       description: SettingStrings.tabSizeDescription(),
       type: SettingItemType.Number,
@@ -115,7 +115,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.insertSpaces',
+      id: 'editor.insertSpaces',
       heading: SettingStrings.insertSpaces(),
       description: SettingStrings.insertSpacesDescription(),
       type: SettingItemType.Boolean,
@@ -123,7 +123,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.detectIndentation',
+      id: 'editor.detectIndentation',
       heading: SettingStrings.detectIndentation(),
       description: SettingStrings.detectIndentationDescription(),
       type: SettingItemType.Boolean,
@@ -131,7 +131,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.trimAutoWhitespace',
+      id: 'editor.trimAutoWhitespace',
       heading: SettingStrings.trimAutoWhitespace(),
       description: SettingStrings.trimAutoWhitespaceDescription(),
       type: SettingItemType.Boolean,
@@ -139,7 +139,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.largeFileOptimizations',
+      id: 'editor.largeFileOptimizations',
       heading: SettingStrings.largeFileOptimizations(),
       description: SettingStrings.largeFileOptimizationsDescription(),
       type: SettingItemType.Boolean,
@@ -147,7 +147,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.renderWhitespace',
+      id: 'editor.renderWhitespace',
       heading: SettingStrings.renderWhitespace(),
       description: SettingStrings.renderWhitespaceDescription(),
       type: SettingItemType.String,
@@ -155,7 +155,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.renderControlCharacters',
+      id: 'editor.renderControlCharacters',
       heading: SettingStrings.renderControlCharacters(),
       description: SettingStrings.renderControlCharactersDescription(),
       type: SettingItemType.Boolean,
@@ -163,7 +163,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.renderLineHighlight',
+      id: 'editor.renderLineHighlight',
       heading: SettingStrings.renderLineHighlight(),
       description: SettingStrings.renderLineHighlightDescription(),
       type: SettingItemType.String,
@@ -171,7 +171,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.codeLens',
+      id: 'editor.codeLens',
       heading: SettingStrings.codeLens(),
       description: SettingStrings.codeLensDescription(),
       type: SettingItemType.Boolean,
@@ -179,7 +179,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.folding',
+      id: 'editor.folding',
       heading: SettingStrings.folding(),
       description: SettingStrings.foldingDescription(),
       type: SettingItemType.Boolean,
@@ -187,7 +187,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.showFoldingControls',
+      id: 'editor.showFoldingControls',
       heading: SettingStrings.showFoldingControls(),
       description: SettingStrings.showFoldingControlsDescription(),
       type: SettingItemType.String,
@@ -195,7 +195,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.unfoldOnClickAfterEnd',
+      id: 'editor.unfoldOnClickAfterEnd',
       heading: SettingStrings.unfoldOnClickAfterEnd(),
       description: SettingStrings.unfoldOnClickAfterEndDescription(),
       type: SettingItemType.Boolean,
@@ -203,7 +203,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.links',
+      id: 'editor.links',
       heading: SettingStrings.links(),
       description: SettingStrings.linksDescription(),
       type: SettingItemType.Boolean,
@@ -884,7 +884,7 @@ export const getSettingItems = async (): Promise<readonly SettingItem[]> => {
       category: InputName.TextEditorTab,
     },
     {
-      id: 'Editor.background',
+      id: 'editor.background',
       heading: 'Editor background',
       description: 'Editor background color',
       type: SettingItemType.Color,

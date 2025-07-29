@@ -4,7 +4,8 @@ import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getSettingsModifiedIndicatorDom } from '../src/parts/GetSettingsModifiedIndicatorDom/GetSettingsModifiedIndicatorDom.ts'
 
 test('getSettingsModifiedIndicatorDom returns correct virtual DOM structure', () => {
-  const result = getSettingsModifiedIndicatorDom()
+  const isModified = true
+  const result = getSettingsModifiedIndicatorDom(isModified)
   expect(result).toEqual([
     {
       type: VirtualDomElements.Div,

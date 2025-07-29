@@ -15,6 +15,7 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
       childCount: 0,
       name: InputName.SettingsSearch,
       onInput: DomEventListenerFunctions.HandleInput,
+      onFocus: DomEventListenerFunctions.HandleInputFocus,
     },
   ]
 }

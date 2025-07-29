@@ -23,7 +23,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
       className: 'SettingsItem',
       childCount: 3,
       role: 'group',
-      dataModified: false,
+      'data-modified': false,
     },
     {
       type: VirtualDomElements.H3,

@@ -8,3 +8,4 @@ export const RenderFocusContext = 7
 export const RenderSelection = 8
 export const RenderPauseOnExceptions = 9
 export const RenderSettingValues = 10
+export const RenderScrollOffset = 11

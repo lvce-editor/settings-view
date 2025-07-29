@@ -1,4 +1,4 @@
-import { ParsedFilterQuery } from '../ParsedFilterQuery/ParsedFilterQuery.ts'
+import type { ParsedFilterQuery } from '../ParsedFilterQuery/ParsedFilterQuery.ts'
 
 export const parseFilterQuery = (searchValue: string): ParsedFilterQuery => {
   return {

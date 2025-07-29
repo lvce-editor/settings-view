@@ -3,6 +3,7 @@ import { clear } from '../Clear/Clear.ts'
 import { clearHistory } from '../ClearHistory/ClearHistory.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
+import { getName } from '../GetName/GetName.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
 import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
@@ -27,6 +28,7 @@ export const commandMap = {
   'Settings.clearHistory': wrapCommand(clearHistory),
   'Settings.create': Create.create,
   'Settings.diff2': Diff2.diff2,
+  'Settings.getName': getName,
   'Settings.getCommandIds': getCommandIds,
   'Settings.handleClickTab': wrapCommand(handleClickTab),
   'Settings.handleInput': wrapCommand(handleInput),

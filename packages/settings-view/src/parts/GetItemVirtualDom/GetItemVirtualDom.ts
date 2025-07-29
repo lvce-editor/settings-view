@@ -6,8 +6,8 @@ import { getItemNumberVirtualDom } from '../GetItemNumberVirtualDom/GetItemNumbe
 import { getItemSelectVirtualDom } from '../GetItemSelectVirtualDom/GetItemSelectVirtualDom.ts'
 import { getItemStringVirtualDom } from '../GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import { getItemUnknownVirtualDom } from '../GetItemUnknownVirtualDom/GetItemUnknownVirtualDom.ts'
-import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 import { getItemUrlVirtualDom } from '../GetItemUrlDom/GetItemUrlDom.ts'
+import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 
 export const getItemVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
   if (item.type === SettingItemType.Number) {

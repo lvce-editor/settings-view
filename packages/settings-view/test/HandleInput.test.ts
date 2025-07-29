@@ -152,3 +152,53 @@ test('handleInput clears filteredItems when search value is empty', () => {
   expect(result.searchValue).toBe('')
   expect(result.filteredItems).toHaveLength(2)
 })
+
+test('handleInput adds new search value to history', () => {
+  const state = createDefaultState()
+  const result = handleInput(state, 'new search')
+
+  expect(result.searchValue).toBe('new search')
+  expect(result.history).toContain('new search')
+  expect(result.historyIndex).toBe(0)
+  expect(result).not.toBe(state)
+})
+
+test('handleInput does not add empty search value to history', () => {
+  const state = createDefaultState()
+  const result = handleInput(state, '')
+
+  expect(result.searchValue).toBe('')
+  expect(result.history).toHaveLength(0)
+  expect(result.historyIndex).toBe(-1)
+  expect(result).not.toBe(state)
+})
+
+test('handleInput does not add duplicate search value to history', () => {
+  const state = createDefaultState()
+  const stateWithHistory = {
+    ...state,
+    history: ['existing search'],
+    historyIndex: 0,
+  }
+  const result = handleInput(stateWithHistory, 'existing search')
+
+  expect(result.searchValue).toBe('existing search')
+  expect(result.history).toHaveLength(1)
+  expect(result.historyIndex).toBe(0)
+  expect(result).not.toBe(stateWithHistory)
+})
+
+test('handleInput finds existing search value index in history', () => {
+  const state = createDefaultState()
+  const stateWithHistory = {
+    ...state,
+    history: ['search1', 'search2', 'search3'],
+    historyIndex: 0,
+  }
+  const result = handleInput(stateWithHistory, 'search2')
+
+  expect(result.searchValue).toBe('search2')
+  expect(result.history).toHaveLength(3)
+  expect(result.historyIndex).toBe(1)
+  expect(result).not.toBe(stateWithHistory)
+})

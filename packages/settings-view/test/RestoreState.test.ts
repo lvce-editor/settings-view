@@ -11,6 +11,8 @@ test('restoreState returns default values when savedState is null', () => {
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -24,6 +26,8 @@ test('restoreState returns default values when savedState is undefined', () => {
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -37,6 +41,8 @@ test('restoreState returns default values when savedState is empty object', () =
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -50,6 +56,8 @@ test('restoreState returns default values when savedState is not an object', () 
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -63,6 +71,8 @@ test('restoreState returns default values when savedState is a number', () => {
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -76,6 +86,8 @@ test('restoreState returns default values when savedState is a boolean', () => {
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -95,6 +107,8 @@ test('restoreState extracts workspacePath correctly', () => {
     scrollOffset: 0,
     minLineY: 100,
     deltaY: 50,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -113,6 +127,8 @@ test('restoreState extracts minLineY correctly', () => {
     scrollOffset: 0,
     minLineY: 200,
     deltaY: 75,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -130,6 +146,8 @@ test('restoreState extracts deltaY correctly', () => {
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 150,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -149,6 +167,8 @@ test('restoreState handles all properties correctly', () => {
     scrollOffset: 0,
     minLineY: 300,
     deltaY: 200,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -168,6 +188,8 @@ test('restoreState handles workspacePath as non-string', () => {
     scrollOffset: 0,
     minLineY: 100,
     deltaY: 50,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -187,6 +209,8 @@ test('restoreState handles minLineY as non-number', () => {
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 50,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -206,6 +230,8 @@ test('restoreState handles deltaY as non-number', () => {
     scrollOffset: 0,
     minLineY: 100,
     deltaY: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -225,6 +251,8 @@ test('restoreState handles negative values', () => {
     scrollOffset: 0,
     minLineY: -100,
     deltaY: -50,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -244,6 +272,8 @@ test('restoreState handles zero values', () => {
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -263,6 +293,8 @@ test('restoreState handles large values', () => {
     scrollOffset: 0,
     minLineY: 999_999,
     deltaY: 999_999,
+    history: [],
+    historyIndex: -1,
   })
 })
 
@@ -284,5 +316,79 @@ test('restoreState handles extra properties in savedState', () => {
     scrollOffset: 0,
     minLineY: 100,
     deltaY: 50,
+    history: [],
+    historyIndex: -1,
   })
+})
+
+test('restoreState extracts history correctly', () => {
+  const savedState = {
+    history: ['search1', 'search2', 'search3'],
+    historyIndex: 1,
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.history).toEqual(['search1', 'search2', 'search3'])
+  expect(result.historyIndex).toBe(1)
+})
+
+test('restoreState limits history to 10 items', () => {
+  const savedState = {
+    history: ['search1', 'search2', 'search3', 'search4', 'search5', 'search6', 'search7', 'search8', 'search9', 'search10', 'search11', 'search12'],
+    historyIndex: 11,
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.history).toEqual(['search3', 'search4', 'search5', 'search6', 'search7', 'search8', 'search9', 'search10', 'search11', 'search12'])
+  expect(result.historyIndex).toBe(-1) // Index is out of bounds after limiting
+})
+
+test('restoreState filters non-string history items', () => {
+  const savedState = {
+    history: ['search1', 123, 'search2', null, 'search3', undefined, 'search4'],
+    historyIndex: 3,
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.history).toEqual(['search1', 'search2', 'search3', 'search4'])
+  expect(result.historyIndex).toBe(3) // Index 3 corresponds to 'search4' which is still valid
+})
+
+test('restoreState handles historyIndex out of bounds', () => {
+  const savedState = {
+    history: ['search1', 'search2'],
+    historyIndex: 5, // Out of bounds
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.history).toEqual(['search1', 'search2'])
+  expect(result.historyIndex).toBe(-1)
+})
+
+test('restoreState handles historyIndex as non-number', () => {
+  const savedState = {
+    history: ['search1', 'search2'],
+    historyIndex: 'not a number',
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.history).toEqual(['search1', 'search2'])
+  expect(result.historyIndex).toBe(-1)
+})
+
+test('restoreState handles history as non-array', () => {
+  const savedState = {
+    history: 'not an array',
+    historyIndex: 0,
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.history).toEqual([])
+  expect(result.historyIndex).toBe(-1)
 })

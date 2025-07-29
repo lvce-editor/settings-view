@@ -42,6 +42,26 @@ const getSavedScrollOffset = (savedState: unknown): number => {
   return 0
 }
 
+const getSavedHistory = (savedState: unknown): readonly string[] => {
+  if (savedState && typeof savedState === 'object' && 'history' in savedState && Array.isArray(savedState.history)) {
+    // Validate that all items are strings and limit to last 10 items
+    const validHistory = savedState.history.filter((item): item is string => typeof item === 'string').slice(-10) // Keep only the last 10 items
+    return validHistory
+  }
+  return []
+}
+
+const getSavedHistoryIndex = (savedState: unknown, history: readonly string[]): number => {
+  if (savedState && typeof savedState === 'object' && 'historyIndex' in savedState && typeof savedState.historyIndex === 'number') {
+    const { historyIndex } = savedState
+    // Ensure historyIndex is within valid bounds
+    if (historyIndex >= 0 && historyIndex < history.length) {
+      return historyIndex
+    }
+  }
+  return -1
+}
+
 export const restoreState = (savedState: unknown): RestoredState => {
   if (!savedState) {
     return {
@@ -51,6 +71,8 @@ export const restoreState = (savedState: unknown): RestoredState => {
       tabId: '',
       searchValue: '',
       scrollOffset: 0,
+      history: [],
+      historyIndex: -1,
     }
   }
 
@@ -60,6 +82,9 @@ export const restoreState = (savedState: unknown): RestoredState => {
   const tabId = getSavedTabId(savedState)
   const searchValue = getSavedSearchValue(savedState)
   const scrollOffset = getSavedScrollOffset(savedState)
+  const history = getSavedHistory(savedState)
+  const historyIndex = getSavedHistoryIndex(savedState, history)
+
   return {
     root,
     minLineY,
@@ -67,5 +92,7 @@ export const restoreState = (savedState: unknown): RestoredState => {
     tabId,
     searchValue,
     scrollOffset,
+    history,
+    historyIndex,
   }
 }

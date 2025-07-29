@@ -8,4 +8,6 @@ export interface SavedState {
   readonly selectedTab: string
   readonly scrollOffset: number
   readonly focus: number
+  readonly history: readonly string[]
+  readonly historyIndex: number
 }

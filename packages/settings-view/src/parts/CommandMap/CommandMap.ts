@@ -13,7 +13,6 @@ import { handleSettingSelect } from '../HandleSettingSelect/HandleSettingSelect.
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import { render2 } from '../Render2/Render2.ts'
-import { renderActions } from '../RenderActions/RenderActions.ts'
 import { renderEventListeners } from '../RenderEventListeners/RenderEventListeners.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
 import { saveState } from '../SaveState/SaveState.ts'
@@ -37,7 +36,6 @@ export const commandMap = {
   'Settings.handleSettingSelect': wrapCommand(handleSettingSelect),
   'Settings.loadContent': wrapCommand(LoadContent.loadContent),
   'Settings.render2': render2,
-  'Settings.renderActions': renderActions,
   'Settings.renderEventListeners': renderEventListeners,
   'Settings.restoreState': restoreState,
   'Settings.saveState': wrapGetter(saveState),

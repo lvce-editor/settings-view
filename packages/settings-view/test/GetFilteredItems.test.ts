@@ -100,7 +100,7 @@ test('addModifiedProperty should compute modified property based on preferences'
     },
   ]
 
-  const preferences = { fontSize: '18px' }
+  const preferences = { fontSize: true }
 
   const result = addModifiedProperty(items, preferences)
   expect(result).toHaveLength(2)
@@ -253,7 +253,7 @@ test('getFilteredItems should combine all three operations correctly', () => {
     },
   ]
 
-  const preferences = { theme: 'Light' }
+  const preferences = { theme: true }
 
   const result = getFilteredItems(items, tabs, 'theme', preferences)
   expect(result).toHaveLength(2)

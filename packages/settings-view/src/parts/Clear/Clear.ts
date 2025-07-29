@@ -4,9 +4,9 @@ import { Script } from '../InputSource/InputSource.ts'
 import * as WhenExpression from '../WhenExpression/WhenExpression.ts'
 
 export const clear = (state: SettingsState): SettingsState => {
-  const { items, tabs, preferences } = state
+  const { items, tabs, modifiedSettings } = state
   const newSearchValue = ''
-  const filteredItems = getFilteredItems(items, tabs, newSearchValue, preferences)
+  const filteredItems = getFilteredItems(items, tabs, newSearchValue, modifiedSettings)
   return {
     ...state,
     filteredItems,

@@ -6,8 +6,8 @@ const enabledTypes: readonly number[] = [SettingItemType.Number, SettingItemType
 
 export const renderSettingValues = (oldState: SettingsState, newState: SettingsState): ViewletCommand => {
   const { filteredItems, id } = newState
-  const numericSettings = filteredItems.filter((item) => enabledTypes.includes(item.type))
-  const inputValues = numericSettings.map((item) => ({
+  const enabledSettings = filteredItems.filter((item) => enabledTypes.includes(item.type))
+  const inputValues = enabledSettings.map((item) => ({
     name: item.id,
     value: item.value,
   }))

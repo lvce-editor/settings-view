@@ -22,7 +22,7 @@ test('getSettingItems returns items with i18n strings', async () => {
 
 test('getSettingItems returns expected font size item', async () => {
   const items = await getSettingItems()
-  const fontSizeItem = items.find((item) => item.id === 'Editor.fontSize')
+  const fontSizeItem = items.find((item) => item.id === 'editor.fontSize')
 
   expect(fontSizeItem).toBeDefined()
   expect(fontSizeItem?.heading).toBe(SettingStrings.fontSize())

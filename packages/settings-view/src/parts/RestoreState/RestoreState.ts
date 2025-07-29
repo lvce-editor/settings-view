@@ -6,12 +6,10 @@ import { getSavedMinLineY } from './GetSavedMinLineY.ts'
 import { getSavedScrollOffset } from './GetSavedScrollOffset.ts'
 import { getSavedSearchValue } from './GetSavedSearchValue.ts'
 import { getSavedTabId } from './GetSavedTabId.ts'
-import { getSavedWorkspacePath } from './GetSavedWorkspacePath.ts'
 
 export const restoreState = (savedState: unknown): RestoredState => {
   if (!savedState) {
     return {
-      root: '',
       minLineY: 0,
       deltaY: 0,
       tabId: '',
@@ -22,7 +20,6 @@ export const restoreState = (savedState: unknown): RestoredState => {
     }
   }
 
-  const root = getSavedWorkspacePath(savedState)
   const minLineY = getSavedMinLineY(savedState)
   const deltaY = getSavedDeltaY(savedState)
   const tabId = getSavedTabId(savedState)
@@ -32,7 +29,6 @@ export const restoreState = (savedState: unknown): RestoredState => {
   const historyIndex = getSavedHistoryIndex(savedState, history)
 
   return {
-    root,
     minLineY,
     deltaY,
     tabId,

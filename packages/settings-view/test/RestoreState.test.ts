@@ -7,7 +7,6 @@ test('restoreState returns default values when savedState is null', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '',
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
@@ -22,7 +21,6 @@ test('restoreState returns default values when savedState is undefined', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '',
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
@@ -37,7 +35,6 @@ test('restoreState returns default values when savedState is empty object', () =
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '',
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
@@ -52,7 +49,6 @@ test('restoreState returns default values when savedState is not an object', () 
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '',
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
@@ -67,7 +63,6 @@ test('restoreState returns default values when savedState is a number', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '',
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
@@ -82,31 +77,9 @@ test('restoreState returns default values when savedState is a boolean', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '',
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
-    history: [],
-    historyIndex: -1,
-  })
-})
-
-test('restoreState extracts workspacePath correctly', () => {
-  const savedState = {
-    workspacePath: '/path/to/workspace',
-    minLineY: 100,
-    deltaY: 50,
-  }
-
-  const result = restoreState(savedState)
-
-  expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    root: '/path/to/workspace',
-    scrollOffset: 0,
-    minLineY: 100,
-    deltaY: 50,
     history: [],
     historyIndex: -1,
   })
@@ -123,7 +96,6 @@ test('restoreState extracts minLineY correctly', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '',
     scrollOffset: 0,
     minLineY: 200,
     deltaY: 75,
@@ -142,7 +114,6 @@ test('restoreState extracts deltaY correctly', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '',
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 150,
@@ -153,7 +124,6 @@ test('restoreState extracts deltaY correctly', () => {
 
 test('restoreState handles all properties correctly', () => {
   const savedState = {
-    workspacePath: '/home/user/project',
     minLineY: 300,
     deltaY: 200,
   }
@@ -163,31 +133,9 @@ test('restoreState handles all properties correctly', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '/home/user/project',
     scrollOffset: 0,
     minLineY: 300,
     deltaY: 200,
-    history: [],
-    historyIndex: -1,
-  })
-})
-
-test('restoreState handles workspacePath as non-string', () => {
-  const savedState = {
-    workspacePath: 123,
-    minLineY: 100,
-    deltaY: 50,
-  }
-
-  const result = restoreState(savedState)
-
-  expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    root: '',
-    scrollOffset: 0,
-    minLineY: 100,
-    deltaY: 50,
     history: [],
     historyIndex: -1,
   })
@@ -195,7 +143,6 @@ test('restoreState handles workspacePath as non-string', () => {
 
 test('restoreState handles minLineY as non-number', () => {
   const savedState = {
-    workspacePath: '/path/to/workspace',
     minLineY: 'not a number',
     deltaY: 50,
   }
@@ -205,7 +152,6 @@ test('restoreState handles minLineY as non-number', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '/path/to/workspace',
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 50,
@@ -216,7 +162,6 @@ test('restoreState handles minLineY as non-number', () => {
 
 test('restoreState handles deltaY as non-number', () => {
   const savedState = {
-    workspacePath: '/path/to/workspace',
     minLineY: 100,
     deltaY: 'not a number',
   }
@@ -226,7 +171,6 @@ test('restoreState handles deltaY as non-number', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '/path/to/workspace',
     scrollOffset: 0,
     minLineY: 100,
     deltaY: 0,
@@ -237,7 +181,6 @@ test('restoreState handles deltaY as non-number', () => {
 
 test('restoreState handles negative values', () => {
   const savedState = {
-    workspacePath: '/negative/path',
     minLineY: -100,
     deltaY: -50,
   }
@@ -247,7 +190,6 @@ test('restoreState handles negative values', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '/negative/path',
     scrollOffset: 0,
     minLineY: -100,
     deltaY: -50,
@@ -258,7 +200,6 @@ test('restoreState handles negative values', () => {
 
 test('restoreState handles zero values', () => {
   const savedState = {
-    workspacePath: '',
     minLineY: 0,
     deltaY: 0,
   }
@@ -268,7 +209,6 @@ test('restoreState handles zero values', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '',
     scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
@@ -279,7 +219,6 @@ test('restoreState handles zero values', () => {
 
 test('restoreState handles large values', () => {
   const savedState = {
-    workspacePath: '/very/long/path/to/workspace',
     minLineY: 999_999,
     deltaY: 999_999,
   }
@@ -289,7 +228,6 @@ test('restoreState handles large values', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '/very/long/path/to/workspace',
     scrollOffset: 0,
     minLineY: 999_999,
     deltaY: 999_999,
@@ -300,7 +238,6 @@ test('restoreState handles large values', () => {
 
 test('restoreState handles extra properties in savedState', () => {
   const savedState = {
-    workspacePath: '/path/to/workspace',
     minLineY: 100,
     deltaY: 50,
     extraProperty: 'should be ignored',
@@ -312,7 +249,6 @@ test('restoreState handles extra properties in savedState', () => {
   expect(result).toEqual({
     tabId: '',
     searchValue: '',
-    root: '/path/to/workspace',
     scrollOffset: 0,
     minLineY: 100,
     deltaY: 50,
@@ -371,13 +307,13 @@ test('restoreState handles historyIndex out of bounds', () => {
 
 test('restoreState handles historyIndex as non-number', () => {
   const savedState = {
-    history: ['search1', 'search2'],
+    history: ['search2'],
     historyIndex: 'not a number',
   }
 
   const result = restoreState(savedState)
 
-  expect(result.history).toEqual(['search1', 'search2'])
+  expect(result.history).toEqual(['search2'])
   expect(result.historyIndex).toBe(-1)
 })
 

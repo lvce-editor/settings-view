@@ -4,6 +4,7 @@ import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
+import { handleScroll } from '../HandleScroll/HandleScroll.ts'
 import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
 import { handleSettingInput } from '../HandleSettingInput/HandleSettingInput.ts'
 import { handleSettingSelect } from '../HandleSettingSelect/HandleSettingSelect.ts'
@@ -18,9 +19,16 @@ import { getCommandIds, wrapCommand, wrapGetter } from '../SettingsStates/Settin
 
 export const commandMap = {
   'Initialize.initialize': Initialize.initialize,
+  'Settings.clear': wrapCommand(clear),
   'Settings.create': Create.create,
   'Settings.diff2': Diff2.diff2,
   'Settings.getCommandIds': getCommandIds,
+  'Settings.handleClickTab': wrapCommand(handleClickTab),
+  'Settings.handleInput': wrapCommand(handleInput),
+  'Settings.handleScroll': wrapCommand(handleScroll),
+  'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),
+  'Settings.handleSettingInput': wrapCommand(handleSettingInput),
+  'Settings.handleSettingSelect': wrapCommand(handleSettingSelect),
   'Settings.loadContent': wrapCommand(LoadContent.loadContent),
   'Settings.render2': render2,
   'Settings.renderActions': renderActions,
@@ -28,10 +36,4 @@ export const commandMap = {
   'Settings.restoreState': restoreState,
   'Settings.saveState': wrapGetter(saveState),
   'Settings.terminate': terminate,
-  'Settings.handleClickTab': wrapCommand(handleClickTab),
-  'Settings.clear': wrapCommand(clear),
-  'Settings.handleInput': wrapCommand(handleInput),
-  'Settings.handleSettingInput': wrapCommand(handleSettingInput),
-  'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),
-  'Settings.handleSettingSelect': wrapCommand(handleSettingSelect),
 }

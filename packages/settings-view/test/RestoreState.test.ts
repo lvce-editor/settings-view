@@ -8,6 +8,7 @@ test('restoreState returns default values when savedState is null', () => {
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
   })
@@ -20,6 +21,7 @@ test('restoreState returns default values when savedState is undefined', () => {
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
   })
@@ -32,6 +34,7 @@ test('restoreState returns default values when savedState is empty object', () =
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
   })
@@ -44,6 +47,7 @@ test('restoreState returns default values when savedState is not an object', () 
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
   })
@@ -56,6 +60,7 @@ test('restoreState returns default values when savedState is a number', () => {
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
   })
@@ -68,6 +73,7 @@ test('restoreState returns default values when savedState is a boolean', () => {
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
   })
@@ -86,6 +92,7 @@ test('restoreState extracts workspacePath correctly', () => {
     tabId: '',
     searchValue: '',
     root: '/path/to/workspace',
+    scrollOffset: 0,
     minLineY: 100,
     deltaY: 50,
   })
@@ -103,6 +110,7 @@ test('restoreState extracts minLineY correctly', () => {
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 200,
     deltaY: 75,
   })
@@ -119,6 +127,7 @@ test('restoreState extracts deltaY correctly', () => {
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 0,
     deltaY: 150,
   })
@@ -137,6 +146,7 @@ test('restoreState handles all properties correctly', () => {
     tabId: '',
     searchValue: '',
     root: '/home/user/project',
+    scrollOffset: 0,
     minLineY: 300,
     deltaY: 200,
   })
@@ -155,6 +165,7 @@ test('restoreState handles workspacePath as non-string', () => {
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 100,
     deltaY: 50,
   })
@@ -173,6 +184,7 @@ test('restoreState handles minLineY as non-number', () => {
     tabId: '',
     searchValue: '',
     root: '/path/to/workspace',
+    scrollOffset: 0,
     minLineY: 0,
     deltaY: 50,
   })
@@ -191,6 +203,7 @@ test('restoreState handles deltaY as non-number', () => {
     tabId: '',
     searchValue: '',
     root: '/path/to/workspace',
+    scrollOffset: 0,
     minLineY: 100,
     deltaY: 0,
   })
@@ -209,6 +222,7 @@ test('restoreState handles negative values', () => {
     tabId: '',
     searchValue: '',
     root: '/negative/path',
+    scrollOffset: 0,
     minLineY: -100,
     deltaY: -50,
   })
@@ -227,6 +241,7 @@ test('restoreState handles zero values', () => {
     tabId: '',
     searchValue: '',
     root: '',
+    scrollOffset: 0,
     minLineY: 0,
     deltaY: 0,
   })
@@ -245,6 +260,7 @@ test('restoreState handles large values', () => {
     tabId: '',
     searchValue: '',
     root: '/very/long/path/to/workspace',
+    scrollOffset: 0,
     minLineY: 999_999,
     deltaY: 999_999,
   })
@@ -265,6 +281,7 @@ test('restoreState handles extra properties in savedState', () => {
     tabId: '',
     searchValue: '',
     root: '/path/to/workspace',
+    scrollOffset: 0,
     minLineY: 100,
     deltaY: 50,
   })

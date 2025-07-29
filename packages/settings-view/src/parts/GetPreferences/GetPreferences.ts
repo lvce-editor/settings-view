@@ -1,3 +1,10 @@
+import { RendererWorker } from '@lvce-editor/rpc-registry'
+
 export const getPreferences = async (): Promise<any> => {
-  return {}
+  try {
+    // @ts-ignore
+    return await RendererWorker.invoke('Preferences.getAll')
+  } catch {
+    return {}
+  }
 }

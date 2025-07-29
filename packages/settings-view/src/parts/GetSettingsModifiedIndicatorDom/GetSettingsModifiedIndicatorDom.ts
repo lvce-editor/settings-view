@@ -7,7 +7,7 @@ export const getSettingsModifiedIndicatorDom = (): readonly VirtualDomNode[] => 
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ModifiedIndicator,
-      childCount: 1,
+      childCount: 0,
     },
   ]
 }

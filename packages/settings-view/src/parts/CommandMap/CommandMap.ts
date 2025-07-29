@@ -3,6 +3,7 @@ import { clear } from '../Clear/Clear.ts'
 import { clearHistory } from '../ClearHistory/ClearHistory.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
+import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
 import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
@@ -44,4 +45,5 @@ export const commandMap = {
   'Settings.terminate': terminate,
   'Settings.useNextSearchValue': wrapCommand(useNextSearchValue),
   'Settings.usePreviousSearchValue': wrapCommand(usePreviousSearchValue),
+  'Settings.getKeyBindings': getKeyBindings,
 }

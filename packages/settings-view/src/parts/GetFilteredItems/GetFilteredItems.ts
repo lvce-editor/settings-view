@@ -1,11 +1,11 @@
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import type { Preferences } from '../SettingsState/SettingsState.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import { filterBySearch } from '../FilterBySearch/FilterBySearch.ts'
 import { filterByTab } from '../FilterByTab/FilterByTab.ts'
 import { validateSettings } from '../ValidateSettings/ValidateSettings.ts'
-import { Preferences } from '../SettingsState/SettingsState.ts'
 
 export const getFilteredItems = (
   items: readonly SettingItem[],

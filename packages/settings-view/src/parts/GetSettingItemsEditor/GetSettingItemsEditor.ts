@@ -15,7 +15,7 @@ export const getSettingItemsEditor = (): readonly SettingItem[] => {
       value: 15,
       category: InputName.TextEditorTab,
       validate(value): string {
-        if (!RE_NUMERIC.test(value)) {
+        if (typeof value !== 'number') {
           return 'font size must be of type number'
         }
         const minFontSize = 10
@@ -26,7 +26,6 @@ export const getSettingItemsEditor = (): readonly SettingItem[] => {
         if (value > maxFontSize) {
           return 'font size must not be greater than 100'
         }
-        console.log({ value })
         return ''
       },
     },

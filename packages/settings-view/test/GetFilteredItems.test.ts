@@ -1,9 +1,11 @@
 import { test, expect } from '@jest/globals'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
 import type { Tab } from '../src/parts/Tab/Tab.ts'
-import { getFilteredItems, filterByTab, filterBySearch } from '../src/parts/GetFilteredItems/GetFilteredItems.ts'
+import { getFilteredItems } from '../src/parts/GetFilteredItems/GetFilteredItems.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
+import { filterBySearch } from '../src/parts/FilterBySearch/FilterBySearch.ts'
+import { filterByTab } from '../src/parts/FilterByTab/FilterByTab.ts'
 
 test('filterByTab should filter items based on selected tab', () => {
   const items: readonly SettingItem[] = [

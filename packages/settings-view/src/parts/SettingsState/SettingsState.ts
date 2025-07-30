@@ -1,3 +1,4 @@
+import { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
@@ -5,7 +6,7 @@ import type { Tab } from '../Tab/Tab.ts'
 export interface SettingsState {
   readonly breakPointsExpanded: boolean
   readonly breakPointsVisible: boolean
-  readonly filteredItems: readonly SettingItem[]
+  readonly filteredItems: readonly DisplaySettingItem[]
   readonly filteredItemsCount: number
   readonly focus: number
   readonly height: number

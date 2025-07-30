@@ -1,4 +1,4 @@
-import { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
+import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'

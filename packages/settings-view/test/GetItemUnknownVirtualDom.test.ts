@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals'
-import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getItemUnknownVirtualDom } from '../src/parts/GetItemUnknownVirtualDom/GetItemUnknownVirtualDom.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
@@ -12,7 +12,7 @@ test('getItemUnknownVirtualDom returns correct virtual DOM structure', () => {
     type: VirtualDomElements.Div,
     className: ClassNames.SettingsItem,
     childCount: 1,
-    role: 'group',
+    role: AriaRoles.Group,
   })
   expect(result[1]).toEqual(text(SettingStrings.unknownSettingType()))
 })

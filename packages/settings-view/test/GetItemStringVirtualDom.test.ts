@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getItemStringVirtualDom } from '../src/parts/GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
@@ -24,7 +24,7 @@ test('getItemStringVirtualDom returns virtual DOM without error when no validati
     type: VirtualDomElements.Div,
     className: ClassNames.SettingsItem,
     childCount: 3,
-    role: 'group',
+    role: AriaRoles.Group,
   })
 })
 
@@ -47,7 +47,7 @@ test('getItemStringVirtualDom returns virtual DOM with error when validation fai
     type: VirtualDomElements.Div,
     className: ClassNames.SettingsItem,
     childCount: 4, // Updated to include error message
-    role: 'group',
+    role: AriaRoles.Group,
   })
   // Check that the input has error styling
   expect(result[5]).toEqual({

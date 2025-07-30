@@ -17,10 +17,17 @@ const getChildCount = (modified: boolean, hasError: boolean): number => {
   return childCount
 }
 
+const getInputClassName = (hasError: boolean): string => {
+  if (hasError) {
+    return `${ClassNames.InputBox} ${ClassNames.InputBoxError}`
+  }
+  return ClassNames.InputBox
+}
+
 export const getItemNumberVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { heading, description, id, modified, hasError, errorMessage } = item
   const domId = getInputId(id)
-  const inputClassName = hasError ? `${ClassNames.InputBox} ${ClassNames.InputBoxError}` : ClassNames.InputBox
+  const inputClassName = getInputClassName(hasError)
   const childCount = getChildCount(modified, hasError)
 
   return [

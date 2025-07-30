@@ -8,7 +8,8 @@ const isItemModified = (item: SettingItem, preferences: ModifiedSettings): boole
 
 export const validateSettings = (items: readonly SettingItem[], preferences: ModifiedSettings): readonly DisplaySettingItem[] => {
   return items.map((item) => {
-    const errorMessage = item.validate ? item.validate(item.value) : ''
+    const value = preferences[item.id] ?? item.value
+    const errorMessage = item.validate ? item.validate(value) : ''
     const hasError = errorMessage.length > 0
     const modified = isItemModified(item, preferences)
 

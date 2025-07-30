@@ -225,7 +225,7 @@ test('getFilteredItems should combine all operations correctly and return Displa
 
   const preferences = { theme: true }
 
-  const result = getFilteredItems(items, tabs, 'theme', preferences)
+  const result = getFilteredItems(items, tabs, 'theme', preferences, preferences)
   expect(result).toHaveLength(2)
   expect(result[0].id).toBe('theme')
   expect(result[0].modified).toBe(true)

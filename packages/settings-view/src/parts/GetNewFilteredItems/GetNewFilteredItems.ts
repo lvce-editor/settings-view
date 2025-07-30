@@ -18,5 +18,5 @@ export const getNewFilteredItems = (
   if (oldModifiedSetings === newModifiedSettings && oldPreferences === newPreferences) {
     return oldFilteredItems
   }
-  return getFilteredItems(items, tabs, searchValue, newModifiedSettings)
+  return getFilteredItems(items, tabs, searchValue, newModifiedSettings, newPreferences)
 }

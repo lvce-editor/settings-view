@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
@@ -20,7 +20,7 @@ export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly Virtu
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
       childCount: 3 + errorChildCount,
-      role: 'group',
+      role: AriaRoles.Group,
       'data-modified': modified,
     },
     ...getItemHeadingDom(heading),

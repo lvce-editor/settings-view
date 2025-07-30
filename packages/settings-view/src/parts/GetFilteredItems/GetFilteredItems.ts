@@ -1,17 +1,8 @@
+import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
-
-const isItemModified = (item: Readonly<SettingItem>, preferences: ModifiedSettings): boolean => {
-  return item.id in preferences
-}
-
-export const addModifiedProperty = (items: readonly SettingItem[], preferences: ModifiedSettings): readonly SettingItem[] => {
-  return items.map((item) => ({
-    ...item,
-    modified: isItemModified(item, preferences),
-  }))
-}
+import { validateSettings } from '../ValidateSettings/ValidateSettings.ts'
 
 export const filterByTab = (items: readonly SettingItem[], tabs: readonly Tab[]): readonly SettingItem[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
@@ -36,8 +27,8 @@ export const getFilteredItems = (
   tabs: readonly Tab[],
   searchValue: string = '',
   preferences: ModifiedSettings,
-): readonly SettingItem[] => {
+): readonly DisplaySettingItem[] => {
   const tabFilteredItems = filterByTab(items, tabs)
-  const itemsWithModifiedProperty = addModifiedProperty(tabFilteredItems, preferences)
-  return filterBySearch(itemsWithModifiedProperty, searchValue)
+  const searchFilteredItems = filterBySearch(tabFilteredItems, searchValue)
+  return validateSettings(searchFilteredItems, preferences)
 }

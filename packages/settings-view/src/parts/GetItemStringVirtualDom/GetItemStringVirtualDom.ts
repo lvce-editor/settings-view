@@ -1,17 +1,21 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import { getErrorMessageDom } from '../GetErrorMessageDom/GetErrorMessageDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-export const getItemStringVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
-  const { heading, description, id } = item
+export const getItemStringVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+  const { heading, description, id, hasError, errorMessage } = item
+  const inputClassName = hasError ? `${ClassNames.InputBox} ${ClassNames.InputBoxError}` : ClassNames.InputBox
+  const errorChildCount = hasError ? 1 : 0
+
   return [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3,
+      childCount: 3 + errorChildCount,
       role: 'group',
     },
     {
@@ -26,12 +30,13 @@ export const getItemStringVirtualDom = (item: SettingItem): readonly VirtualDomN
     text(description),
     {
       type: VirtualDomElements.Input,
-      className: ClassNames.InputBox,
+      className: inputClassName,
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
       name: id,
       onInput: DomEventListenerFunctions.HandleSettingInput,
     },
+    ...getErrorMessageDom(errorMessage),
   ]
 }

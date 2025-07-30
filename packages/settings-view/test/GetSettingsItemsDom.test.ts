@@ -1,13 +1,13 @@
 import { expect, test } from '@jest/globals'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
+import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
 import { getSettingsItemsDom } from '../src/parts/GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
 test('getSettingsItemsDom returns items when items array is not empty', () => {
-  const items: readonly SettingItem[] = [
+  const items: readonly DisplaySettingItem[] = [
     {
       id: 'fontSize',
       heading: 'Font Size',
@@ -15,6 +15,9 @@ test('getSettingsItemsDom returns items when items array is not empty', () => {
       type: SettingItemType.Number,
       value: '15px',
       category: InputName.TextEditorTab,
+      modified: false,
+      errorMessage: '',
+      hasError: false,
     },
   ]
   const searchValue = ''
@@ -30,7 +33,7 @@ test('getSettingsItemsDom returns items when items array is not empty', () => {
 })
 
 test('getSettingsItemsDom shows no settings matching message when items is empty and search value is provided', () => {
-  const items: readonly SettingItem[] = []
+  const items: readonly DisplaySettingItem[] = []
   const searchValue = 'nonexistent'
 
   const result = getSettingsItemsDom(items, searchValue)
@@ -50,7 +53,7 @@ test('getSettingsItemsDom shows no settings matching message when items is empty
 })
 
 test('getSettingsItemsDom shows items when items is empty but search value is empty', () => {
-  const items: readonly SettingItem[] = []
+  const items: readonly DisplaySettingItem[] = []
   const searchValue = ''
 
   const result = getSettingsItemsDom(items, searchValue)
@@ -64,7 +67,7 @@ test('getSettingsItemsDom shows items when items is empty but search value is em
 })
 
 test('getSettingsItemsDom shows items when items is empty but search value is only whitespace', () => {
-  const items: readonly SettingItem[] = []
+  const items: readonly DisplaySettingItem[] = []
   const searchValue = '   '
 
   const result = getSettingsItemsDom(items, searchValue)
@@ -78,7 +81,7 @@ test('getSettingsItemsDom shows items when items is empty but search value is on
 })
 
 test('getSettingsItemsDom shows no settings matching message with special characters in search term', () => {
-  const items: readonly SettingItem[] = []
+  const items: readonly DisplaySettingItem[] = []
   const searchValue = 'test@123!'
 
   const result = getSettingsItemsDom(items, searchValue)
@@ -88,7 +91,7 @@ test('getSettingsItemsDom shows no settings matching message with special charac
 })
 
 test('getSettingsItemsDom shows no settings matching message with unicode characters in search term', () => {
-  const items: readonly SettingItem[] = []
+  const items: readonly DisplaySettingItem[] = []
   const searchValue = 'café'
 
   const result = getSettingsItemsDom(items, searchValue)
@@ -98,7 +101,7 @@ test('getSettingsItemsDom shows no settings matching message with unicode charac
 })
 
 test('getSettingsItemsDom shows no settings matching message with very long search term', () => {
-  const items: readonly SettingItem[] = []
+  const items: readonly DisplaySettingItem[] = []
   const searchValue = 'a'.repeat(1000)
 
   const result = getSettingsItemsDom(items, searchValue)
@@ -108,7 +111,7 @@ test('getSettingsItemsDom shows no settings matching message with very long sear
 })
 
 test('getSettingsItemsDom shows no settings matching message with single character search term', () => {
-  const items: readonly SettingItem[] = []
+  const items: readonly DisplaySettingItem[] = []
   const searchValue = 'x'
 
   const result = getSettingsItemsDom(items, searchValue)
@@ -118,7 +121,7 @@ test('getSettingsItemsDom shows no settings matching message with single charact
 })
 
 test('getSettingsItemsDom handles multiple items correctly', () => {
-  const items: readonly SettingItem[] = [
+  const items: readonly DisplaySettingItem[] = [
     {
       id: 'fontSize',
       heading: 'Font Size',
@@ -126,14 +129,20 @@ test('getSettingsItemsDom handles multiple items correctly', () => {
       type: SettingItemType.Number,
       value: '15px',
       category: InputName.TextEditorTab,
+      modified: false,
+      errorMessage: '',
+      hasError: false,
     },
     {
       id: 'fontFamily',
       heading: 'Font Family',
       description: 'The font family of the editor',
       type: SettingItemType.String,
-      value: 'Monaco',
+      value: 'monospace',
       category: InputName.TextEditorTab,
+      modified: false,
+      errorMessage: '',
+      hasError: false,
     },
   ]
   const searchValue = ''
@@ -149,27 +158,35 @@ test('getSettingsItemsDom handles multiple items correctly', () => {
 })
 
 test('getSettingsItemsDom handles null-like search values', () => {
-  const items: readonly SettingItem[] = []
-  const searchValue = 'null'
+  const items: readonly DisplaySettingItem[] = []
+  const searchValue = null as any
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toHaveLength(1)
+  expect(result[0]).toEqual({
+    type: VirtualDomElements.Div,
+    className: 'SettingsItems',
+    childCount: 0,
+  })
 })
 
 test('getSettingsItemsDom handles undefined-like search values', () => {
-  const items: readonly SettingItem[] = []
-  const searchValue = 'undefined'
+  const items: readonly DisplaySettingItem[] = []
+  const searchValue = undefined as any
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toHaveLength(1)
+  expect(result[0]).toEqual({
+    type: VirtualDomElements.Div,
+    className: 'SettingsItems',
+    childCount: 0,
+  })
 })
 
 test('getSettingsItemsDom handles search value with leading and trailing whitespace', () => {
-  const items: readonly SettingItem[] = []
+  const items: readonly DisplaySettingItem[] = []
   const searchValue = '  test  '
 
   const result = getSettingsItemsDom(items, searchValue)
@@ -179,8 +196,8 @@ test('getSettingsItemsDom handles search value with leading and trailing whitesp
 })
 
 test('getSettingsItemsDom handles search value with newlines and tabs', () => {
-  const items: readonly SettingItem[] = []
-  const searchValue = '\t\ntest\n\t'
+  const items: readonly DisplaySettingItem[] = []
+  const searchValue = '\ttest\n'
 
   const result = getSettingsItemsDom(items, searchValue)
 

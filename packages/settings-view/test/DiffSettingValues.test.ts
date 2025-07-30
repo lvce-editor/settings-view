@@ -25,6 +25,9 @@ test('isEqual returns false when filteredItems are different', () => {
         type: SettingItemType.Number,
         value: '42',
         category: 'test',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
     ],
   }
@@ -45,6 +48,9 @@ test('isEqual returns false when filteredItems have different content but same l
         type: SettingItemType.Number,
         value: '10',
         category: 'test',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
     ],
   }
@@ -58,6 +64,9 @@ test('isEqual returns false when filteredItems have different content but same l
         type: SettingItemType.Number,
         value: '20',
         category: 'test',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
     ],
   }
@@ -92,6 +101,9 @@ test('isEqual returns false when filteredItems have different lengths', () => {
         type: SettingItemType.Number,
         value: '10',
         category: 'test',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
     ],
   }
@@ -105,6 +117,9 @@ test('isEqual returns false when filteredItems have different lengths', () => {
         type: SettingItemType.Number,
         value: '10',
         category: 'test',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
       {
         id: 'item2',
@@ -113,6 +128,9 @@ test('isEqual returns false when filteredItems have different lengths', () => {
         type: SettingItemType.Number,
         value: '20',
         category: 'test',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
     ],
   }
@@ -130,6 +148,9 @@ test('isEqual returns false when filteredItems have same length and same items',
     type: SettingItemType.Number,
     value: '10',
     category: 'test',
+    modified: false,
+    errorMessage: '',
+    hasError: false,
   }
 
   const oldState: SettingsState = {

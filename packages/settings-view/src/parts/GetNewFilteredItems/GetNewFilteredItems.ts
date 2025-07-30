@@ -1,3 +1,4 @@
+import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
@@ -9,9 +10,11 @@ export const getNewFilteredItems = (
   items: readonly SettingItem[],
   tabs: readonly Tab[],
   searchValue: string,
-  oldFilteredItems: readonly SettingItem[],
-): readonly SettingItem[] => {
-  if (oldModifiedSetings === newModifiedSettings) {
+  oldFilteredItems: readonly DisplaySettingItem[],
+  oldPreferences: Readonly<Record<string, any>>,
+  newPreferences: Readonly<Record<string, any>>,
+): readonly DisplaySettingItem[] => {
+  if (oldModifiedSetings === newModifiedSettings && oldPreferences === newPreferences) {
     return oldFilteredItems
   }
   return getFilteredItems(items, tabs, searchValue, newModifiedSettings)

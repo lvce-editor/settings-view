@@ -1,33 +1,36 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import { getErrorMessageDom } from '../GetErrorMessageDom/GetErrorMessageDom.ts'
 import { getInputId } from '../GetInputId/GetInputId.ts'
 import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import { getSettingsModifiedIndicatorDom } from '../GetSettingsModifiedIndicatorDom/GetSettingsModifiedIndicatorDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomNode[] => {
-  const { heading, description, id, modified } = item
+export const getItemNumberVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+  const { heading, description, id, modified, hasError, errorMessage } = item
   const domId = getInputId(id)
-  const isModified = modified || false
-  const modifiedChildCount = isModified ? 1 : 0
+  const inputClassName = hasError ? `${ClassNames.InputBox} ${ClassNames.InputBoxError}` : ClassNames.InputBox
+  const modifiedChildCount = modified ? 1 : 0
+  const errorChildCount = hasError ? 1 : 0
+
   return [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3 + modifiedChildCount,
+      childCount: 3 + modifiedChildCount + errorChildCount,
       role: 'group',
-      'data-modified': isModified,
+      'data-modified': modified,
     },
-    ...getSettingsModifiedIndicatorDom(isModified),
+    ...getSettingsModifiedIndicatorDom(modified),
     ...getItemHeadingDom(heading),
     ...getItemLabelDom(domId, description),
     {
       type: VirtualDomElements.Input,
-      className: ClassNames.InputBox,
+      className: inputClassName,
       inputType: 'number',
       placeholder: SettingStrings.numberValue(),
       childCount: 0,
@@ -35,5 +38,6 @@ export const getItemNumberVirtualDom = (item: SettingItem): readonly VirtualDomN
       name: id,
       onInput: DomEventListenerFunctions.HandleSettingInput,
     },
+    ...getErrorMessageDom(errorMessage),
   ]
 }

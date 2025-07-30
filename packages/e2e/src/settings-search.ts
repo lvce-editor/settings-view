@@ -17,7 +17,7 @@ export const test: Test = async ({ Main, Locator, expect, Command }) => {
   const description = settingsItems.locator('p')
   await expect(description).toHaveText('The font family of the editor')
   const input = settingsItems.locator('.InputBox')
-  await expect(input).toHaveValue('Fira Code')
+  await expect(input).toHaveValue("'Fira Code'")
   const badge = Locator('.SettingsHeader .Badge')
   await expect(badge).toBeVisible()
   await expect(badge).toHaveText('1 matching settings') // TODO should be 1 matching setting

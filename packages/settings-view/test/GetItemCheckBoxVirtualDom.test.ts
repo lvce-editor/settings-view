@@ -1,17 +1,20 @@
 import { test, expect } from '@jest/globals'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
+import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
 import { getInputId } from '../src/parts/GetInputId/GetInputId.ts'
 import { getItemCheckBoxVirtualDom } from '../src/parts/GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
 
 test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', () => {
-  const item: SettingItem = {
+  const item: DisplaySettingItem = {
     id: 'testItem',
     heading: 'Test Heading',
     description: 'Test Description',
     type: 2,
     value: 'true',
     category: 'test',
+    modified: false,
+    errorMessage: '',
+    hasError: false,
   }
 
   const result = getItemCheckBoxVirtualDom(item)

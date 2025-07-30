@@ -13,7 +13,7 @@ test('getSettingsInputButtonsDom returns enabled button when hasSearchValue is t
   const expectedDom = [
     {
       type: VirtualDomElements.Button,
-      className: `${ClassNames.Button} ${ClassNames.InputButton} ${ClassNames.SearchFieldButton}`,
+      className: `${ClassNames.SearchFieldButton}`,
       childCount: 1,
       ariaLabel: SettingStrings.clear(),
       name: InputName.Clear,
@@ -37,7 +37,7 @@ test('getSettingsInputButtonsDom returns disabled button when hasSearchValue is 
   const expectedDom = [
     {
       type: VirtualDomElements.Button,
-      className: `${ClassNames.Button} ${ClassNames.InputButton} ${ClassNames.SearchFieldButton} ${ClassNames.Disabled}`,
+      className: `${ClassNames.SearchFieldButton} SearchFieldButtonDisabled`,
       childCount: 1,
       ariaLabel: SettingStrings.clear(),
       name: InputName.Clear,

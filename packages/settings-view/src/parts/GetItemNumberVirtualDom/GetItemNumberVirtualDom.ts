@@ -10,18 +10,24 @@ import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import { getSettingsModifiedIndicatorDom } from '../GetSettingsModifiedIndicatorDom/GetSettingsModifiedIndicatorDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
+const getChildCount = (modified: boolean, hasError: boolean): number => {
+  const modifiedChildCount = modified ? 1 : 0
+  const errorChildCount = hasError ? 1 : 0
+  const childCount = 3 + modifiedChildCount + errorChildCount
+  return childCount
+}
+
 export const getItemNumberVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { heading, description, id, modified, hasError, errorMessage } = item
   const domId = getInputId(id)
   const inputClassName = hasError ? `${ClassNames.InputBox} ${ClassNames.InputBoxError}` : ClassNames.InputBox
-  const modifiedChildCount = modified ? 1 : 0
-  const errorChildCount = hasError ? 1 : 0
+  const childCount = getChildCount(modified, hasError)
 
   return [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3 + modifiedChildCount + errorChildCount,
+      childCount,
       role: AriaRoles.Group,
       'data-modified': modified,
     },

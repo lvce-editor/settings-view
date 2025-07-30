@@ -3,12 +3,15 @@ import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
 
+export type Preferences = Readonly<Record<string, any>>
+
 export interface SettingsState {
   readonly breakPointsExpanded: boolean
   readonly breakPointsVisible: boolean
   readonly filteredItems: readonly DisplaySettingItem[]
   readonly filteredItemsCount: number
   readonly focus: number
+  readonly focusSource: number
   readonly height: number
   readonly history: readonly string[]
   readonly historyIndex: number
@@ -16,7 +19,7 @@ export interface SettingsState {
   readonly inputSource: number
   readonly items: readonly SettingItem[]
   readonly modifiedSettings: ModifiedSettings
-  readonly preferences: any
+  readonly preferences: Preferences
   readonly scrollOffset: number
   readonly searchValue: string
   readonly tabs: readonly Tab[]
@@ -24,5 +27,4 @@ export interface SettingsState {
   readonly width: number
   readonly x: number
   readonly y: number
-  readonly focusSource: number
 }

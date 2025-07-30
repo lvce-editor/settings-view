@@ -126,6 +126,20 @@ export const getSettingItemsEditor = (): readonly SettingItem[] => {
       type: SettingItemType.Number,
       value: '4',
       category: InputName.TextEditorTab,
+      validate(value): string {
+        if (typeof value !== 'number') {
+          return 'font size must be of type number'
+        }
+        const minTabSize = 1
+        const maxTabSize = 8
+        if (value < minTabSize) {
+          return `tab size must be at least ${minTabSize}`
+        }
+        if (value > maxTabSize) {
+          return `tab size must not be greater than ${maxTabSize}`
+        }
+        return ''
+      },
     },
     {
       id: 'editor.insertSpaces',

@@ -9,7 +9,16 @@ export const handleSettingUpdate = (state: SettingsState, name: string, value: a
     ...preferences,
     [name]: value,
   }
-  const newFilteredItems = getNewFilteredItems(modifiedSettings, newModifiedSettings, items, tabs, searchValue, filteredItems)
+  const newFilteredItems = getNewFilteredItems(
+    modifiedSettings,
+    newModifiedSettings,
+    items,
+    tabs,
+    searchValue,
+    filteredItems,
+    preferences,
+    newPreferences,
+  )
   return {
     ...state,
     inputSource,

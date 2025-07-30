@@ -18,6 +18,9 @@ test.skip('renderSettingValues returns correct ViewletCommand for numeric and st
         type: SettingItemType.Number,
         value: '15',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
       {
         id: 'tabSize',
@@ -26,6 +29,9 @@ test.skip('renderSettingValues returns correct ViewletCommand for numeric and st
         type: SettingItemType.Number,
         value: '4',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
       {
         id: 'wordWrap',
@@ -34,6 +40,9 @@ test.skip('renderSettingValues returns correct ViewletCommand for numeric and st
         type: SettingItemType.Boolean,
         value: 'true',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
     ],
   }
@@ -63,6 +72,9 @@ test.skip('renderSettingValues returns empty array when no numeric or string set
         type: SettingItemType.Boolean,
         value: 'true',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
       {
         id: 'enableMinimap',
@@ -71,6 +83,9 @@ test.skip('renderSettingValues returns empty array when no numeric or string set
         type: SettingItemType.Boolean,
         value: 'false',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
     ],
   }
@@ -106,6 +121,9 @@ test.skip('renderSettingValues handles mixed setting types', () => {
         type: SettingItemType.Number,
         value: '12',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
       {
         id: 'theme',
@@ -114,6 +132,9 @@ test.skip('renderSettingValues handles mixed setting types', () => {
         type: SettingItemType.String,
         value: 'light',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
       {
         id: 'lineHeight',
@@ -122,6 +143,9 @@ test.skip('renderSettingValues handles mixed setting types', () => {
         type: SettingItemType.Number,
         value: '1.5',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
       {
         id: 'enableMinimap',
@@ -130,6 +154,9 @@ test.skip('renderSettingValues handles mixed setting types', () => {
         type: SettingItemType.Boolean,
         value: 'false',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
     ],
   }

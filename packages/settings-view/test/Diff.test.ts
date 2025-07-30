@@ -128,6 +128,9 @@ test.skip('diff returns RenderSettingValues when filteredItems change', () => {
         type: SettingItemType.Number,
         value: '15',
         category: 'editor',
+        modified: false,
+        errorMessage: '',
+        hasError: false,
       },
     ],
   }

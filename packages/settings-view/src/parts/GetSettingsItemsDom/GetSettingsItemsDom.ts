@@ -1,12 +1,12 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getItemVirtualDom } from '../GetItemVirtualDom/GetItemVirtualDom.ts'
 import { getSettingsNoResultsDom } from '../GetSettingsNoResultsDom/GetSettingsNoResultsDom.ts'
 
-export const getSettingsItemsDom = (items: readonly SettingItem[], searchValue: string): readonly VirtualDomNode[] => {
-  if (items.length === 0 && searchValue.trim()) {
+export const getSettingsItemsDom = (items: readonly DisplaySettingItem[], searchValue: string): readonly VirtualDomNode[] => {
+  if (items.length === 0 && searchValue && searchValue.trim()) {
     return getSettingsNoResultsDom(searchValue)
   }
   return [

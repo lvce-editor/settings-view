@@ -5,15 +5,17 @@ import type { Tab } from '../Tab/Tab.ts'
 import { filterBySearch } from '../FilterBySearch/FilterBySearch.ts'
 import { filterByTab } from '../FilterByTab/FilterByTab.ts'
 import { validateSettings } from '../ValidateSettings/ValidateSettings.ts'
+import { Preferences } from '../SettingsState/SettingsState.ts'
 
 export const getFilteredItems = (
   items: readonly SettingItem[],
   tabs: readonly Tab[],
-  searchValue: string = '',
+  searchValue: string,
   modifiedSettings: ModifiedSettings,
+  preferences: Preferences,
 ): readonly DisplaySettingItem[] => {
   const tabFilteredItems = filterByTab(items, tabs)
   const searchFilteredItems = filterBySearch(tabFilteredItems, searchValue)
-  const validated = validateSettings(searchFilteredItems, modifiedSettings)
+  const validated = validateSettings(searchFilteredItems, modifiedSettings, preferences)
   return validated
 }

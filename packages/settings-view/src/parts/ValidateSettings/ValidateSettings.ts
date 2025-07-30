@@ -6,12 +6,16 @@ const isItemModified = (item: SettingItem, preferences: ModifiedSettings): boole
   return item.id in preferences
 }
 
-export const validateSettings = (items: readonly SettingItem[], preferences: ModifiedSettings): readonly DisplaySettingItem[] => {
+export const validateSettings = (items: readonly SettingItem[], modifiedSettings: ModifiedSettings): readonly DisplaySettingItem[] => {
+  console.log('validate items', items)
   return items.map((item) => {
-    const value = preferences[item.id] ?? item.value
+    const value = modifiedSettings[item.id] ?? item.value
+    if (item.id === 'editor.fontSize') {
+      console.log({ value })
+    }
     const errorMessage = item.validate ? item.validate(value) : ''
     const hasError = errorMessage.length > 0
-    const modified = isItemModified(item, preferences)
+    const modified = isItemModified(item, modifiedSettings)
 
     return {
       id: item.id,

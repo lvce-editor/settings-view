@@ -10,10 +10,10 @@ export const getFilteredItems = (
   items: readonly SettingItem[],
   tabs: readonly Tab[],
   searchValue: string = '',
-  preferences: ModifiedSettings,
+  modifiedSettings: ModifiedSettings,
 ): readonly DisplaySettingItem[] => {
   const tabFilteredItems = filterByTab(items, tabs)
   const searchFilteredItems = filterBySearch(tabFilteredItems, searchValue)
-  const validated = validateSettings(searchFilteredItems, preferences)
+  const validated = validateSettings(searchFilteredItems, modifiedSettings)
   return validated
 }

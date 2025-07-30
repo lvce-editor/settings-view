@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
@@ -16,7 +16,7 @@ export const getItemStringVirtualDom = (item: DisplaySettingItem): readonly Virt
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
       childCount: 3 + errorChildCount,
-      role: 'group',
+      role: AriaRoles.Group,
     },
     {
       type: VirtualDomElements.H3,

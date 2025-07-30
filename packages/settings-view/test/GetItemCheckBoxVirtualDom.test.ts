@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals'
-import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
 import { getInputId } from '../src/parts/GetInputId/GetInputId.ts'
 import { getItemCheckBoxVirtualDom } from '../src/parts/GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
@@ -25,7 +25,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
       childCount: 3,
-      role: 'group',
+      role: AriaRoles.Group,
       'data-modified': false,
     },
     {

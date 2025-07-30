@@ -3,8 +3,6 @@ import * as InputName from '../InputName/InputName.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-const RE_NUMERIC = /^\d+$/
-
 export const getSettingItemsEditor = (): readonly SettingItem[] => {
   return [
     {

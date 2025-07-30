@@ -18,12 +18,15 @@ export const getSettingItemsEditor = (): readonly SettingItem[] => {
         if (!RE_NUMERIC.test(value)) {
           return 'font size must be of type number'
         }
-        if (value < 10) {
+        const minFontSize = 10
+        const maxFontSize = 100
+        if (value < minFontSize) {
           return 'font size must be at least 10'
         }
-        if (value > 100) {
+        if (value > maxFontSize) {
           return 'font size must not be greater than 100'
         }
+        console.log({ value })
         return ''
       },
     },

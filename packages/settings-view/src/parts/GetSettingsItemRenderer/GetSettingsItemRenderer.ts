@@ -10,7 +10,7 @@ import { getItemUrlVirtualDom } from '../GetItemUrlDom/GetItemUrlDom.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 
 export interface ItemRenderer {
-  (item: DisplaySettingItem): readonly VirtualDomNode[]
+  (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[]
 }
 
 export const getItemRender = (type: number): ItemRenderer => {

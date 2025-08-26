@@ -9,7 +9,7 @@ import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-export const getItemUrlVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+export const getItemUrlVirtualDom = (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
   const { heading, description, id, modified, hasError, errorMessage } = item
   const domId = getInputId(id)
   const inputClassName = hasError ? `${ClassNames.InputBox} ${ClassNames.InputBoxError}` : ClassNames.InputBox
@@ -23,8 +23,8 @@ export const getItemUrlVirtualDom = (item: DisplaySettingItem): readonly Virtual
       role: AriaRoles.Group,
       'data-modified': modified,
     },
-    ...getItemHeadingDom(heading),
-    ...getItemLabelDom(domId, description),
+    ...getItemHeadingDom(heading, highlightsEnabled, searchValue),
+    ...getItemLabelDom(domId, description, highlightsEnabled, searchValue),
     {
       type: VirtualDomElements.Input,
       className: inputClassName,

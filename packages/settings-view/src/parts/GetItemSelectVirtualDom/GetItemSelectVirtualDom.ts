@@ -9,7 +9,7 @@ import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import { getOptionDom } from '../GetOptionDom/GetOptionDom.ts'
 
-export const getItemSelectVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+export const getItemSelectVirtualDom = (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
   const { heading, description, id, options, hasError, errorMessage } = item
   const domId = getInputId(id)
   const selectClassName = hasError ? `${ClassNames.Select} ${ClassNames.InputBoxError}` : ClassNames.Select
@@ -22,8 +22,8 @@ export const getItemSelectVirtualDom = (item: DisplaySettingItem): readonly Virt
       childCount: 3 + errorChildCount,
       role: AriaRoles.Group,
     },
-    ...getItemHeadingDom(heading),
-    ...getItemLabelDom(domId, description),
+    ...getItemHeadingDom(heading, highlightsEnabled, searchValue),
+    ...getItemLabelDom(domId, description, highlightsEnabled, searchValue),
     {
       type: VirtualDomElements.Select,
       className: selectClassName,

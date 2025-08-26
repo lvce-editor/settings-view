@@ -24,7 +24,7 @@ const getInputClassName = (hasError: boolean): string => {
   return ClassNames.InputBox
 }
 
-export const getItemNumberVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+export const getItemNumberVirtualDom = (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
   const { heading, description, id, modified, hasError, errorMessage } = item
   const domId = getInputId(id)
   const inputClassName = getInputClassName(hasError)
@@ -39,8 +39,8 @@ export const getItemNumberVirtualDom = (item: DisplaySettingItem): readonly Virt
       'data-modified': modified,
     },
     ...getSettingsModifiedIndicatorDom(modified),
-    ...getItemHeadingDom(heading),
-    ...getItemLabelDom(domId, description),
+    ...getItemHeadingDom(heading, highlightsEnabled, searchValue),
+    ...getItemLabelDom(domId, description, highlightsEnabled, searchValue),
     {
       type: VirtualDomElements.Input,
       className: inputClassName,

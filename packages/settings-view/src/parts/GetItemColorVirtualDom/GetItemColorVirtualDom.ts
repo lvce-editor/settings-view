@@ -9,7 +9,7 @@ import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+export const getItemColorVirtualDom = (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
   const { heading, description, id, modified, hasError, errorMessage } = item
   const domId = getInputId(id)
   const colorInputClassName = hasError ? mergeClassNames('ColorInput', ClassNames.InputBoxError) : mergeClassNames('ColorInput')
@@ -23,7 +23,7 @@ export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly Virtu
       role: AriaRoles.Group,
       'data-modified': modified,
     },
-    ...getItemHeadingDom(heading),
+    ...getItemHeadingDom(heading, highlightsEnabled, searchValue),
 
     {
       type: VirtualDomElements.Div,
@@ -40,7 +40,7 @@ export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly Virtu
       name: id,
       onInput: DomEventListenerFunctions.HandleSettingInput,
     },
-    ...getItemLabelDom(domId, description),
+    ...getItemLabelDom(domId, description, highlightsEnabled, searchValue),
     ...getErrorMessageDom(errorMessage),
   ]
 }

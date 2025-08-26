@@ -7,7 +7,7 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-export const getSettingsContentDom = (items: readonly DisplaySettingItem[], tabs: readonly Tab[], searchValue: string): readonly VirtualDomNode[] => {
+export const getSettingsContentDom = (items: readonly DisplaySettingItem[], tabs: readonly Tab[], searchValue: string, highlightsEnabled = false): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
 
@@ -24,6 +24,6 @@ export const getSettingsContentDom = (items: readonly DisplaySettingItem[], tabs
       childCount: 1,
     },
     text(headerText),
-    ...getSettingsItemsDom(items, searchValue),
+    ...getSettingsItemsDom(items, searchValue, highlightsEnabled),
   ]
 }

@@ -5,7 +5,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getItemVirtualDom } from '../GetItemVirtualDom/GetItemVirtualDom.ts'
 import { getSettingsNoResultsDom } from '../GetSettingsNoResultsDom/GetSettingsNoResultsDom.ts'
 
-export const getSettingsItemsDom = (items: readonly DisplaySettingItem[], searchValue: string): readonly VirtualDomNode[] => {
+export const getSettingsItemsDom = (items: readonly DisplaySettingItem[], searchValue: string, highlightsEnabled = false): readonly VirtualDomNode[] => {
   if (items.length === 0 && searchValue && searchValue.trim()) {
     return getSettingsNoResultsDom(searchValue)
   }
@@ -15,6 +15,6 @@ export const getSettingsItemsDom = (items: readonly DisplaySettingItem[], search
       className: ClassNames.SettingsItems,
       childCount: items.length,
     },
-    ...items.flatMap(getItemVirtualDom),
+    ...items.flatMap((item) => getItemVirtualDom(item, highlightsEnabled, searchValue)),
   ]
 }

@@ -5,8 +5,10 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getErrorMessageDom } from '../GetErrorMessageDom/GetErrorMessageDom.ts'
 import { getInputId } from '../GetInputId/GetInputId.ts'
+import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
+import { getHighlightedTextDom } from '../GetHighlightedTextDom/GetHighlightedTextDom.ts'
 
-export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
   const { heading, description, id, modified, hasError, errorMessage } = item
   const domId = getInputId(id)
   const checkBoxClassName = hasError ? `${ClassNames.CheckBox} ${ClassNames.InputBoxError}` : ClassNames.CheckBox
@@ -20,11 +22,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
       role: AriaRoles.Group,
       'data-modified': modified,
     },
-    {
-      type: VirtualDomElements.H3,
-      childCount: 1,
-    },
-    text(heading),
+    ...getItemHeadingDom(heading, highlightsEnabled, searchValue),
 
     {
       type: VirtualDomElements.Div,
@@ -42,10 +40,10 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
     },
     {
       type: VirtualDomElements.Label,
-      childCount: 1,
+      childCount: (highlightsEnabled && searchValue ? getHighlightedTextDom(description, searchValue).length : 1),
       htmlFor: domId,
     },
-    text(description),
+    ...(highlightsEnabled && searchValue ? getHighlightedTextDom(description, searchValue) : [text(description)]),
     ...getErrorMessageDom(errorMessage),
   ]
 }

@@ -9,8 +9,13 @@ import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import { getOptionDom } from '../GetOptionDom/GetOptionDom.ts'
 
+<<<<<<< Updated upstream
 export const getItemSelectVirtualDom = (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
   const { heading, description, id, options, hasError, errorMessage } = item
+=======
+export const getItemSelectVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+  const { heading, description, id, options, hasError, errorMessage, headingChildren, descriptionChildren } = item
+>>>>>>> Stashed changes
   const domId = getInputId(id)
   const selectClassName = hasError ? `${ClassNames.Select} ${ClassNames.InputBoxError}` : ClassNames.Select
   const errorChildCount = hasError ? 1 : 0
@@ -22,8 +27,13 @@ export const getItemSelectVirtualDom = (item: DisplaySettingItem, highlightsEnab
       childCount: 3 + errorChildCount,
       role: AriaRoles.Group,
     },
+<<<<<<< Updated upstream
     ...getItemHeadingDom(heading, highlightsEnabled, searchValue),
     ...getItemLabelDom(domId, description, highlightsEnabled, searchValue),
+=======
+    ...getItemHeadingDom(heading, headingChildren as readonly VirtualDomNode[] | undefined),
+    ...getItemLabelDom(domId, description, descriptionChildren as readonly VirtualDomNode[] | undefined),
+>>>>>>> Stashed changes
     {
       type: VirtualDomElements.Select,
       className: selectClassName,

@@ -3,7 +3,7 @@ import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { Script } from '../InputSource/InputSource.ts'
 
 export const usePreviousSearchValue = (state: SettingsState): SettingsState => {
-  const { history, historyIndex, items, tabs, modifiedSettings, preferences } = state
+  const { history, historyIndex, items, tabs, modifiedSettings, preferences, highlightsEnabled } = state
 
   if (history.length === 0 || historyIndex <= 0) {
     return state
@@ -11,7 +11,7 @@ export const usePreviousSearchValue = (state: SettingsState): SettingsState => {
 
   const newHistoryIndex = historyIndex - 1
   const newSearchValue = history[newHistoryIndex]
-  const filteredItems = getFilteredItems(items, tabs, newSearchValue, modifiedSettings, preferences)
+  const filteredItems = getFilteredItems(items, tabs, newSearchValue, modifiedSettings, preferences, highlightsEnabled)
 
   return {
     ...state,

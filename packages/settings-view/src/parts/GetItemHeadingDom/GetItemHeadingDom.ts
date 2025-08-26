@@ -7,9 +7,14 @@ const parent: VirtualDomNode = {
   childCount: 1,
 }
 
+<<<<<<< Updated upstream
 export const getItemHeadingDom = (heading: string, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
   if (highlightsEnabled && searchValue) {
     const children = getHighlightedTextDom(heading, searchValue)
+=======
+export const getItemHeadingDom = (heading: string, children?: readonly VirtualDomNode[]): readonly VirtualDomNode[] => {
+  if (children && children.length > 0) {
+>>>>>>> Stashed changes
     return [
       {
         ...parent,

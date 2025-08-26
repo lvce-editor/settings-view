@@ -8,6 +8,8 @@ export const validateSettings = (
   items: readonly SettingItem[],
   modifiedSettings: ModifiedSettings,
   preferences: Preferences,
+  searchValue?: string,
+  highlightsEnabled?: boolean,
 ): readonly DisplaySettingItem[] => {
   return items.map((item) => {
     const value = preferences[item.id] ?? item.value
@@ -15,7 +17,7 @@ export const validateSettings = (
     const hasError = errorMessage.length > 0
     const modified = isItemModified(item, modifiedSettings)
 
-    return {
+    const base = {
       id: item.id,
       heading: item.heading,
       description: item.description,
@@ -27,5 +29,17 @@ export const validateSettings = (
       errorMessage,
       hasError,
     }
+    if (highlightsEnabled && searchValue && searchValue.trim()) {
+      // Lazy import to avoid cycle
+      const { getHighlightedParts } = require('../GetHighlightedParts/GetHighlightedParts.ts') as {
+        getHighlightedParts(content: string, searchValue: string): readonly any[]
+      }
+      return {
+        ...base,
+        headingChildren: getHighlightedParts(item.heading, searchValue),
+        descriptionChildren: getHighlightedParts(item.description, searchValue),
+      }
+    }
+    return base as DisplaySettingItem
   })
 }

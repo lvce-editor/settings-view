@@ -24,8 +24,13 @@ const getInputClassName = (hasError: boolean): string => {
   return ClassNames.InputBox
 }
 
+<<<<<<< Updated upstream
 export const getItemNumberVirtualDom = (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
   const { heading, description, id, modified, hasError, errorMessage } = item
+=======
+export const getItemNumberVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+  const { heading, description, id, modified, hasError, errorMessage, headingChildren, descriptionChildren } = item
+>>>>>>> Stashed changes
   const domId = getInputId(id)
   const inputClassName = getInputClassName(hasError)
   const childCount = getChildCount(modified, hasError)
@@ -39,8 +44,13 @@ export const getItemNumberVirtualDom = (item: DisplaySettingItem, highlightsEnab
       'data-modified': modified,
     },
     ...getSettingsModifiedIndicatorDom(modified),
+<<<<<<< Updated upstream
     ...getItemHeadingDom(heading, highlightsEnabled, searchValue),
     ...getItemLabelDom(domId, description, highlightsEnabled, searchValue),
+=======
+    ...getItemHeadingDom(heading, headingChildren as readonly VirtualDomNode[] | undefined),
+    ...getItemLabelDom(domId, description, descriptionChildren as readonly VirtualDomNode[] | undefined),
+>>>>>>> Stashed changes
     {
       type: VirtualDomElements.Input,
       className: inputClassName,

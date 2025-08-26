@@ -7,6 +7,8 @@ export interface DisplaySettingItem {
   readonly id: string
   readonly heading: string
   readonly description: string
+  readonly headingChildren?: readonly any[]
+  readonly descriptionChildren?: readonly any[]
   readonly type: number
   readonly value: any
   readonly category: string

@@ -20,11 +20,8 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
       role: AriaRoles.Group,
       'data-modified': modified,
     },
-    {
-      type: VirtualDomElements.H3,
-      childCount: 1,
-    },
-    text(heading),
+    ...getItemHeadingDom(heading),
+    
 
     {
       type: VirtualDomElements.Div,
@@ -40,12 +37,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
       name: id,
       onChange: DomEventListenerFunctions.HandleSettingChecked,
     },
-    {
-      type: VirtualDomElements.Label,
-      childCount: 1,
-      htmlFor: domId,
-    },
-    text(description),
+    ...getItemLabelDom(domId, description),
     ...getErrorMessageDom(errorMessage),
   ]
 }

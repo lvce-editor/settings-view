@@ -9,7 +9,6 @@ export const getSettingsItemsDom = (items: readonly DisplaySettingItem[], search
   if (items.length === 0 && searchValue && searchValue.trim()) {
     return getSettingsNoResultsDom(searchValue)
   }
-  console.log({ items })
   return [
     {
       type: VirtualDomElements.Div,

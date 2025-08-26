@@ -1,5 +1,6 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { addToHistory } from '../AddToHistory/AddToHistory.ts'
+import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
 import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { User } from '../InputSource/InputSource.ts'
@@ -8,6 +9,7 @@ export const handleInput = (state: SettingsState, value: string, inputSource = U
   const { items, tabs, history, modifiedSettings, preferences, height, itemHeight, scrollOffset } = state
   const filteredItems = getFilteredItems(items, tabs, value, modifiedSettings, preferences)
   const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
+  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset)
 
   const { newHistory, newHistoryIndex } = addToHistory(history, value)
 
@@ -21,5 +23,7 @@ export const handleInput = (state: SettingsState, value: string, inputSource = U
     history: newHistory,
     historyIndex: newHistoryIndex,
     inputSource,
+    scrollBarThumbHeight: thumbHeight,
+    scrollBarThumbTop: thumbTop,
   }
 }

@@ -1,5 +1,6 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { clamp } from '../Clamp/Clamp.ts'
+import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
 import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 import { User } from '../InputSource/InputSource.ts'
 
@@ -14,6 +15,7 @@ export const handleWheel = (state: SettingsState, eventDeltaY: number, inputSour
 
   const scrollOffset = clampedDeltaY
   const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
+  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset)
 
   return {
     ...state,
@@ -23,5 +25,7 @@ export const handleWheel = (state: SettingsState, eventDeltaY: number, inputSour
     minLineY,
     maxLineY,
     inputSource,
+    scrollBarThumbHeight: thumbHeight,
+    scrollBarThumbTop: thumbTop,
   }
 }

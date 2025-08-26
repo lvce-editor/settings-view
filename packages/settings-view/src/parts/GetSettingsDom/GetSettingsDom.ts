@@ -1,9 +1,9 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getSettingsHeaderDom } from '../GetSettingsHeaderDom/GetSettingsHeaderDom.ts'
 import { getSettingsMainDom } from '../GetSettingsMainDom/GetSettingsMainDom.ts'
-import type { SettingsState } from '../SettingsState/SettingsState.ts'
 
 const parentNode: VirtualDomNode = {
   type: VirtualDomElements.Div,

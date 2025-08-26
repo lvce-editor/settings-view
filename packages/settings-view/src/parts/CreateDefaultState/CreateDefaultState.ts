@@ -28,5 +28,7 @@ export const createDefaultState = (): SettingsState => {
     historyIndex: -1,
     modifiedSettings: {},
     focusSource: 0,
+    scrollBarThumbHeight: 0,
+    scrollBarThumbTop: 0,
   }
 }

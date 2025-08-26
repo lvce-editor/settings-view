@@ -1,4 +1,5 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
+import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
 import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { getUpdatedTabs } from '../GetUpdatedTabs/GetUpdatedTabs.ts'
@@ -12,6 +13,7 @@ export const handleClickTab = (state: SettingsState, name: string): SettingsStat
   const updatedTabs = getUpdatedTabs(tabs, name)
   const filteredItems = getFilteredItems(items, updatedTabs, searchValue, modifiedSettings, preferences)
   const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
+  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset)
 
   return {
     ...state,
@@ -20,5 +22,7 @@ export const handleClickTab = (state: SettingsState, name: string): SettingsStat
     visibleItems,
     minLineY,
     maxLineY,
+    scrollBarThumbHeight: thumbHeight,
+    scrollBarThumbTop: thumbTop,
   }
 }

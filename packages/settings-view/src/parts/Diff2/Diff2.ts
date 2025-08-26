@@ -4,5 +4,6 @@ import * as SettingsStates from '../SettingsStates/SettingsStates.ts'
 export const diff2 = (uid: number): readonly number[] => {
   const { oldState, newState } = SettingsStates.get(uid)
   const diffResult = Diff.diff(oldState, newState)
+  console.log({ diffResult })
   return diffResult
 }

@@ -37,7 +37,7 @@ export const getSettingsContentDom = (
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsContent,
       childCount: 5,
-      onScroll: DomEventListenerFunctions.HandleScroll,
+      // onScroll: DomEventListenerFunctions.HandleScroll,
       onWheel: DomEventListenerFunctions.HandleWheel,
     },
     {

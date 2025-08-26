@@ -3,10 +3,10 @@ import { clamp } from '../Clamp/Clamp.ts'
 import { User } from '../InputSource/InputSource.ts'
 
 export const handleWheel = (state: SettingsState, eventDeltaY: number, inputSource = User): SettingsState => {
-  const { deltaY, filteredItems, itemHeight } = state
-  const total = deltaY + eventDeltaY
+  const { deltaY: stateDeltaY = 0, filteredItems, itemHeight = 1 } = state
+  const total = stateDeltaY + eventDeltaY
   const itemCount = filteredItems.length
-  const max = Math.max(0, itemCount * itemHeight)
+  const max = itemCount === 0 ? Number.POSITIVE_INFINITY : Math.max(0, itemCount * itemHeight)
   const clamped = clamp(total, 0, max)
   return {
     ...state,

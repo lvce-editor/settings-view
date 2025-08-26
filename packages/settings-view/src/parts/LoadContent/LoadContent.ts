@@ -1,6 +1,7 @@
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
+import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { getModifiedSettings } from '../GetModifiedSettings/GetModifiedSettings.ts'
 import { getPreferences } from '../GetPreferences/GetPreferences.ts'
@@ -18,9 +19,14 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const preferences = await getPreferences()
   const modifiedSettings: ModifiedSettings = getModifiedSettings(preferences)
   const filteredItems = getFilteredItems(items, newTabs, searchValue, modifiedSettings, preferences)
+  const { height, itemHeight } = state
+  const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
   return {
     ...state,
     filteredItems,
+    visibleItems,
+    minLineY,
+    maxLineY,
     inputSource: Script,
     items,
     modifiedSettings,

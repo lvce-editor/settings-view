@@ -6,7 +6,7 @@ export const handleWheel = (state: SettingsState, eventDeltaY: number, inputSour
   const { deltaY: stateDeltaY, filteredItems, itemHeight = 1 } = state
   const total = stateDeltaY + eventDeltaY
   const itemCount = filteredItems.length
-  const max = itemCount === 0 ? Number.POSITIVE_INFINITY : Math.max(0, itemCount * itemHeight)
+  const max = Math.max(0, itemCount * itemHeight)
   const clamped = clamp(total, 0, max)
   console.log({ clamped })
   return {

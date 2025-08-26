@@ -3,7 +3,22 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { handleWheel } from '../src/parts/HandleWheel/HandleWheel.ts'
 
 test('handleWheel accumulates deltaY', () => {
-  const state = createDefaultState()
+  const state = {
+    ...createDefaultState(),
+    height: 600,
+    itemHeight: 100,
+    filteredItems: Array.from({ length: 20 }, (_, i) => ({
+      id: String(i),
+      heading: '',
+      description: '',
+      type: 0,
+      value: '',
+      category: '',
+      modified: false,
+      errorMessage: '',
+      hasError: false,
+    })),
+  }
   const state1 = handleWheel(state, 10)
   expect(state1.deltaY).toBe(10)
 
@@ -12,12 +27,27 @@ test('handleWheel accumulates deltaY', () => {
 })
 
 test('handleWheel supports negative deltaY', () => {
-  const state = createDefaultState()
+  const state = {
+    ...createDefaultState(),
+    height: 600,
+    itemHeight: 100,
+    filteredItems: Array.from({ length: 20 }, (_, i) => ({
+      id: String(i),
+      heading: '',
+      description: '',
+      type: 0,
+      value: '',
+      category: '',
+      modified: false,
+      errorMessage: '',
+      hasError: false,
+    })),
+  }
   const state1 = handleWheel(state, -20)
   expect(state1.deltaY).toBe(0)
 
   const state2 = handleWheel(state1, 30)
-  expect(state2.deltaY).toBe(10)
+  expect(state2.deltaY).toBe(30)
 })
 
 test('handleWheel clamps to max based on content height minus viewport', () => {

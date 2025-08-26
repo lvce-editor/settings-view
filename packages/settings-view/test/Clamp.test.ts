@@ -1,4 +1,3 @@
-import { jest, test, expect } from '@jest/globals'
 import { expect, test } from '@jest/globals'
 import { clamp } from '../src/parts/Clamp/Clamp.ts'
 

@@ -1,4 +1,4 @@
-import { jest, test, expect } from '@jest/globals'
+import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleWheel } from '../src/parts/HandleWheel/HandleWheel.ts'
 

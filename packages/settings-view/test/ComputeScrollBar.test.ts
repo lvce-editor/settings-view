@@ -16,7 +16,7 @@ test('computeScrollBar: no items -> full height, top 0', () => {
 
 test('computeScrollBar: enforces minimum thumb height', () => {
   const height: number = 600
-  const totalItemCount: number = 10000
+  const totalItemCount: number = 10_000
   const itemHeight: number = 10
   const scrollOffset: number = 0
   const scrollBarMinHeight: number = 20

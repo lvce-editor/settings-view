@@ -56,6 +56,7 @@ test('getItemStringVirtualDom returns virtual DOM with error when validation fai
     inputType: 'text',
     placeholder: 'string value',
     childCount: 0,
+    id: 'test',
     name: 'test',
     onInput: 'handleSettingInput',
   })

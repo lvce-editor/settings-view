@@ -5,6 +5,8 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getErrorMessageDom } from '../GetErrorMessageDom/GetErrorMessageDom.ts'
 import { getInputId } from '../GetInputId/GetInputId.ts'
+import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
+import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 
 export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { heading, description, id, modified, hasError, errorMessage } = item

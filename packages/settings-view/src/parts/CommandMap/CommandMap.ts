@@ -10,6 +10,7 @@ import { handleInput } from '../HandleInput/HandleInput.ts'
 import { handleInputBlur } from '../HandleInputBlur/HandleInputBlur.ts'
 import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
 import { handleScroll } from '../HandleScroll/HandleScroll.ts'
+import { handleWheel } from '../HandleWheel/HandleWheel.ts'
 import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
 import { handleSettingInput } from '../HandleSettingInput/HandleSettingInput.ts'
 import { handleSettingSelect } from '../HandleSettingSelect/HandleSettingSelect.ts'
@@ -36,6 +37,7 @@ export const commandMap = {
   'Settings.handleInputBlur': wrapCommand(handleInputBlur),
   'Settings.handleInput': wrapCommand(handleInput),
   'Settings.handleScroll': wrapCommand(handleScroll),
+  'Settings.handleWheel': wrapCommand(handleWheel),
   'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),
   'Settings.handleSettingInput': wrapCommand(handleSettingInput),
   'Settings.handleInputFocus': wrapCommand(handleInputFocus),

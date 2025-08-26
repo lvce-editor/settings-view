@@ -12,6 +12,7 @@ export interface SettingsState {
   readonly filteredItemsCount: number
   readonly focus: number
   readonly focusSource: number
+  readonly deltaY: number
   readonly height: number
   readonly itemHeight: number
   readonly history: readonly string[]

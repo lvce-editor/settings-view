@@ -1,10 +1,5 @@
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
-
-export interface VisibleComputationResult {
-  readonly visibleItems: readonly DisplaySettingItem[]
-  readonly minLineY: number
-  readonly maxLineY: number
-}
+import type { VisibleComputationResult } from '../VisibleComputationResult/VisibleComputationResult.ts'
 
 export const computeVisibleItems = (
   items: readonly DisplaySettingItem[],
@@ -20,5 +15,3 @@ export const computeVisibleItems = (
   const visibleItems = items.slice(minLineY, maxLineY)
   return { visibleItems, minLineY, maxLineY }
 }
-
-

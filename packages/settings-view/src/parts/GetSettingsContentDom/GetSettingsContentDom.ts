@@ -8,21 +8,19 @@ import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getSettingsContentDom = (
-  items: readonly DisplaySettingItem[],
+  visibleItems: readonly DisplaySettingItem[],
   tabs: readonly Tab[],
   searchValue: string,
   height: number,
   scrollOffset: number,
   itemHeight: number,
+  minLineY: number,
+  totalItemCount: number,
 ): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
 
-  const totalHeight = items.length * itemHeight
-  const minLineY = Math.max(0, Math.floor(scrollOffset / itemHeight))
-  const itemsPerViewport = Math.max(1, Math.ceil(height / itemHeight))
-  const maxLineY = Math.min(items.length, minLineY + itemsPerViewport)
-  const visibleItems = items.slice(minLineY, maxLineY)
+  const totalHeight = totalItemCount * itemHeight
   const topSpacer = minLineY * itemHeight
   const bottomSpacer = Math.max(0, totalHeight - topSpacer - visibleItems.length * itemHeight)
 
@@ -38,6 +36,7 @@ export const getSettingsContentDom = (
       className: ClassNames.SettingsContent,
       childCount: 5,
       onScroll: DomEventListenerFunctions.HandleScroll,
+      onWheel: DomEventListenerFunctions.HandleWheel,
     },
     {
       type: VirtualDomElements.H1,

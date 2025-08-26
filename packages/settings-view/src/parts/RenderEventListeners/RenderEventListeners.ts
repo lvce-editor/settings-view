@@ -29,6 +29,11 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       passive: true,
     },
     {
+      name: DomEventListenerFunctions.HandleWheel,
+      params: ['handleWheel', 'event.deltaY'],
+      passive: true,
+    },
+    {
       name: DomEventListenerFunctions.HandleSettingSelect,
       params: ['handleSettingSelect', 'event.target.name', 'event.target.value'],
     },

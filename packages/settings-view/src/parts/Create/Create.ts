@@ -12,6 +12,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     y,
     width,
     height,
+    deltaY: 0,
     itemHeight: 100,
     tabs: [],
     items: [],

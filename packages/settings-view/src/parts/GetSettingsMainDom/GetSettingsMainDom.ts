@@ -8,11 +8,13 @@ import { getSettingsSideBarDom } from '../GetSettingsSideBarDom/GetSettingsSideB
 
 export const getSettingsMainDom = (
   tabs: readonly Tab[],
-  items: readonly DisplaySettingItem[],
+  visibleItems: readonly DisplaySettingItem[],
+  totalItemCount: number,
   searchValue: string,
   height: number,
   scrollOffset: number,
   itemHeight: number,
+  minLineY: number,
 ): readonly VirtualDomNode[] => {
   return [
     {
@@ -21,6 +23,6 @@ export const getSettingsMainDom = (
       childCount: 2,
     },
     ...getSettingsSideBarDom(tabs),
-    ...getSettingsContentDom(items, tabs, searchValue, height, scrollOffset, itemHeight),
+    ...getSettingsContentDom(visibleItems, tabs, searchValue, height, scrollOffset, itemHeight, minLineY, totalItemCount),
   ]
 }

@@ -18,5 +18,3 @@ export const getScrollBarDom = (thumbHeight: number, thumbTop: number): readonly
     },
   ]
 }
-
-

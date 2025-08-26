@@ -12,5 +12,3 @@ export const getSpacerDom = (height: number): readonly VirtualDomNode[] => {
     },
   ]
 }
-
-

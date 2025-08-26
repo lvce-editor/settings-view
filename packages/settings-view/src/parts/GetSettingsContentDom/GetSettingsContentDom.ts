@@ -8,6 +8,7 @@ import { getScrollBarDom } from '../GetScrollBarDom/GetScrollBarDom.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import { getSpacerDom } from '../GetSpacerDom/GetSpacerDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
+import { getContentHeadingDom } from '../GetContentHeadingDom/GetContentHeadingDom.ts'
 
 export const getSettingsContentDom = (
   visibleItems: readonly DisplaySettingItem[],
@@ -40,12 +41,7 @@ export const getSettingsContentDom = (
       // onScroll: DomEventListenerFunctions.HandleScroll,
       onWheel: DomEventListenerFunctions.HandleWheel,
     },
-    {
-      type: VirtualDomElements.H1,
-      className: ClassNames.SettingsContentHeading,
-      childCount: 1,
-    },
-    text(headerText),
+    ...getContentHeadingDom(headerText),
     ...getSettingsItemsDom(visibleItems, searchValue),
     ...getScrollBarDom(thumbHeight, thumbTop),
   ]

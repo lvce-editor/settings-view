@@ -23,10 +23,15 @@ export const getSettingsContentDom = (
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsContent,
-      childCount: 3,
+      childCount: 2,
       onWheel: DomEventListenerFunctions.HandleWheel,
     },
     ...getContentHeadingDom(headerText),
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.SettingsItemWrapper,
+      childCount: 2,
+    },
     ...getSettingsItemsDom(visibleItems, searchValue),
     ...getScrollBarDom(thumbHeight, thumbTop),
   ]

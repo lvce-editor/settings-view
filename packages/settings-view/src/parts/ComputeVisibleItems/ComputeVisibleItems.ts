@@ -13,5 +13,9 @@ export const computeVisibleItems = (
   const itemsPerViewport = Math.max(1, Math.ceil(height / safeItemHeight))
   const maxLineY = Math.min(totalItems, minLineY + itemsPerViewport)
   const visibleItems = items.slice(minLineY, maxLineY)
-  return { visibleItems, minLineY, maxLineY }
+  return {
+    visibleItems,
+    minLineY,
+    maxLineY,
+  }
 }

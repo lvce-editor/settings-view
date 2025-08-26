@@ -60,5 +60,3 @@ test('computeScrollBar: honors larger scrollBarMinHeight', () => {
   expect(result.thumbHeight).toBe(40)
   expect(result.thumbTop).toBe(280)
 })
-
-

@@ -29,6 +29,9 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     historyIndex: -1,
     modifiedSettings: {},
     focusSource: 0,
+    scrollBarMinHeight: 0,
+    scrollBarThumbHeight: 0,
+    scrollBarThumbTop: 0,
   }
   SettingsStates.set(id, state, state)
 }

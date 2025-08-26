@@ -1,6 +1,7 @@
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
+import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
 import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { getModifiedSettings } from '../GetModifiedSettings/GetModifiedSettings.ts'
@@ -21,6 +22,8 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const filteredItems = getFilteredItems(items, newTabs, searchValue, modifiedSettings, preferences)
   const { height, itemHeight } = state
   const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
+  const { scrollBarMinHeight } = state
+  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset, scrollBarMinHeight)
   return {
     ...state,
     filteredItems,
@@ -36,5 +39,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
     tabs: newTabs,
     history,
     historyIndex,
+    scrollBarThumbHeight: thumbHeight,
+    scrollBarThumbTop: thumbTop,
   }
 }

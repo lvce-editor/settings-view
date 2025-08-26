@@ -49,14 +49,14 @@ export const getSettingsContentDom = (
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItemsSpacer,
       childCount: 0,
-      style: `height:${topSpacer}px;`,
+      height: `${topSpacer}px;`,
     },
     ...getSettingsItemsDom(visibleItems, searchValue),
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItemsSpacer,
       childCount: 0,
-      style: `height:${bottomSpacer}px;`,
+      height: `${bottomSpacer}px;`,
     },
     {
       type: VirtualDomElements.Div,
@@ -67,7 +67,8 @@ export const getSettingsContentDom = (
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsScrollBarThumb,
       childCount: 0,
-      style: `height:${thumbHeight}px;top:${thumbTop}px;`,
+      height: `${thumbHeight}px`,
+      top: `${thumbTop}px;`,
     },
   ]
 }

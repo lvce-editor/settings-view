@@ -4,11 +4,11 @@ import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.
 import { User } from '../InputSource/InputSource.ts'
 
 export const handleWheel = (state: SettingsState, eventDeltaY: number, inputSource = User): SettingsState => {
-  const { deltaY: stateDeltaY, filteredItems, height, itemHeight = 1 } = state
+  const { deltaY: deltaY, filteredItems, height, itemHeight = 1 } = state
   const itemCount = filteredItems.length
   const stepLimit = itemCount === 0 ? 10 : Number.POSITIVE_INFINITY
   const limitedEventDelta = Math.max(-stepLimit, Math.min(stepLimit, eventDeltaY))
-  const total = stateDeltaY + limitedEventDelta
+  const total = deltaY + limitedEventDelta
   const max = itemCount === 0 ? Number.POSITIVE_INFINITY : Math.max(0, itemCount * itemHeight)
   const clampedDeltaY = clamp(total, 0, max)
 

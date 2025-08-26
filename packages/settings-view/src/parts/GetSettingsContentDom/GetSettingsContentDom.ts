@@ -36,7 +36,7 @@ export const getSettingsContentDom = (
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsContent,
-      childCount: 5,
+      childCount: 3,
       // onScroll: DomEventListenerFunctions.HandleScroll,
       onWheel: DomEventListenerFunctions.HandleWheel,
     },
@@ -46,9 +46,7 @@ export const getSettingsContentDom = (
       childCount: 1,
     },
     text(headerText),
-    ...getSpacerDom(topSpacer),
     ...getSettingsItemsDom(visibleItems, searchValue),
-    ...getSpacerDom(bottomSpacer),
     ...getScrollBarDom(thumbHeight, thumbTop),
   ]
 }

@@ -6,6 +6,8 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
+import { getSpacerDom } from '../GetSpacerDom/GetSpacerDom.ts'
+import { getScrollBarDom } from '../GetScrollBarDom/GetScrollBarDom.ts'
 
 export const getSettingsContentDom = (
   visibleItems: readonly DisplaySettingItem[],
@@ -44,30 +46,9 @@ export const getSettingsContentDom = (
       childCount: 1,
     },
     text(headerText),
-    {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItemsSpacer,
-      childCount: 0,
-      height: `${topSpacer}px;`,
-    },
+    ...getSpacerDom(topSpacer),
     ...getSettingsItemsDom(visibleItems, searchValue),
-    {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItemsSpacer,
-      childCount: 0,
-      height: `${bottomSpacer}px;`,
-    },
-    {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsScrollBar,
-      childCount: 1,
-    },
-    {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsScrollBarThumb,
-      childCount: 0,
-      height: `${thumbHeight}px`,
-      top: `${thumbTop}px;`,
-    },
+    ...getSpacerDom(bottomSpacer),
+    ...getScrollBarDom(thumbHeight, thumbTop),
   ]
 }

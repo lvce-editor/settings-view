@@ -4,10 +4,10 @@ import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingIte
 import type { Tab } from '../Tab/Tab.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
-import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
-import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
-import { getSpacerDom } from '../GetSpacerDom/GetSpacerDom.ts'
 import { getScrollBarDom } from '../GetScrollBarDom/GetScrollBarDom.ts'
+import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
+import { getSpacerDom } from '../GetSpacerDom/GetSpacerDom.ts'
+import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getSettingsContentDom = (
   visibleItems: readonly DisplaySettingItem[],

@@ -8,6 +8,5 @@ export const applyRender = (oldState: SettingsState, newState: SettingsState, di
     const fn = GetRenderer.getRenderer(item)
     commands.push(fn(oldState, newState))
   }
-  console.log({ commands })
   return commands
 }

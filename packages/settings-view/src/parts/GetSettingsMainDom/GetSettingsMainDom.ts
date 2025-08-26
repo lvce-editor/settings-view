@@ -6,16 +6,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getSettingsContentDom } from '../GetSettingsContentDom/GetSettingsContentDom.ts'
 import { getSettingsSideBarDom } from '../GetSettingsSideBarDom/GetSettingsSideBarDom.ts'
 
-export const getSettingsMainDom = (
-  tabs: readonly Tab[],
-  visibleItems: readonly DisplaySettingItem[],
-  totalItemCount: number,
-  searchValue: string,
-  height: number,
-  scrollOffset: number,
-  itemHeight: number,
-  minLineY: number,
-): readonly VirtualDomNode[] => {
+export const getSettingsMainDom = (tabs: readonly Tab[], items: readonly DisplaySettingItem[], searchValue: string): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
@@ -23,6 +14,6 @@ export const getSettingsMainDom = (
       childCount: 2,
     },
     ...getSettingsSideBarDom(tabs),
-    ...getSettingsContentDom(visibleItems, tabs, searchValue, height, scrollOffset, itemHeight, minLineY, totalItemCount),
+    ...getSettingsContentDom(items, tabs, searchValue),
   ]
 }

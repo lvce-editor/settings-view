@@ -1,14 +1,13 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
-import type { Tab } from '../Tab/Tab.ts'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import { getContentHeadingDom } from '../GetContentHeadingDom/GetContentHeadingDom.ts'
 import { getScrollBarDom } from '../GetScrollBarDom/GetScrollBarDom.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
-import { getSpacerDom } from '../GetSpacerDom/GetSpacerDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
-import { getContentHeadingDom } from '../GetContentHeadingDom/GetContentHeadingDom.ts'
+import type { Tab } from '../Tab/Tab.ts'
 
 export const getSettingsContentDom = (
   visibleItems: readonly DisplaySettingItem[],
@@ -38,7 +37,6 @@ export const getSettingsContentDom = (
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsContent,
       childCount: 3,
-      // onScroll: DomEventListenerFunctions.HandleScroll,
       onWheel: DomEventListenerFunctions.HandleWheel,
     },
     ...getContentHeadingDom(headerText),

@@ -13,6 +13,7 @@ export interface SettingsState {
   readonly focus: number
   readonly focusSource: number
   readonly height: number
+  readonly itemHeight: number
   readonly history: readonly string[]
   readonly historyIndex: number
   readonly id: number

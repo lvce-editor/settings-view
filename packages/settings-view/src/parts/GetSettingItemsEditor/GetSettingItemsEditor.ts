@@ -3,8 +3,6 @@ import * as InputName from '../InputName/InputName.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
-const RE_NUMERIC = /^\d+$/
-
 export const getSettingItemsEditor = (): readonly SettingItem[] => {
   return [
     {
@@ -15,13 +13,15 @@ export const getSettingItemsEditor = (): readonly SettingItem[] => {
       value: 15,
       category: InputName.TextEditorTab,
       validate(value): string {
-        if (!RE_NUMERIC.test(value)) {
+        if (typeof value !== 'number') {
           return 'font size must be of type number'
         }
-        if (value < 10) {
+        const minFontSize = 10
+        const maxFontSize = 100
+        if (value < minFontSize) {
           return 'font size must be at least 10'
         }
-        if (value > 100) {
+        if (value > maxFontSize) {
           return 'font size must not be greater than 100'
         }
         return ''
@@ -126,6 +126,20 @@ export const getSettingItemsEditor = (): readonly SettingItem[] => {
       type: SettingItemType.Number,
       value: '4',
       category: InputName.TextEditorTab,
+      validate(value): string {
+        if (typeof value !== 'number') {
+          return 'font size must be of type number'
+        }
+        const minTabSize = 1
+        const maxTabSize = 8
+        if (value < minTabSize) {
+          return `tab size must be at least ${minTabSize}`
+        }
+        if (value > maxTabSize) {
+          return `tab size must not be greater than ${maxTabSize}`
+        }
+        return ''
+      },
     },
     {
       id: 'editor.insertSpaces',

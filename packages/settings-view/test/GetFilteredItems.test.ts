@@ -1,7 +1,9 @@
 import { test, expect } from '@jest/globals'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
 import type { Tab } from '../src/parts/Tab/Tab.ts'
-import { getFilteredItems, filterByTab, filterBySearch } from '../src/parts/GetFilteredItems/GetFilteredItems.ts'
+import { filterBySearch } from '../src/parts/FilterBySearch/FilterBySearch.ts'
+import { filterByTab } from '../src/parts/FilterByTab/FilterByTab.ts'
+import { getFilteredItems } from '../src/parts/GetFilteredItems/GetFilteredItems.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
@@ -225,7 +227,7 @@ test('getFilteredItems should combine all operations correctly and return Displa
 
   const preferences = { theme: true }
 
-  const result = getFilteredItems(items, tabs, 'theme', preferences)
+  const result = getFilteredItems(items, tabs, 'theme', preferences, preferences)
   expect(result).toHaveLength(2)
   expect(result[0].id).toBe('theme')
   expect(result[0].modified).toBe(true)

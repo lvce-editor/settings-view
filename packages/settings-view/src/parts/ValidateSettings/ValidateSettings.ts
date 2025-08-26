@@ -1,16 +1,22 @@
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import type { Preferences } from '../SettingsState/SettingsState.ts'
 
-const isItemModified = (item: Readonly<SettingItem>, preferences: ModifiedSettings): boolean => {
+const isItemModified = (item: SettingItem, preferences: ModifiedSettings): boolean => {
   return item.id in preferences
 }
 
-export const validateSettings = (items: readonly SettingItem[], preferences: ModifiedSettings): readonly DisplaySettingItem[] => {
+export const validateSettings = (
+  items: readonly SettingItem[],
+  modifiedSettings: ModifiedSettings,
+  preferences: Preferences,
+): readonly DisplaySettingItem[] => {
   return items.map((item) => {
-    const errorMessage = item.validate ? item.validate(item.value) : ''
+    const value = preferences[item.id] ?? item.value
+    const errorMessage = item.validate ? item.validate(value) : ''
     const hasError = errorMessage.length > 0
-    const modified = isItemModified(item, preferences)
+    const modified = isItemModified(item, modifiedSettings)
 
     return {
       id: item.id,

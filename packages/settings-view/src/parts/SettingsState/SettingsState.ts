@@ -19,11 +19,14 @@ export interface SettingsState {
   readonly id: number
   readonly inputSource: number
   readonly items: readonly SettingItem[]
+  readonly maxLineY: number
+  readonly minLineY: number
   readonly modifiedSettings: ModifiedSettings
   readonly preferences: Preferences
   readonly scrollOffset: number
   readonly searchValue: string
   readonly tabs: readonly Tab[]
+  readonly visibleItems: readonly DisplaySettingItem[]
   readonly uri: string
   readonly width: number
   readonly x: number

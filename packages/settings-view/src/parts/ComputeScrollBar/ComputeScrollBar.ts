@@ -3,12 +3,7 @@ export interface ScrollBarMetrics {
   readonly thumbTop: number
 }
 
-export const computeScrollBar = (
-  height: number,
-  totalItemCount: number,
-  itemHeight: number,
-  scrollOffset: number,
-): ScrollBarMetrics => {
+export const computeScrollBar = (height: number, totalItemCount: number, itemHeight: number, scrollOffset: number): ScrollBarMetrics => {
   const totalHeight = totalItemCount * itemHeight
   const scrollable = Math.max(0, totalHeight - height)
   const thumbTrack = Math.max(0, height)
@@ -20,5 +15,3 @@ export const computeScrollBar = (
     thumbTop,
   }
 }
-
-

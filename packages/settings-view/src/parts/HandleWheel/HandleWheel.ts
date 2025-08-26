@@ -10,8 +10,11 @@ export const handleWheel = (state: SettingsState, eventDeltaY: number, inputSour
   const stepLimit = itemCount === 0 ? 10 : Number.POSITIVE_INFINITY
   const limitedEventDelta = Math.max(-stepLimit, Math.min(stepLimit, eventDeltaY))
   const total = deltaY + limitedEventDelta
-  const max = itemCount === 0 ? Number.POSITIVE_INFINITY : Math.max(0, itemCount * itemHeight)
-  const clampedDeltaY = clamp(total, 0, max)
+  // Prevent scrolling beyond the available content height. If content is smaller
+  // than the viewport, the maximum scroll is zero.
+  const totalContentHeight = itemCount * itemHeight
+  const maxScrollable = Math.max(0, totalContentHeight - height)
+  const clampedDeltaY = clamp(total, 0, maxScrollable)
 
   const scrollOffset = clampedDeltaY
   const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)

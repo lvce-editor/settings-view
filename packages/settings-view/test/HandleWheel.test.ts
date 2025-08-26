@@ -20,12 +20,26 @@ test('handleWheel supports negative deltaY', () => {
   expect(state2.deltaY).toBe(10)
 })
 
-test('handleWheel clamps to max based on filteredItems.length * ITEM_HEIGHT', () => {
+test('handleWheel clamps to max based on content height minus viewport', () => {
   const state = {
     ...createDefaultState(),
-    filteredItems: [{ id: 'a', heading: '', description: '', type: 0, value: '', category: '', modified: false, errorMessage: '', hasError: false }],
+    height: 600,
+    itemHeight: 100,
+    filteredItems: [
+      { id: 'a', heading: '', description: '', type: 0, value: '', category: '', modified: false, errorMessage: '', hasError: false },
+      { id: 'b', heading: '', description: '', type: 0, value: '', category: '', modified: false, errorMessage: '', hasError: false },
+      { id: 'c', heading: '', description: '', type: 0, value: '', category: '', modified: false, errorMessage: '', hasError: false },
+    ],
   }
-  const oneItemHeight = 100
+  // totalContentHeight = 3 * 100 = 300, viewport height = 600 => max scroll = 0
   const state1 = handleWheel(state, 150)
-  expect(state1.deltaY).toBe(oneItemHeight) // clamped to 100
+  expect(state1.deltaY).toBe(0)
+
+  const state2 = {
+    ...state,
+    filteredItems: Array.from({ length: 10 }, (_, i) => ({ id: String(i), heading: '', description: '', type: 0, value: '', category: '', modified: false, errorMessage: '', hasError: false })),
+  }
+  // totalContentHeight = 10 * 100 = 1000, viewport = 600 => max = 400
+  const state3 = handleWheel(state2, 500)
+  expect(state3.deltaY).toBe(400)
 })

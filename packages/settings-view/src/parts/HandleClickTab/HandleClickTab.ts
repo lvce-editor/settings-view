@@ -1,7 +1,7 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
+import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { getUpdatedTabs } from '../GetUpdatedTabs/GetUpdatedTabs.ts'
-import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 
 export const handleClickTab = (state: SettingsState, name: string): SettingsState => {
   if (!name) {

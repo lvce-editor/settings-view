@@ -19,7 +19,7 @@ test('getScrollBarDom returns scrollbar with thumb', () => {
     className: ClassNames.SettingsScrollBarThumb,
     childCount: 0,
     height: `${thumbHeight}px`,
-    top: `${thumbTop}px;`,
+    top: `${thumbTop}px`,
   })
 })
 
@@ -31,6 +31,6 @@ test('getScrollBarDom with zero sizes', () => {
     className: ClassNames.SettingsScrollBarThumb,
     childCount: 0,
     height: `0px`,
-    top: `0px;`,
+    top: `0px`,
   })
 })

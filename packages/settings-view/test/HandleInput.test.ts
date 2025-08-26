@@ -116,6 +116,68 @@ test('handleInput updates filteredItems when search value changes', () => {
   expect(result.filteredItems[1].id).toBe('fontFamily')
 })
 
+test('handleInput resets scroll to top when filtering', () => {
+  const state = createDefaultState()
+  const stateWithItems = {
+    ...state,
+    deltaY: 200,
+    scrollOffset: 200,
+    height: 100,
+    itemHeight: 100,
+    items: Array.from({ length: 50 }, (_, i) => ({
+      id: `id-${i}`,
+      heading: `Item ${i}`,
+      description: `Desc ${i}`,
+      type: SettingItemType.String,
+      value: String(i),
+      category: InputName.TextEditorTab,
+    })),
+    tabs: [
+      {
+        id: InputName.TextEditorTab,
+        label: 'Text Editor',
+        selected: true,
+      },
+    ],
+  }
+
+  const result = handleInput(stateWithItems, 'Item 1')
+
+  expect(result.deltaY).toBe(0)
+  expect(result.scrollOffset).toBe(0)
+  expect(result.minLineY).toBe(0)
+})
+
+test('handleInput filters across all items, not only visible ones', () => {
+  const state = createDefaultState()
+  const stateWithItems = {
+    ...state,
+    height: 100,
+    itemHeight: 100,
+    items: Array.from({ length: 100 }, (_, i) => ({
+      id: `id-${i}`,
+      heading: `Category ${Math.floor(i / 10)} - Setting ${i}`,
+      description: `Desc ${i}`,
+      type: SettingItemType.String,
+      value: String(i),
+      category: InputName.TextEditorTab,
+    })),
+    tabs: [
+      {
+        id: InputName.TextEditorTab,
+        label: 'Text Editor',
+        selected: true,
+      },
+    ],
+  }
+
+  // Only first item is visible with height=100 & itemHeight=100, but we search for a high index
+  const result = handleInput(stateWithItems, 'Setting 95')
+
+  expect(result.filteredItems.some((x: any) => x.id === 'id-95')).toBe(true)
+  expect(result.filteredItems.length).toBeGreaterThan(0)
+})
+
 test('handleInput clears filteredItems when search value is empty', () => {
   const state = createDefaultState()
   const stateWithItems = {

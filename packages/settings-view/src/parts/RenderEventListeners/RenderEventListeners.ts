@@ -23,11 +23,11 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       name: DomEventListenerFunctions.HandleSettingChecked,
       params: ['handleSettingChecked', 'event.target.name', 'event.target.value'],
     },
-    {
-      name: DomEventListenerFunctions.HandleScroll,
-      params: ['handleScroll', 'event.target.scrollTop'],
-      passive: true,
-    },
+    // {
+    //   name: DomEventListenerFunctions.HandleScroll,
+    //   params: ['handleScroll', 'event.target.scrollTop'],
+    //   passive: true,
+    // },
     {
       name: DomEventListenerFunctions.HandleWheel,
       params: ['handleWheel', 'event.deltaY'],

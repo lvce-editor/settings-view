@@ -16,7 +16,7 @@ export const getScrollBarDom = (thumbHeight: number, thumbTop: number): readonly
       className: ClassNames.SettingsScrollBarThumb,
       childCount: 0,
       height: `${thumbHeight}px`,
-      top: `${thumbTop}px;`,
+      top: `${thumbTop}px`,
     },
   ]
 }

@@ -5,17 +5,19 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getSettingsHeaderDom } from '../GetSettingsHeaderDom/GetSettingsHeaderDom.ts'
 import { getSettingsMainDom } from '../GetSettingsMainDom/GetSettingsMainDom.ts'
 
+const parentNode: VirtualDomNode = {
+  type: VirtualDomElements.Div,
+  childCount: 2,
+  className: mergeClassNames(ClassNames.Viewlet, ClassNames.Settings),
+}
+
 export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] => {
-  const { tabs, filteredItems, searchValue } = state
+  const { tabs, filteredItems, visibleItems, searchValue, scrollBarThumbHeight, scrollBarThumbTop } = state
   const hasSearchValue = searchValue.trim().length > 0
   const filteredItemsCount = filteredItems.length
   return [
-    {
-      type: VirtualDomElements.Div,
-      childCount: 2,
-      className: mergeClassNames(ClassNames.Viewlet, ClassNames.Settings),
-    },
+    parentNode,
     ...getSettingsHeaderDom(filteredItemsCount, hasSearchValue),
-    ...getSettingsMainDom(tabs, filteredItems, searchValue),
+    ...getSettingsMainDom(tabs, visibleItems, filteredItemsCount, searchValue, scrollBarThumbHeight, scrollBarThumbTop),
   ]
 }

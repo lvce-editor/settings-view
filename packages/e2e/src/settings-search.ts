@@ -14,7 +14,7 @@ export const test: Test = async ({ Main, Locator, expect, Command }) => {
   await expect(settingsItems).toHaveCount(1)
   const heading = settingsItems.locator('h3')
   await expect(heading).toHaveText('Font Family')
-  const description = settingsItems.locator('p')
+  const description = settingsItems.locator('.Label')
   await expect(description).toHaveText('The font family of the editor')
   const input = settingsItems.locator('.InputBox')
   await expect(input).toHaveValue("'Fira Code'")

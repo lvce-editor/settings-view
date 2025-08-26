@@ -32,5 +32,6 @@ export const createDefaultState = (): SettingsState => {
     scrollBarThumbHeight: 0,
     scrollBarThumbTop: 0,
     scrollBarMinHeight: 20,
+    highlightsEnabled: false,
   }
 }

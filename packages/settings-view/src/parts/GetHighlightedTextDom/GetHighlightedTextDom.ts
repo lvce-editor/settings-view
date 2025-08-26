@@ -15,15 +15,13 @@ export const getHighlightedTextDom = (content: string, searchValue: string): rea
   const match = content.slice(index, index + normalized.length)
   const after = content.slice(index + normalized.length)
   return [
-    ...[before ? text(before) : []],
+    before ? text(before) : [],
     {
       type: VirtualDomElements.Span,
       className: ClassNames.Highlight,
       childCount: 1,
     },
     text(match),
-    ...[after ? text(after) : []],
+    after ? text(after) : [],
   ].flat() as readonly VirtualDomNode[]
 }
-
-

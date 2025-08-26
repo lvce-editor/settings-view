@@ -1,15 +1,9 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import { getHighlightedTextDom } from '../GetHighlightedTextDom/GetHighlightedTextDom.ts'
+import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 
-<<<<<<< Updated upstream
-export const getItemLabelDom = (domId: string, label: string, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
-  if (highlightsEnabled && searchValue) {
-    const children = getHighlightedTextDom(label, searchValue)
-=======
 export const getItemLabelDom = (domId: string, label: string, children?: readonly VirtualDomNode[]): readonly VirtualDomNode[] => {
   if (children && children.length > 0) {
->>>>>>> Stashed changes
     return [
       {
         type: VirtualDomElements.Label,
@@ -25,7 +19,7 @@ export const getItemLabelDom = (domId: string, label: string, children?: readonl
       type: VirtualDomElements.Label,
       htmlFor: domId,
       childCount: 1,
-      className: 'Label',
+      className: ClassNames.Label,
     },
     { type: 3, text: label } as unknown as VirtualDomNode,
   ]

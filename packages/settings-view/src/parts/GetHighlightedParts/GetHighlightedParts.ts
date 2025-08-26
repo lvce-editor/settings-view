@@ -26,5 +26,3 @@ export const getHighlightedParts = (content: string, searchValue: string): reado
   }
   return nodes
 }
-
-

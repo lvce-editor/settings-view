@@ -1,9 +1,12 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getErrorMessageDom } from '../GetErrorMessageDom/GetErrorMessageDom.ts'
+import { getInputId } from '../GetInputId/GetInputId.ts'
+import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
+import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getHighlightedTextDom } from '../GetHighlightedTextDom/GetHighlightedTextDom.ts'
@@ -11,10 +14,14 @@ import { getHighlightedTextDom } from '../GetHighlightedTextDom/GetHighlightedTe
 <<<<<<< Updated upstream
 export const getItemStringVirtualDom = (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
   const { heading, description, id, hasError, errorMessage } = item
+<<<<<<< HEAD
 =======
 export const getItemStringVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { heading, description, id, hasError, errorMessage, headingChildren, descriptionChildren } = item
 >>>>>>> Stashed changes
+=======
+  const domId = getInputId(id)
+>>>>>>> origin/main
   const inputClassName = hasError ? `${ClassNames.InputBox} ${ClassNames.InputBoxError}` : ClassNames.InputBox
   const errorChildCount = hasError ? 1 : 0
 
@@ -25,6 +32,7 @@ export const getItemStringVirtualDom = (item: DisplaySettingItem): readonly Virt
       childCount: 3 + errorChildCount,
       role: AriaRoles.Group,
     },
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     ...getItemHeadingDom(heading, highlightsEnabled, searchValue),
     {
@@ -64,12 +72,17 @@ export const getItemStringVirtualDom = (item: DisplaySettingItem): readonly Virt
           text(description),
         ]),
 >>>>>>> Stashed changes
+=======
+    ...getItemHeadingDom(heading),
+    ...getItemLabelDom(domId, description),
+>>>>>>> origin/main
     {
       type: VirtualDomElements.Input,
       className: inputClassName,
       inputType: 'text',
       placeholder: SettingStrings.stringValue(),
       childCount: 0,
+      id: domId,
       name: id,
       onInput: DomEventListenerFunctions.HandleSettingInput,
     },

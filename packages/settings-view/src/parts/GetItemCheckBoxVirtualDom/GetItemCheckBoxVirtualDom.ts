@@ -1,20 +1,15 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getErrorMessageDom } from '../GetErrorMessageDom/GetErrorMessageDom.ts'
 import { getInputId } from '../GetInputId/GetInputId.ts'
 import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
-import { getHighlightedTextDom } from '../GetHighlightedTextDom/GetHighlightedTextDom.ts'
+import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 
-<<<<<<< Updated upstream
-export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem, highlightsEnabled?: boolean, searchValue?: string): readonly VirtualDomNode[] => {
-  const { heading, description, id, modified, hasError, errorMessage } = item
-=======
 export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { heading, description, id, modified, hasError, errorMessage, headingChildren, descriptionChildren } = item
->>>>>>> Stashed changes
   const domId = getInputId(id)
   const checkBoxClassName = hasError ? `${ClassNames.CheckBox} ${ClassNames.InputBoxError}` : ClassNames.CheckBox
   const errorChildCount = hasError ? 1 : 0
@@ -27,6 +22,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
       role: AriaRoles.Group,
       'data-modified': modified,
     },
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     ...getItemHeadingDom(heading, highlightsEnabled, searchValue),
 =======
@@ -46,6 +42,9 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
           text(heading),
         ]),
 >>>>>>> Stashed changes
+=======
+    ...getItemHeadingDom(heading),
+>>>>>>> origin/main
 
     {
       type: VirtualDomElements.Div,
@@ -61,6 +60,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
       name: id,
       onChange: DomEventListenerFunctions.HandleSettingChecked,
     },
+<<<<<<< HEAD
     {
       type: VirtualDomElements.Label,
 <<<<<<< Updated upstream
@@ -74,6 +74,9 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
     },
     ...(descriptionChildren && descriptionChildren.length ? descriptionChildren : [text(description)]),
 >>>>>>> Stashed changes
+=======
+    ...getItemLabelDom(domId, description),
+>>>>>>> origin/main
     ...getErrorMessageDom(errorMessage),
   ]
 }

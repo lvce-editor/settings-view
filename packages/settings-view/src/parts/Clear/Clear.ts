@@ -1,9 +1,9 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
+import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
+import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { Script } from '../InputSource/InputSource.ts'
 import * as WhenExpression from '../WhenExpression/WhenExpression.ts'
-import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
-import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
 
 export const clear = (state: SettingsState): SettingsState => {
   const { items, tabs, modifiedSettings, preferences, height, itemHeight, scrollBarMinHeight } = state

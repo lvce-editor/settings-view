@@ -67,7 +67,17 @@ test('handleWheel clamps to max based on content height minus viewport', () => {
 
   const state2 = {
     ...state,
-    filteredItems: Array.from({ length: 10 }, (_, i) => ({ id: String(i), heading: '', description: '', type: 0, value: '', category: '', modified: false, errorMessage: '', hasError: false })),
+    filteredItems: Array.from({ length: 10 }, (_, i) => ({
+      id: String(i),
+      heading: '',
+      description: '',
+      type: 0,
+      value: '',
+      category: '',
+      modified: false,
+      errorMessage: '',
+      hasError: false,
+    })),
   }
   // totalContentHeight = 10 * 100 = 1000, viewport = 600 => max = 400
   const state3 = handleWheel(state2, 500)

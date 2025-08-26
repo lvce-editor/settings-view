@@ -1,13 +1,13 @@
 import { test, expect } from '@jest/globals'
-import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
-import { getItemRender } from '../src/parts/GetSettingsItemRenderer/GetSettingsItemRenderer.ts'
-import { getItemNumberVirtualDom } from '../src/parts/GetItemNumberVirtualDom/GetItemNumberVirtualDom.ts'
 import { getItemCheckBoxVirtualDom } from '../src/parts/GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
-import { getItemStringVirtualDom } from '../src/parts/GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
-import { getItemSelectVirtualDom } from '../src/parts/GetItemSelectVirtualDom/GetItemSelectVirtualDom.ts'
 import { getItemColorVirtualDom } from '../src/parts/GetItemColorVirtualDom/GetItemColorVirtualDom.ts'
-import { getItemUrlVirtualDom } from '../src/parts/GetItemUrlDom/GetItemUrlDom.ts'
+import { getItemNumberVirtualDom } from '../src/parts/GetItemNumberVirtualDom/GetItemNumberVirtualDom.ts'
+import { getItemSelectVirtualDom } from '../src/parts/GetItemSelectVirtualDom/GetItemSelectVirtualDom.ts'
+import { getItemStringVirtualDom } from '../src/parts/GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import { getItemUnknownVirtualDom } from '../src/parts/GetItemUnknownVirtualDom/GetItemUnknownVirtualDom.ts'
+import { getItemUrlVirtualDom } from '../src/parts/GetItemUrlDom/GetItemUrlDom.ts'
+import { getItemRender } from '../src/parts/GetSettingsItemRenderer/GetSettingsItemRenderer.ts'
+import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
 test('getItemRender returns getItemNumberVirtualDom for SettingItemType.Number', () => {
   const renderer = getItemRender(SettingItemType.Number)
@@ -43,5 +43,3 @@ test('getItemRender returns getItemUnknownVirtualDom for unknown type', () => {
   const renderer = getItemRender(999)
   expect(renderer).toBe(getItemUnknownVirtualDom)
 })
-
-

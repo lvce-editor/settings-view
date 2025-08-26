@@ -4,9 +4,9 @@ import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingIte
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getErrorMessageDom } from '../GetErrorMessageDom/GetErrorMessageDom.ts'
+import { getInputId } from '../GetInputId/GetInputId.ts'
 import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
-import { getInputId } from '../GetInputId/GetInputId.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getItemStringVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {

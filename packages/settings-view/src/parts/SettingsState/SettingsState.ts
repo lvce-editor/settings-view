@@ -24,6 +24,9 @@ export interface SettingsState {
   readonly modifiedSettings: ModifiedSettings
   readonly preferences: Preferences
   readonly scrollOffset: number
+  readonly scrollBarThumbHeight: number
+  readonly scrollBarThumbTop: number
+  readonly scrollBarMinHeight: number
   readonly searchValue: string
   readonly tabs: readonly Tab[]
   readonly visibleItems: readonly DisplaySettingItem[]

@@ -14,9 +14,10 @@ export const getNewFilteredItems = (
   oldFilteredItems: readonly DisplaySettingItem[],
   oldPreferences: Preferences,
   newPreferences: Preferences,
+  highlightsEnabled?: boolean,
 ): readonly DisplaySettingItem[] => {
   if (oldModifiedSetings === newModifiedSettings && oldPreferences === newPreferences) {
     return oldFilteredItems
   }
-  return getFilteredItems(items, tabs, searchValue, newModifiedSettings, newPreferences)
+  return getFilteredItems(items, tabs, searchValue, newModifiedSettings, newPreferences, highlightsEnabled)
 }

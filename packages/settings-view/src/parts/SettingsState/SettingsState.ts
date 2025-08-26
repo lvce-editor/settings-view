@@ -28,6 +28,7 @@ export interface SettingsState {
   readonly scrollBarThumbTop: number
   readonly scrollBarMinHeight: number
   readonly searchValue: string
+  readonly highlightsEnabled: boolean
   readonly tabs: readonly Tab[]
   readonly visibleItems: readonly DisplaySettingItem[]
   readonly uri: string

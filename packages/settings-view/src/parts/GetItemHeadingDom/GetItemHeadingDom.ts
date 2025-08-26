@@ -8,6 +8,15 @@ const parent: VirtualDomNode = {
   childCount: 1,
 }
 
-export const getItemHeadingDom = (heading: string): readonly VirtualDomNode[] => {
+export const getItemHeadingDom = (heading: string, children?: readonly VirtualDomNode[]): readonly VirtualDomNode[] => {
+  if (children && children.length > 0) {
+    return [
+      {
+        ...parent,
+        childCount: children.length,
+      },
+      ...children,
+    ]
+  }
   return [parent, text(heading)]
 }

@@ -21,6 +21,7 @@ test('getSettingsDom passes searchValue to main component', () => {
   const stateWithSearch = {
     ...state,
     searchValue: 'test search',
+    highlightsEnabled: true,
   }
   const result = getSettingsDom(stateWithSearch)
 

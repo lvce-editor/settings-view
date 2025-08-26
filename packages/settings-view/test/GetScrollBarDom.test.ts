@@ -11,7 +11,7 @@ test('getScrollBarDom returns scrollbar with thumb', () => {
   expect(result).toHaveLength(2)
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
-    className: ClassNames.SettingsScrollBar,
+    className: `${ClassNames.SettingsScrollBar} ${ClassNames.SettingsScrollBarSmall}`,
     childCount: 1,
   })
   expect(result[1]).toEqual({

@@ -22,7 +22,8 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const filteredItems = getFilteredItems(items, newTabs, searchValue, modifiedSettings, preferences)
   const { height, itemHeight } = state
   const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
-  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset)
+  const { scrollBarMinHeight } = state
+  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset, scrollBarMinHeight)
   return {
     ...state,
     filteredItems,

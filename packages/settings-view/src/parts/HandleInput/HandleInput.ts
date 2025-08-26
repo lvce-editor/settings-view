@@ -9,7 +9,8 @@ export const handleInput = (state: SettingsState, value: string, inputSource = U
   const { items, tabs, history, modifiedSettings, preferences, height, itemHeight, scrollOffset } = state
   const filteredItems = getFilteredItems(items, tabs, value, modifiedSettings, preferences)
   const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
-  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset)
+  const { scrollBarMinHeight } = state
+  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset, scrollBarMinHeight)
 
   const { newHistory, newHistoryIndex } = addToHistory(history, value)
 

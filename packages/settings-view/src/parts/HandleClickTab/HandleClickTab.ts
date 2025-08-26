@@ -13,7 +13,8 @@ export const handleClickTab = (state: SettingsState, name: string): SettingsStat
   const updatedTabs = getUpdatedTabs(tabs, name)
   const filteredItems = getFilteredItems(items, updatedTabs, searchValue, modifiedSettings, preferences)
   const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
-  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset)
+  const { scrollBarMinHeight } = state
+  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset, scrollBarMinHeight)
 
   return {
     ...state,

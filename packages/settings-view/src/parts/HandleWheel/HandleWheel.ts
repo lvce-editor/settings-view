@@ -15,7 +15,8 @@ export const handleWheel = (state: SettingsState, eventDeltaY: number, inputSour
 
   const scrollOffset = clampedDeltaY
   const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
-  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset)
+  const { scrollBarMinHeight } = state
+  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset, scrollBarMinHeight)
 
   return {
     ...state,

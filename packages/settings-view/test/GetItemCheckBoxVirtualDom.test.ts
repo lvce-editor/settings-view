@@ -24,7 +24,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
     {
       type: VirtualDomElements.Div,
       className: 'SettingsItem',
-      childCount: 3,
+      childCount: 2,
       role: AriaRoles.Group,
       'data-modified': false,
     },

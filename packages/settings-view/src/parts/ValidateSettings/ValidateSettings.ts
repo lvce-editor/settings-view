@@ -1,7 +1,7 @@
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
+import { Preferences } from '../Preferences/Preferences.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
-import type { Preferences } from '../SettingsState/SettingsState.ts'
 
 const isItemModified = (item: SettingItem, preferences: ModifiedSettings): boolean => {
   return item.id in preferences

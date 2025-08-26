@@ -1,9 +1,8 @@
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
+import { Preferences } from '../Preferences/Preferences.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
-
-export type Preferences = Readonly<Record<string, any>>
 
 export interface SettingsState {
   readonly breakPointsExpanded: boolean

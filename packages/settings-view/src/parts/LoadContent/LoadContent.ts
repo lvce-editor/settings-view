@@ -9,6 +9,7 @@ import { getTabs } from '../GetTabs/GetTabs.ts'
 import { getUpdatedTabs } from '../GetUpdatedTabs/GetUpdatedTabs.ts'
 import { Script } from '../InputSource/InputSource.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
+import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 
 export const loadContent = async (state: SettingsState, savedState: unknown): Promise<SettingsState> => {
   const { searchValue, tabId, scrollOffset, history, historyIndex } = restoreState(savedState)
@@ -18,9 +19,14 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const preferences = await getPreferences()
   const modifiedSettings: ModifiedSettings = getModifiedSettings(preferences)
   const filteredItems = getFilteredItems(items, newTabs, searchValue, modifiedSettings, preferences)
+  const { height, itemHeight } = state
+  const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
   return {
     ...state,
     filteredItems,
+    visibleItems,
+    minLineY,
+    maxLineY,
     inputSource: Script,
     items,
     modifiedSettings,

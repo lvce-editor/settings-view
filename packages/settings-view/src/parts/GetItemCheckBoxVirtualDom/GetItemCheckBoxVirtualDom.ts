@@ -24,7 +24,6 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
     },
     ...getItemHeadingDom(heading),
 
-
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItemCheckBox,

@@ -23,8 +23,6 @@ export const getSettingsContentDom = (
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
 
   const totalHeight = totalItemCount * itemHeight
-  const topSpacer = minLineY * itemHeight
-  const bottomSpacer = Math.max(0, totalHeight - topSpacer - visibleItems.length * itemHeight)
 
   const scrollable = Math.max(0, totalHeight - height)
   const thumbTrack = Math.max(0, height)

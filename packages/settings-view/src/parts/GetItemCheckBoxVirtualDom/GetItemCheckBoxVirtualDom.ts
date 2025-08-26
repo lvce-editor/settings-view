@@ -16,7 +16,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
     {
       type: VirtualDomElements.Div,
       className: ClassNames.SettingsItem,
-      childCount: 3 + errorChildCount,
+      childCount: 2 + errorChildCount,
       role: AriaRoles.Group,
       'data-modified': modified,
     },

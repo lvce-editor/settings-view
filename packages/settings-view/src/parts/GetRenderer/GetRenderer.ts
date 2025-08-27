@@ -1,12 +1,12 @@
+import type { Renderer } from '../Renderer/Renderer.ts'
+import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import * as DiffType from '../DiffType/DiffType.ts'
 import { renderCss } from '../RenderCss/RenderCss.ts'
-import type { Renderer } from '../Renderer/Renderer.ts'
 import { renderFocus } from '../RenderFocus/RenderFocus.ts'
 import { renderFocusContext } from '../RenderFocusContext/RenderFocusContext.ts'
 import * as RenderItems from '../RenderItems/RenderItems.ts'
 import { renderSettingValues } from '../RenderSettingValues/RenderSettingValues.ts'
 import { renderValue } from '../RenderValue/RenderValue.ts'
-import type { SettingsState } from '../SettingsState/SettingsState.ts'
 
 export const getRenderer = (diffType: number): Renderer<SettingsState> => {
   switch (diffType) {

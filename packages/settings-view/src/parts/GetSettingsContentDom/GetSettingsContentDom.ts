@@ -13,8 +13,6 @@ export const getSettingsContentDom = (
   visibleItems: readonly DisplaySettingItem[],
   tabs: readonly Tab[],
   searchValue: string,
-  thumbHeight: number,
-  thumbTop: number,
 ): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
@@ -33,6 +31,6 @@ export const getSettingsContentDom = (
       childCount: 2,
     },
     ...getSettingsItemsDom(visibleItems, searchValue),
-    ...getScrollBarDom(thumbHeight, thumbTop),
+    ...getScrollBarDom(),
   ]
 }

@@ -40,9 +40,9 @@ test('clear preserves other state properties', () => {
   const state = createDefaultState()
   const stateWithCustomValues = {
     ...state,
-    searchValue: 'test search',
     focus: 42,
     height: 100,
+    searchValue: 'test search',
     tabs: [{ id: 'test-tab', label: 'Test Tab', selected: true }],
   }
 

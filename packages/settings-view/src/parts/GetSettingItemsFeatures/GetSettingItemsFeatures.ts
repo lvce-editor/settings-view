@@ -6,20 +6,20 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getSettingItemsFeatures = (): readonly SettingItem[] => {
   return [
     {
-      id: 'autoSave',
-      heading: SettingStrings.autoSave(),
+      category: InputName.FeaturesTab,
       description: SettingStrings.autoSaveDescription(),
+      heading: SettingStrings.autoSave(),
+      id: 'autoSave',
       type: SettingItemType.Boolean,
       value: 'true',
-      category: InputName.FeaturesTab,
     },
     {
-      id: 'formatOnSave',
-      heading: SettingStrings.formatOnSave(),
+      category: InputName.FeaturesTab,
       description: SettingStrings.formatOnSaveDescription(),
+      heading: SettingStrings.formatOnSave(),
+      id: 'formatOnSave',
       type: SettingItemType.Boolean,
       value: 'false',
-      category: InputName.FeaturesTab,
     },
   ]
 }

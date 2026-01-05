@@ -7,15 +7,15 @@ import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.t
 
 test('getItemNumberVirtualDom returns virtual DOM with error when validation fails', () => {
   const item: DisplaySettingItem = {
-    id: 'test',
-    heading: 'Test Number Setting',
-    description: 'Test number description',
-    type: SettingItemType.Number,
-    value: -5,
     category: 'test',
-    modified: false,
+    description: 'Test number description',
     errorMessage: 'Value must be positive',
     hasError: true,
+    heading: 'Test Number Setting',
+    id: 'test',
+    modified: false,
+    type: SettingItemType.Number,
+    value: -5,
   }
   const result = getItemNumberVirtualDom(item)
 

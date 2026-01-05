@@ -13,14 +13,14 @@ export const getSettingsHeaderDom = (filteredSettingsCount: number, hasSearchVal
   const childCount = getChildCount(hasSearchValue)
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsHeader,
       childCount: 1,
+      className: ClassNames.SettingsHeader,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField'),
       childCount,
+      className: mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField'),
+      type: VirtualDomElements.Div,
     },
     ...getSettingsInputDom(),
     ...getSettingsInputBadgeDom(filteredSettingsCount, hasSearchValue),

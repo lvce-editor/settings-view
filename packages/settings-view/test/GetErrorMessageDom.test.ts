@@ -14,14 +14,14 @@ test('getErrorMessageDom returns virtual DOM with error message', () => {
 
   expect(result).toHaveLength(2)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.ErrorMessage,
     childCount: 1,
+    className: ClassNames.ErrorMessage,
+    type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Text,
-    text: errorMessage,
     childCount: 0,
+    text: errorMessage,
+    type: VirtualDomElements.Text,
   })
 })
 
@@ -31,13 +31,13 @@ test('getErrorMessageDom returns virtual DOM with non-empty error message', () =
 
   expect(result).toHaveLength(2)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.ErrorMessage,
     childCount: 1,
+    className: ClassNames.ErrorMessage,
+    type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Text,
-    text: errorMessage,
     childCount: 0,
+    text: errorMessage,
+    type: VirtualDomElements.Text,
   })
 })

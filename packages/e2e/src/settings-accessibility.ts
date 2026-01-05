@@ -4,7 +4,7 @@ export const name = 'settings.accessibility'
 
 export const skip = 1
 
-export const test: Test = async ({ Main, Locator, expect }) => {
+export const test: Test = async ({ expect, Locator, Main }) => {
   // arrange
 
   // act

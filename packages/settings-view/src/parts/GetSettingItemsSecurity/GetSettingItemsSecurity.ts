@@ -6,20 +6,20 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getSettingItemsSecurity = (): readonly SettingItem[] => {
   return [
     {
-      id: 'encryption',
-      heading: SettingStrings.fileEncryption(),
+      category: InputName.SecurityTab,
       description: SettingStrings.fileEncryptionDescription(),
+      heading: SettingStrings.fileEncryption(),
+      id: 'encryption',
       type: SettingItemType.Boolean,
       value: 'false',
-      category: InputName.SecurityTab,
     },
     {
-      id: 'twoFactor',
-      heading: SettingStrings.twoFactorAuth(),
+      category: InputName.SecurityTab,
       description: SettingStrings.twoFactorAuthDescription(),
+      heading: SettingStrings.twoFactorAuth(),
+      id: 'twoFactor',
       type: SettingItemType.Boolean,
       value: 'false',
-      category: InputName.SecurityTab,
     },
   ]
 }

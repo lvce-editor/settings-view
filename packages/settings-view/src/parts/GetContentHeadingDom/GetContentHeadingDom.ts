@@ -5,9 +5,9 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 export const getContentHeadingDom = (headerText: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.H1,
-      className: ClassNames.SettingsContentHeading,
       childCount: 1,
+      className: ClassNames.SettingsContentHeading,
+      type: VirtualDomElements.H1,
     },
     text(headerText),
   ]

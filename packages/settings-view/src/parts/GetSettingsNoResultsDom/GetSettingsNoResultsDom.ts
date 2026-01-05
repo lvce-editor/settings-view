@@ -6,14 +6,14 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getSettingsNoResultsDom = (searchValue: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItems,
       childCount: 1,
+      className: ClassNames.SettingsItems,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.P,
-      className: ClassNames.SettingsNoResults,
       childCount: 1,
+      className: ClassNames.SettingsNoResults,
+      type: VirtualDomElements.P,
     },
     text(SettingStrings.noSettingsMatching(searchValue)),
   ]

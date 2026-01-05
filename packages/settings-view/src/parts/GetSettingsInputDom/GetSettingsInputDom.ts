@@ -9,17 +9,17 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
   const placeholder = SettingStrings.searchSettings()
   return [
     {
-      type: VirtualDomElements.Input,
-      className: mergeClassNames(ClassNames.InputBox, ClassNames.SettingsSearchInput, 'MultilineInputBox'),
-      placeholder,
+      autocapitalize: 'off',
       autocomplete: 'off',
       autocorrect: 'off',
-      autocapitalize: 'off',
-      spellcheck: false,
       childCount: 0,
+      className: mergeClassNames(ClassNames.InputBox, ClassNames.SettingsSearchInput, 'MultilineInputBox'),
       name: InputName.SettingsSearch,
-      onInput: DomEventListenerFunctions.HandleInput,
       onFocus: DomEventListenerFunctions.HandleInputFocus,
+      onInput: DomEventListenerFunctions.HandleInput,
+      placeholder,
+      spellcheck: false,
+      type: VirtualDomElements.Input,
     },
   ]
 }

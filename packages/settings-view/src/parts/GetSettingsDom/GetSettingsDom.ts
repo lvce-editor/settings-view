@@ -6,13 +6,13 @@ import { getSettingsHeaderDom } from '../GetSettingsHeaderDom/GetSettingsHeaderD
 import { getSettingsMainDom } from '../GetSettingsMainDom/GetSettingsMainDom.ts'
 
 const parentNode: VirtualDomNode = {
-  type: VirtualDomElements.Div,
   childCount: 2,
   className: mergeClassNames(ClassNames.Viewlet, ClassNames.Settings),
+  type: VirtualDomElements.Div,
 }
 
 export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] => {
-  const { tabs, filteredItems, visibleItems, searchValue, scrollBarThumbHeight, scrollBarThumbTop } = state
+  const { filteredItems, scrollBarThumbHeight, scrollBarThumbTop, searchValue, tabs, visibleItems } = state
   const hasSearchValue = searchValue.trim().length > 0
   const filteredItemsCount = filteredItems.length
   return [

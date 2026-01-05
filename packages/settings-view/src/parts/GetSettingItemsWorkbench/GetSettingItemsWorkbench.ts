@@ -6,20 +6,20 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getSettingItemsWorkbench = (): readonly SettingItem[] => {
   return [
     {
-      id: 'theme',
-      heading: SettingStrings.theme(),
+      category: InputName.WorkbenchTab,
       description: SettingStrings.themeDescription(),
+      heading: SettingStrings.theme(),
+      id: 'theme',
       type: SettingItemType.String,
       value: 'Dark',
-      category: InputName.WorkbenchTab,
     },
     {
-      id: 'sidebarPosition',
-      heading: SettingStrings.sidebarPosition(),
+      category: InputName.WorkbenchTab,
       description: SettingStrings.sidebarPositionDescription(),
+      heading: SettingStrings.sidebarPosition(),
+      id: 'sidebarPosition',
       type: SettingItemType.String,
       value: 'Left',
-      category: InputName.WorkbenchTab,
     },
   ]
 }

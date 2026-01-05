@@ -6,22 +6,22 @@ import { validateSettings } from '../src/parts/ValidateSettings/ValidateSettings
 test.skip('validateSettings converts SettingItem to DisplaySettingItem with validation', () => {
   const items: SettingItem[] = [
     {
-      id: 'test1',
-      heading: 'Test Setting 1',
-      description: 'Test description 1',
-      type: SettingItemType.String,
-      value: 'valid value',
       category: 'test',
+      description: 'Test description 1',
+      heading: 'Test Setting 1',
+      id: 'test1',
+      type: SettingItemType.String,
       validate: (value: any) => (value === 'valid value' ? '' : 'Invalid value'),
+      value: 'valid value',
     },
     {
-      id: 'test2',
-      heading: 'Test Setting 2',
-      description: 'Test description 2',
-      type: SettingItemType.Number,
-      value: -5,
       category: 'test',
+      description: 'Test description 2',
+      heading: 'Test Setting 2',
+      id: 'test2',
+      type: SettingItemType.Number,
       validate: (value: any) => (value < 0 ? 'Must be positive' : ''),
+      value: -5,
     },
   ]
 
@@ -32,42 +32,42 @@ test.skip('validateSettings converts SettingItem to DisplaySettingItem with vali
 
   // Check first item (valid, modified)
   expect(result[0]).toEqual({
-    id: 'test1',
-    heading: 'Test Setting 1',
-    description: 'Test description 1',
-    type: SettingItemType.String,
-    value: 'valid value',
     category: 'test',
-    options: undefined,
-    modified: true,
+    description: 'Test description 1',
     errorMessage: '',
     hasError: false,
+    heading: 'Test Setting 1',
+    id: 'test1',
+    modified: true,
+    options: undefined,
+    type: SettingItemType.String,
+    value: 'valid value',
   })
 
   // Check second item (invalid, not modified)
   expect(result[1]).toEqual({
-    id: 'test2',
-    heading: 'Test Setting 2',
-    description: 'Test description 2',
-    type: SettingItemType.Number,
-    value: -5,
     category: 'test',
-    options: undefined,
-    modified: false,
+    description: 'Test description 2',
     errorMessage: 'Must be positive',
     hasError: true,
+    heading: 'Test Setting 2',
+    id: 'test2',
+    modified: false,
+    options: undefined,
+    type: SettingItemType.Number,
+    value: -5,
   })
 })
 
 test('validateSettings handles items without validation functions', () => {
   const items: SettingItem[] = [
     {
-      id: 'test',
-      heading: 'Test Setting',
+      category: 'test',
       description: 'Test description',
+      heading: 'Test Setting',
+      id: 'test',
       type: SettingItemType.Boolean,
       value: true,
-      category: 'test',
     },
   ]
 
@@ -76,15 +76,15 @@ test('validateSettings handles items without validation functions', () => {
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    id: 'test',
-    heading: 'Test Setting',
-    description: 'Test description',
-    type: SettingItemType.Boolean,
-    value: true,
     category: 'test',
-    options: undefined,
-    modified: false,
+    description: 'Test description',
     errorMessage: '',
     hasError: false,
+    heading: 'Test Setting',
+    id: 'test',
+    modified: false,
+    options: undefined,
+    type: SettingItemType.Boolean,
+    value: true,
   })
 })

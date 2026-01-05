@@ -6,25 +6,25 @@ import { Script } from '../InputSource/InputSource.ts'
 import * as WhenExpression from '../WhenExpression/WhenExpression.ts'
 
 export const clear = (state: SettingsState): SettingsState => {
-  const { items, tabs, modifiedSettings, preferences, height, itemHeight, scrollBarMinHeight } = state
+  const { height, itemHeight, items, modifiedSettings, preferences, scrollBarMinHeight, tabs } = state
   const newSearchValue = ''
   const filteredItems = getFilteredItems(items, tabs, newSearchValue, modifiedSettings, preferences)
   const nextScrollOffset = 0
-  const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, nextScrollOffset, itemHeight)
+  const { maxLineY, minLineY, visibleItems } = computeVisibleItems(filteredItems, height, nextScrollOffset, itemHeight)
   const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, nextScrollOffset, scrollBarMinHeight)
   return {
     ...state,
-    filteredItems,
-    visibleItems,
-    minLineY,
-    maxLineY,
     deltaY: 0,
-    scrollOffset: nextScrollOffset,
+    filteredItems,
     focus: WhenExpression.FocusSettingsInput,
     focusSource: Script,
     inputSource: Script,
-    searchValue: newSearchValue,
+    maxLineY,
+    minLineY,
     scrollBarThumbHeight: thumbHeight,
     scrollBarThumbTop: thumbTop,
+    scrollOffset: nextScrollOffset,
+    searchValue: newSearchValue,
+    visibleItems,
   }
 }

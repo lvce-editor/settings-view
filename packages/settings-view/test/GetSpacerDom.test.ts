@@ -9,10 +9,10 @@ test('getSpacerDom returns spacer div with height', () => {
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.SettingsItemsSpacer,
     childCount: 0,
+    className: ClassNames.SettingsItemsSpacer,
     height: `${height}px;`,
+    type: VirtualDomElements.Div,
   })
 })
 
@@ -22,9 +22,9 @@ test('getSpacerDom with zero height', () => {
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.SettingsItemsSpacer,
     childCount: 0,
+    className: ClassNames.SettingsItemsSpacer,
     height: `0px;`,
+    type: VirtualDomElements.Div,
   })
 })

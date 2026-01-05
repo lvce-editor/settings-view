@@ -6,20 +6,20 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getSettingItemsWindow = (): readonly SettingItem[] => {
   return [
     {
-      id: 'windowTitle',
-      heading: SettingStrings.windowTitle(),
+      category: InputName.WindowTab,
       description: SettingStrings.windowTitleDescription(),
+      heading: SettingStrings.windowTitle(),
+      id: 'windowTitle',
       type: SettingItemType.String,
       value: 'Settings View',
-      category: InputName.WindowTab,
     },
     {
-      id: 'windowSize',
-      heading: SettingStrings.windowSize(),
+      category: InputName.WindowTab,
       description: SettingStrings.windowSizeDescription(),
+      heading: SettingStrings.windowSize(),
+      id: 'windowSize',
       type: SettingItemType.String,
       value: '1024x768',
-      category: InputName.WindowTab,
     },
   ]
 }

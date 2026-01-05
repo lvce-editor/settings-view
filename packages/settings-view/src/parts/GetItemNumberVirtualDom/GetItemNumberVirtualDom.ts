@@ -25,31 +25,31 @@ const getInputClassName = (hasError: boolean): string => {
 }
 
 export const getItemNumberVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
-  const { heading, description, id, modified, hasError, errorMessage } = item
+  const { description, errorMessage, hasError, heading, id, modified } = item
   const domId = getInputId(id)
   const inputClassName = getInputClassName(hasError)
   const childCount = getChildCount(modified, hasError)
 
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItem,
       childCount,
-      role: AriaRoles.Group,
+      className: ClassNames.SettingsItem,
       'data-modified': modified,
+      role: AriaRoles.Group,
+      type: VirtualDomElements.Div,
     },
     ...getSettingsModifiedIndicatorDom(modified),
     ...getItemHeadingDom(heading),
     ...getItemLabelDom(domId, description),
     {
-      type: VirtualDomElements.Input,
-      className: inputClassName,
-      inputType: 'number',
-      placeholder: SettingStrings.numberValue(),
       childCount: 0,
+      className: inputClassName,
       id: domId,
+      inputType: 'number',
       name: id,
       onInput: DomEventListenerFunctions.HandleSettingInput,
+      placeholder: SettingStrings.numberValue(),
+      type: VirtualDomElements.Input,
     },
     ...getErrorMessageDom(errorMessage),
   ]

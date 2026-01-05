@@ -8,8 +8,8 @@ export const test: Test = async ({ Command, expect, Locator, SettingsView }) => 
   // arrange
   await SettingsView.show()
   await Command.execute('Settings.clearHistory')
-  await SettingsView.handleInput('font family', 2)
-  await SettingsView.handleInput('font size', 2)
+  await SettingsView.handleInput('font family')
+  await SettingsView.handleInput('font size')
 
   // act
   await Command.execute('Settings.usePreviousSearchValue') // TODO page object

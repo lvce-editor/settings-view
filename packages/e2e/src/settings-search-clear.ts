@@ -5,7 +5,7 @@ export const name = 'settings.search-clear'
 export const test: Test = async ({ Command, expect, Locator, SettingsView }) => {
   // arrange
   await SettingsView.show()
-  await SettingsView.handleInput('font family', 2)
+  await SettingsView.handleInput('font family')
 
   // act
   await Command.execute('Settings.clear', '')

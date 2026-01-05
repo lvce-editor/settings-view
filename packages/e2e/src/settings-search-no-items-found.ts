@@ -7,7 +7,7 @@ export const test: Test = async ({ expect, Locator, SettingsView }) => {
   await SettingsView.show()
 
   // act
-  await SettingsView.handleInput('abcdefgh', 2)
+  await SettingsView.handleInput('abcdefgh')
 
   // assert
   const noResultsMessage = Locator('.SettingsNoResults')

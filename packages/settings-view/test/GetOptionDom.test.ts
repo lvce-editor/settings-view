@@ -113,12 +113,13 @@ test('getOptionDom maintains consistent structure for multiple options', () => {
   for (const option of options) {
     const result = getOptionDom(option)
 
-    expect(result).toHaveLength(2)
-    expect(result[0]).toEqual({
-      childCount: 1,
-      type: VirtualDomElements.Option,
-      value: option.id,
-    })
-    expect(result[1]).toEqual(text(option.label))
+    expect(result).toEqual([
+      {
+        childCount: 1,
+        type: VirtualDomElements.Option,
+        value: option.id,
+      },
+      text(option.label),
+    ])
   }
 })

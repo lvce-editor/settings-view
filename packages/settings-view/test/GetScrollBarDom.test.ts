@@ -8,29 +8,36 @@ test('getScrollBarDom returns scrollbar with thumb', () => {
   const thumbTop = 120
   const result = getScrollBarDom(thumbHeight, thumbTop)
 
-  expect(result).toHaveLength(2)
-  expect(result[0]).toEqual({
-    childCount: 1,
-    className: `${ClassNames.SettingsScrollBar} ${ClassNames.SettingsScrollBarSmall}`,
-    type: VirtualDomElements.Div,
-  })
-  expect(result[1]).toEqual({
-    childCount: 0,
-    className: ClassNames.SettingsScrollBarThumb,
-    height: `${thumbHeight}px`,
-    top: `${thumbTop}px`,
-    type: VirtualDomElements.Div,
-  })
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: `${ClassNames.SettingsScrollBar} ${ClassNames.SettingsScrollBarSmall}`,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 0,
+      className: ClassNames.SettingsScrollBarThumb,
+      height: `${thumbHeight}px`,
+      top: `${thumbTop}px`,
+      type: VirtualDomElements.Div,
+    },
+  ])
 })
 
 test('getScrollBarDom with zero sizes', () => {
   const result = getScrollBarDom(0, 0)
-  expect(result).toHaveLength(2)
-  expect(result[1]).toEqual({
-    childCount: 0,
-    className: ClassNames.SettingsScrollBarThumb,
-    height: `0px`,
-    top: `0px`,
-    type: VirtualDomElements.Div,
-  })
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: `${ClassNames.SettingsScrollBar} ${ClassNames.SettingsScrollBarSmall}`,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 0,
+      className: ClassNames.SettingsScrollBarThumb,
+      height: `0px`,
+      top: `0px`,
+      type: VirtualDomElements.Div,
+    },
+  ])
 })

@@ -4,11 +4,11 @@ export const name = 'settings.open'
 
 export const skip = 1
 
-export const test: Test = async ({ expect, Locator, Main }) => {
+export const test: Test = async ({ expect, Locator, SettingsView }) => {
   // arrange
 
   // act
-  await Main.openUri('settings://') // TODO add page object
+  await SettingsView.show()
 
   // assert
   const settingsHeader = Locator('.SettingsHeader')

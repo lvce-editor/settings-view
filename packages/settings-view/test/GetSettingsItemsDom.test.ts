@@ -86,8 +86,19 @@ test('getSettingsItemsDom shows no settings matching message with special charac
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom shows no settings matching message with unicode characters in search term', () => {
@@ -96,8 +107,19 @@ test('getSettingsItemsDom shows no settings matching message with unicode charac
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom shows no settings matching message with very long search term', () => {
@@ -106,8 +128,19 @@ test('getSettingsItemsDom shows no settings matching message with very long sear
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom shows no settings matching message with single character search term', () => {
@@ -116,8 +149,19 @@ test('getSettingsItemsDom shows no settings matching message with single charact
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom handles multiple items correctly', () => {
@@ -191,8 +235,19 @@ test('getSettingsItemsDom handles search value with leading and trailing whitesp
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom handles search value with newlines and tabs', () => {
@@ -201,6 +256,17 @@ test('getSettingsItemsDom handles search value with newlines and tabs', () => {
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })

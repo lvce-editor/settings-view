@@ -8,38 +8,55 @@ test('getSettingsNoResultsDom returns correct virtual DOM structure', () => {
   const searchValue = 'test search'
   const result = GetSettingsNoResultsDom.getSettingsNoResultsDom(searchValue)
 
-  expect(result).toHaveLength(3)
-
-  // Check the div element
-  expect(result[0]).toEqual({
-    childCount: 1,
-    className: ClassNames.SettingsItems,
-    type: VirtualDomElements.Div,
-  })
-
-  // Check the p element
-  expect(result[1]).toEqual({
-    childCount: 1,
-    className: ClassNames.SettingsNoResults,
-    type: VirtualDomElements.P,
-  })
-
-  // Check the text content
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.SettingsItems,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.SettingsNoResults,
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsNoResultsDom with empty search value', () => {
   const searchValue = ''
   const result = GetSettingsNoResultsDom.getSettingsNoResultsDom(searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.SettingsItems,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.SettingsNoResults,
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsNoResultsDom with special characters', () => {
   const searchValue = 'test & special < > " characters'
   const result = GetSettingsNoResultsDom.getSettingsNoResultsDom(searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.SettingsItems,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.SettingsNoResults,
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })

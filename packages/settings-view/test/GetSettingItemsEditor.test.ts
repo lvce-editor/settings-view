@@ -58,15 +58,15 @@ test('getSettingItemsEditor fontSize validation works correctly', () => {
   const items = getSettingItemsEditor()
   const fontSizeItem = items.find((item) => item.id === 'editor.fontSize')
 
+  expect(fontSizeItem).toBeDefined()
   expect(fontSizeItem?.validate).toBeDefined()
-  if (fontSizeItem?.validate) {
-    expect(fontSizeItem.validate(15)).toBe('')
-    expect(fontSizeItem.validate(10)).toBe('')
-    expect(fontSizeItem.validate(100)).toBe('')
-    expect(fontSizeItem.validate(9)).toBe('font size must be at least 10')
-    expect(fontSizeItem.validate(101)).toBe('font size must not be greater than 100')
-    expect(fontSizeItem.validate('invalid')).toBe('font size must be of type number')
-  }
+  const validate = fontSizeItem!.validate!
+  expect(validate(15)).toBe('')
+  expect(validate(10)).toBe('')
+  expect(validate(100)).toBe('')
+  expect(validate(9)).toBe('font size must be at least 10')
+  expect(validate(101)).toBe('font size must not be greater than 100')
+  expect(validate('invalid')).toBe('font size must be of type number')
 })
 
 test('getSettingItemsEditor returns expected fontFamily item', () => {
@@ -142,15 +142,15 @@ test('getSettingItemsEditor tabSize validation works correctly', () => {
   const items = getSettingItemsEditor()
   const tabSizeItem = items.find((item) => item.id === 'editor.tabSize')
 
+  expect(tabSizeItem).toBeDefined()
   expect(tabSizeItem?.validate).toBeDefined()
-  if (tabSizeItem?.validate) {
-    expect(tabSizeItem.validate(4)).toBe('')
-    expect(tabSizeItem.validate(1)).toBe('')
-    expect(tabSizeItem.validate(8)).toBe('')
-    expect(tabSizeItem.validate(0)).toBe('tab size must be at least 1')
-    expect(tabSizeItem.validate(9)).toBe('tab size must not be greater than 8')
-    expect(tabSizeItem.validate('invalid')).toBe('font size must be of type number')
-  }
+  const validate = tabSizeItem!.validate!
+  expect(validate(4)).toBe('')
+  expect(validate(1)).toBe('')
+  expect(validate(8)).toBe('')
+  expect(validate(0)).toBe('tab size must be at least 1')
+  expect(validate(9)).toBe('tab size must not be greater than 8')
+  expect(validate('invalid')).toBe('font size must be of type number')
 })
 
 test('getSettingItemsEditor returns expected background color item', () => {

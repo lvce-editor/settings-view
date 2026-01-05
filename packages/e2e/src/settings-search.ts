@@ -2,12 +2,12 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.search'
 
-export const test: Test = async ({ Command, expect, Locator, Main }) => {
+export const test: Test = async ({ expect, Locator, SettingsView }) => {
   // arrange
-  await Main.openUri('settings://') // TODO add page object
+  await SettingsView.show()
 
   // act
-  await Command.execute('Settings.handleInput', 'font family', 2) // TODO page object
+  await SettingsView.handleInput('font family')
 
   // assert
   const settingsItems = Locator('.SettingsItem')

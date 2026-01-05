@@ -4,14 +4,14 @@ export const name = 'settings.restore-scroll-position'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Locator, Main }) => {
+export const test: Test = async ({ Command, expect, Locator, Main, SettingsView }) => {
   // arrange
-  await Main.openUri('settings://') // TODO add page object
+  await SettingsView.show()
   await Command.execute('Settings.handleScroll', 20, 2)
   await Main.closeAllEditors()
 
   // act
-  await Main.openUri('settings://') // TODO add page object
+  await SettingsView.show()
 
   // assert
   const settingsContent = Locator('.SettingsContent')

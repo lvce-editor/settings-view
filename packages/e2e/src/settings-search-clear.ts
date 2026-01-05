@@ -2,10 +2,10 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.search-clear'
 
-export const test: Test = async ({ Command, expect, Locator, Main }) => {
+export const test: Test = async ({ Command, expect, Locator, SettingsView }) => {
   // arrange
-  await Main.openUri('settings://') // TODO add page object
-  await Command.execute('Settings.handleInput', 'font family', 2) // TODO page object
+  await SettingsView.show()
+  await SettingsView.handleInput('font family')
 
   // act
   await Command.execute('Settings.clear', '')

@@ -9,9 +9,9 @@ export const getSettingsModifiedIndicatorDom = (isModified: boolean): readonly V
 
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ModifiedIndicator,
       childCount: 0,
+      className: ClassNames.ModifiedIndicator,
+      type: VirtualDomElements.Div,
     },
   ]
 }

@@ -9,13 +9,13 @@ test('isEqual returns true when focus values are the same', () => {
     ...createDefaultState(),
     breakPointsExpanded: true,
     breakPointsVisible: false,
+    focus: 5,
+    height: 800,
     id: 2,
     uri: 'different://uri',
+    width: 1200,
     x: 100,
     y: 200,
-    width: 1200,
-    height: 800,
-    focus: 5,
   }
 
   const result = isEqual(oldState, newState)

@@ -3,7 +3,7 @@ import { getNewFilteredItems } from '../GetNewFilteredItems/GetNewFilteredItems.
 import { getNewModifiedSettings } from '../GetNewModifiedSettings/GetNewModifiedSettings.ts'
 
 export const handleSettingUpdate = (state: SettingsState, name: string, value: any, inputSource: number): SettingsState => {
-  const { modifiedSettings, items, tabs, searchValue, preferences, filteredItems } = state
+  const { filteredItems, items, modifiedSettings, preferences, searchValue, tabs } = state
   const newModifiedSettings = getNewModifiedSettings(modifiedSettings, name)
   const newPreferences = {
     ...preferences,
@@ -21,8 +21,8 @@ export const handleSettingUpdate = (state: SettingsState, name: string, value: a
   )
   return {
     ...state,
-    inputSource,
     filteredItems: newFilteredItems,
+    inputSource,
     preferences: newPreferences,
   }
 }

@@ -22,15 +22,15 @@ test('saveState returns default values for all properties', () => {
   const result = saveState(createDefaultState())
 
   expect(result).toEqual({
-    minLineY: 0,
-    maxLineY: 0,
     deltaY: 0,
-    searchValue: '',
-    selectedTab: '',
-    scrollOffset: 0,
     focus: 0,
     history: [],
     historyIndex: -1,
+    maxLineY: 0,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
@@ -38,15 +38,15 @@ test('saveState works with zero uid', () => {
   const result = saveState(createDefaultState())
 
   expect(result).toEqual({
-    minLineY: 0,
-    maxLineY: 0,
     deltaY: 0,
-    searchValue: '',
-    selectedTab: '',
-    scrollOffset: 0,
     focus: 0,
     history: [],
     historyIndex: -1,
+    maxLineY: 0,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
@@ -54,15 +54,15 @@ test('saveState works with negative uid', () => {
   const result = saveState(createDefaultState())
 
   expect(result).toEqual({
-    minLineY: 0,
-    maxLineY: 0,
     deltaY: 0,
-    searchValue: '',
-    selectedTab: '',
-    scrollOffset: 0,
     focus: 0,
     history: [],
     historyIndex: -1,
+    maxLineY: 0,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 
@@ -70,15 +70,15 @@ test('saveState works with large uid', () => {
   const result = saveState(createDefaultState())
 
   expect(result).toEqual({
-    minLineY: 0,
-    maxLineY: 0,
     deltaY: 0,
-    searchValue: '',
-    selectedTab: '',
-    scrollOffset: 0,
     focus: 0,
     history: [],
     historyIndex: -1,
+    maxLineY: 0,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    selectedTab: '',
   })
 })
 

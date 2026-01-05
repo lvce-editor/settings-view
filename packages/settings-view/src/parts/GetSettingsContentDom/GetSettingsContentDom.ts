@@ -21,16 +21,16 @@ export const getSettingsContentDom = (
 
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsContent,
       childCount: 2,
+      className: ClassNames.SettingsContent,
       onWheel: DomEventListenerFunctions.HandleWheel,
+      type: VirtualDomElements.Div,
     },
     ...getContentHeadingDom(headerText),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItemWrapper,
       childCount: 2,
+      className: ClassNames.SettingsItemWrapper,
+      type: VirtualDomElements.Div,
     },
     ...getSettingsItemsDom(visibleItems, searchValue),
     ...getScrollBarDom(thumbHeight, thumbTop),

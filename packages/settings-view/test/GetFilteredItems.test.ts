@@ -10,20 +10,20 @@ import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.t
 test('filterByTab should filter items based on selected tab', () => {
   const items: readonly SettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
+      category: InputName.TextEditorTab,
       description: 'The font size of the editor',
+      heading: 'Font Size',
+      id: 'fontSize',
       type: SettingItemType.Number,
       value: '15px',
-      category: InputName.TextEditorTab,
     },
     {
-      id: 'theme',
-      heading: 'Theme',
+      category: InputName.WorkbenchTab,
       description: 'The color theme of the workbench',
+      heading: 'Theme',
+      id: 'theme',
       type: SettingItemType.String,
       value: 'Dark',
-      category: InputName.WorkbenchTab,
     },
   ]
 
@@ -48,20 +48,20 @@ test('filterByTab should filter items based on selected tab', () => {
 test('filterByTab should return all items when no tab is selected', () => {
   const items: readonly SettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
+      category: InputName.TextEditorTab,
       description: 'The font size of the editor',
+      heading: 'Font Size',
+      id: 'fontSize',
       type: SettingItemType.Number,
       value: '15px',
-      category: InputName.TextEditorTab,
     },
     {
-      id: 'theme',
-      heading: 'Theme',
+      category: InputName.WorkbenchTab,
       description: 'The color theme of the workbench',
+      heading: 'Theme',
+      id: 'theme',
       type: SettingItemType.String,
       value: 'Dark',
-      category: InputName.WorkbenchTab,
     },
   ]
 
@@ -85,28 +85,28 @@ test('filterByTab should return all items when no tab is selected', () => {
 test('filterBySearch should filter items by search value when provided', () => {
   const items: readonly SettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
+      category: InputName.TextEditorTab,
       description: 'The font size of the editor',
+      heading: 'Font Size',
+      id: 'fontSize',
       type: SettingItemType.Number,
       value: '15px',
-      category: InputName.TextEditorTab,
     },
     {
-      id: 'fontFamily',
-      heading: 'Font Family',
+      category: InputName.TextEditorTab,
       description: 'The font family of the editor',
+      heading: 'Font Family',
+      id: 'fontFamily',
       type: SettingItemType.String,
       value: 'Monaco',
-      category: InputName.TextEditorTab,
     },
     {
-      id: 'theme',
-      heading: 'Theme',
+      category: InputName.TextEditorTab,
       description: 'The color theme of the workbench',
+      heading: 'Theme',
+      id: 'theme',
       type: SettingItemType.String,
       value: 'Dark',
-      category: InputName.TextEditorTab,
     },
   ]
 
@@ -119,20 +119,20 @@ test('filterBySearch should filter items by search value when provided', () => {
 test('filterBySearch should filter items case-insensitively', () => {
   const items: readonly SettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
+      category: InputName.TextEditorTab,
       description: 'The font size of the editor',
+      heading: 'Font Size',
+      id: 'fontSize',
       type: SettingItemType.Number,
       value: '15px',
-      category: InputName.TextEditorTab,
     },
     {
-      id: 'theme',
-      heading: 'Theme',
+      category: InputName.TextEditorTab,
       description: 'The color theme of the workbench',
+      heading: 'Theme',
+      id: 'theme',
       type: SettingItemType.String,
       value: 'Dark',
-      category: InputName.TextEditorTab,
     },
   ]
 
@@ -144,20 +144,20 @@ test('filterBySearch should filter items case-insensitively', () => {
 test('filterBySearch should return all items when search value is empty', () => {
   const items: readonly SettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
+      category: InputName.TextEditorTab,
       description: 'The font size of the editor',
+      heading: 'Font Size',
+      id: 'fontSize',
       type: SettingItemType.Number,
       value: '15px',
-      category: InputName.TextEditorTab,
     },
     {
-      id: 'theme',
-      heading: 'Theme',
+      category: InputName.TextEditorTab,
       description: 'The color theme of the workbench',
+      heading: 'Theme',
+      id: 'theme',
       type: SettingItemType.String,
       value: 'Dark',
-      category: InputName.TextEditorTab,
     },
   ]
 
@@ -168,20 +168,20 @@ test('filterBySearch should return all items when search value is empty', () => 
 test('filterBySearch should return all items when search value is only whitespace', () => {
   const items: readonly SettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
+      category: InputName.TextEditorTab,
       description: 'The font size of the editor',
+      heading: 'Font Size',
+      id: 'fontSize',
       type: SettingItemType.Number,
       value: '15px',
-      category: InputName.TextEditorTab,
     },
     {
-      id: 'theme',
-      heading: 'Theme',
+      category: InputName.TextEditorTab,
       description: 'The color theme of the workbench',
+      heading: 'Theme',
+      id: 'theme',
       type: SettingItemType.String,
       value: 'Dark',
-      category: InputName.TextEditorTab,
     },
   ]
 
@@ -192,28 +192,28 @@ test('filterBySearch should return all items when search value is only whitespac
 test('getFilteredItems should combine all operations correctly and return DisplaySettingItem', () => {
   const items: readonly SettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
+      category: InputName.TextEditorTab,
       description: 'The font size of the editor',
+      heading: 'Font Size',
+      id: 'fontSize',
       type: SettingItemType.Number,
       value: '15px',
-      category: InputName.TextEditorTab,
     },
     {
-      id: 'theme',
-      heading: 'Theme',
+      category: InputName.WorkbenchTab,
       description: 'The color theme of the workbench',
+      heading: 'Theme',
+      id: 'theme',
       type: SettingItemType.String,
       value: 'Dark',
-      category: InputName.WorkbenchTab,
     },
     {
-      id: 'workbenchTheme',
-      heading: 'Workbench Theme',
+      category: InputName.WorkbenchTab,
       description: 'The workbench theme',
+      heading: 'Workbench Theme',
+      id: 'workbenchTheme',
       type: SettingItemType.String,
       value: 'Light',
-      category: InputName.WorkbenchTab,
     },
   ]
 

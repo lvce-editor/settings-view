@@ -10,35 +10,35 @@ import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
-  const { heading, description, id, modified, hasError, errorMessage } = item
+  const { description, errorMessage, hasError, heading, id, modified } = item
   const domId = getInputId(id)
   const colorInputClassName = hasError ? mergeClassNames('ColorInput', ClassNames.InputBoxError) : mergeClassNames('ColorInput')
   const errorChildCount = hasError ? 1 : 0
 
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItem,
       childCount: 3 + errorChildCount,
-      role: AriaRoles.Group,
+      className: ClassNames.SettingsItem,
       'data-modified': modified,
+      role: AriaRoles.Group,
+      type: VirtualDomElements.Div,
     },
     ...getItemHeadingDom(heading),
 
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItemCheckBox,
       childCount: 2,
+      className: ClassNames.SettingsItemCheckBox,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Input,
-      className: colorInputClassName,
-      inputType: 'color',
-      placeholder: SettingStrings.colorValue(),
       childCount: 0,
+      className: colorInputClassName,
       id: domId,
+      inputType: 'color',
       name: id,
       onInput: DomEventListenerFunctions.HandleSettingInput,
+      placeholder: SettingStrings.colorValue(),
+      type: VirtualDomElements.Input,
     },
     ...getItemLabelDom(domId, description),
     ...getErrorMessageDom(errorMessage),

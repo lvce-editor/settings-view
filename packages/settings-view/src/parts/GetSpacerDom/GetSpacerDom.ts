@@ -5,10 +5,10 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 export const getSpacerDom = (height: number): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItemsSpacer,
       childCount: 0,
+      className: ClassNames.SettingsItemsSpacer,
       height: `${height}px;`,
+      type: VirtualDomElements.Div,
     },
   ]
 }

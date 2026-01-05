@@ -103,12 +103,12 @@ test('handleClickTab preserves other state properties', () => {
   const state = createDefaultState()
   const stateWithTabs = {
     ...state,
+    focus: 42,
+    height: 100,
     tabs: [
       { id: 'tab-1', label: 'Tab 1', selected: false },
       { id: 'tab-2', label: 'Tab 2', selected: true },
     ],
-    focus: 42,
-    height: 100,
   }
 
   const result = handleClickTab(stateWithTabs, 'tab-1')

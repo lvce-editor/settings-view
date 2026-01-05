@@ -5,19 +5,19 @@ import { handleWheel } from '../src/parts/HandleWheel/HandleWheel.ts'
 test('handleWheel accumulates deltaY', () => {
   const state = {
     ...createDefaultState(),
-    height: 600,
-    itemHeight: 100,
     filteredItems: Array.from({ length: 20 }, (_, i) => ({
-      id: String(i),
-      heading: '',
-      description: '',
-      type: 0,
-      value: '',
       category: '',
-      modified: false,
+      description: '',
       errorMessage: '',
       hasError: false,
+      heading: '',
+      id: String(i),
+      modified: false,
+      type: 0,
+      value: '',
     })),
+    height: 600,
+    itemHeight: 100,
   }
   const state1 = handleWheel(state, 10)
   expect(state1.deltaY).toBe(10)
@@ -29,19 +29,19 @@ test('handleWheel accumulates deltaY', () => {
 test('handleWheel supports negative deltaY', () => {
   const state = {
     ...createDefaultState(),
-    height: 600,
-    itemHeight: 100,
     filteredItems: Array.from({ length: 20 }, (_, i) => ({
-      id: String(i),
-      heading: '',
-      description: '',
-      type: 0,
-      value: '',
       category: '',
-      modified: false,
+      description: '',
       errorMessage: '',
       hasError: false,
+      heading: '',
+      id: String(i),
+      modified: false,
+      type: 0,
+      value: '',
     })),
+    height: 600,
+    itemHeight: 100,
   }
   const state1 = handleWheel(state, -20)
   expect(state1.deltaY).toBe(0)
@@ -53,13 +53,13 @@ test('handleWheel supports negative deltaY', () => {
 test('handleWheel clamps to max based on content height minus viewport', () => {
   const state = {
     ...createDefaultState(),
+    filteredItems: [
+      { category: '', description: '', errorMessage: '', hasError: false, heading: '', id: 'a', modified: false, type: 0, value: '' },
+      { category: '', description: '', errorMessage: '', hasError: false, heading: '', id: 'b', modified: false, type: 0, value: '' },
+      { category: '', description: '', errorMessage: '', hasError: false, heading: '', id: 'c', modified: false, type: 0, value: '' },
+    ],
     height: 600,
     itemHeight: 100,
-    filteredItems: [
-      { id: 'a', heading: '', description: '', type: 0, value: '', category: '', modified: false, errorMessage: '', hasError: false },
-      { id: 'b', heading: '', description: '', type: 0, value: '', category: '', modified: false, errorMessage: '', hasError: false },
-      { id: 'c', heading: '', description: '', type: 0, value: '', category: '', modified: false, errorMessage: '', hasError: false },
-    ],
   }
   // totalContentHeight = 3 * 100 = 300, viewport height = 600 => max scroll = 0
   const state1 = handleWheel(state, 150)
@@ -68,15 +68,15 @@ test('handleWheel clamps to max based on content height minus viewport', () => {
   const state2 = {
     ...state,
     filteredItems: Array.from({ length: 10 }, (_, i) => ({
-      id: String(i),
-      heading: '',
-      description: '',
-      type: 0,
-      value: '',
       category: '',
-      modified: false,
+      description: '',
       errorMessage: '',
       hasError: false,
+      heading: '',
+      id: String(i),
+      modified: false,
+      type: 0,
+      value: '',
     })),
   }
   // totalContentHeight = 10 * 100 = 1000, viewport = 600 => max = 400

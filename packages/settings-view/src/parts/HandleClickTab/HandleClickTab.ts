@@ -9,21 +9,21 @@ export const handleClickTab = (state: SettingsState, name: string): SettingsStat
     return state
   }
 
-  const { items, tabs, searchValue, modifiedSettings, preferences, height, itemHeight, scrollOffset } = state
+  const { height, itemHeight, items, modifiedSettings, preferences, scrollOffset, searchValue, tabs } = state
   const updatedTabs = getUpdatedTabs(tabs, name)
   const filteredItems = getFilteredItems(items, updatedTabs, searchValue, modifiedSettings, preferences)
-  const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
+  const { maxLineY, minLineY, visibleItems } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
   const { scrollBarMinHeight } = state
   const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset, scrollBarMinHeight)
 
   return {
     ...state,
-    tabs: updatedTabs,
     filteredItems,
-    visibleItems,
-    minLineY,
     maxLineY,
+    minLineY,
     scrollBarThumbHeight: thumbHeight,
     scrollBarThumbTop: thumbTop,
+    tabs: updatedTabs,
+    visibleItems,
   }
 }

@@ -4,12 +4,12 @@ export interface SettingItemOption {
 }
 
 export interface SettingItem {
-  readonly id: string
-  readonly heading: string
-  readonly description: string
-  readonly type: number
-  readonly value: any // TODO support different value types
   readonly category: string
+  readonly description: string
+  readonly heading: string
+  readonly id: string
   readonly options?: readonly SettingItemOption[]
+  readonly type: number
   readonly validate?: (value: any) => string // TODO add defaultValue property
+  readonly value: any // TODO support different value types
 }

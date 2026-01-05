@@ -10,13 +10,13 @@ import { getSavedTabId } from './GetSavedTabId.ts'
 export const restoreState = (savedState: unknown): RestoredState => {
   if (!savedState) {
     return {
-      minLineY: 0,
       deltaY: 0,
-      tabId: '',
-      searchValue: '',
-      scrollOffset: 0,
       history: [],
       historyIndex: -1,
+      minLineY: 0,
+      scrollOffset: 0,
+      searchValue: '',
+      tabId: '',
     }
   }
 
@@ -29,12 +29,12 @@ export const restoreState = (savedState: unknown): RestoredState => {
   const historyIndex = getSavedHistoryIndex(savedState, history)
 
   return {
-    minLineY,
     deltaY,
-    tabId,
-    searchValue,
-    scrollOffset,
     history,
     historyIndex,
+    minLineY,
+    scrollOffset,
+    searchValue,
+    tabId,
   }
 }

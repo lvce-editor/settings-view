@@ -29,12 +29,12 @@ test('useNextSearchValue navigates to next search value', () => {
     historyIndex: 0,
     items: [
       {
-        id: 'fontSize',
-        heading: 'Font Size',
+        category: InputName.TextEditorTab,
         description: 'The font size of the editor',
+        heading: 'Font Size',
+        id: 'fontSize',
         type: SettingItemType.Number,
         value: '15px',
-        category: InputName.TextEditorTab,
       },
     ],
     tabs: [
@@ -59,20 +59,20 @@ test('useNextSearchValue updates filtered items', () => {
     historyIndex: 0,
     items: [
       {
-        id: 'fontSize',
-        heading: 'Font Size',
+        category: InputName.TextEditorTab,
         description: 'The font size of the editor',
+        heading: 'Font Size',
+        id: 'fontSize',
         type: SettingItemType.Number,
         value: '15px',
-        category: InputName.TextEditorTab,
       },
       {
-        id: 'theme',
-        heading: 'Theme',
+        category: InputName.TextEditorTab,
         description: 'The color theme of the workbench',
+        heading: 'Theme',
+        id: 'theme',
         type: SettingItemType.String,
         value: 'Dark',
-        category: InputName.TextEditorTab,
       },
     ],
     tabs: [

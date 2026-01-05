@@ -10,18 +10,18 @@ import { renderValue } from '../RenderValue/RenderValue.ts'
 
 export const getRenderer = (diffType: number): Renderer<SettingsState> => {
   switch (diffType) {
-    case DiffType.RenderItems:
-      return RenderItems.renderItems
-    case DiffType.RenderValue:
-      return renderValue
-    case DiffType.RenderSettingValues:
-      return renderSettingValues
-    case DiffType.RenderScrollOffset:
-      return renderScrollOffset
-    case DiffType.RenderFocusContext:
-      return renderFocusContext
     case DiffType.RenderFocus:
       return renderFocus
+    case DiffType.RenderFocusContext:
+      return renderFocusContext
+    case DiffType.RenderItems:
+      return RenderItems.renderItems
+    case DiffType.RenderScrollOffset:
+      return renderScrollOffset
+    case DiffType.RenderSettingValues:
+      return renderSettingValues
+    case DiffType.RenderValue:
+      return renderValue
     default:
       throw new Error('unknown renderer')
   }

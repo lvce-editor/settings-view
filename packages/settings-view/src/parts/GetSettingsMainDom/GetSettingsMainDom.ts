@@ -16,9 +16,9 @@ export const getSettingsMainDom = (
 ): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsMain,
       childCount: 2,
+      className: ClassNames.SettingsMain,
+      type: VirtualDomElements.Div,
     },
     ...getSettingsSideBarDom(tabs),
     ...getSettingsContentDom(visibleItems, tabs, searchValue, thumbHeight, thumbTop),

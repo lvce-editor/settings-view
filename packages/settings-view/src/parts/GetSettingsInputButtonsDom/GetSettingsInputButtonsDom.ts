@@ -7,21 +7,21 @@ import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 const icon: VirtualDomNode = {
-  type: VirtualDomElements.Div,
-  className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconClearAll),
   childCount: 0,
+  className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconClearAll),
+  type: VirtualDomElements.Div,
 }
 
 export const getSettingsInputButtonsDom = (hasSearchValue: boolean): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Button,
-      className: getClearButtonClassName(hasSearchValue),
-      childCount: 1,
       ariaLabel: SettingStrings.clear(),
-      name: InputName.Clear,
+      childCount: 1,
+      className: getClearButtonClassName(hasSearchValue),
       disabled: !hasSearchValue,
+      name: InputName.Clear,
       onClick: DomEventListenerFunctions.HandleClickClear,
+      type: VirtualDomElements.Button,
     },
     icon,
   ]

@@ -5,13 +5,13 @@ import * as WhenExpression from '../WhenExpression/WhenExpression.ts'
 export const getKeyBindings = (): readonly KeyBinding[] => {
   return [
     {
-      key: KeyCode.UpArrow,
       command: 'Settings.usePreviousSearchValue',
+      key: KeyCode.UpArrow,
       when: WhenExpression.FocusSettingsInput,
     },
     {
-      key: KeyCode.DownArrow,
       command: 'Settings.useNextSearchValue',
+      key: KeyCode.DownArrow,
       when: WhenExpression.FocusSettingsInput,
     },
   ]

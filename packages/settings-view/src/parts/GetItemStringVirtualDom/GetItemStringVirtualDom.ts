@@ -10,29 +10,29 @@ import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getItemStringVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
-  const { heading, description, id, hasError, errorMessage } = item
+  const { description, errorMessage, hasError, heading, id } = item
   const domId = getInputId(id)
   const inputClassName = hasError ? `${ClassNames.InputBox} ${ClassNames.InputBoxError}` : ClassNames.InputBox
   const errorChildCount = hasError ? 1 : 0
 
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItem,
       childCount: 3 + errorChildCount,
+      className: ClassNames.SettingsItem,
       role: AriaRoles.Group,
+      type: VirtualDomElements.Div,
     },
     ...getItemHeadingDom(heading),
     ...getItemLabelDom(domId, description),
     {
-      type: VirtualDomElements.Input,
-      className: inputClassName,
-      inputType: 'text',
-      placeholder: SettingStrings.stringValue(),
       childCount: 0,
+      className: inputClassName,
       id: domId,
+      inputType: 'text',
       name: id,
       onInput: DomEventListenerFunctions.HandleSettingInput,
+      placeholder: SettingStrings.stringValue(),
+      type: VirtualDomElements.Input,
     },
     ...getErrorMessageDom(errorMessage),
   ]

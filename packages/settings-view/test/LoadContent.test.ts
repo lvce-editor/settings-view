@@ -11,6 +11,9 @@ test.skip('loadContent should return state with tabs loaded', async () => {
 
   expect(result).toEqual({
     ...initialState,
+    filteredItems: expect.any(Array),
+    inputSource: 2,
+    items: expect.any(Array),
     tabs: [
       { id: 'text-editor', label: 'Text Editor', selected: false },
       { id: 'workbench', label: 'Workbench', selected: false },
@@ -20,9 +23,6 @@ test.skip('loadContent should return state with tabs loaded', async () => {
       { id: 'security', label: 'Security', selected: false },
       { id: 'extensions', label: 'Extensions', selected: false },
     ],
-    items: expect.any(Array),
-    filteredItems: expect.any(Array),
-    inputSource: 2,
   })
 })
 
@@ -31,16 +31,16 @@ test.skip('loadContent should preserve other state properties', async () => {
     ...createDefaultState(),
     breakPointsExpanded: true,
     breakPointsVisible: false,
+    filteredItems: [],
     focus: 5,
+    height: 800,
     id: 123,
+    items: [],
+    tabs: [{ id: 'old-tab', label: 'old-tab', selected: true }],
     uri: 'test://custom-uri',
+    width: 1200,
     x: 100,
     y: 200,
-    width: 1200,
-    height: 800,
-    items: [],
-    filteredItems: [],
-    tabs: [{ id: 'old-tab', label: 'old-tab', selected: true }],
   }
   const savedState = null
 

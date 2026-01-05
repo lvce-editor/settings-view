@@ -5,10 +5,10 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 export const getItemLabelDom = (domId: string, label: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Label,
-      htmlFor: domId,
       childCount: 1,
       className: ClassNames.Label,
+      htmlFor: domId,
+      type: VirtualDomElements.Label,
     },
     text(label),
   ]

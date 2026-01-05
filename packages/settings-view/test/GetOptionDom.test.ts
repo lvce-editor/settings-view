@@ -13,8 +13,8 @@ test('getOptionDom returns correct DOM structure for normal option', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Option,
       childCount: 1,
+      type: VirtualDomElements.Option,
       value: 'option1',
     },
     text('Option 1'),
@@ -33,8 +33,8 @@ test('getOptionDom returns correct DOM structure for option with empty label', (
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Option,
       childCount: 1,
+      type: VirtualDomElements.Option,
       value: 'emptyOption',
     },
     text(''),
@@ -53,8 +53,8 @@ test('getOptionDom returns correct DOM structure for option with special charact
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Option,
       childCount: 1,
+      type: VirtualDomElements.Option,
       value: 'special@#$%',
     },
     text('Option with & < > " \' chars'),
@@ -73,8 +73,8 @@ test('getOptionDom returns correct DOM structure for option with numeric id', ()
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Option,
       childCount: 1,
+      type: VirtualDomElements.Option,
       value: '123',
     },
     text('Numeric Option'),
@@ -93,8 +93,8 @@ test('getOptionDom returns correct DOM structure for option with long label', ()
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Option,
       childCount: 1,
+      type: VirtualDomElements.Option,
       value: 'longOption',
     },
     text('This is a very long option label that might wrap to multiple lines in the UI'),
@@ -115,8 +115,8 @@ test('getOptionDom maintains consistent structure for multiple options', () => {
 
     expect(result).toHaveLength(2)
     expect(result[0]).toEqual({
-      type: VirtualDomElements.Option,
       childCount: 1,
+      type: VirtualDomElements.Option,
       value: option.id,
     })
     expect(result[1]).toEqual(text(option.label))

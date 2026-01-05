@@ -15,16 +15,16 @@ export interface ItemRenderer {
 
 export const getItemRender = (type: number): ItemRenderer => {
   switch (type) {
-    case SettingItemType.Number:
-      return getItemNumberVirtualDom
     case SettingItemType.Boolean:
       return getItemCheckBoxVirtualDom
-    case SettingItemType.String:
-      return getItemStringVirtualDom
-    case SettingItemType.Enum:
-      return getItemSelectVirtualDom
     case SettingItemType.Color:
       return getItemColorVirtualDom
+    case SettingItemType.Enum:
+      return getItemSelectVirtualDom
+    case SettingItemType.Number:
+      return getItemNumberVirtualDom
+    case SettingItemType.String:
+      return getItemStringVirtualDom
     case SettingItemType.Url:
       return getItemUrlVirtualDom
     default:

@@ -27,12 +27,12 @@ test('isEqual returns false for states with different values', () => {
     breakPointsExpanded: true,
     breakPointsVisible: false,
     focus: 5,
+    height: 800,
     id: 2,
     uri: 'different://uri',
+    width: 1200,
     x: 100,
     y: 200,
-    width: 1200,
-    height: 800,
   }
 
   const result = isEqual(oldState, newState)
@@ -71,11 +71,11 @@ test('isEqual returns false for states with different numeric values', () => {
   const mockState: SettingsState = createDefaultState()
   const differentState: SettingsState = {
     ...createDefaultState(),
+    height: 999,
     id: 999,
+    width: 999,
     x: 999,
     y: 999,
-    width: 999,
-    height: 999,
   }
 
   const result = isEqual(mockState, differentState)

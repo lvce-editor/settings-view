@@ -7,15 +7,15 @@ import { getItemCheckBoxVirtualDom } from '../src/parts/GetItemCheckBoxVirtualDo
 
 test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', () => {
   const item: DisplaySettingItem = {
-    id: 'testItem',
-    heading: 'Test Heading',
-    description: 'Test Description',
-    type: 2,
-    value: 'true',
     category: 'test',
-    modified: false,
+    description: 'Test Description',
     errorMessage: '',
     hasError: false,
+    heading: 'Test Heading',
+    id: 'testItem',
+    modified: false,
+    type: 2,
+    value: 'true',
   }
 
   const result = getItemCheckBoxVirtualDom(item)
@@ -23,37 +23,37 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Div,
-      className: 'SettingsItem',
       childCount: 2,
-      role: AriaRoles.Group,
+      className: 'SettingsItem',
       'data-modified': false,
+      role: AriaRoles.Group,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H3,
-      className: ClassNames.SettingsItemHeading,
       childCount: 1,
+      className: ClassNames.SettingsItemHeading,
+      type: VirtualDomElements.H3,
     },
     text('Test Heading'),
     {
-      type: VirtualDomElements.Div,
-      className: 'SettingsItemCheckBox',
       childCount: 2,
+      className: 'SettingsItemCheckBox',
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Input,
-      className: 'CheckBox',
-      inputType: 'checkbox',
       childCount: 0,
+      className: 'CheckBox',
       id: domId,
+      inputType: 'checkbox',
       name: 'testItem',
       onChange: 'handleSettingChecked',
+      type: VirtualDomElements.Input,
     },
     {
-      type: VirtualDomElements.Label,
       childCount: 1,
-      htmlFor: domId,
       className: ClassNames.Label,
+      htmlFor: domId,
+      type: VirtualDomElements.Label,
     },
     text('Test Description'),
   ]

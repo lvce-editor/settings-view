@@ -7,9 +7,9 @@ import { getSettingsTabsDom } from '../GetSettingsTabsDom/GetSettingsTabsDom.ts'
 export const getSettingsSideBarDom = (tabs: readonly Tab[]): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Aside,
-      className: ClassNames.SettingsSideBar,
       childCount: 1,
+      className: ClassNames.SettingsSideBar,
+      type: VirtualDomElements.Aside,
     },
     ...getSettingsTabsDom(tabs),
   ]

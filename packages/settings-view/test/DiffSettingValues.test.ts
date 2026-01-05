@@ -19,15 +19,15 @@ test('isEqual returns false when filteredItems are different', () => {
     ...oldState,
     filteredItems: [
       {
-        id: 'test',
-        heading: 'Test',
-        description: 'Test description',
-        type: SettingItemType.Number,
-        value: '42',
         category: 'test',
-        modified: false,
+        description: 'Test description',
         errorMessage: '',
         hasError: false,
+        heading: 'Test',
+        id: 'test',
+        modified: false,
+        type: SettingItemType.Number,
+        value: '42',
       },
     ],
   }
@@ -42,15 +42,15 @@ test('isEqual returns false when filteredItems have different content but same l
     ...createDefaultState(),
     filteredItems: [
       {
-        id: 'item1',
-        heading: 'Item 1',
-        description: 'Description 1',
-        type: SettingItemType.Number,
-        value: '10',
         category: 'test',
-        modified: false,
+        description: 'Description 1',
         errorMessage: '',
         hasError: false,
+        heading: 'Item 1',
+        id: 'item1',
+        modified: false,
+        type: SettingItemType.Number,
+        value: '10',
       },
     ],
   }
@@ -58,15 +58,15 @@ test('isEqual returns false when filteredItems have different content but same l
     ...oldState,
     filteredItems: [
       {
-        id: 'item2',
-        heading: 'Item 2',
-        description: 'Description 2',
-        type: SettingItemType.Number,
-        value: '20',
         category: 'test',
-        modified: false,
+        description: 'Description 2',
         errorMessage: '',
         hasError: false,
+        heading: 'Item 2',
+        id: 'item2',
+        modified: false,
+        type: SettingItemType.Number,
+        value: '20',
       },
     ],
   }
@@ -80,8 +80,8 @@ test('isEqual returns true when other properties change but filteredItems remain
   const oldState = createDefaultState()
   const newState: SettingsState = {
     ...oldState,
-    searchValue: 'different search',
     focus: 5,
+    searchValue: 'different search',
     width: 1000,
   }
 
@@ -95,15 +95,15 @@ test('isEqual returns false when filteredItems have different lengths', () => {
     ...createDefaultState(),
     filteredItems: [
       {
-        id: 'item1',
-        heading: 'Item 1',
-        description: 'Description 1',
-        type: SettingItemType.Number,
-        value: '10',
         category: 'test',
-        modified: false,
+        description: 'Description 1',
         errorMessage: '',
         hasError: false,
+        heading: 'Item 1',
+        id: 'item1',
+        modified: false,
+        type: SettingItemType.Number,
+        value: '10',
       },
     ],
   }
@@ -111,26 +111,26 @@ test('isEqual returns false when filteredItems have different lengths', () => {
     ...createDefaultState(),
     filteredItems: [
       {
-        id: 'item1',
-        heading: 'Item 1',
+        category: 'test',
         description: 'Description 1',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Item 1',
+        id: 'item1',
+        modified: false,
         type: SettingItemType.Number,
         value: '10',
-        category: 'test',
-        modified: false,
-        errorMessage: '',
-        hasError: false,
       },
       {
-        id: 'item2',
-        heading: 'Item 2',
-        description: 'Description 2',
-        type: SettingItemType.Number,
-        value: '20',
         category: 'test',
-        modified: false,
+        description: 'Description 2',
         errorMessage: '',
         hasError: false,
+        heading: 'Item 2',
+        id: 'item2',
+        modified: false,
+        type: SettingItemType.Number,
+        value: '20',
       },
     ],
   }
@@ -142,15 +142,15 @@ test('isEqual returns false when filteredItems have different lengths', () => {
 
 test('isEqual returns false when filteredItems have same length and same items', () => {
   const sharedItem = {
-    id: 'item1',
-    heading: 'Item 1',
-    description: 'Description 1',
-    type: SettingItemType.Number,
-    value: '10',
     category: 'test',
-    modified: false,
+    description: 'Description 1',
     errorMessage: '',
     hasError: false,
+    heading: 'Item 1',
+    id: 'item1',
+    modified: false,
+    type: SettingItemType.Number,
+    value: '10',
   }
 
   const oldState: SettingsState = {

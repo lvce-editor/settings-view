@@ -12,16 +12,16 @@ test('getSettingsNoResultsDom returns correct virtual DOM structure', () => {
 
   // Check the div element
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.SettingsItems,
     childCount: 1,
+    className: ClassNames.SettingsItems,
+    type: VirtualDomElements.Div,
   })
 
   // Check the p element
   expect(result[1]).toEqual({
-    type: VirtualDomElements.P,
-    className: ClassNames.SettingsNoResults,
     childCount: 1,
+    className: ClassNames.SettingsNoResults,
+    type: VirtualDomElements.P,
   })
 
   // Check the text content

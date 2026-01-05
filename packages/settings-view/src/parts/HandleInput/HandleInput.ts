@@ -6,11 +6,11 @@ import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { User } from '../InputSource/InputSource.ts'
 
 export const handleInput = (state: SettingsState, value: string, inputSource = User): SettingsState => {
-  const { items, tabs, history, modifiedSettings, preferences, height, itemHeight } = state
+  const { height, history, itemHeight, items, modifiedSettings, preferences, tabs } = state
   const filteredItems = getFilteredItems(items, tabs, value, modifiedSettings, preferences)
   // Reset scroll when filter value changes so the user sees results from the top
   const nextScrollOffset = 0
-  const { visibleItems, minLineY, maxLineY } = computeVisibleItems(filteredItems, height, nextScrollOffset, itemHeight)
+  const { maxLineY, minLineY, visibleItems } = computeVisibleItems(filteredItems, height, nextScrollOffset, itemHeight)
   const { scrollBarMinHeight } = state
   const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, nextScrollOffset, scrollBarMinHeight)
 
@@ -18,17 +18,17 @@ export const handleInput = (state: SettingsState, value: string, inputSource = U
 
   return {
     ...state,
-    searchValue: value,
-    filteredItems,
-    visibleItems,
-    minLineY,
-    maxLineY,
     deltaY: 0,
-    scrollOffset: nextScrollOffset,
+    filteredItems,
     history: newHistory,
     historyIndex: newHistoryIndex,
     inputSource,
+    maxLineY,
+    minLineY,
     scrollBarThumbHeight: thumbHeight,
     scrollBarThumbTop: thumbTop,
+    scrollOffset: nextScrollOffset,
+    searchValue: value,
+    visibleItems,
   }
 }

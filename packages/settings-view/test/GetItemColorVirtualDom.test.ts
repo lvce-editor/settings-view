@@ -2,9 +2,9 @@ import { test, expect } from '@jest/globals'
 import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getItemColorVirtualDom } from '../src/parts/GetItemColorVirtualDom/GetItemColorVirtualDom.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
-import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
 test('getItemColorVirtualDom returns virtual DOM without error when no validation', () => {

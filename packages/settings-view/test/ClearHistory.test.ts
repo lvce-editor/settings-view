@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
+import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { clearHistory } from '../src/parts/ClearHistory/ClearHistory.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 
 test('clearHistory sets history to empty array', () => {
   const state: SettingsState = {
@@ -44,12 +44,12 @@ test('clearHistory clears history when already empty', () => {
 test('clearHistory preserves other state properties', () => {
   const state: SettingsState = {
     ...createDefaultState(),
-    history: ['search1', 'search2'],
-    historyIndex: 1,
     focus: 42,
     height: 100,
-    searchValue: 'test search',
+    history: ['search1', 'search2'],
+    historyIndex: 1,
     id: 5,
+    searchValue: 'test search',
   }
 
   const result: SettingsState = clearHistory(state)

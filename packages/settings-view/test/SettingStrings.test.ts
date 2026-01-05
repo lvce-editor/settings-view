@@ -11,6 +11,16 @@ test('numberValue returns expected i18n string', () => {
   expect(result).toBe('number value')
 })
 
+test('urlValue returns expected i18n string', () => {
+  const result = SettingStrings.urlValue()
+  expect(result).toBe('url value')
+})
+
+test('colorValue returns expected i18n string', () => {
+  const result = SettingStrings.colorValue()
+  expect(result).toBe('Color value')
+})
+
 test('searchSettings returns expected i18n string', () => {
   const result = SettingStrings.searchSettings()
   expect(result).toBe('Search Settings')

@@ -1,3 +1,4 @@
+import * as DiffCss from '../DiffCss/DiffCss.ts'
 import * as DiffFocus from '../DiffFocus/DiffFocus.ts'
 import * as DiffItems from '../DiffItems/DiffItems.ts'
 import * as DiffScrollOffset from '../DiffScrollOffset/DiffScrollOffset.ts'
@@ -12,6 +13,7 @@ export const modules = [
   DiffScrollOffset.isEqual,
   DiffFocus.isEqual,
   DiffFocus.isEqual,
+  DiffCss.isEqual,
 ]
 
 export const numbers = [
@@ -21,4 +23,5 @@ export const numbers = [
   DiffType.RenderScrollOffset,
   DiffType.RenderFocus,
   DiffType.RenderFocusContext,
+  DiffType.RenderCss,
 ]

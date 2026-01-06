@@ -32,6 +32,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: isChecked,
       checked: isChecked,
       childCount: 0,
       className: checkBoxClassName,
@@ -42,9 +43,15 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: isChecked,
+      ariaLabelledBy: domId,
       childCount: checkBoxBoxChildCount,
       className: ClassNames.CheckBoxBox,
+      onClick: DomEventListenerFunctions.HandleCheckboxBoxClick,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
+      'data-checkbox-name': id,
+      'data-checkbox-value': isChecked ? 'true' : 'false',
     },
     ...(isChecked
       ? [

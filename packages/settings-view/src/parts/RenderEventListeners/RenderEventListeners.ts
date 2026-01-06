@@ -28,6 +28,10 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       name: DomEventListenerFunctions.HandleSettingChecked,
       params: ['handleSettingChecked', EventExpression.TargetName, EventExpression.TargetValue],
     },
+    {
+      name: DomEventListenerFunctions.HandleCheckboxBoxClick,
+      params: ['handleCheckboxBoxClick', 'event.target.dataset.checkboxName', 'event.target.dataset.checkboxValue'],
+    },
     // {
     //   name: DomEventListenerFunctions.HandleScroll,
     //   params: ['handleScroll', 'event.target.scrollTop'],

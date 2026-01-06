@@ -32,6 +32,7 @@ export const getCss = (sideBarWidth: number, scrollBarThumbHeight: number, scrol
   position: relative;
   vertical-align: middle;
   margin-right: 8px;
+  cursor: pointer;
 }
 
 .CheckBoxCheckmark {

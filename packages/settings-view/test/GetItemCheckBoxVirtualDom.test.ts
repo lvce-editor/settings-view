@@ -41,6 +41,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: true,
       checked: true,
       childCount: 0,
       className: 'CheckBox',
@@ -51,8 +52,11 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: true,
+      ariaLabelledBy: domId,
       childCount: 1,
       className: ClassNames.CheckBoxBox,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
     },
     {
@@ -109,6 +113,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: true,
       checked: true,
       childCount: 0,
       className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
@@ -119,8 +124,11 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: true,
+      ariaLabelledBy: domId,
       childCount: 1,
       className: ClassNames.CheckBoxBox,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
     },
     {
@@ -183,6 +191,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for modified item'
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: true,
       checked: true,
       childCount: 0,
       className: 'CheckBox',
@@ -193,8 +202,11 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for modified item'
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: true,
+      ariaLabelledBy: domId,
       childCount: 1,
       className: ClassNames.CheckBoxBox,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
     },
     {
@@ -251,6 +263,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: true,
       checked: true,
       childCount: 0,
       className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
@@ -261,8 +274,11 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: true,
+      ariaLabelledBy: domId,
       childCount: 1,
       className: ClassNames.CheckBoxBox,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
     },
     {
@@ -325,6 +341,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: true,
       checked: true,
       childCount: 0,
       className: 'CheckBox',
@@ -335,8 +352,11 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: true,
+      ariaLabelledBy: domId,
       childCount: 1,
       className: ClassNames.CheckBoxBox,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
     },
     {
@@ -393,6 +413,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: true,
       checked: true,
       childCount: 0,
       className: 'CheckBox',
@@ -403,8 +424,11 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: true,
+      ariaLabelledBy: domId,
       childCount: 1,
       className: ClassNames.CheckBoxBox,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
     },
     {
@@ -461,6 +485,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with hasE
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: true,
       checked: true,
       childCount: 0,
       className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
@@ -471,8 +496,11 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with hasE
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: true,
+      ariaLabelledBy: domId,
       childCount: 1,
       className: ClassNames.CheckBoxBox,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
     },
     {
@@ -597,6 +625,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for unchecked item
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: false,
       checked: false,
       childCount: 0,
       className: 'CheckBox',
@@ -607,8 +636,11 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for unchecked item
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: false,
+      ariaLabelledBy: domId,
       childCount: 0,
       className: ClassNames.CheckBoxBox,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
     },
     {
@@ -1001,6 +1033,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with long
       type: VirtualDomElements.Div,
     },
     {
+      ariaChecked: true,
       checked: true,
       childCount: 0,
       className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
@@ -1011,8 +1044,11 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with long
       type: VirtualDomElements.Input,
     },
     {
+      ariaChecked: true,
+      ariaLabelledBy: domId,
       childCount: 1,
       className: ClassNames.CheckBoxBox,
+      role: AriaRoles.Checkbox,
       type: VirtualDomElements.Div,
     },
     {

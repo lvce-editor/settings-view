@@ -15,6 +15,7 @@ import { handleResizerPointerDown } from '../HandleResizerPointerDown/HandleResi
 import { handleResizerPointerMove } from '../HandleResizerPointerMove/HandleResizerPointerMove.ts'
 import { handleResizerPointerUp } from '../HandleResizerPointerUp/HandleResizerPointerUp.ts'
 import { handleScroll } from '../HandleScroll/HandleScroll.ts'
+import { handleCheckboxBoxClick } from '../HandleCheckboxBoxClick/HandleCheckboxBoxClick.ts'
 import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
 import { handleSettingInput } from '../HandleSettingInput/HandleSettingInput.ts'
 import { handleSettingSelect } from '../HandleSettingSelect/HandleSettingSelect.ts'
@@ -41,6 +42,7 @@ export const commandMap = {
   'Settings.getMenuEntries': getMenuEntries,
   'Settings.getName': getName,
   'Settings.handleClickFilterButton': wrapCommand(handleClickFilterButton),
+  'Settings.handleCheckboxBoxClick': wrapCommand(handleCheckboxBoxClick),
   'Settings.handleClickTab': wrapCommand(handleClickTab),
   'Settings.handleInput': wrapCommand(handleInput),
   'Settings.handleInputBlur': wrapCommand(handleInputBlur),

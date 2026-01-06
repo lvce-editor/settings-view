@@ -32,6 +32,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
       type: VirtualDomElements.Div,
     },
     {
+      checked: isChecked,
       childCount: 0,
       className: checkBoxClassName,
       id: domId,
@@ -39,7 +40,6 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
       name: id,
       onChange: DomEventListenerFunctions.HandleSettingChecked,
       type: VirtualDomElements.Input,
-      checked: isChecked,
     },
     {
       childCount: checkBoxBoxChildCount,

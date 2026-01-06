@@ -21,6 +21,7 @@ export interface SettingsState {
   readonly itemHeight: number
   readonly items: readonly SettingItem[]
   readonly maxLineY: number
+  readonly minContentWidth: number
   readonly minLineY: number
   readonly modifiedSettings: ModifiedSettings
   readonly preferences: Preferences

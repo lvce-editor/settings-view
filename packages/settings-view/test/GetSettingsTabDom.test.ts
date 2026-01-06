@@ -8,13 +8,13 @@ test('getTabVirtualDom returns expected DOM structure for normal tab', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Button,
-      className: 'Tab',
-      childCount: 1,
-      role: AriaRoles.Tab,
-      name: 'test-tab',
-      id: 'test-tab',
       ariaSelected: false,
+      childCount: 1,
+      className: 'Tab',
+      id: 'test-tab',
+      name: 'test-tab',
+      role: AriaRoles.Tab,
+      type: VirtualDomElements.Button,
     },
     text('Test Tab'),
   ]
@@ -28,13 +28,13 @@ test('getTabVirtualDom returns expected DOM structure for selected tab', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Button,
-      className: 'Tab TabSelected',
-      childCount: 1,
-      role: AriaRoles.Tab,
-      name: 'selected-tab',
-      id: 'selected-tab',
       ariaSelected: true,
+      childCount: 1,
+      className: 'Tab TabSelected',
+      id: 'selected-tab',
+      name: 'selected-tab',
+      role: AriaRoles.Tab,
+      type: VirtualDomElements.Button,
     },
     text('Test Tab'),
   ]
@@ -48,13 +48,13 @@ test('getTabVirtualDom handles empty string', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Button,
-      className: 'Tab',
-      childCount: 1,
-      role: AriaRoles.Tab,
-      name: 'empty-tab',
-      id: 'empty-tab',
       ariaSelected: false,
+      childCount: 1,
+      className: 'Tab',
+      id: 'empty-tab',
+      name: 'empty-tab',
+      role: AriaRoles.Tab,
+      type: VirtualDomElements.Button,
     },
     text(''),
   ]
@@ -68,13 +68,13 @@ test('getTabVirtualDom handles special characters', () => {
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Button,
-      className: 'Tab',
-      childCount: 1,
-      role: AriaRoles.Tab,
-      name: 'special-tab',
-      id: 'special-tab',
       ariaSelected: false,
+      childCount: 1,
+      className: 'Tab',
+      id: 'special-tab',
+      name: 'special-tab',
+      role: AriaRoles.Tab,
+      type: VirtualDomElements.Button,
     },
     text('Tab with & special chars < > " \''),
   ]

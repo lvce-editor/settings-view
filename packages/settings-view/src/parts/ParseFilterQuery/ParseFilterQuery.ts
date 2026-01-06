@@ -2,9 +2,9 @@ import type { ParsedFilterQuery } from '../ParsedFilterQuery/ParsedFilterQuery.t
 
 export const parseFilterQuery = (searchValue: string): ParsedFilterQuery => {
   return {
-    query: searchValue,
-    modified: false,
     id: '',
     language: '',
+    modified: false,
+    query: searchValue,
   }
 }

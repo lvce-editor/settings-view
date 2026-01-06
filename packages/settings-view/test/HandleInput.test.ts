@@ -75,28 +75,28 @@ test('handleInput updates filteredItems when search value changes', () => {
     ...state,
     items: [
       {
-        id: 'fontSize',
-        heading: 'Font Size',
+        category: InputName.TextEditorTab,
         description: 'The font size of the editor',
+        heading: 'Font Size',
+        id: 'fontSize',
         type: SettingItemType.Number,
         value: '15px',
-        category: InputName.TextEditorTab,
       },
       {
-        id: 'fontFamily',
-        heading: 'Font Family',
+        category: InputName.TextEditorTab,
         description: 'The font family of the editor',
+        heading: 'Font Family',
+        id: 'fontFamily',
         type: SettingItemType.String,
         value: 'Monaco',
-        category: InputName.TextEditorTab,
       },
       {
-        id: 'theme',
-        heading: 'Theme',
+        category: InputName.TextEditorTab,
         description: 'The color theme of the workbench',
+        heading: 'Theme',
+        id: 'theme',
         type: SettingItemType.String,
         value: 'Dark',
-        category: InputName.TextEditorTab,
       },
     ],
     tabs: [
@@ -121,17 +121,17 @@ test('handleInput resets scroll to top when filtering', () => {
   const stateWithItems = {
     ...state,
     deltaY: 200,
-    scrollOffset: 200,
     height: 100,
     itemHeight: 100,
     items: Array.from({ length: 50 }, (_, i) => ({
-      id: `id-${i}`,
-      heading: `Item ${i}`,
+      category: InputName.TextEditorTab,
       description: `Desc ${i}`,
+      heading: `Item ${i}`,
+      id: `id-${i}`,
       type: SettingItemType.String,
       value: String(i),
-      category: InputName.TextEditorTab,
     })),
+    scrollOffset: 200,
     tabs: [
       {
         id: InputName.TextEditorTab,
@@ -155,12 +155,12 @@ test('handleInput filters across all items, not only visible ones', () => {
     height: 100,
     itemHeight: 100,
     items: Array.from({ length: 100 }, (_, i) => ({
-      id: `id-${i}`,
-      heading: `Category ${Math.floor(i / 10)} - Setting ${i}`,
+      category: InputName.TextEditorTab,
       description: `Desc ${i}`,
+      heading: `Category ${Math.floor(i / 10)} - Setting ${i}`,
+      id: `id-${i}`,
       type: SettingItemType.String,
       value: String(i),
-      category: InputName.TextEditorTab,
     })),
     tabs: [
       {
@@ -184,20 +184,20 @@ test('handleInput clears filteredItems when search value is empty', () => {
     ...state,
     items: [
       {
-        id: 'fontSize',
-        heading: 'Font Size',
+        category: InputName.TextEditorTab,
         description: 'The font size of the editor',
+        heading: 'Font Size',
+        id: 'fontSize',
         type: SettingItemType.Number,
         value: '15px',
-        category: InputName.TextEditorTab,
       },
       {
-        id: 'theme',
-        heading: 'Theme',
+        category: InputName.TextEditorTab,
         description: 'The color theme of the workbench',
+        heading: 'Theme',
+        id: 'theme',
         type: SettingItemType.String,
         value: 'Dark',
-        category: InputName.TextEditorTab,
       },
     ],
     tabs: [

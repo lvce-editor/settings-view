@@ -17,9 +17,9 @@ export const getHighlightedTextDom = (content: string, searchValue: string): rea
   return [
     before ? text(before) : [],
     {
-      type: VirtualDomElements.Span,
-      className: ClassNames.Highlight,
       childCount: 1,
+      className: ClassNames.Highlight,
+      type: VirtualDomElements.Span,
     },
     text(match),
     after ? text(after) : [],

@@ -49,12 +49,12 @@ test.skip('diff returns both RenderFocus and RenderItems when both conditions ar
     breakPointsExpanded: true,
     breakPointsVisible: false,
     focus: 5,
+    height: 800,
     id: 2,
     uri: 'different://uri',
+    width: 1200,
     x: 100,
     y: 200,
-    width: 1200,
-    height: 800,
   }
 
   const result = diff(oldState, newState)
@@ -122,15 +122,15 @@ test.skip('diff returns RenderSettingValues when filteredItems change', () => {
     ...createDefaultState(),
     filteredItems: [
       {
-        id: 'fontSize',
-        heading: 'Font Size',
-        description: 'Font size description',
-        type: SettingItemType.Number,
-        value: '15',
         category: 'editor',
-        modified: false,
+        description: 'Font size description',
         errorMessage: '',
         hasError: false,
+        heading: 'Font Size',
+        id: 'fontSize',
+        modified: false,
+        type: SettingItemType.Number,
+        value: '15',
       },
     ],
   }

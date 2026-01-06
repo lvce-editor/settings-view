@@ -7,32 +7,34 @@ import type { Tab } from '../Tab/Tab.ts'
 export interface SettingsState {
   readonly breakPointsExpanded: boolean
   readonly breakPointsVisible: boolean
+  readonly deltaY: number
   readonly filteredItems: readonly DisplaySettingItem[]
   readonly filteredItemsCount: number
   readonly focus: number
   readonly focusSource: number
-  readonly deltaY: number
   readonly height: number
-  readonly itemHeight: number
+  readonly highlightsEnabled: boolean
   readonly history: readonly string[]
   readonly historyIndex: number
   readonly id: number
   readonly inputSource: number
+  readonly itemHeight: number
   readonly items: readonly SettingItem[]
   readonly maxLineY: number
   readonly minLineY: number
   readonly modifiedSettings: ModifiedSettings
   readonly preferences: Preferences
-  readonly scrollOffset: number
+  readonly scrollBarMinHeight: number
   readonly scrollBarThumbHeight: number
   readonly scrollBarThumbTop: number
-  readonly scrollBarMinHeight: number
+  readonly scrollOffset: number
   readonly searchValue: string
+  readonly sideBarMinWidth: number
+  readonly sideBarWidth: number
   readonly tabs: readonly Tab[]
-  readonly visibleItems: readonly DisplaySettingItem[]
   readonly uri: string
+  readonly visibleItems: readonly DisplaySettingItem[]
   readonly width: number
   readonly x: number
   readonly y: number
-  readonly highlightsEnabled: boolean
 }

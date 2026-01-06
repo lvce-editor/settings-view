@@ -8,12 +8,12 @@ import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.t
 
 test('handleSettingInput converts string to number for number-type settings', () => {
   const numberSetting: SettingItem = {
-    id: 'editor.fontSize',
-    heading: 'Font Size',
+    category: 'editor',
     description: 'Font size',
+    heading: 'Font Size',
+    id: 'editor.fontSize',
     type: SettingItemType.Number,
     value: 15,
-    category: 'editor',
   }
 
   const state: SettingsState = {
@@ -29,12 +29,12 @@ test('handleSettingInput converts string to number for number-type settings', ()
 
 test('handleSettingInput keeps string values for string-type settings', () => {
   const stringSetting: SettingItem = {
-    id: 'editor.fontFamily',
-    heading: 'Font Family',
+    category: 'editor',
     description: 'Font family',
+    heading: 'Font Family',
+    id: 'editor.fontFamily',
     type: SettingItemType.String,
     value: 'Fira Code',
-    category: 'editor',
   }
 
   const state: SettingsState = {
@@ -50,12 +50,12 @@ test('handleSettingInput keeps string values for string-type settings', () => {
 
 test('handleSettingInput handles empty string for number settings', () => {
   const numberSetting: SettingItem = {
-    id: 'editor.fontSize',
-    heading: 'Font Size',
+    category: 'editor',
     description: 'Font size',
+    heading: 'Font Size',
+    id: 'editor.fontSize',
     type: SettingItemType.Number,
     value: 15,
-    category: 'editor',
   }
 
   const state: SettingsState = {

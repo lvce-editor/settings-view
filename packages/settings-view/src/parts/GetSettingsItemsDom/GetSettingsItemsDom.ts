@@ -11,9 +11,9 @@ export const getSettingsItemsDom = (items: readonly DisplaySettingItem[], search
   }
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItems,
       childCount: items.length,
+      className: ClassNames.SettingsItems,
+      type: VirtualDomElements.Div,
     },
     ...items.flatMap(getItemVirtualDom),
   ]

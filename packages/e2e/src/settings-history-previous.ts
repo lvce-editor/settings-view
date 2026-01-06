@@ -4,12 +4,12 @@ export const name = 'settings.history-previous'
 
 export const skip = 1
 
-export const test: Test = async ({ Main, Locator, expect, Command }) => {
+export const test: Test = async ({ Command, expect, Locator, SettingsView }) => {
   // arrange
-  await Main.openUri('settings://') // TODO add page object
+  await SettingsView.show()
   await Command.execute('Settings.clearHistory')
-  await Command.execute('Settings.handleInput', 'font family', 2) // TODO page object
-  await Command.execute('Settings.handleInput', 'font size', 2) // TODO page object
+  await SettingsView.handleInput('font family')
+  await SettingsView.handleInput('font size')
 
   // act
   await Command.execute('Settings.usePreviousSearchValue') // TODO page object

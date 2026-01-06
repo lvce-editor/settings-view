@@ -9,6 +9,9 @@ import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
 import { handleInputBlur } from '../HandleInputBlur/HandleInputBlur.ts'
 import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
+import { handleResizerPointerDown } from '../HandleResizerPointerDown/HandleResizerPointerDown.ts'
+import { handleResizerPointerMove } from '../HandleResizerPointerMove/HandleResizerPointerMove.ts'
+import { handleResizerPointerUp } from '../HandleResizerPointerUp/HandleResizerPointerUp.ts'
 import { handleScroll } from '../HandleScroll/HandleScroll.ts'
 import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
 import { handleSettingInput } from '../HandleSettingInput/HandleSettingInput.ts'
@@ -31,17 +34,21 @@ export const commandMap = {
   'Settings.clearHistory': wrapCommand(clearHistory),
   'Settings.create': Create.create,
   'Settings.diff2': Diff2.diff2,
-  'Settings.getName': getName,
   'Settings.getCommandIds': getCommandIds,
+  'Settings.getKeyBindings': getKeyBindings,
+  'Settings.getName': getName,
   'Settings.handleClickTab': wrapCommand(handleClickTab),
-  'Settings.handleInputBlur': wrapCommand(handleInputBlur),
   'Settings.handleInput': wrapCommand(handleInput),
+  'Settings.handleInputBlur': wrapCommand(handleInputBlur),
+  'Settings.handleInputFocus': wrapCommand(handleInputFocus),
+  'Settings.handleResizerPointerDown': wrapCommand(handleResizerPointerDown),
+  'Settings.handleResizerPointerMove': wrapCommand(handleResizerPointerMove),
+  'Settings.handleResizerPointerUp': wrapCommand(handleResizerPointerUp),
   'Settings.handleScroll': wrapCommand(handleScroll),
-  'Settings.handleWheel': wrapCommand(handleWheel),
   'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),
   'Settings.handleSettingInput': wrapCommand(handleSettingInput),
-  'Settings.handleInputFocus': wrapCommand(handleInputFocus),
   'Settings.handleSettingSelect': wrapCommand(handleSettingSelect),
+  'Settings.handleWheel': wrapCommand(handleWheel),
   'Settings.loadContent': wrapCommand(LoadContent.loadContent),
   'Settings.render2': render2,
   'Settings.renderActions': renderActions,
@@ -51,5 +58,4 @@ export const commandMap = {
   'Settings.terminate': terminate,
   'Settings.useNextSearchValue': wrapCommand(useNextSearchValue),
   'Settings.usePreviousSearchValue': wrapCommand(usePreviousSearchValue),
-  'Settings.getKeyBindings': getKeyBindings,
 }

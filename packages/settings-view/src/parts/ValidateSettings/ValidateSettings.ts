@@ -16,16 +16,16 @@ export const validateSettings = (
     const modified = isItemModified(item, modifiedSettings)
 
     return {
-      id: item.id,
-      heading: item.heading,
-      description: item.description,
-      type: item.type,
-      value: item.value,
       category: item.category,
-      options: item.options,
-      modified,
+      description: item.description,
       errorMessage,
       hasError,
+      heading: item.heading,
+      id: item.id,
+      modified,
+      options: item.options,
+      type: item.type,
+      value: item.value,
     }
   })
 }

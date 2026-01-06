@@ -5,13 +5,14 @@ test('restoreState returns default values when savedState is null', () => {
   const result = restoreState(null)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 0,
     deltaY: 0,
     history: [],
     historyIndex: -1,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
@@ -19,13 +20,14 @@ test('restoreState returns default values when savedState is undefined', () => {
   const result = restoreState(undefined)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 0,
     deltaY: 0,
     history: [],
     historyIndex: -1,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
@@ -33,13 +35,14 @@ test('restoreState returns default values when savedState is empty object', () =
   const result = restoreState({})
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 0,
     deltaY: 0,
     history: [],
     historyIndex: -1,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
@@ -47,13 +50,14 @@ test('restoreState returns default values when savedState is not an object', () 
   const result = restoreState('not an object')
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 0,
     deltaY: 0,
     history: [],
     historyIndex: -1,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
@@ -61,13 +65,14 @@ test('restoreState returns default values when savedState is a number', () => {
   const result = restoreState(123)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 0,
     deltaY: 0,
     history: [],
     historyIndex: -1,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
@@ -75,32 +80,34 @@ test('restoreState returns default values when savedState is a boolean', () => {
   const result = restoreState(true)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 0,
     deltaY: 0,
     history: [],
     historyIndex: -1,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
 test('restoreState extracts minLineY correctly', () => {
   const savedState = {
-    minLineY: 200,
     deltaY: 75,
+    minLineY: 200,
   }
 
   const result = restoreState(savedState)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 200,
     deltaY: 75,
     history: [],
     historyIndex: -1,
+    minLineY: 200,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
@@ -112,148 +119,156 @@ test('restoreState extracts deltaY correctly', () => {
   const result = restoreState(savedState)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 0,
     deltaY: 150,
     history: [],
     historyIndex: -1,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
 test('restoreState handles all properties correctly', () => {
   const savedState = {
-    minLineY: 300,
     deltaY: 200,
+    minLineY: 300,
   }
 
   const result = restoreState(savedState)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 300,
     deltaY: 200,
     history: [],
     historyIndex: -1,
+    minLineY: 300,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
 test('restoreState handles minLineY as non-number', () => {
   const savedState = {
-    minLineY: 'not a number',
     deltaY: 50,
+    minLineY: 'not a number',
   }
 
   const result = restoreState(savedState)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 0,
     deltaY: 50,
     history: [],
     historyIndex: -1,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
 test('restoreState handles deltaY as non-number', () => {
   const savedState = {
-    minLineY: 100,
     deltaY: 'not a number',
+    minLineY: 100,
   }
 
   const result = restoreState(savedState)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 100,
     deltaY: 0,
     history: [],
     historyIndex: -1,
+    minLineY: 100,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
 test('restoreState handles negative values', () => {
   const savedState = {
-    minLineY: -100,
     deltaY: -50,
+    minLineY: -100,
   }
 
   const result = restoreState(savedState)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: -100,
     deltaY: -50,
     history: [],
     historyIndex: -1,
+    minLineY: -100,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
 test('restoreState handles zero values', () => {
   const savedState = {
-    minLineY: 0,
     deltaY: 0,
+    minLineY: 0,
   }
 
   const result = restoreState(savedState)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 0,
     deltaY: 0,
     history: [],
     historyIndex: -1,
+    minLineY: 0,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
 test('restoreState handles large values', () => {
   const savedState = {
-    minLineY: 999_999,
     deltaY: 999_999,
+    minLineY: 999_999,
   }
 
   const result = restoreState(savedState)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 999_999,
     deltaY: 999_999,
     history: [],
     historyIndex: -1,
+    minLineY: 999_999,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
 test('restoreState handles extra properties in savedState', () => {
   const savedState = {
-    minLineY: 100,
+    anotherProperty: 123,
     deltaY: 50,
     extraProperty: 'should be ignored',
-    anotherProperty: 123,
+    minLineY: 100,
   }
 
   const result = restoreState(savedState)
 
   expect(result).toEqual({
-    tabId: '',
-    searchValue: '',
-    scrollOffset: 0,
-    minLineY: 100,
     deltaY: 50,
     history: [],
     historyIndex: -1,
+    minLineY: 100,
+    scrollOffset: 0,
+    searchValue: '',
+    sideBarWidth: 200,
+    tabId: '',
   })
 })
 
@@ -327,4 +342,24 @@ test('restoreState handles history as non-array', () => {
 
   expect(result.history).toEqual([])
   expect(result.historyIndex).toBe(-1)
+})
+
+test('restoreState extracts sideBarWidth correctly', () => {
+  const savedState = {
+    sideBarWidth: 300,
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.sideBarWidth).toBe(300)
+})
+
+test('restoreState handles sideBarWidth as non-number', () => {
+  const savedState = {
+    sideBarWidth: 'not a number',
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.sideBarWidth).toBe(200)
 })

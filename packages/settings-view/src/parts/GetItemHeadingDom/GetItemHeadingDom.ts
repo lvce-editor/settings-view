@@ -3,9 +3,9 @@ import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 
 const parent: VirtualDomNode = {
-  type: VirtualDomElements.H3,
-  className: ClassNames.SettingsItemHeading,
   childCount: 1,
+  className: ClassNames.SettingsItemHeading,
+  type: VirtualDomElements.H3,
 }
 
 export const getItemHeadingDom = (heading: string): readonly VirtualDomNode[] => {

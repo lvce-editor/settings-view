@@ -12,18 +12,18 @@ test('getSettingsInputButtonsDom returns enabled button when hasSearchValue is t
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Button,
-      className: `${ClassNames.SearchFieldButton}`,
-      childCount: 1,
       ariaLabel: SettingStrings.clear(),
-      name: InputName.Clear,
+      childCount: 1,
+      className: `${ClassNames.SearchFieldButton}`,
       disabled: false,
+      name: InputName.Clear,
       onClick: DomEventListenerFunctions.HandleClickClear,
+      type: VirtualDomElements.Button,
     },
     {
-      type: VirtualDomElements.Div,
-      className: `${ClassNames.MaskIcon} ${ClassNames.MaskIconClearAll}`,
       childCount: 0,
+      className: `${ClassNames.MaskIcon} ${ClassNames.MaskIconClearAll}`,
+      type: VirtualDomElements.Div,
     },
   ]
 
@@ -36,18 +36,18 @@ test('getSettingsInputButtonsDom returns disabled button when hasSearchValue is 
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Button,
-      className: `${ClassNames.SearchFieldButton} SearchFieldButtonDisabled`,
-      childCount: 1,
       ariaLabel: SettingStrings.clear(),
-      name: InputName.Clear,
+      childCount: 1,
+      className: `${ClassNames.SearchFieldButton} SearchFieldButtonDisabled`,
       disabled: true,
+      name: InputName.Clear,
       onClick: DomEventListenerFunctions.HandleClickClear,
+      type: VirtualDomElements.Button,
     },
     {
-      type: VirtualDomElements.Div,
-      className: `${ClassNames.MaskIcon} ${ClassNames.MaskIconClearAll}`,
       childCount: 0,
+      className: `${ClassNames.MaskIcon} ${ClassNames.MaskIconClearAll}`,
+      type: VirtualDomElements.Div,
     },
   ]
 

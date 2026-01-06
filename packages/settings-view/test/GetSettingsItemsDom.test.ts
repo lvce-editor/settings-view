@@ -9,15 +9,15 @@ import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 test('getSettingsItemsDom returns items when items array is not empty', () => {
   const items: readonly DisplaySettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
-      description: 'The font size of the editor',
-      type: SettingItemType.Number,
-      value: '15px',
       category: InputName.TextEditorTab,
-      modified: false,
+      description: 'The font size of the editor',
       errorMessage: '',
       hasError: false,
+      heading: 'Font Size',
+      id: 'fontSize',
+      modified: false,
+      type: SettingItemType.Number,
+      value: '15px',
     },
   ]
   const searchValue = ''
@@ -26,9 +26,9 @@ test('getSettingsItemsDom returns items when items array is not empty', () => {
 
   expect(result).toHaveLength(7) // 1 container div + 6 item elements
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: 'SettingsItems',
     childCount: 1,
+    className: 'SettingsItems',
+    type: VirtualDomElements.Div,
   })
 })
 
@@ -40,14 +40,14 @@ test('getSettingsItemsDom shows no settings matching message when items is empty
 
   expect(result).toHaveLength(3)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: 'SettingsItems',
     childCount: 1,
+    className: 'SettingsItems',
+    type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.P,
-    className: 'SettingsNoResults',
     childCount: 1,
+    className: 'SettingsNoResults',
+    type: VirtualDomElements.P,
   })
   expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
 })
@@ -60,9 +60,9 @@ test('getSettingsItemsDom shows items when items is empty but search value is em
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: 'SettingsItems',
     childCount: 0,
+    className: 'SettingsItems',
+    type: VirtualDomElements.Div,
   })
 })
 
@@ -74,9 +74,9 @@ test('getSettingsItemsDom shows items when items is empty but search value is on
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: 'SettingsItems',
     childCount: 0,
+    className: 'SettingsItems',
+    type: VirtualDomElements.Div,
   })
 })
 
@@ -86,8 +86,19 @@ test('getSettingsItemsDom shows no settings matching message with special charac
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom shows no settings matching message with unicode characters in search term', () => {
@@ -96,8 +107,19 @@ test('getSettingsItemsDom shows no settings matching message with unicode charac
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom shows no settings matching message with very long search term', () => {
@@ -106,8 +128,19 @@ test('getSettingsItemsDom shows no settings matching message with very long sear
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom shows no settings matching message with single character search term', () => {
@@ -116,33 +149,44 @@ test('getSettingsItemsDom shows no settings matching message with single charact
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom handles multiple items correctly', () => {
   const items: readonly DisplaySettingItem[] = [
     {
-      id: 'fontSize',
-      heading: 'Font Size',
+      category: InputName.TextEditorTab,
       description: 'The font size of the editor',
+      errorMessage: '',
+      hasError: false,
+      heading: 'Font Size',
+      id: 'fontSize',
+      modified: false,
       type: SettingItemType.Number,
       value: '15px',
-      category: InputName.TextEditorTab,
-      modified: false,
-      errorMessage: '',
-      hasError: false,
     },
     {
-      id: 'fontFamily',
-      heading: 'Font Family',
-      description: 'The font family of the editor',
-      type: SettingItemType.String,
-      value: 'monospace',
       category: InputName.TextEditorTab,
-      modified: false,
+      description: 'The font family of the editor',
       errorMessage: '',
       hasError: false,
+      heading: 'Font Family',
+      id: 'fontFamily',
+      modified: false,
+      type: SettingItemType.String,
+      value: 'monospace',
     },
   ]
   const searchValue = ''
@@ -151,9 +195,9 @@ test('getSettingsItemsDom handles multiple items correctly', () => {
 
   expect(result).toHaveLength(13) // 1 container div + 12 item elements (6 per item)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: 'SettingsItems',
     childCount: 2,
+    className: 'SettingsItems',
+    type: VirtualDomElements.Div,
   })
 })
 
@@ -165,9 +209,9 @@ test('getSettingsItemsDom handles null-like search values', () => {
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: 'SettingsItems',
     childCount: 0,
+    className: 'SettingsItems',
+    type: VirtualDomElements.Div,
   })
 })
 
@@ -179,9 +223,9 @@ test('getSettingsItemsDom handles undefined-like search values', () => {
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: 'SettingsItems',
     childCount: 0,
+    className: 'SettingsItems',
+    type: VirtualDomElements.Div,
   })
 })
 
@@ -191,8 +235,19 @@ test('getSettingsItemsDom handles search value with leading and trailing whitesp
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })
 
 test('getSettingsItemsDom handles search value with newlines and tabs', () => {
@@ -201,6 +256,17 @@ test('getSettingsItemsDom handles search value with newlines and tabs', () => {
 
   const result = getSettingsItemsDom(items, searchValue)
 
-  expect(result).toHaveLength(3)
-  expect(result[2]).toEqual(text(SettingStrings.noSettingsMatching(searchValue)))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: 'SettingsItems',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsNoResults',
+      type: VirtualDomElements.P,
+    },
+    text(SettingStrings.noSettingsMatching(searchValue)),
+  ])
 })

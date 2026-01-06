@@ -6,10 +6,10 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getItemUnknownVirtualDom = (): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItem,
       childCount: 1,
+      className: ClassNames.SettingsItem,
       role: AriaRoles.Group,
+      type: VirtualDomElements.Div,
     },
     text(SettingStrings.unknownSettingType()),
   ]

@@ -10,9 +10,9 @@ export const getSettingsInputBadgeDom = (filteredSettingsCount: number, hasSearc
   const badgeText = matchingSettings(filteredSettingsCount)
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Badge,
       childCount: 1,
+      className: ClassNames.InputBadge,
+      type: VirtualDomElements.Div,
     },
     text(badgeText),
   ]

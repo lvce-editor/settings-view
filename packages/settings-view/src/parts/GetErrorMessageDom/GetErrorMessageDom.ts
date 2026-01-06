@@ -8,9 +8,9 @@ export const getErrorMessageDom = (errorMessage: string): readonly VirtualDomNod
   }
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ErrorMessage,
       childCount: 1,
+      className: ClassNames.ErrorMessage,
+      type: VirtualDomElements.Div,
     },
     text(errorMessage),
   ]

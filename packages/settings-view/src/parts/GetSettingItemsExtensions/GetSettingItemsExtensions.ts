@@ -6,20 +6,20 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getSettingItemsExtensions = (): readonly SettingItem[] => {
   return [
     {
-      id: 'extensionsAutoUpdate',
-      heading: SettingStrings.autoUpdateExtensions(),
+      category: InputName.ExtensionsTab,
       description: SettingStrings.autoUpdateExtensionsDescription(),
+      heading: SettingStrings.autoUpdateExtensions(),
+      id: 'extensionsAutoUpdate',
       type: SettingItemType.Boolean,
       value: 'true',
-      category: InputName.ExtensionsTab,
     },
     {
-      id: 'extensionRecommendations',
-      heading: SettingStrings.extensionRecommendations(),
+      category: InputName.ExtensionsTab,
       description: SettingStrings.extensionRecommendationsDescription(),
+      heading: SettingStrings.extensionRecommendations(),
+      id: 'extensionRecommendations',
       type: SettingItemType.Boolean,
       value: 'true',
-      category: InputName.ExtensionsTab,
     },
   ]
 }

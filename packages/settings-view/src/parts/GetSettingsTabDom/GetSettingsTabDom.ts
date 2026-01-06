@@ -7,13 +7,13 @@ export const getTabVirtualDom = (tab: Tab): readonly VirtualDomNode[] => {
   const className = getTabClassName(tab)
   return [
     {
-      type: VirtualDomElements.Button,
-      className,
-      childCount: 1,
-      role: AriaRoles.Tab,
-      name: tab.id,
-      id: tab.id,
       ariaSelected: tab.selected,
+      childCount: 1,
+      className,
+      id: tab.id,
+      name: tab.id,
+      role: AriaRoles.Tab,
+      type: VirtualDomElements.Button,
     },
     text(tab.label),
   ]

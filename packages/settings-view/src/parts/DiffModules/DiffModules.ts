@@ -5,7 +5,19 @@ import * as DiffSettingValues from '../DiffSettingValues/DiffSettingValues.ts'
 import * as DiffType from '../DiffType/DiffType.ts'
 import * as DiffValue from '../DiffValue/DiffValue.ts'
 
+<<<<<<< HEAD
 export const modules = [DiffItems.isEqual, DiffValue.isEqual, DiffSettingValues.isEqual, DiffFocus.isEqual, DiffFocus.isEqual, DiffCss.isEqual]
+=======
+export const modules = [
+  DiffItems.isEqual,
+  DiffValue.isEqual,
+  DiffSettingValues.isEqual,
+  DiffScrollOffset.isEqual,
+  DiffFocus.isEqual,
+  DiffFocus.isEqual,
+  DiffCss.isEqual,
+]
+>>>>>>> origin/main
 
 export const numbers = [
   DiffType.RenderItems,

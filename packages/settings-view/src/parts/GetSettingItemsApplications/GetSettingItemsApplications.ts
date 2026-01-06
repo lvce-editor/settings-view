@@ -6,20 +6,20 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getSettingItemsApplications = (): readonly SettingItem[] => {
   return [
     {
-      id: 'telemetry',
-      heading: SettingStrings.telemetry(),
+      category: InputName.ApplicationsTab,
       description: SettingStrings.telemetryDescription(),
+      heading: SettingStrings.telemetry(),
+      id: 'telemetry',
       type: SettingItemType.Boolean,
       value: 'true',
-      category: InputName.ApplicationsTab,
     },
     {
-      id: 'updates',
-      heading: SettingStrings.autoUpdates(),
+      category: InputName.ApplicationsTab,
       description: SettingStrings.autoUpdatesDescription(),
+      heading: SettingStrings.autoUpdates(),
+      id: 'updates',
       type: SettingItemType.Boolean,
       value: 'true',
-      category: InputName.ApplicationsTab,
     },
   ]
 }

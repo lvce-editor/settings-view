@@ -9,34 +9,34 @@ import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 
 export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
-  const { heading, description, id, modified, hasError, errorMessage } = item
+  const { description, errorMessage, hasError, heading, id, modified } = item
   const domId = getInputId(id)
   const checkBoxClassName = hasError ? `${ClassNames.CheckBox} ${ClassNames.InputBoxError}` : ClassNames.CheckBox
   const errorChildCount = hasError ? 1 : 0
 
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItem,
       childCount: 2 + errorChildCount,
-      role: AriaRoles.Group,
+      className: ClassNames.SettingsItem,
       'data-modified': modified,
+      role: AriaRoles.Group,
+      type: VirtualDomElements.Div,
     },
     ...getItemHeadingDom(heading),
 
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.SettingsItemCheckBox,
       childCount: 2,
+      className: ClassNames.SettingsItemCheckBox,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Input,
-      className: checkBoxClassName,
       childCount: 0,
+      className: checkBoxClassName,
       id: domId,
       inputType: 'checkbox',
       name: id,
       onChange: DomEventListenerFunctions.HandleSettingChecked,
+      type: VirtualDomElements.Input,
     },
     ...getItemLabelDom(domId, description),
     ...getErrorMessageDom(errorMessage),

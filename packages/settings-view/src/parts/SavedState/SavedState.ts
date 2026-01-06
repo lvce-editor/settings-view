@@ -1,11 +1,12 @@
 export interface SavedState {
-  readonly minLineY: number
-  readonly maxLineY: number
   readonly deltaY: number
-  readonly searchValue: string
-  readonly selectedTab: string
-  readonly scrollOffset: number
   readonly focus: number
   readonly history: readonly string[]
   readonly historyIndex: number
+  readonly maxLineY: number
+  readonly minLineY: number
+  readonly scrollOffset: number
+  readonly searchValue: string
+  readonly selectedTab: string
+  readonly sideBarWidth: number
 }

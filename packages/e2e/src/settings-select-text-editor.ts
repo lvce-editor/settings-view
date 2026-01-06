@@ -2,9 +2,9 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.select-text-editor'
 
-export const test: Test = async ({ Main, Locator, expect, Command }) => {
+export const test: Test = async ({ Command, expect, Locator, SettingsView }) => {
   // arrange
-  await Main.openUri('settings://') // TODO add page object
+  await SettingsView.show()
 
   // act
   await Command.execute('Settings.handleClickTab', 'text-editor')

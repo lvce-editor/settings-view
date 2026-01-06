@@ -11,14 +11,14 @@ test('getSettingsHeaderDom returns correct structure with hasSearchValue true', 
 
   expect(result).toHaveLength(7)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.SettingsHeader,
     childCount: 1,
+    className: ClassNames.SettingsHeader,
+    type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Div,
-    className: mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField'),
     childCount: 3,
+    className: mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField'),
+    type: VirtualDomElements.Div,
   })
 })
 
@@ -29,14 +29,14 @@ test('getSettingsHeaderDom returns correct structure with hasSearchValue false',
 
   expect(result).toHaveLength(5)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.SettingsHeader,
     childCount: 1,
+    className: ClassNames.SettingsHeader,
+    type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Div,
-    className: mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField'),
     childCount: 2,
+    className: mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField'),
+    type: VirtualDomElements.Div,
   })
 })
 

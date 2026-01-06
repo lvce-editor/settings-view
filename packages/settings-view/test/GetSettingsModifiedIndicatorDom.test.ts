@@ -12,9 +12,9 @@ test('getSettingsModifiedIndicatorDom returns modified indicator when isModified
   const result = getSettingsModifiedIndicatorDom(true)
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ModifiedIndicator,
       childCount: 0,
+      className: ClassNames.ModifiedIndicator,
+      type: VirtualDomElements.Div,
     },
   ])
 })

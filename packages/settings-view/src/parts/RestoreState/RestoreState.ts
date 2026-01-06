@@ -5,18 +5,20 @@ import { getSavedHistoryIndex } from './GetSavedHistoryIndex.ts'
 import { getSavedMinLineY } from './GetSavedMinLineY.ts'
 import { getSavedScrollOffset } from './GetSavedScrollOffset.ts'
 import { getSavedSearchValue } from './GetSavedSearchValue.ts'
+import { getSavedSideBarWidth } from './GetSavedSideBarWidth.ts'
 import { getSavedTabId } from './GetSavedTabId.ts'
 
 export const restoreState = (savedState: unknown): RestoredState => {
   if (!savedState) {
     return {
-      minLineY: 0,
       deltaY: 0,
-      tabId: '',
-      searchValue: '',
-      scrollOffset: 0,
       history: [],
       historyIndex: -1,
+      minLineY: 0,
+      scrollOffset: 0,
+      searchValue: '',
+      sideBarWidth: 200,
+      tabId: '',
     }
   }
 
@@ -25,16 +27,18 @@ export const restoreState = (savedState: unknown): RestoredState => {
   const tabId = getSavedTabId(savedState)
   const searchValue = getSavedSearchValue(savedState)
   const scrollOffset = getSavedScrollOffset(savedState)
+  const sideBarWidth = getSavedSideBarWidth(savedState)
   const history = getSavedHistory(savedState)
   const historyIndex = getSavedHistoryIndex(savedState, history)
 
   return {
-    minLineY,
     deltaY,
-    tabId,
-    searchValue,
-    scrollOffset,
     history,
     historyIndex,
+    minLineY,
+    scrollOffset,
+    searchValue,
+    sideBarWidth,
+    tabId,
   }
 }

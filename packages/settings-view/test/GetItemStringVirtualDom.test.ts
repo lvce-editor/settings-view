@@ -1,69 +1,111 @@
 import { test, expect } from '@jest/globals'
-import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import { getInputId } from '../src/parts/GetInputId/GetInputId.ts'
 import { getItemStringVirtualDom } from '../src/parts/GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
+import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
 test('getItemStringVirtualDom returns virtual DOM without error when no validation', () => {
   const item: DisplaySettingItem = {
-    id: 'test',
-    heading: 'Test Setting',
-    description: 'Test description',
-    type: SettingItemType.String,
-    value: 'test value',
     category: 'test',
-    modified: false,
+    description: 'Test description',
     errorMessage: '',
     hasError: false,
+    heading: 'Test Setting',
+    id: 'test',
+    modified: false,
+    type: SettingItemType.String,
+    value: 'test value',
   }
   const result = getItemStringVirtualDom(item)
+  const domId = getInputId(item.id)
 
-  expect(result).toHaveLength(6) // 6 elements: div, h3, text, p, text, input
-  expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.SettingsItem,
-    childCount: 3,
-    role: AriaRoles.Group,
-  })
+  expect(result).toEqual([
+    {
+      childCount: 3,
+      className: ClassNames.SettingsItem,
+      role: AriaRoles.Group,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.SettingsItemHeading,
+      type: VirtualDomElements.H3,
+    },
+    text('Test Setting'),
+    {
+      childCount: 1,
+      className: ClassNames.Label,
+      htmlFor: domId,
+      type: VirtualDomElements.Label,
+    },
+    text('Test description'),
+    {
+      childCount: 0,
+      className: ClassNames.InputBox,
+      id: domId,
+      inputType: 'text',
+      name: 'test',
+      onInput: DomEventListenerFunctions.HandleSettingInput,
+      placeholder: SettingStrings.stringValue(),
+      type: VirtualDomElements.Input,
+    },
+  ])
 })
 
 test('getItemStringVirtualDom returns virtual DOM with error when validation fails', () => {
   const item: DisplaySettingItem = {
-    id: 'test',
-    heading: 'Test Setting',
-    description: 'Test description',
-    type: SettingItemType.String,
-    value: 'invalid value',
     category: 'test',
-    modified: false,
+    description: 'Test description',
     errorMessage: 'Invalid value provided',
     hasError: true,
+    heading: 'Test Setting',
+    id: 'test',
+    modified: false,
+    type: SettingItemType.String,
+    value: 'invalid value',
   }
   const result = getItemStringVirtualDom(item)
+  const domId = getInputId(item.id)
 
-  expect(result).toHaveLength(8) // 6 base elements + 2 error message elements
-  expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.SettingsItem,
-    childCount: 4, // Updated to include error message
-    role: AriaRoles.Group,
-  })
-  // Check that the input has error styling
-  expect(result[5]).toEqual({
-    type: VirtualDomElements.Input,
-    className: `${ClassNames.InputBox} ${ClassNames.InputBoxError}`,
-    inputType: 'text',
-    placeholder: 'string value',
-    childCount: 0,
-    id: 'test',
-    name: 'test',
-    onInput: 'handleSettingInput',
-  })
-  // Check that error message is present
-  expect(result[6]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.ErrorMessage,
-    childCount: 1,
-  })
+  expect(result).toEqual([
+    {
+      childCount: 4,
+      className: ClassNames.SettingsItem,
+      role: AriaRoles.Group,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.SettingsItemHeading,
+      type: VirtualDomElements.H3,
+    },
+    text('Test Setting'),
+    {
+      childCount: 1,
+      className: ClassNames.Label,
+      htmlFor: domId,
+      type: VirtualDomElements.Label,
+    },
+    text('Test description'),
+    {
+      childCount: 0,
+      className: `${ClassNames.InputBox} ${ClassNames.InputBoxError}`,
+      id: domId,
+      inputType: 'text',
+      name: 'test',
+      onInput: DomEventListenerFunctions.HandleSettingInput,
+      placeholder: SettingStrings.stringValue(),
+      type: VirtualDomElements.Input,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.ErrorMessage,
+      type: VirtualDomElements.Div,
+    },
+    text('Invalid value provided'),
+  ])
 })

@@ -7,12 +7,13 @@ import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 test('getItemUnknownVirtualDom returns correct virtual DOM structure', () => {
   const result = getItemUnknownVirtualDom()
 
-  expect(result).toHaveLength(2)
-  expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.SettingsItem,
-    childCount: 1,
-    role: AriaRoles.Group,
-  })
-  expect(result[1]).toEqual(text(SettingStrings.unknownSettingType()))
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.SettingsItem,
+      role: AriaRoles.Group,
+      type: VirtualDomElements.Div,
+    },
+    text(SettingStrings.unknownSettingType()),
+  ])
 })

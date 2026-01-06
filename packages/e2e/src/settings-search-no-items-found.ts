@@ -2,12 +2,12 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.search-no-items-found'
 
-export const test: Test = async ({ Main, Locator, expect, Command }) => {
+export const test: Test = async ({ expect, Locator, SettingsView }) => {
   // arrange
-  await Main.openUri('settings://') // TODO add page object
+  await SettingsView.show()
 
   // act
-  await Command.execute('Settings.handleInput', 'abcdefgh', 2) // TODO page object
+  await SettingsView.handleInput('abcdefgh')
 
   // assert
   const noResultsMessage = Locator('.SettingsNoResults')

@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetSettingsInputBadgeDom from '../src/parts/GetSettingsInputBadgeDom/GetSettingsInputBadgeDom.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
@@ -9,17 +9,14 @@ test('getSettingsInputBadgeDom returns correct virtual DOM structure when search
   const hasSearchValue = true
   const result = GetSettingsInputBadgeDom.getSettingsInputBadgeDom(filteredSettingsCount, hasSearchValue)
 
-  expect(result).toHaveLength(2)
-  expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.Badge,
-    childCount: 1,
-  })
-  expect(result[1]).toEqual({
-    type: VirtualDomElements.Text,
-    text: SettingStrings.matchingSettings(filteredSettingsCount),
-    childCount: 0,
-  })
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.InputBadge,
+      type: VirtualDomElements.Div,
+    },
+    text(SettingStrings.matchingSettings(filteredSettingsCount)),
+  ])
 })
 
 test('getSettingsInputBadgeDom returns empty array when search value is empty', () => {
@@ -43,17 +40,14 @@ test('getSettingsInputBadgeDom with zero count when search value is set', () => 
   const hasSearchValue = true
   const result = GetSettingsInputBadgeDom.getSettingsInputBadgeDom(filteredSettingsCount, hasSearchValue)
 
-  expect(result).toHaveLength(2)
-  expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.Badge,
-    childCount: 1,
-  })
-  expect(result[1]).toEqual({
-    type: VirtualDomElements.Text,
-    text: SettingStrings.matchingSettings(filteredSettingsCount),
-    childCount: 0,
-  })
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.InputBadge,
+      type: VirtualDomElements.Div,
+    },
+    text(SettingStrings.matchingSettings(filteredSettingsCount)),
+  ])
 })
 
 test('getSettingsInputBadgeDom with large count when search value is set', () => {
@@ -61,15 +55,12 @@ test('getSettingsInputBadgeDom with large count when search value is set', () =>
   const hasSearchValue = true
   const result = GetSettingsInputBadgeDom.getSettingsInputBadgeDom(filteredSettingsCount, hasSearchValue)
 
-  expect(result).toHaveLength(2)
-  expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.Badge,
-    childCount: 1,
-  })
-  expect(result[1]).toEqual({
-    type: VirtualDomElements.Text,
-    text: SettingStrings.matchingSettings(filteredSettingsCount),
-    childCount: 0,
-  })
+  expect(result).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.InputBadge,
+      type: VirtualDomElements.Div,
+    },
+    text(SettingStrings.matchingSettings(filteredSettingsCount)),
+  ])
 })

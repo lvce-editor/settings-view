@@ -7,19 +7,19 @@ import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.t
 
 test('getItemSelectVirtualDom returns virtual DOM with error when validation fails', () => {
   const item: DisplaySettingItem = {
-    id: 'test',
-    heading: 'Test Select Setting',
-    description: 'Test select description',
-    type: SettingItemType.Enum,
-    value: 'invalid_option',
     category: 'test',
+    description: 'Test select description',
+    errorMessage: 'Please select a valid option',
+    hasError: true,
+    heading: 'Test Select Setting',
+    id: 'test',
+    modified: false,
     options: [
       { id: 'option1', label: 'Option 1' },
       { id: 'option2', label: 'Option 2' },
     ],
-    modified: false,
-    errorMessage: 'Please select a valid option',
-    hasError: true,
+    type: SettingItemType.Enum,
+    value: 'invalid_option',
   }
   const result = getItemSelectVirtualDom(item)
 

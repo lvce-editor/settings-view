@@ -27,7 +27,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     scrollBarThumbTop: 0,
     scrollOffset: 0,
     searchValue: '',
-    sideBarWidth: 200,
+    sideBarWidth: 0,
     tabs: [],
     uri,
     visibleItems: [],

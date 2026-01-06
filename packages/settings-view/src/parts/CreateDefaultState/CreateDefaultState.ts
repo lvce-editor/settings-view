@@ -26,6 +26,7 @@ export const createDefaultState = (): SettingsState => {
     scrollBarThumbTop: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarMinWidth: 100,
     sideBarWidth: 200,
     tabs: [],
     uri: 'test://uri',

@@ -5,6 +5,7 @@ import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries } from '../GetMenuEntries/GetMenuEntries.ts'
+import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
 import { getName } from '../GetName/GetName.ts'
 import { handleClickFilterButton } from '../HandleClickFilterButton/HandleClickFilterButton.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
@@ -39,6 +40,7 @@ export const commandMap = {
   'Settings.getCommandIds': getCommandIds,
   'Settings.getKeyBindings': getKeyBindings,
   'Settings.getMenuEntries': getMenuEntries,
+  'Settings.getMenuIds': getMenuIds,
   'Settings.getName': getName,
   'Settings.handleClickFilterButton': wrapCommand(handleClickFilterButton),
   'Settings.handleClickTab': wrapCommand(handleClickTab),

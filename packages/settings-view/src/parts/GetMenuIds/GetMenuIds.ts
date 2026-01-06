@@ -1,5 +1,5 @@
-import { getMenuEntries } from '../GetMenuEntries/GetMenuEntries.ts'
+import { MenuEntryId } from '@lvce-editor/constants'
 
-export const getMenuIds = (): readonly string[] => {
-  return getMenuEntries().map((entry) => entry.id)
+export const getMenuIds = (): readonly number[] => {
+  return [MenuEntryId.SettingsFilter]
 }

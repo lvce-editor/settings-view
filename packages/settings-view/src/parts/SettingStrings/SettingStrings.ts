@@ -1078,3 +1078,44 @@ export const wrappingIndentDescription = (): string => {
 export const unknownSettingType = (): string => {
   return I18NString.i18nString(UiStrings.UnknownSettingType)
 }
+
+// Menu Entry Labels
+export const advanced = (): string => {
+  return I18NString.i18nString(UiStrings.Advanced)
+}
+
+export const experimental = (): string => {
+  return I18NString.i18nString(UiStrings.Experimental)
+}
+
+export const extensionId = (): string => {
+  return I18NString.i18nString(UiStrings.ExtensionId)
+}
+
+export const feature = (): string => {
+  return I18NString.i18nString(UiStrings.Feature)
+}
+
+export const language = (): string => {
+  return I18NString.i18nString(UiStrings.Language)
+}
+
+export const modified = (): string => {
+  return I18NString.i18nString(UiStrings.Modified)
+}
+
+export const preview = (): string => {
+  return I18NString.i18nString(UiStrings.Preview)
+}
+
+export const settingId = (): string => {
+  return I18NString.i18nString(UiStrings.SettingId)
+}
+
+export const stable = (): string => {
+  return I18NString.i18nString(UiStrings.Stable)
+}
+
+export const tag = (): string => {
+  return I18NString.i18nString(UiStrings.Tag)
+}

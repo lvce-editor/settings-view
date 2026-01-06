@@ -2,12 +2,12 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.select-text-editor'
 
-export const test: Test = async ({ Command, expect, Locator, SettingsView }) => {
+export const test: Test = async ({ expect, Locator, SettingsView }) => {
   // arrange
   await SettingsView.show()
 
   // act
-  await Command.execute('Settings.handleClickTab', 'text-editor')
+  await SettingsView.selectTextEditor()
 
   // assert
   const heading = Locator('.SettingsContentHeading')

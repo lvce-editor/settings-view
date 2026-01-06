@@ -11,7 +11,11 @@ test('getCss returns correct CSS with normal width', () => {
   --SettingsSideBarWidth: 250px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `,
   )
@@ -27,7 +31,11 @@ test('getCss returns correct CSS with zero width', () => {
   --SettingsSideBarWidth: 0px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `,
   )
@@ -43,7 +51,11 @@ test('getCss returns correct CSS with large width', () => {
   --SettingsSideBarWidth: 1000px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `,
   )
@@ -56,10 +68,14 @@ test('getCss returns correct CSS with decimal width', () => {
   expect(result).toBe(
     `
 .Settings {
-  --SettingsSideBarWidth: 250.5px;
+  --SettingsSideBarWidth: 251px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `,
   )
@@ -75,7 +91,11 @@ test('getCss returns correct CSS with negative width', () => {
   --SettingsSideBarWidth: -100px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `,
   )
@@ -86,7 +106,7 @@ test('getCss includes SettingsResizer style', () => {
   const result = getCss(sideBarWidth)
 
   expect(result).toContain('.SettingsResizer')
-  expect(result).toContain('color: yellow;')
+  expect(result).toContain('background: yellow;')
 })
 
 test('getCss includes Settings class with custom property', () => {

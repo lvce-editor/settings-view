@@ -1,8 +1,17 @@
-import { test, expect } from '@jest/globals'
+import { test, expect, beforeAll, afterAll } from '@jest/globals'
 import { ViewletCommand } from '@lvce-editor/constants'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { renderCss } from '../src/parts/RenderCss/RenderCss.ts'
+
+const originalConsoleLog = console.log
+beforeAll(() => {
+  console.log = () => {}
+})
+
+afterAll(() => {
+  console.log = originalConsoleLog
+})
 
 test('renderCss returns correct ViewletCommand with default state', () => {
   const oldState: SettingsState = createDefaultState()
@@ -18,7 +27,11 @@ test('renderCss returns correct ViewletCommand with default state', () => {
   --SettingsSideBarWidth: ${newState.sideBarWidth}px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `,
   )
@@ -45,7 +58,11 @@ test('renderCss uses sideBarWidth from newState', () => {
   --SettingsSideBarWidth: 300px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `,
   )

@@ -8,7 +8,10 @@ const parentNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
-export const getScrollBarDom = (): readonly VirtualDomNode[] => {
+export const getScrollBarDom = (visible: boolean): readonly VirtualDomNode[] => {
+  if (!visible) {
+    return []
+  }
   return [
     parentNode,
     {

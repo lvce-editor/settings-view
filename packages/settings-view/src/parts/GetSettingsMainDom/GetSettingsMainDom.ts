@@ -12,7 +12,12 @@ export const getSettingsMainDom = (
   visibleItems: readonly DisplaySettingItem[],
   totalItemCount: number,
   searchValue: string,
+  height: number,
+  itemHeight: number,
 ): readonly VirtualDomNode[] => {
+  const totalHeight = totalItemCount * itemHeight
+  const showScrollBar = totalHeight > height
+
   return [
     {
       childCount: 3,
@@ -21,6 +26,6 @@ export const getSettingsMainDom = (
     },
     ...getSettingsSideBarDom(tabs),
     ...getResizerVirtualDom(),
-    ...getSettingsContentDom(visibleItems, tabs, searchValue),
+    ...getSettingsContentDom(visibleItems, tabs, searchValue, showScrollBar),
   ]
 }

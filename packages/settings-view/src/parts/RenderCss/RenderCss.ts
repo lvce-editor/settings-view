@@ -5,5 +5,6 @@ import { getCss } from '../GetCss/GetCss.ts'
 export const renderCss = (oldState: SettingsState, newState: SettingsState): any => {
   const { id, sideBarWidth } = newState
   const css = getCss(sideBarWidth)
+  console.log({ css })
   return [ViewletCommand.SetCss, id, css]
 }

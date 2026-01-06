@@ -19,6 +19,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     itemHeight: 100,
     items: [],
     maxLineY: 0,
+    minContentWidth: 300,
     minLineY: 0,
     modifiedSettings: {},
     preferences: {},

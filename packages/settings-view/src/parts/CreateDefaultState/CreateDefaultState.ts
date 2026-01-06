@@ -18,6 +18,7 @@ export const createDefaultState = (): SettingsState => {
     itemHeight: 100,
     items: [],
     maxLineY: 0,
+    minContentWidth: 300,
     minLineY: 0,
     modifiedSettings: {},
     preferences: {},

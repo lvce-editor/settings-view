@@ -44,6 +44,9 @@
       }
     }
   },
+  "dependencies": {
+    "@lvce-editor/constants": "^2.3.0"
+  },
   "devDependencies": {
     "@jest/globals": "^30.2.0",
     "@lvce-editor/assert": "^1.5.1",

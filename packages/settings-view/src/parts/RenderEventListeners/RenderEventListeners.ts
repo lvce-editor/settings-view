@@ -1,3 +1,4 @@
+import { EventExpression } from '@lvce-editor/constants'
 import type { DomEventListener } from '../DomEventListener/DomEventListener.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
@@ -5,11 +6,11 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
   return [
     {
       name: DomEventListenerFunctions.HandleClickTab,
-      params: ['handleClickTab', 'event.target.name'],
+      params: ['handleClickTab', EventExpression.TargetName],
     },
     {
       name: DomEventListenerFunctions.HandleInput,
-      params: ['handleInput', 'event.target.value'],
+      params: ['handleInput', EventExpression.TargetValue],
     },
     {
       name: DomEventListenerFunctions.HandleClickClear,
@@ -17,11 +18,11 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleSettingInput,
-      params: ['handleSettingInput', 'event.target.name', 'event.target.value'],
+      params: ['handleSettingInput', EventExpression.TargetName, EventExpression.TargetValue],
     },
     {
       name: DomEventListenerFunctions.HandleSettingChecked,
-      params: ['handleSettingChecked', 'event.target.name', 'event.target.value'],
+      params: ['handleSettingChecked', EventExpression.TargetName, EventExpression.TargetValue],
     },
     // {
     //   name: DomEventListenerFunctions.HandleScroll,
@@ -30,16 +31,20 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     // },
     {
       name: DomEventListenerFunctions.HandleWheel,
-      params: ['handleWheel', 'event.deltaY'],
+      params: ['handleWheel', EventExpression.DeltaY],
       passive: true,
     },
     {
       name: DomEventListenerFunctions.HandleSettingSelect,
-      params: ['handleSettingSelect', 'event.target.name', 'event.target.value'],
+      params: ['handleSettingSelect', EventExpression.TargetName, EventExpression.TargetValue],
     },
     {
       name: DomEventListenerFunctions.HandleInputFocus,
       params: ['handleInputFocus'],
+    },
+    {
+      name: DomEventListenerFunctions.HandleResizerPointerDown,
+      params: ['handleResizerPointerDown', EventExpression.ClientX, EventExpression.ClientY],
     },
   ]
 }

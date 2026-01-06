@@ -49,9 +49,6 @@ test('renderCss uses sideBarWidth from newState', () => {
   --ScrollBarThumbHeight: ${newState.scrollBarThumbHeight}px;
   --ScrollBarThumbTop: ${newState.scrollBarThumbTop}px;
 }
-.SettingsResizer {
-  background: yellow;
-}
 
 .SettingsSideBar{
   width: var(--SettingsSideBarWidth);

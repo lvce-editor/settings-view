@@ -29,6 +29,7 @@ export interface SettingsState {
   readonly scrollBarThumbTop: number
   readonly scrollOffset: number
   readonly searchValue: string
+  readonly sideBarMinWidth: number
   readonly sideBarWidth: number
   readonly tabs: readonly Tab[]
   readonly uri: string

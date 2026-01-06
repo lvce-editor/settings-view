@@ -21,6 +21,15 @@ test('getSettingsInputButtonsDom returns enabled button when hasSearchValue is t
       type: VirtualDomElements.Button,
     },
     {
+      ariaLabel: SettingStrings.filter(),
+      childCount: 1,
+      className: `${ClassNames.SearchFieldButton}`,
+      disabled: false,
+      name: InputName.Filter,
+      onClick: DomEventListenerFunctions.HandleClickFilterButton,
+      type: VirtualDomElements.Button,
+    },
+    {
       childCount: 0,
       className: `${ClassNames.MaskIcon} ${ClassNames.MaskIconClearAll}`,
       type: VirtualDomElements.Div,
@@ -42,6 +51,15 @@ test('getSettingsInputButtonsDom returns disabled button when hasSearchValue is 
       disabled: true,
       name: InputName.Clear,
       onClick: DomEventListenerFunctions.HandleClickClear,
+      type: VirtualDomElements.Button,
+    },
+    {
+      ariaLabel: SettingStrings.filter(),
+      childCount: 1,
+      className: `${ClassNames.SearchFieldButton}`,
+      disabled: false,
+      name: InputName.Filter,
+      onClick: DomEventListenerFunctions.HandleClickFilterButton,
       type: VirtualDomElements.Button,
     },
     {

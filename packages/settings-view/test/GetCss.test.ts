@@ -14,9 +14,6 @@ test('getCss returns correct CSS with normal width', () => {
   --ScrollBarThumbHeight: 100px;
   --ScrollBarThumbTop: 50px;
 }
-.SettingsResizer {
-  background: yellow;
-}
 
 .SettingsSideBar{
   width: var(--SettingsSideBarWidth);
@@ -37,9 +34,6 @@ test('getCss returns correct CSS with zero width', () => {
   --SettingsSideBarWidth: 0px;
   --ScrollBarThumbHeight: 0px;
   --ScrollBarThumbTop: 0px;
-}
-.SettingsResizer {
-  background: yellow;
 }
 
 .SettingsSideBar{
@@ -62,9 +56,6 @@ test('getCss returns correct CSS with large width', () => {
   --ScrollBarThumbHeight: 200px;
   --ScrollBarThumbTop: 150px;
 }
-.SettingsResizer {
-  background: yellow;
-}
 
 .SettingsSideBar{
   width: var(--SettingsSideBarWidth);
@@ -86,9 +77,6 @@ test('getCss returns correct CSS with decimal width', () => {
   --ScrollBarThumbHeight: 100px;
   --ScrollBarThumbTop: 50px;
 }
-.SettingsResizer {
-  background: yellow;
-}
 
 .SettingsSideBar{
   width: var(--SettingsSideBarWidth);
@@ -109,9 +97,6 @@ test('getCss returns correct CSS with negative width', () => {
   --SettingsSideBarWidth: -100px;
   --ScrollBarThumbHeight: 100px;
   --ScrollBarThumbTop: 50px;
-}
-.SettingsResizer {
-  background: yellow;
 }
 
 .SettingsSideBar{

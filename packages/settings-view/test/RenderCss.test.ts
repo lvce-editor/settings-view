@@ -16,6 +16,8 @@ test('renderCss returns correct ViewletCommand with default state', () => {
     `
 .Settings {
   --SettingsSideBarWidth: ${newState.sideBarWidth}px;
+  --ScrollBarThumbHeight: ${newState.scrollBarThumbHeight}px;
+  --ScrollBarThumbTop: ${newState.scrollBarThumbTop}px;
 }
 .SettingsResizer {
   background: yellow;
@@ -47,6 +49,8 @@ test('renderCss uses sideBarWidth from newState', () => {
     `
 .Settings {
   --SettingsSideBarWidth: 300px;
+  --ScrollBarThumbHeight: ${newState.scrollBarThumbHeight}px;
+  --ScrollBarThumbTop: ${newState.scrollBarThumbTop}px;
 }
 .SettingsResizer {
   background: yellow;

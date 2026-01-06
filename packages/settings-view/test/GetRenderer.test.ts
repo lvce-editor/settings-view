@@ -1,10 +1,10 @@
 import { test, expect } from '@jest/globals'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import { getRenderer } from '../src/parts/GetRenderer/GetRenderer.ts'
+import { renderCss } from '../src/parts/RenderCss/RenderCss.ts'
 import { renderFocus } from '../src/parts/RenderFocus/RenderFocus.ts'
 import { renderFocusContext } from '../src/parts/RenderFocusContext/RenderFocusContext.ts'
 import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
-import { renderScrollOffset } from '../src/parts/RenderScrollOffset/RenderScrollOffset.ts'
 import { renderSettingValues } from '../src/parts/RenderSettingValues/RenderSettingValues.ts'
 import { renderValue } from '../src/parts/RenderValue/RenderValue.ts'
 
@@ -23,9 +23,9 @@ test('getRenderer returns renderSettingValues for DiffType.RenderSettingValues',
   expect(renderer).toBe(renderSettingValues)
 })
 
-test('getRenderer returns renderScrollOffset for DiffType.RenderScrollOffset', () => {
-  const renderer = getRenderer(DiffType.RenderScrollOffset)
-  expect(renderer).toBe(renderScrollOffset)
+test('getRenderer returns renderCss for DiffType.RenderCss', () => {
+  const renderer = getRenderer(DiffType.RenderCss)
+  expect(renderer).toBe(renderCss)
 })
 
 test('getRenderer returns renderFocusContext for DiffType.RenderFocusContext', () => {

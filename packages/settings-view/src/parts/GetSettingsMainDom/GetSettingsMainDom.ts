@@ -12,8 +12,6 @@ export const getSettingsMainDom = (
   visibleItems: readonly DisplaySettingItem[],
   totalItemCount: number,
   searchValue: string,
-  thumbHeight: number,
-  thumbTop: number,
 ): readonly VirtualDomNode[] => {
   return [
     {
@@ -23,6 +21,6 @@ export const getSettingsMainDom = (
     },
     ...getSettingsSideBarDom(tabs),
     ...getResizerVirtualDom(),
-    ...getSettingsContentDom(visibleItems, tabs, searchValue, thumbHeight, thumbTop),
+    ...getSettingsContentDom(visibleItems, tabs, searchValue),
   ]
 }

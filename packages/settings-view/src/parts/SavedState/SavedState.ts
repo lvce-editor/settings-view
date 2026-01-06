@@ -8,4 +8,5 @@ export interface SavedState {
   readonly scrollOffset: number
   readonly searchValue: string
   readonly selectedTab: string
+  readonly sideBarWidth: number
 }

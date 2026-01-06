@@ -3,7 +3,7 @@ import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { getSelectedTabId } from '../GetSelectedTab/GetSelectedTab.ts'
 
 export const saveState = (state: SettingsState): SavedState => {
-  const { focus, history, historyIndex, scrollOffset, searchValue, tabs } = state
+  const { focus, history, historyIndex, scrollOffset, searchValue, sideBarWidth, tabs } = state
   const selectedTab = getSelectedTabId(tabs)
   return {
     deltaY: 0,
@@ -15,5 +15,6 @@ export const saveState = (state: SettingsState): SavedState => {
     scrollOffset,
     searchValue,
     selectedTab,
+    sideBarWidth,
   }
 }

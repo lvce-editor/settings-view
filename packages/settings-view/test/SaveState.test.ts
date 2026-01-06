@@ -16,6 +16,7 @@ test('saveState returns SavedState object with correct structure', () => {
   expect(result).toHaveProperty('selectedTab')
   expect(result).toHaveProperty('history')
   expect(result).toHaveProperty('historyIndex')
+  expect(result).toHaveProperty('sideBarWidth')
 })
 
 test('saveState returns default values for all properties', () => {
@@ -31,6 +32,7 @@ test('saveState returns default values for all properties', () => {
     scrollOffset: 0,
     searchValue: '',
     selectedTab: '',
+    sideBarWidth: 200,
   })
 })
 
@@ -47,6 +49,7 @@ test('saveState works with zero uid', () => {
     scrollOffset: 0,
     searchValue: '',
     selectedTab: '',
+    sideBarWidth: 200,
   })
 })
 
@@ -63,6 +66,7 @@ test('saveState works with negative uid', () => {
     scrollOffset: 0,
     searchValue: '',
     selectedTab: '',
+    sideBarWidth: 200,
   })
 })
 
@@ -79,6 +83,7 @@ test('saveState works with large uid', () => {
     scrollOffset: 0,
     searchValue: '',
     selectedTab: '',
+    sideBarWidth: 200,
   })
 })
 
@@ -124,6 +129,7 @@ test('saveState returns immutable object structure', () => {
   expect(typeof result.selectedTab).toBe('string')
   expect(typeof result.history).toBe('object')
   expect(typeof result.historyIndex).toBe('number')
+  expect(typeof result.sideBarWidth).toBe('number')
 })
 
 test('saveState saves searchValue from state', () => {
@@ -165,4 +171,17 @@ test('saveState saves history from state', () => {
 
   expect(result.history).toEqual(['search1', 'search2', 'search3'])
   expect(result.historyIndex).toBe(1)
+})
+
+test('saveState saves sideBarWidth from state', () => {
+  const uid = 1
+  const state = {
+    ...createDefaultState(),
+    sideBarWidth: 300,
+  }
+  set(uid, state, state)
+
+  const result = saveState(state)
+
+  expect(result.sideBarWidth).toBe(300)
 })

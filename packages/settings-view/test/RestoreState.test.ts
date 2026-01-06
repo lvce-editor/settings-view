@@ -11,6 +11,7 @@ test('restoreState returns default values when savedState is null', () => {
     minLineY: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -25,6 +26,7 @@ test('restoreState returns default values when savedState is undefined', () => {
     minLineY: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -39,6 +41,7 @@ test('restoreState returns default values when savedState is empty object', () =
     minLineY: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -53,6 +56,7 @@ test('restoreState returns default values when savedState is not an object', () 
     minLineY: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -67,6 +71,7 @@ test('restoreState returns default values when savedState is a number', () => {
     minLineY: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -81,6 +86,7 @@ test('restoreState returns default values when savedState is a boolean', () => {
     minLineY: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -100,6 +106,7 @@ test('restoreState extracts minLineY correctly', () => {
     minLineY: 200,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -118,6 +125,7 @@ test('restoreState extracts deltaY correctly', () => {
     minLineY: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -137,6 +145,7 @@ test('restoreState handles all properties correctly', () => {
     minLineY: 300,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -156,6 +165,7 @@ test('restoreState handles minLineY as non-number', () => {
     minLineY: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -175,6 +185,7 @@ test('restoreState handles deltaY as non-number', () => {
     minLineY: 100,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -194,6 +205,7 @@ test('restoreState handles negative values', () => {
     minLineY: -100,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -213,6 +225,7 @@ test('restoreState handles zero values', () => {
     minLineY: 0,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -232,6 +245,7 @@ test('restoreState handles large values', () => {
     minLineY: 999_999,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -253,6 +267,7 @@ test('restoreState handles extra properties in savedState', () => {
     minLineY: 100,
     scrollOffset: 0,
     searchValue: '',
+    sideBarWidth: 200,
     tabId: '',
   })
 })
@@ -327,4 +342,24 @@ test('restoreState handles history as non-array', () => {
 
   expect(result.history).toEqual([])
   expect(result.historyIndex).toBe(-1)
+})
+
+test('restoreState extracts sideBarWidth correctly', () => {
+  const savedState = {
+    sideBarWidth: 300,
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.sideBarWidth).toBe(300)
+})
+
+test('restoreState handles sideBarWidth as non-number', () => {
+  const savedState = {
+    sideBarWidth: 'not a number',
+  }
+
+  const result = restoreState(savedState)
+
+  expect(result.sideBarWidth).toBe(200)
 })

@@ -5,5 +5,6 @@ export interface RestoredState {
   readonly minLineY: number
   readonly scrollOffset: number
   readonly searchValue: string
+  readonly sideBarWidth: number
   readonly tabId: string
 }

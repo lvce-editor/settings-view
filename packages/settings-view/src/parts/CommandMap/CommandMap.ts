@@ -10,6 +10,8 @@ import { handleInput } from '../HandleInput/HandleInput.ts'
 import { handleInputBlur } from '../HandleInputBlur/HandleInputBlur.ts'
 import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
 import { handleResizerPointerDown } from '../HandleResizerPointerDown/HandleResizerPointerDown.ts'
+import { handleResizerPointerMove } from '../HandleResizerPointerMove/HandleResizerPointerMove.ts'
+import { handleResizerPointerUp } from '../HandleResizerPointerUp/HandleResizerPointerUp.ts'
 import { handleScroll } from '../HandleScroll/HandleScroll.ts'
 import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
 import { handleSettingInput } from '../HandleSettingInput/HandleSettingInput.ts'
@@ -40,6 +42,8 @@ export const commandMap = {
   'Settings.handleInputBlur': wrapCommand(handleInputBlur),
   'Settings.handleInputFocus': wrapCommand(handleInputFocus),
   'Settings.handleResizerPointerDown': wrapCommand(handleResizerPointerDown),
+  'Settings.handleResizerPointerMove': wrapCommand(handleResizerPointerMove),
+  'Settings.handleResizerPointerUp': wrapCommand(handleResizerPointerUp),
   'Settings.handleScroll': wrapCommand(handleScroll),
   'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),
   'Settings.handleSettingInput': wrapCommand(handleSettingInput),

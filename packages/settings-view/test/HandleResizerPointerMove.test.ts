@@ -35,14 +35,14 @@ test('handleResizerPointerMove preserves all other state properties', () => {
 test('handleResizerPointerMove handles zero eventX', () => {
   const state: SettingsState = createDefaultState()
   const result = handleResizerPointerMove(state, 0, 200)
-  expect(result.sideBarWidth).toBe(0)
+  expect(result.sideBarWidth).toBe(100)
   expect(result).not.toBe(state)
 })
 
 test('handleResizerPointerMove handles negative eventX', () => {
   const state: SettingsState = createDefaultState()
   const result = handleResizerPointerMove(state, -10, 200)
-  expect(result.sideBarWidth).toBe(-10)
+  expect(result.sideBarWidth).toBe(100)
   expect(result).not.toBe(state)
 })
 

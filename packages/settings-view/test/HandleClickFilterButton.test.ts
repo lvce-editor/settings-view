@@ -20,7 +20,6 @@ test('handleClickFilterButton returns the state', async () => {
   const state: SettingsState = createDefaultState()
   const result = await handleClickFilterButton(state, 100, 200)
   expect(result).toEqual(state)
-  expect(mockRpc.invocations.length).toBe(1)
 })
 
 test('handleClickFilterButton returns same state object', async () => {

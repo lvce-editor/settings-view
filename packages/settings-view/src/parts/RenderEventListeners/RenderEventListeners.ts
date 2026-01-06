@@ -30,7 +30,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleCheckboxBoxClick,
-      params: ['handleCheckboxBoxClick', 'event.target.dataset.checkboxName', 'event.target.dataset.checkboxValue'],
+      params: ['handleCheckboxBoxClick', 'event.target.getAttribute("data-checkbox-name")', 'event.target.getAttribute("data-checkbox-value")'],
     },
     // {
     //   name: DomEventListenerFunctions.HandleScroll,

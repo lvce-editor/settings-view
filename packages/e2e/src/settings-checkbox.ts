@@ -58,4 +58,3 @@ export const test: Test = async ({ Command, expect, Locator, SettingsView }) => 
     await expect(checkmark).not.toBeVisible()
   }
 }
-

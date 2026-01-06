@@ -13,7 +13,7 @@ import { Script } from '../InputSource/InputSource.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
 
 export const loadContent = async (state: SettingsState, savedState: unknown): Promise<SettingsState> => {
-  const { history, historyIndex, scrollOffset, searchValue, tabId } = restoreState(savedState)
+  const { history, historyIndex, scrollOffset, searchValue, sideBarWidth, tabId } = restoreState(savedState)
   const tabs = getTabs()
   const newTabs = getUpdatedTabs(tabs, tabId)
   const items: readonly SettingItem[] = await getSettingItems()
@@ -39,7 +39,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
     scrollBarThumbTop: thumbTop,
     scrollOffset,
     searchValue,
-    sideBarWidth: 200,
+    sideBarWidth,
     tabs: newTabs,
     visibleItems,
   }

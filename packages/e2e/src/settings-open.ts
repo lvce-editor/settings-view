@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.open'
 
-export const skip = 1
-
 export const test: Test = async ({ expect, Locator, SettingsView }) => {
   // arrange
 
@@ -15,7 +13,7 @@ export const test: Test = async ({ expect, Locator, SettingsView }) => {
   await expect(settingsHeader).toBeVisible()
   const settingsMain = Locator('.SettingsMain')
   await expect(settingsMain).toBeVisible()
-  const clearButton = Locator('.Button[name="Clear"]')
+  const clearButton = Locator('.SearchFieldButton[name="Clear"]')
   await expect(clearButton).toBeVisible()
   await expect(clearButton).toHaveAttribute('disabled', '')
 }

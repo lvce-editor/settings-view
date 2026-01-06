@@ -14,9 +14,6 @@ test('getCss returns correct CSS with normal width', () => {
   --ScrollBarThumbHeight: 100px;
   --ScrollBarThumbTop: 50px;
 }
-.SettingsResizer {
-  background: yellow;
-}
 
 .SettingsSideBar{
   width: var(--SettingsSideBarWidth);
@@ -37,9 +34,6 @@ test('getCss returns correct CSS with zero width', () => {
   --SettingsSideBarWidth: 0px;
   --ScrollBarThumbHeight: 0px;
   --ScrollBarThumbTop: 0px;
-}
-.SettingsResizer {
-  background: yellow;
 }
 
 .SettingsSideBar{
@@ -62,9 +56,6 @@ test('getCss returns correct CSS with large width', () => {
   --ScrollBarThumbHeight: 200px;
   --ScrollBarThumbTop: 150px;
 }
-.SettingsResizer {
-  background: yellow;
-}
 
 .SettingsSideBar{
   width: var(--SettingsSideBarWidth);
@@ -85,9 +76,6 @@ test('getCss returns correct CSS with decimal width', () => {
   --SettingsSideBarWidth: 251px;
   --ScrollBarThumbHeight: 100px;
   --ScrollBarThumbTop: 50px;
-}
-.SettingsResizer {
-  background: yellow;
 }
 
 .SettingsSideBar{
@@ -110,9 +98,6 @@ test('getCss returns correct CSS with negative width', () => {
   --ScrollBarThumbHeight: 100px;
   --ScrollBarThumbTop: 50px;
 }
-.SettingsResizer {
-  background: yellow;
-}
 
 .SettingsSideBar{
   width: var(--SettingsSideBarWidth);
@@ -121,14 +106,14 @@ test('getCss returns correct CSS with negative width', () => {
   )
 })
 
-test('getCss includes SettingsResizer style', () => {
+test('getCss does not include SettingsResizer style', () => {
   const sideBarWidth = 200
   const scrollBarThumbHeight = 100
   const scrollBarThumbTop = 50
   const result = getCss(sideBarWidth, scrollBarThumbHeight, scrollBarThumbTop)
 
-  expect(result).toContain('.SettingsResizer')
-  expect(result).toContain('background: yellow;')
+  expect(result).not.toContain('.SettingsResizer')
+  expect(result).not.toContain('background: yellow;')
 })
 
 test('getCss includes Settings class with custom property', () => {

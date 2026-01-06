@@ -6,9 +6,6 @@ export const getCss = (sideBarWidth: number, scrollBarThumbHeight: number, scrol
   --ScrollBarThumbHeight: ${scrollBarThumbHeight}px;
   --ScrollBarThumbTop: ${scrollBarThumbTop}px;
 }
-.SettingsResizer {
-  background: yellow;
-}
 
 .SettingsSideBar{
   width: var(--SettingsSideBarWidth);

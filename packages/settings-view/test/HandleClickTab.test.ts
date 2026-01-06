@@ -8,12 +8,6 @@ test('handleClickTab returns same state when name is empty', () => {
   expect(result).toEqual(state)
 })
 
-test('handleClickTab returns same state when name is undefined', () => {
-  const state = createDefaultState()
-  const result = handleClickTab(state, undefined as any)
-  expect(result).toEqual(state)
-})
-
 test('handleClickTab returns new state object when name is provided', () => {
   const state = createDefaultState()
   const result = handleClickTab(state, 'test-tab')

@@ -12,7 +12,7 @@ export const test: Test = async ({ Command, expect, Locator, SettingsView }) => 
   await SettingsView.handleInput('font size')
 
   // act
-  await Command.execute('Settings.usePreviousSearchValue') // TODO page object
+  await SettingsView.usePreviousSearchValue()
 
   // assert
   const input = Locator('.SettingsSearchInput')

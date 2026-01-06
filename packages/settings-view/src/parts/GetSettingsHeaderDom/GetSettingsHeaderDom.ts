@@ -6,7 +6,7 @@ import { getSettingsInputButtonsDom } from '../GetSettingsInputButtonsDom/GetSet
 import { getSettingsInputDom } from '../GetSettingsInputDom/GetSettingsInputDom.ts'
 
 const getChildCount = (hasSearchValue: boolean): number => {
-  return hasSearchValue ? 3 : 2
+  return hasSearchValue ? 4 : 3
 }
 
 export const getSettingsHeaderDom = (filteredSettingsCount: number, hasSearchValue: boolean): readonly VirtualDomNode[] => {

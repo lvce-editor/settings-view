@@ -39,6 +39,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
     scrollBarThumbTop: thumbTop,
     scrollOffset,
     searchValue,
+    sideBarWidth: 200,
     tabs: newTabs,
     visibleItems,
   }

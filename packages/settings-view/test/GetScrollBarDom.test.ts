@@ -3,8 +3,8 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getScrollBarDom } from '../src/parts/GetScrollBarDom/GetScrollBarDom.ts'
 
-test('getScrollBarDom returns scrollbar with thumb', () => {
-  const result = getScrollBarDom()
+test('getScrollBarDom returns scrollbar with thumb when visible is true', () => {
+  const result = getScrollBarDom(true)
 
   expect(result).toHaveLength(2)
   expect(result[0]).toEqual({
@@ -17,4 +17,10 @@ test('getScrollBarDom returns scrollbar with thumb', () => {
     className: ClassNames.SettingsScrollBarThumb,
     type: VirtualDomElements.Div,
   })
+})
+
+test('getScrollBarDom returns empty array when visible is false', () => {
+  const result = getScrollBarDom(false)
+
+  expect(result).toHaveLength(0)
 })

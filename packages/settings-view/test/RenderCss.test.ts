@@ -1,17 +1,8 @@
-import { test, expect, beforeAll, afterAll } from '@jest/globals'
+import { expect, test } from '@jest/globals'
 import { ViewletCommand } from '@lvce-editor/constants'
-import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { renderCss } from '../src/parts/RenderCss/RenderCss.ts'
-
-const originalConsoleLog = console.log
-beforeAll(() => {
-  console.log = () => {}
-})
-
-afterAll(() => {
-  console.log = originalConsoleLog
-})
+import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 
 test('renderCss returns correct ViewletCommand with default state', () => {
   const oldState: SettingsState = createDefaultState()

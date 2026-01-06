@@ -9,7 +9,7 @@ test('getSettingsHeaderDom returns correct structure with hasSearchValue true', 
   const hasSearchValue = true
   const result = getSettingsHeaderDom(filteredSettingsCount, hasSearchValue)
 
-  expect(result).toHaveLength(8)
+  expect(result).toHaveLength(9)
   expect(result[0]).toEqual({
     childCount: 1,
     className: ClassNames.SettingsHeader,
@@ -27,7 +27,7 @@ test('getSettingsHeaderDom returns correct structure with hasSearchValue false',
   const hasSearchValue = false
   const result = getSettingsHeaderDom(filteredSettingsCount, hasSearchValue)
 
-  expect(result).toHaveLength(6)
+  expect(result).toHaveLength(7)
   expect(result[0]).toEqual({
     childCount: 1,
     className: ClassNames.SettingsHeader,
@@ -61,8 +61,8 @@ test('getSettingsHeaderDom does not include badge when hasSearchValue is false',
   const hasSearchValue = false
   const result = getSettingsHeaderDom(filteredSettingsCount, hasSearchValue)
 
-  // The last element should be the clear button icon
+  // The last element should be the filter button icon
   const lastElement = result[result.length - 1]
   expect(lastElement.type).toBe(VirtualDomElements.Div)
-  expect(lastElement.className).toBe(ClassNames.MaskIcon + ' ' + ClassNames.MaskIconClearAll)
+  expect(lastElement.className).toBe(ClassNames.MaskIcon)
 })

@@ -12,12 +12,12 @@ const parentNode: VirtualDomNode = {
 }
 
 export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] => {
-  const { filteredItems, scrollBarThumbHeight, scrollBarThumbTop, searchValue, tabs, visibleItems } = state
+  const { filteredItems, searchValue, tabs, visibleItems } = state
   const hasSearchValue = searchValue.trim().length > 0
   const filteredItemsCount = filteredItems.length
   return [
     parentNode,
     ...getSettingsHeaderDom(filteredItemsCount, hasSearchValue),
-    ...getSettingsMainDom(tabs, visibleItems, filteredItemsCount, searchValue, scrollBarThumbHeight, scrollBarThumbTop),
+    ...getSettingsMainDom(tabs, visibleItems, filteredItemsCount, searchValue),
   ]
 }

@@ -13,13 +13,8 @@ export const getScrollBarDom = (): readonly VirtualDomNode[] => {
     parentNode,
     {
       childCount: 0,
-<<<<<<< HEAD
-=======
       className: ClassNames.SettingsScrollBarThumb,
-      height: `${thumbHeight}px`,
-      top: `${thumbTop}px`,
       type: VirtualDomElements.Div,
->>>>>>> origin/main
     },
   ]
 }

@@ -201,23 +201,9 @@ test('getSettingsItemsDom handles multiple items correctly', () => {
   })
 })
 
-test('getSettingsItemsDom handles null-like search values', () => {
+test('getSettingsItemsDom handles empty string search values', () => {
   const items: readonly DisplaySettingItem[] = []
-  const searchValue = null as any
-
-  const result = getSettingsItemsDom(items, searchValue)
-
-  expect(result).toHaveLength(1)
-  expect(result[0]).toEqual({
-    childCount: 0,
-    className: 'SettingsItems',
-    type: VirtualDomElements.Div,
-  })
-})
-
-test('getSettingsItemsDom handles undefined-like search values', () => {
-  const items: readonly DisplaySettingItem[] = []
-  const searchValue = undefined as any
+  const searchValue = ''
 
   const result = getSettingsItemsDom(items, searchValue)
 

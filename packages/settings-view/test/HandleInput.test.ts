@@ -53,19 +53,11 @@ test('handleInput preserves other state properties', () => {
   expect(result).not.toBe(stateWithCustomValues)
 })
 
-test('handleInput handles undefined value', () => {
+test('handleInput handles empty string value', () => {
   const state = createDefaultState()
-  const result = handleInput(state, undefined as any)
+  const result = handleInput(state, '')
 
-  expect(result.searchValue).toBe(undefined)
-  expect(result).not.toBe(state)
-})
-
-test('handleInput handles null value', () => {
-  const state = createDefaultState()
-  const result = handleInput(state, null as any)
-
-  expect(result.searchValue).toBe(null)
+  expect(result.searchValue).toBe('')
   expect(result).not.toBe(state)
 })
 

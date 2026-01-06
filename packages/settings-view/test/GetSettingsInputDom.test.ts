@@ -7,7 +7,7 @@ test('getSettingsInputDom disables suggestions and autocorrect', () => {
   const dom = getSettingsInputDom()
 
   expect(dom).toHaveLength(1)
-  const input = dom[0] as any
+  const input = dom[0]
 
   expect(input.type).toBe(VirtualDomElements.Input)
   expect(input.placeholder).toBe(SettingStrings.searchSettings())

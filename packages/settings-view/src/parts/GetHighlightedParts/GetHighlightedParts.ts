@@ -19,7 +19,7 @@ export const getHighlightedParts = (content: string, searchValue: string): reado
   if (before) {
     nodes.push(text(before))
   }
-  nodes.push({ childCount: 1, className: 'Highlight', type: VirtualDomElements.Span } as any)
+  nodes.push({ childCount: 1, className: 'Highlight', type: VirtualDomElements.Span })
   nodes.push(text(match))
   if (after) {
     nodes.push(text(after))

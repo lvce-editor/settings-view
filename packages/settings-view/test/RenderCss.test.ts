@@ -1,4 +1,4 @@
-import { test, expect } from '@jest/globals'
+import { expect, test } from '@jest/globals'
 import { ViewletCommand } from '@lvce-editor/constants'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -18,7 +18,11 @@ test('renderCss returns correct ViewletCommand with default state', () => {
   --SettingsSideBarWidth: ${newState.sideBarWidth}px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `,
   )
@@ -45,7 +49,11 @@ test('renderCss uses sideBarWidth from newState', () => {
   --SettingsSideBarWidth: 300px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `,
   )

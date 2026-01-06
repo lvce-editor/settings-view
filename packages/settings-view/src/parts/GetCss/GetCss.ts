@@ -1,10 +1,15 @@
 export const getCss = (sideBarWidth: number): string => {
+  const rounded = Math.round(sideBarWidth)
   return `
 .Settings {
-  --SettingsSideBarWidth: ${sideBarWidth}px;
+  --SettingsSideBarWidth: ${rounded}px;
 }
 .SettingsResizer {
-  color: yellow;
+  background: yellow;
+}
+
+.SettingsSideBar{
+  width: var(--SettingsSideBarWidth);
 }
 `
 }

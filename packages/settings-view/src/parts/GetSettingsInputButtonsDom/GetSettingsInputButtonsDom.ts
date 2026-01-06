@@ -23,6 +23,15 @@ export const getSettingsInputButtonsDom = (hasSearchValue: boolean): readonly Vi
       onClick: DomEventListenerFunctions.HandleClickClear,
       type: VirtualDomElements.Button,
     },
+    {
+      ariaLabel: SettingStrings.filter(),
+      childCount: 1,
+      className: ClassNames.SearchFieldButton,
+      disabled: false,
+      name: InputName.Filter,
+      onClick: DomEventListenerFunctions.HandleClickFilterButton,
+      type: VirtualDomElements.Button,
+    },
     icon,
   ]
 }

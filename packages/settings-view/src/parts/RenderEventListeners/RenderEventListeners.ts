@@ -17,6 +17,10 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       params: ['clear'],
     },
     {
+      name: DomEventListenerFunctions.HandleClickFilterButton,
+      params: ['handleClickFilterButton'],
+    },
+    {
       name: DomEventListenerFunctions.HandleSettingInput,
       params: ['handleSettingInput', EventExpression.TargetName, EventExpression.TargetValue],
     },

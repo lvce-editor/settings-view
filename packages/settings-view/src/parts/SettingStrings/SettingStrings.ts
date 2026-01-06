@@ -33,6 +33,10 @@ export const clear = (): string => {
   return I18NString.i18nString(UiStrings.Clear)
 }
 
+export const filter = (): string => {
+  return 'Filter'
+}
+
 export const extensionRecommendations = (): string => {
   return I18NString.i18nString(UiStrings.ExtensionRecommendations)
 }

@@ -9,7 +9,7 @@ test('getSettingsHeaderDom returns correct structure with hasSearchValue true', 
   const hasSearchValue = true
   const result = getSettingsHeaderDom(filteredSettingsCount, hasSearchValue)
 
-  expect(result).toHaveLength(7)
+  expect(result).toHaveLength(8)
   expect(result[0]).toEqual({
     childCount: 1,
     className: ClassNames.SettingsHeader,
@@ -27,7 +27,7 @@ test('getSettingsHeaderDom returns correct structure with hasSearchValue false',
   const hasSearchValue = false
   const result = getSettingsHeaderDom(filteredSettingsCount, hasSearchValue)
 
-  expect(result).toHaveLength(5)
+  expect(result).toHaveLength(6)
   expect(result[0]).toEqual({
     childCount: 1,
     className: ClassNames.SettingsHeader,

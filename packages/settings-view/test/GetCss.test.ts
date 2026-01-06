@@ -106,14 +106,14 @@ test('getCss returns correct CSS with negative width', () => {
   )
 })
 
-test('getCss includes SettingsResizer style', () => {
+test('getCss does not include SettingsResizer style', () => {
   const sideBarWidth = 200
   const scrollBarThumbHeight = 100
   const scrollBarThumbTop = 50
   const result = getCss(sideBarWidth, scrollBarThumbHeight, scrollBarThumbTop)
 
-  expect(result).toContain('.SettingsResizer')
-  expect(result).toContain('background: yellow;')
+  expect(result).not.toContain('.SettingsResizer')
+  expect(result).not.toContain('background: yellow;')
 })
 
 test('getCss includes Settings class with custom property', () => {

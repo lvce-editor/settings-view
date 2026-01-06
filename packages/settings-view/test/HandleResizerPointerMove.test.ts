@@ -49,7 +49,7 @@ test('handleResizerPointerMove handles negative eventX', () => {
 test('handleResizerPointerMove handles large eventX', () => {
   const state: SettingsState = createDefaultState()
   const result = handleResizerPointerMove(state, 10_000, 200)
-  expect(result.sideBarWidth).toBe(10_000)
+  expect(result.sideBarWidth).toBe(500)
   expect(result).not.toBe(state)
 })
 
@@ -60,4 +60,27 @@ test('handleResizerPointerMove ignores eventY parameter', () => {
   expect(result1.sideBarWidth).toBe(300)
   expect(result2.sideBarWidth).toBe(300)
   expect(result1.sideBarWidth).toBe(result2.sideBarWidth)
+})
+
+test('handleResizerPointerMove enforces minContentWidth constraint', () => {
+  const state: SettingsState = {
+    ...createDefaultState(),
+    minContentWidth: 300,
+    width: 1000,
+  }
+  const result = handleResizerPointerMove(state, 800, 200)
+  expect(result.sideBarWidth).toBe(700)
+  expect(result.width - result.sideBarWidth).toBe(300)
+})
+
+test('handleResizerPointerMove respects both sideBarMinWidth and minContentWidth', () => {
+  const state: SettingsState = {
+    ...createDefaultState(),
+    minContentWidth: 300,
+    sideBarMinWidth: 100,
+    width: 500,
+  }
+  const result = handleResizerPointerMove(state, 50, 200)
+  expect(result.sideBarWidth).toBe(100)
+  expect(result.width - result.sideBarWidth).toBe(400)
 })

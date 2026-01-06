@@ -35,9 +35,9 @@ export const test: Test = async ({ Command, expect, Locator, SettingsView }) => 
     await expect(checkmark).not.toBeVisible()
   }
 
-  // Act - click the checkbox to toggle it
+  // Act - click the custom checkbox box to toggle it
   const initialChecked = isChecked === 'true'
-  await checkboxInput.click()
+  await checkboxBox.click()
 
   // Wait a bit for the state to update
   await new Promise((resolve) => setTimeout(resolve, 100))

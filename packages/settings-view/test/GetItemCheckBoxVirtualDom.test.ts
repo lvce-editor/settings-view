@@ -41,6 +41,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
       type: VirtualDomElements.Div,
     },
     {
+      checked: true,
       childCount: 0,
       className: 'CheckBox',
       id: domId,
@@ -48,7 +49,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
       name: 'testItem',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-      checked: true,
     },
     {
       childCount: 1,
@@ -109,6 +109,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
       type: VirtualDomElements.Div,
     },
     {
+      checked: true,
       childCount: 0,
       className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
       id: domId,
@@ -116,7 +117,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
       name: 'testItem',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-      checked: true,
     },
     {
       childCount: 1,
@@ -183,6 +183,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for modified item'
       type: VirtualDomElements.Div,
     },
     {
+      checked: true,
       childCount: 0,
       className: 'CheckBox',
       id: domId,
@@ -190,7 +191,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for modified item'
       name: 'testItem',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-      checked: true,
     },
     {
       childCount: 1,
@@ -251,6 +251,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
       type: VirtualDomElements.Div,
     },
     {
+      checked: true,
       childCount: 0,
       className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
       id: domId,
@@ -258,7 +259,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
       name: 'testItem',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-      checked: true,
     },
     {
       childCount: 1,
@@ -325,6 +325,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
       type: VirtualDomElements.Div,
     },
     {
+      checked: true,
       childCount: 0,
       className: 'CheckBox',
       id: domId,
@@ -332,7 +333,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
       name: 'testItem',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-      checked: true,
     },
     {
       childCount: 1,
@@ -393,6 +393,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
       type: VirtualDomElements.Div,
     },
     {
+      checked: true,
       childCount: 0,
       className: 'CheckBox',
       id: domId,
@@ -400,7 +401,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
       name: 'testItem',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-      checked: true,
     },
     {
       childCount: 1,
@@ -461,6 +461,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with hasE
       type: VirtualDomElements.Div,
     },
     {
+      checked: true,
       childCount: 0,
       className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
       id: domId,
@@ -468,7 +469,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with hasE
       name: 'testItem',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-      checked: true,
     },
     {
       childCount: 1,
@@ -529,6 +529,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with diff
       type: VirtualDomElements.Div,
     },
     {
+      checked: true,
       childCount: 0,
       className: 'CheckBox',
       id: domId,
@@ -536,7 +537,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with diff
       name: 'different.setting.id',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-      checked: true,
     },
     {
       childCount: 1,
@@ -597,6 +597,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for unchecked item
       type: VirtualDomElements.Div,
     },
     {
+      checked: false,
       childCount: 0,
       className: 'CheckBox',
       id: domId,
@@ -604,7 +605,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for unchecked item
       name: 'testItem',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-      checked: false,
     },
     {
       childCount: 0,
@@ -618,70 +618,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for unchecked item
       type: VirtualDomElements.Label,
     },
     text('Test Description'),
-  ]
-
-  expect(result).toEqual(expectedDom)
-})
-
-<<<<<<< HEAD
-=======
-test('getItemCheckBoxVirtualDom returns correct DOM structure for item with error', () => {
-  const item: DisplaySettingItem = {
-    category: 'test',
-    description: 'Test Description',
-    errorMessage: 'Error occurred',
-    hasError: true,
-    heading: 'Test Heading',
-    id: 'testItem',
-    modified: false,
-    type: 2,
-    value: 'true',
-  }
-
-  const result = getItemCheckBoxVirtualDom(item)
-  const domId = getInputId(item.id)
-
-  const expectedDom = [
-    {
-      childCount: 3,
-      className: 'SettingsItem',
-      'data-modified': false,
-      role: AriaRoles.Group,
-      type: VirtualDomElements.Div,
-    },
-    {
-      childCount: 1,
-      className: ClassNames.SettingsItemHeading,
-      type: VirtualDomElements.H3,
-    },
-    text('Test Heading'),
-    {
-      childCount: 2,
-      className: 'SettingsItemCheckBox',
-      type: VirtualDomElements.Div,
-    },
-    {
-      childCount: 0,
-      className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
-      id: domId,
-      inputType: 'checkbox',
-      name: 'testItem',
-      onChange: 'handleSettingChecked',
-      type: VirtualDomElements.Input,
-    },
-    {
-      childCount: 1,
-      className: ClassNames.Label,
-      htmlFor: domId,
-      type: VirtualDomElements.Label,
-    },
-    text('Test Description'),
-    {
-      childCount: 1,
-      className: ClassNames.ErrorMessage,
-      type: VirtualDomElements.Div,
-    },
-    text('Error occurred'),
   ]
 
   expect(result).toEqual(expectedDom)
@@ -1029,7 +965,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with diff
   expect(result).toEqual(expectedDom)
 })
 
->>>>>>> origin/main
 test('getItemCheckBoxVirtualDom returns correct DOM structure for item with long error message', () => {
   const item: DisplaySettingItem = {
     category: 'test',
@@ -1061,15 +996,12 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with long
     },
     text('Test Heading'),
     {
-<<<<<<< HEAD
       childCount: 3,
-=======
-      childCount: 2,
->>>>>>> origin/main
       className: 'SettingsItemCheckBox',
       type: VirtualDomElements.Div,
     },
     {
+      checked: true,
       childCount: 0,
       className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
       id: domId,
@@ -1077,8 +1009,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with long
       name: 'testItem',
       onChange: 'handleSettingChecked',
       type: VirtualDomElements.Input,
-<<<<<<< HEAD
-      checked: true,
     },
     {
       childCount: 1,
@@ -1093,11 +1023,6 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with long
     text('✓'),
     {
       childCount: 1,
-=======
-    },
-    {
-      childCount: 1,
->>>>>>> origin/main
       className: ClassNames.Label,
       htmlFor: domId,
       type: VirtualDomElements.Label,

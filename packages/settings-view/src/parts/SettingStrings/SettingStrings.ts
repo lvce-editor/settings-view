@@ -29,6 +29,14 @@ export const autoUpdatesDescription = (): string => {
   return I18NString.i18nString(UiStrings.AutoUpdatesDescription)
 }
 
+export const linkProtection = (): string => {
+  return I18NString.i18nString(UiStrings.LinkProtection)
+}
+
+export const linkProtectionEnabledDescription = (): string => {
+  return I18NString.i18nString(UiStrings.LinkProtectionEnabledDescription)
+}
+
 export const clear = (): string => {
   return I18NString.i18nString(UiStrings.Clear)
 }

@@ -21,5 +21,13 @@ export const getSettingItemsApplications = (): readonly SettingItem[] => {
       type: SettingItemType.Boolean,
       value: 'true',
     },
+    {
+      category: InputName.ApplicationsTab,
+      description: SettingStrings.linkProtectionEnabledDescription(),
+      heading: SettingStrings.linkProtection(),
+      id: 'application.linkProtectionEnabled',
+      type: SettingItemType.Boolean,
+      value: 'true',
+    },
   ]
 }

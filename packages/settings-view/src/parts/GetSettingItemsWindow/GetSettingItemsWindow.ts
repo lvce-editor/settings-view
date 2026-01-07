@@ -37,7 +37,7 @@ export const getSettingItemsWindow = (): readonly SettingItem[] => {
         },
       ],
       type: SettingItemType.Enum,
-      value: 'custom',
+      value: 'custom', // TODO get it from settings
     },
   ]
 }

@@ -37,7 +37,7 @@ test('getSettingsInputButtonsDom returns enabled button when hasSearchValue is t
     },
     {
       childCount: 0,
-      className: ClassNames.MaskIcon,
+      className: `${ClassNames.MaskIcon} ${ClassNames.MaskIconFilter}`,
       type: VirtualDomElements.Div,
     },
   ]
@@ -76,7 +76,7 @@ test('getSettingsInputButtonsDom returns disabled button when hasSearchValue is 
     },
     {
       childCount: 0,
-      className: ClassNames.MaskIcon,
+      className: `${ClassNames.MaskIcon} ${ClassNames.MaskIconFilter}`,
       type: VirtualDomElements.Div,
     },
   ]

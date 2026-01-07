@@ -22,7 +22,7 @@ test('getFilterButtonDom returns filter button and icon', () => {
     },
     {
       childCount: 0,
-      className: ClassNames.MaskIcon,
+      className: `${ClassNames.MaskIcon} ${ClassNames.MaskIconFilter}`,
       type: VirtualDomElements.Div,
     },
   ]

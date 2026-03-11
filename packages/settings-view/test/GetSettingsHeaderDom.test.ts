@@ -51,7 +51,7 @@ test.skip('getSettingsHeaderDom includes badge when hasSearchValue is true', () 
   expect(badgeElement.className).toBe(ClassNames.Badge)
 
   // The last element should be the badge text
-  const badgeText = result[result.length - 1]
+  const badgeText = result.at(-1)
   expect(badgeText.type).toBe(VirtualDomElements.Text)
   expect(badgeText.text).toBe(SettingStrings.matchingSettings(filteredSettingsCount))
 })
@@ -62,7 +62,7 @@ test('getSettingsHeaderDom does not include badge when hasSearchValue is false',
   const result = getSettingsHeaderDom(filteredSettingsCount, hasSearchValue)
 
   // The last element should be the filter button icon
-  const lastElement = result[result.length - 1]
+  const lastElement = result.at(-1)
   expect(lastElement.type).toBe(VirtualDomElements.Div)
   expect(lastElement.className).toBe(`${ClassNames.MaskIcon} ${ClassNames.MaskIconFilter}`)
 })

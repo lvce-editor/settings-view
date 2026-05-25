@@ -1,12 +1,12 @@
 import { expect, test } from '@jest/globals'
 import { mergeClassNames, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
+import type { VisibleSection } from '../src/parts/VisibleSection/VisibleSection.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getSettingsItemsDom } from '../src/parts/GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
-import type { VisibleSection } from '../src/parts/VisibleSection/VisibleSection.ts'
 
 const createVisibleSection = (item: DisplaySettingItem, index: number, top: number, height: number) => {
   return {

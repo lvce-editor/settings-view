@@ -10,13 +10,15 @@ export const handleWheel = (state: SettingsState, eventDeltaY: number, inputSour
   const stepLimit = itemCount === 0 ? 10 : Number.POSITIVE_INFINITY
   const limitedEventDelta = Math.max(-stepLimit, Math.min(stepLimit, eventDeltaY))
   const total = deltaY + limitedEventDelta
+  const sectionHeightMetrics = getSectionHeightMetrics(state)
+  const currentDerived = totalContentHeight === 0 && filteredItems.length > 0 ? computeDerivedSectionState(filteredItems, height, 0, scrollBarMinHeight, sectionHeightMetrics) : undefined
+  const nextTotalContentHeight = currentDerived ? currentDerived.totalContentHeight : totalContentHeight
   // Prevent scrolling beyond the available content height. If content is smaller
   // than the viewport, the maximum scroll is zero.
-  const maxScrollable = Math.max(0, totalContentHeight - height)
+  const maxScrollable = Math.max(0, nextTotalContentHeight - height)
   const clampedDeltaY = clamp(total, 0, maxScrollable)
 
   const scrollOffset = clampedDeltaY
-  const sectionHeightMetrics = getSectionHeightMetrics(state)
   const derived = computeDerivedSectionState(filteredItems, height, scrollOffset, scrollBarMinHeight, sectionHeightMetrics)
 
   return {

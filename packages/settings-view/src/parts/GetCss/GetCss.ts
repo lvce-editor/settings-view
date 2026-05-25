@@ -25,8 +25,7 @@ export const getCss = (
 .Settings {
   --SettingsSideBarWidth: ${rounded}px;
   --ScrollBarThumbHeight: ${scrollBarThumbHeight}px;
-  --ScrollBarThumbTop: ${scrollBarThumbTop}px;
-${sectionVariableBlock}
+  --ScrollBarThumbTop: ${scrollBarThumbTop}px;${sectionVariableBlock}
 }
 
 .SettingsSideBar{

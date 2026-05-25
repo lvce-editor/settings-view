@@ -6,6 +6,7 @@ import { getSettingsItemsDom } from '../src/parts/GetSettingsItemsDom/GetSetting
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
+import type { VisibleSection } from '../src/parts/VisibleSection/VisibleSection.ts'
 
 const createVisibleSection = (item: DisplaySettingItem, index: number, top: number, height: number) => {
   return {
@@ -48,7 +49,7 @@ test('getSettingsItemsDom returns items when items array is not empty', () => {
 })
 
 test('getSettingsItemsDom shows no settings matching message when items is empty and search value is provided', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = 'nonexistent'
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)
@@ -68,7 +69,7 @@ test('getSettingsItemsDom shows no settings matching message when items is empty
 })
 
 test('getSettingsItemsDom shows items when items is empty but search value is empty', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = ''
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)
@@ -82,7 +83,7 @@ test('getSettingsItemsDom shows items when items is empty but search value is em
 })
 
 test('getSettingsItemsDom shows items when items is empty but search value is only whitespace', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = '   '
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)
@@ -96,7 +97,7 @@ test('getSettingsItemsDom shows items when items is empty but search value is on
 })
 
 test('getSettingsItemsDom shows no settings matching message with special characters in search term', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = 'test@123!'
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)
@@ -117,7 +118,7 @@ test('getSettingsItemsDom shows no settings matching message with special charac
 })
 
 test('getSettingsItemsDom shows no settings matching message with unicode characters in search term', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = 'café'
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)
@@ -138,7 +139,7 @@ test('getSettingsItemsDom shows no settings matching message with unicode charac
 })
 
 test('getSettingsItemsDom shows no settings matching message with very long search term', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = 'a'.repeat(1000)
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)
@@ -159,7 +160,7 @@ test('getSettingsItemsDom shows no settings matching message with very long sear
 })
 
 test('getSettingsItemsDom shows no settings matching message with single character search term', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = 'x'
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)
@@ -218,7 +219,7 @@ test('getSettingsItemsDom handles multiple items correctly', () => {
 })
 
 test('getSettingsItemsDom handles empty string search values', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = ''
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)
@@ -232,7 +233,7 @@ test('getSettingsItemsDom handles empty string search values', () => {
 })
 
 test('getSettingsItemsDom handles search value with leading and trailing whitespace', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = '  test  '
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)
@@ -253,7 +254,7 @@ test('getSettingsItemsDom handles search value with leading and trailing whitesp
 })
 
 test('getSettingsItemsDom handles search value with newlines and tabs', () => {
-  const visibleSections = []
+  const visibleSections: readonly VisibleSection[] = []
   const searchValue = '\ttest\n'
 
   const result = getSettingsItemsDom(visibleSections, 0, searchValue, 0, 0)

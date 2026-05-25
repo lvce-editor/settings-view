@@ -14,17 +14,17 @@ export const getSectionHeight = (item: DisplaySettingItem, metrics: SectionHeigh
   const headingHeight = getHeadingHeight(metrics)
   const errorHeight = getErrorHeight(item, metrics)
 
-  switch (item.type) {
-    case SettingItemType.String:
-    case SettingItemType.Number:
-    case SettingItemType.Url:
-      return headingHeight + metrics.labelFontSize + metrics.inputBoxHeight + errorHeight
-    case SettingItemType.Enum:
-      return headingHeight + metrics.labelFontSize + metrics.selectHeight + errorHeight
-    case SettingItemType.Boolean:
-    case SettingItemType.Color:
-      return headingHeight + metrics.labelFontSize + metrics.checkBoxHeight + errorHeight
-    default:
-      return headingHeight + errorHeight
+  if (item.type === SettingItemType.Boolean || item.type === SettingItemType.Color) {
+    return headingHeight + metrics.labelFontSize + metrics.checkBoxHeight + errorHeight
   }
+
+  if (item.type === SettingItemType.Enum) {
+    return headingHeight + metrics.labelFontSize + metrics.selectHeight + errorHeight
+  }
+
+  if (item.type === SettingItemType.Number || item.type === SettingItemType.String || item.type === SettingItemType.Url) {
+    return headingHeight + metrics.labelFontSize + metrics.inputBoxHeight + errorHeight
+  }
+
+  return headingHeight + errorHeight
 }

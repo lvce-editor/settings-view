@@ -5,9 +5,9 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getContentHeadingDom } from '../GetContentHeadingDom/GetContentHeadingDom.ts'
 import { getScrollBarDom } from '../GetScrollBarDom/GetScrollBarDom.ts'
+import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
-import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 
 export const getSettingsContentDom = (
   visibleSections: readonly VisibleSection[],

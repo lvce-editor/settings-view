@@ -8,17 +8,17 @@ import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 export interface SettingsState {
   readonly breakPointsExpanded: boolean
   readonly breakPointsVisible: boolean
-  readonly bottomSpacerHeight: number
   readonly checkBoxHeight: number
+    readonly bottomSpacerHeight: number
   readonly deltaY: number
   readonly filteredItems: readonly DisplaySettingItem[]
   readonly filteredItemsCount: number
   readonly focus: number
   readonly focusSource: number
-  readonly height: number
   readonly headingFontSize: number
   readonly headingPaddingBottom: number
   readonly headingPaddingTop: number
+  readonly height: number
   readonly highlightsEnabled: boolean
   readonly history: readonly string[]
   readonly historyIndex: number

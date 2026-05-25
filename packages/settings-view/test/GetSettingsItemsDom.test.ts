@@ -8,7 +8,7 @@ import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
-const createVisibleSection = (item: DisplaySettingItem, index: number, top: number, height: number) => {
+const createVisibleSection = (item: DisplaySettingItem, index: number, top: number, height: number): VisibleSection => {
   return {
     className: `Section-${index + 1}`,
     height,

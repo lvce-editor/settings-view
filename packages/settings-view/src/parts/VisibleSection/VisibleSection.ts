@@ -10,7 +10,7 @@ export interface VisibleSection {
 
 export interface VisibleSectionsResult {
   readonly bottomSpacerHeight: number
-  readonly totalHeight: number
   readonly topSpacerHeight: number
+  readonly totalHeight: number
   readonly visibleSections: readonly VisibleSection[]
 }

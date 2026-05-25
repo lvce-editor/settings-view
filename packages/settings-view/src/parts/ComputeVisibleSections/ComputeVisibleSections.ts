@@ -1,7 +1,7 @@
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
-import { getSectionHeight } from '../GetSectionHeight/GetSectionHeight.ts'
 import type { SectionHeightMetrics } from '../SectionHeightMetrics/SectionHeightMetrics.ts'
 import type { VisibleSection, VisibleSectionsResult } from '../VisibleSection/VisibleSection.ts'
+import { getSectionHeight } from '../GetSectionHeight/GetSectionHeight.ts'
 
 export const computeVisibleSections = (
   items: readonly DisplaySettingItem[],
@@ -12,8 +12,8 @@ export const computeVisibleSections = (
   if (items.length === 0) {
     return {
       bottomSpacerHeight: 0,
-      totalHeight: 0,
       topSpacerHeight: 0,
+      totalHeight: 0,
       visibleSections: [],
     }
   }
@@ -53,8 +53,8 @@ export const computeVisibleSections = (
 
   return {
     bottomSpacerHeight,
-    totalHeight: top,
     topSpacerHeight,
+    totalHeight: top,
     visibleSections,
   }
 }

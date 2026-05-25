@@ -3,9 +3,9 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Tab } from '../Tab/Tab.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getResizerVirtualDom } from '../GetResizerVirtualDom/GetResizerVirtualDom.ts'
+import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 import { getSettingsContentDom } from '../GetSettingsContentDom/GetSettingsContentDom.ts'
 import { getSettingsSideBarDom } from '../GetSettingsSideBarDom/GetSettingsSideBarDom.ts'
-import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 
 export const getSettingsMainDom = (
   tabs: readonly Tab[],

@@ -1,6 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'settings.virtual-sections'
+export const name = 'settings.virtual-sections-smoke'
 
 export const test: Test = async ({ expect, Locator, SettingsView }) => {
   await SettingsView.show()

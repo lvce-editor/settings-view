@@ -4,6 +4,7 @@ export const isEqual = (oldState: SettingsState, newState: SettingsState): boole
   return (
     oldState.sideBarWidth === newState.sideBarWidth &&
     oldState.scrollBarThumbHeight === newState.scrollBarThumbHeight &&
-    oldState.scrollBarThumbTop === newState.scrollBarThumbTop
+    oldState.scrollBarThumbTop === newState.scrollBarThumbTop &&
+    oldState.visibleSections === newState.visibleSections
   )
 }

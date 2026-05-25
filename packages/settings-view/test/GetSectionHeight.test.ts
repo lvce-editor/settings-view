@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
-import { getSectionHeight } from '../src/parts/GetSectionHeight/GetSectionHeight.ts'
 import type { SectionHeightMetrics } from '../src/parts/SectionHeightMetrics/SectionHeightMetrics.ts'
+import { getSectionHeight } from '../src/parts/GetSectionHeight/GetSectionHeight.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
 const metrics: SectionHeightMetrics = {

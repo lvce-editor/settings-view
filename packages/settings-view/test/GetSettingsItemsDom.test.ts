@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { mergeClassNames, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getSettingsItemsDom } from '../src/parts/GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'

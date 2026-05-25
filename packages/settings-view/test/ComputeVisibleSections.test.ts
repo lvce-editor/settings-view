@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
-import { computeVisibleSections } from '../src/parts/ComputeVisibleSections/ComputeVisibleSections.ts'
 import type { SectionHeightMetrics } from '../src/parts/SectionHeightMetrics/SectionHeightMetrics.ts'
+import { computeVisibleSections } from '../src/parts/ComputeVisibleSections/ComputeVisibleSections.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
 const metrics: SectionHeightMetrics = {
@@ -45,9 +45,9 @@ const items: readonly DisplaySettingItem[] = [
     heading: 'Heading 3',
     id: 'setting-3',
     modified: false,
+    options: [{ id: 'on', label: 'On' }],
     type: SettingItemType.Enum,
     value: 'on',
-    options: [{ id: 'on', label: 'On' }],
   },
 ]
 
@@ -103,8 +103,8 @@ test('computeVisibleSections returns no sections for empty items', () => {
 
   expect(result).toEqual({
     bottomSpacerHeight: 0,
-    totalHeight: 0,
     topSpacerHeight: 0,
+    totalHeight: 0,
     visibleSections: [],
   })
 })

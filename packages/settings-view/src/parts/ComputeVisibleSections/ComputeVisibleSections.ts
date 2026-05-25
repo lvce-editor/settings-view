@@ -41,8 +41,7 @@ export const computeVisibleSections = (
         item,
         top,
       })
-    }
-    else if (!foundVisibleSection) {
+    } else if (!foundVisibleSection) {
       topSpacerHeight = sectionBottom
     }
 

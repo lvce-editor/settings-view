@@ -1,8 +1,8 @@
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
-import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
-import { computeVisibleSections } from '../ComputeVisibleSections/ComputeVisibleSections.ts'
 import type { SectionHeightMetrics } from '../SectionHeightMetrics/SectionHeightMetrics.ts'
 import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
+import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
+import { computeVisibleSections } from '../ComputeVisibleSections/ComputeVisibleSections.ts'
 
 export interface DerivedSectionState {
   readonly bottomSpacerHeight: number
@@ -23,7 +23,7 @@ export const computeDerivedSectionState = (
   scrollBarMinHeight: number,
   metrics: SectionHeightMetrics,
 ): DerivedSectionState => {
-  const { bottomSpacerHeight, totalHeight, topSpacerHeight, visibleSections } = computeVisibleSections(filteredItems, height, scrollOffset, metrics)
+  const { bottomSpacerHeight, topSpacerHeight, totalHeight, visibleSections } = computeVisibleSections(filteredItems, height, scrollOffset, metrics)
   const { thumbHeight, thumbTop } = computeScrollBar(height, totalHeight, scrollOffset, scrollBarMinHeight)
   const firstVisibleSection = visibleSections[0]
   const lastVisibleSection = visibleSections[visibleSections.length - 1]

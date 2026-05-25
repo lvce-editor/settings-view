@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "checkJs": true,
     "module": "nodenext",
     "types": [],
@@ -20,8 +18,5 @@
     "composite": true,
     "noUnusedParameters": true
   },
-  "include": [
-    "src",
-    "test"
-  ]
+  "include": ["src", "test"]
 }

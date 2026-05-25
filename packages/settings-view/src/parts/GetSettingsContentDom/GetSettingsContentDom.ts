@@ -1,11 +1,11 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Tab } from '../Tab/Tab.ts'
+import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getContentHeadingDom } from '../GetContentHeadingDom/GetContentHeadingDom.ts'
 import { getScrollBarDom } from '../GetScrollBarDom/GetScrollBarDom.ts'
-import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 

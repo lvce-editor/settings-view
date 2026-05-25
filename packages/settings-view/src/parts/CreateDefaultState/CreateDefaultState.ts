@@ -2,10 +2,10 @@ import type { SettingsState } from '../SettingsState/SettingsState.ts'
 
 export const createDefaultState = (): SettingsState => {
   return {
+    bottomSpacerHeight: 0,
     breakPointsExpanded: false,
     breakPointsVisible: true,
     checkBoxHeight: 18,
-    bottomSpacerHeight: 0,
     deltaY: 0,
     filteredItems: [],
     filteredItemsCount: 0,

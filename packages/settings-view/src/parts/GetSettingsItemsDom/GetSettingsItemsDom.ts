@@ -1,8 +1,8 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getItemVirtualDom } from '../GetItemVirtualDom/GetItemVirtualDom.ts'
-import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 import { getSettingsNoResultsDom } from '../GetSettingsNoResultsDom/GetSettingsNoResultsDom.ts'
 import { getSpacerDom } from '../GetSpacerDom/GetSpacerDom.ts'
 

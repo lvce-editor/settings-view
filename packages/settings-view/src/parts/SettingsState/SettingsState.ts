@@ -6,10 +6,10 @@ import type { Tab } from '../Tab/Tab.ts'
 import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 
 export interface SettingsState {
+  readonly bottomSpacerHeight: number
   readonly breakPointsExpanded: boolean
   readonly breakPointsVisible: boolean
   readonly checkBoxHeight: number
-    readonly bottomSpacerHeight: number
   readonly deltaY: number
   readonly filteredItems: readonly DisplaySettingItem[]
   readonly filteredItemsCount: number

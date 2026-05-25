@@ -3,10 +3,10 @@ import * as SettingsStates from '../SettingsStates/SettingsStates.ts'
 
 export const create = (id: number, uri: string, x: number, y: number, width: number, height: number): void => {
   const state: SettingsState = {
+    bottomSpacerHeight: 0,
     breakPointsExpanded: false,
     breakPointsVisible: false,
     checkBoxHeight: 18,
-    bottomSpacerHeight: 0,
     deltaY: 0,
     filteredItems: [],
     filteredItemsCount: 0,

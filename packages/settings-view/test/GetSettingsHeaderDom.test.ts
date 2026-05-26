@@ -2,7 +2,6 @@ import { expect, test } from '@jest/globals'
 import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { getSettingsHeaderDom } from '../src/parts/GetSettingsHeaderDom/GetSettingsHeaderDom.ts'
-import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
 test('getSettingsHeaderDom returns correct structure with hasSearchValue true', () => {
   const filteredSettingsCount = 5
@@ -40,21 +39,7 @@ test('getSettingsHeaderDom returns correct structure with hasSearchValue false',
   })
 })
 
-test.skip('getSettingsHeaderDom includes badge when hasSearchValue is true', () => {
-  const filteredSettingsCount = 3
-  const hasSearchValue = true
-  const result = getSettingsHeaderDom(filteredSettingsCount, hasSearchValue)
-
-  // The badge should be the second to last element
-  const badgeElement = result[result.length - 2]
-  expect(badgeElement.type).toBe(VirtualDomElements.Div)
-  expect(badgeElement.className).toBe(ClassNames.Badge)
-
-  // The last element should be the badge text
-  const badgeText = result[result.length - 1]
-  expect(badgeText.type).toBe(VirtualDomElements.Text)
-  expect(badgeText.text).toBe(SettingStrings.matchingSettings(filteredSettingsCount))
-})
+test.todo('getSettingsHeaderDom includes badge when hasSearchValue is true')
 
 test('getSettingsHeaderDom does not include badge when hasSearchValue is false', () => {
   const filteredSettingsCount = 0
@@ -62,7 +47,10 @@ test('getSettingsHeaderDom does not include badge when hasSearchValue is false',
   const result = getSettingsHeaderDom(filteredSettingsCount, hasSearchValue)
 
   // The last element should be the filter button icon
-  const lastElement = result[result.length - 1]
+  const lastElement = result.at(-1)
+  if (!lastElement) {
+    throw new Error('expected filter button icon')
+  }
   expect(lastElement.type).toBe(VirtualDomElements.Div)
   expect(lastElement.className).toBe(`${ClassNames.MaskIcon} ${ClassNames.MaskIconFilter}`)
 })

@@ -4,3 +4,4 @@ export const RenderValue = 3
 export const RenderSettingValues = 10
 export const RenderFocusContext = 12
 export const RenderCss = 13
+export const RenderIncremental = 20

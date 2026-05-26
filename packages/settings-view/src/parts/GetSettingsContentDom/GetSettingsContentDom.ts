@@ -1,7 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
+import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getContentHeadingDom } from '../GetContentHeadingDom/GetContentHeadingDom.ts'
@@ -10,10 +10,13 @@ import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 export const getSettingsContentDom = (
-  visibleItems: readonly DisplaySettingItem[],
+  visibleSections: readonly VisibleSection[],
+  totalItemCount: number,
   tabs: readonly Tab[],
   searchValue: string,
   showScrollBar: boolean,
+  topSpacerHeight: number,
+  bottomSpacerHeight: number,
 ): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
@@ -31,7 +34,7 @@ export const getSettingsContentDom = (
       className: ClassNames.SettingsItemWrapper,
       type: VirtualDomElements.Div,
     },
-    ...getSettingsItemsDom(visibleItems, searchValue),
+    ...getSettingsItemsDom(visibleSections, totalItemCount, searchValue, topSpacerHeight, bottomSpacerHeight),
     ...getScrollBarDom(showScrollBar),
   ]
 }

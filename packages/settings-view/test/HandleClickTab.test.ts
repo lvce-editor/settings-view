@@ -13,6 +13,8 @@ test('handleClickTab returns new state object when name is provided', () => {
   const result = handleClickTab(state, 'test-tab')
   expect(result).not.toBe(state)
   expect(result.filteredItems).toEqual([])
+  expect(result.visibleSections).toEqual([])
+  expect(result.totalContentHeight).toBe(0)
 })
 
 test('handleClickTab updates tabs array correctly when clicking first tab', () => {
@@ -113,4 +115,51 @@ test('handleClickTab preserves other state properties', () => {
     { id: 'tab-1', label: 'Tab 1', selected: true },
     { id: 'tab-2', label: 'Tab 2', selected: false },
   ])
+})
+
+test('handleClickTab computes visible sections for selected tab items', () => {
+  const state = createDefaultState()
+  const stateWithTabs = {
+    ...state,
+    height: 140,
+    items: [
+      {
+        category: 'tab-1',
+        description: 'First description',
+        heading: 'First',
+        id: 'first',
+        type: 2,
+        value: 'A',
+      },
+      {
+        category: 'tab-1',
+        description: 'Second description',
+        heading: 'Second',
+        id: 'second',
+        type: 3,
+        value: true,
+      },
+      {
+        category: 'tab-2',
+        description: 'Third description',
+        heading: 'Third',
+        id: 'third',
+        type: 1,
+        value: 'on',
+      },
+    ],
+    tabs: [
+      { id: 'tab-1', label: 'Tab 1', selected: false },
+      { id: 'tab-2', label: 'Tab 2', selected: true },
+    ],
+  }
+
+  const result = handleClickTab(stateWithTabs, 'tab-1')
+
+  expect(result.filteredItems).toHaveLength(2)
+  expect(result.visibleSections).toEqual([
+    expect.objectContaining({ className: 'Section-1', height: 75, index: 0, top: 0 }),
+    expect.objectContaining({ className: 'Section-2', height: 65, index: 1, top: 75 }),
+  ])
+  expect(result.totalContentHeight).toBe(140)
 })

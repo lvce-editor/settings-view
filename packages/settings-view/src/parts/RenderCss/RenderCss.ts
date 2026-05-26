@@ -3,7 +3,7 @@ import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { getCss } from '../GetCss/GetCss.ts'
 
 export const renderCss = (oldState: SettingsState, newState: SettingsState): any => {
-  const { id, scrollBarThumbHeight, scrollBarThumbTop, sideBarWidth } = newState
-  const css = getCss(sideBarWidth, scrollBarThumbHeight, scrollBarThumbTop)
+  const { id, scrollBarThumbHeight, scrollBarThumbTop, sideBarWidth, visibleSections } = newState
+  const css = getCss(sideBarWidth, scrollBarThumbHeight, scrollBarThumbTop, visibleSections)
   return [ViewletCommand.SetCss, id, css]
 }

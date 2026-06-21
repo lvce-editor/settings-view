@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/prefer-specific-assertions */
 import { test, expect } from '@jest/globals'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import type { ViewletCommand } from '../src/parts/ViewletCommand/ViewletCommand.ts'

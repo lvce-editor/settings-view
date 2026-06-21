@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-disabled-tests */
 import { test, expect } from '@jest/globals'
 import type { SettingItem } from '../src/parts/SettingItem/SettingItem.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'

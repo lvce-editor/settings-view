@@ -14,7 +14,7 @@ test('clamp clamps above max', () => {
 })
 
 test('clamp handles NaN as min', () => {
-  expect(clamp(Number.NaN, 0, 10)).toBe(0)
+  expect(clamp(NaN, 0, 10)).toBe(0)
 })
 
 test('clamp handles max < min by returning min', () => {

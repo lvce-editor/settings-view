@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/prefer-specific-assertions */
 import { expect, test } from '@jest/globals'
 import { getSettingItemsEditor } from '../src/parts/GetSettingItemsEditor/GetSettingItemsEditor.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'

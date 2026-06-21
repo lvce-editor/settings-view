@@ -54,7 +54,7 @@ test('getSettingsDom handles whitespace-only searchValue', () => {
   const state = createDefaultState()
   const stateWithWhitespaceSearch = {
     ...state,
-    searchValue: '   ',
+    searchValue: ' '.repeat(3),
   }
   const result = getSettingsDom(stateWithWhitespaceSearch)
 

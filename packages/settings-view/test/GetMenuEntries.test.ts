@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/prefer-specific-assertions */
 import { test, expect } from '@jest/globals'
 import { getMenuEntries } from '../src/parts/GetMenuEntries/GetMenuEntries.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'

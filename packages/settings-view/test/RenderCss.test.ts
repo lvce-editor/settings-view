@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/prefer-specific-assertions */
 import { expect, test } from '@jest/globals'
 import { ViewletCommand } from '@lvce-editor/constants'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'

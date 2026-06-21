@@ -33,7 +33,7 @@ test('addToHistory does not add empty search value', () => {
 
 test('addToHistory does not add whitespace-only search value', () => {
   const history: readonly string[] = ['search1']
-  const result = addToHistory(history, '   ')
+  const result = addToHistory(history, ' '.repeat(3))
 
   expect(result).toEqual({
     newHistory: ['search1'],

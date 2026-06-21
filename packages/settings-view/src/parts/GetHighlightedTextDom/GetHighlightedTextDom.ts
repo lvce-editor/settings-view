@@ -20,5 +20,5 @@ export const getHighlightedTextDom = (content: string, searchValue: string): rea
   const before = content.slice(0, index)
   const match = content.slice(index, index + normalized.length)
   const after = content.slice(index + normalized.length)
-  return [before ? text(before) : [], highlightSpan, text(match), after ? text(after) : []].flat() as readonly VirtualDomNode[]
+  return [before ? text(before) : [], highlightSpan, text(match), after ? text(after) : []].flat()
 }

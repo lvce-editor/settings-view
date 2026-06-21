@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect, sonarjs/assertions-in-tests */
 import { test } from '@jest/globals'
 import { mockWorkerGlobalRpc } from '@lvce-editor/rpc'
 import { listen } from '../src/parts/Listen/Listen.ts'

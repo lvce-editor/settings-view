@@ -138,6 +138,60 @@ test('handleInput resets scroll to top when filtering', () => {
   expect(result.deltaY).toBe(0)
   expect(result.scrollOffset).toBe(0)
   expect(result.minLineY).toBe(0)
+  expect(result.visibleSections).toHaveLength(2)
+  expect(result.visibleSections[0]?.className).toBe('Section-1')
+  expect(result.totalContentHeight).toBeGreaterThan(0)
+})
+
+test('handleInput computes visibleSections from filtered items', () => {
+  const state = createDefaultState()
+  const stateWithItems = {
+    ...state,
+    height: 140,
+    items: [
+      {
+        category: InputName.TextEditorTab,
+        description: 'First description',
+        heading: 'First',
+        id: 'first',
+        type: SettingItemType.String,
+        value: 'A',
+      },
+      {
+        category: InputName.TextEditorTab,
+        description: 'Second description',
+        heading: 'Second',
+        id: 'second',
+        type: SettingItemType.Boolean,
+        value: true,
+      },
+      {
+        category: InputName.TextEditorTab,
+        description: 'Third description',
+        heading: 'Third',
+        id: 'third',
+        options: [{ id: 'on', label: 'On' }],
+        type: SettingItemType.Enum,
+        value: 'on',
+      },
+    ],
+    tabs: [
+      {
+        id: InputName.TextEditorTab,
+        label: 'Text Editor',
+        selected: true,
+      },
+    ],
+  }
+
+  const result = handleInput(stateWithItems, '')
+
+  expect(result.visibleSections).toEqual([
+    expect.objectContaining({ className: 'Section-1', height: 75, index: 0, top: 0 }),
+    expect.objectContaining({ className: 'Section-2', height: 65, index: 1, top: 75 }),
+  ])
+  expect(result.totalContentHeight).toBe(219)
+  expect(result.maxLineY).toBe(2)
 })
 
 test('handleInput filters across all items, not only visible ones', () => {

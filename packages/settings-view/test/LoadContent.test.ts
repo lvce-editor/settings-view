@@ -200,6 +200,9 @@ test('loadContent should compute visibleItems based on scrollOffset and height',
   expect(Array.isArray(result.visibleItems)).toBe(true)
   expect(result.minLineY).toBeGreaterThanOrEqual(0)
   expect(result.maxLineY).toBeGreaterThanOrEqual(result.minLineY)
+  expect(result.visibleSections).toBeDefined()
+  expect(Array.isArray(result.visibleSections)).toBe(true)
+  expect(result.totalContentHeight).toBeGreaterThanOrEqual(0)
 })
 
 test('loadContent should compute scrollBar metrics', async () => {

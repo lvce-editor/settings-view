@@ -1,6 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleWheel } from '../src/parts/HandleWheel/HandleWheel.ts'
+import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
 test('handleWheel accumulates deltaY', () => {
   const state = {
@@ -13,7 +14,7 @@ test('handleWheel accumulates deltaY', () => {
       heading: '',
       id: String(i),
       modified: false,
-      type: 0,
+      type: SettingItemType.String,
       value: '',
     })),
     height: 600,
@@ -37,7 +38,7 @@ test('handleWheel supports negative deltaY', () => {
       heading: '',
       id: String(i),
       modified: false,
-      type: 0,
+      type: SettingItemType.String,
       value: '',
     })),
     height: 600,
@@ -54,14 +55,44 @@ test('handleWheel clamps to max based on content height minus viewport', () => {
   const state = {
     ...createDefaultState(),
     filteredItems: [
-      { category: '', description: '', errorMessage: '', hasError: false, heading: '', id: 'a', modified: false, type: 0, value: '' },
-      { category: '', description: '', errorMessage: '', hasError: false, heading: '', id: 'b', modified: false, type: 0, value: '' },
-      { category: '', description: '', errorMessage: '', hasError: false, heading: '', id: 'c', modified: false, type: 0, value: '' },
+      {
+        category: '',
+        description: '',
+        errorMessage: '',
+        hasError: false,
+        heading: '',
+        id: 'a',
+        modified: false,
+        type: SettingItemType.String,
+        value: '',
+      },
+      {
+        category: '',
+        description: '',
+        errorMessage: '',
+        hasError: false,
+        heading: '',
+        id: 'b',
+        modified: false,
+        type: SettingItemType.String,
+        value: '',
+      },
+      {
+        category: '',
+        description: '',
+        errorMessage: '',
+        hasError: false,
+        heading: '',
+        id: 'c',
+        modified: false,
+        type: SettingItemType.String,
+        value: '',
+      },
     ],
     height: 600,
     itemHeight: 100,
   }
-  // totalContentHeight = 3 * 100 = 300, viewport height = 600 => max scroll = 0
+  // totalContentHeight = 3 * 75 = 225, viewport height = 600 => max scroll = 0
   const state1 = handleWheel(state, 150)
   expect(state1.deltaY).toBe(0)
 
@@ -75,11 +106,11 @@ test('handleWheel clamps to max based on content height minus viewport', () => {
       heading: '',
       id: String(i),
       modified: false,
-      type: 0,
+      type: SettingItemType.String,
       value: '',
     })),
   }
-  // totalContentHeight = 10 * 100 = 1000, viewport = 600 => max = 400
+  // totalContentHeight = 10 * 75 = 750, viewport = 600 => max = 150
   const state3 = handleWheel(state2, 500)
-  expect(state3.deltaY).toBe(400)
+  expect(state3.deltaY).toBe(150)
 })

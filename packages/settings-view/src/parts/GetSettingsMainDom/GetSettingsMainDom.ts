@@ -1,7 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
+import type { VisibleSection } from '../VisibleSection/VisibleSection.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getResizerVirtualDom } from '../GetResizerVirtualDom/GetResizerVirtualDom.ts'
 import { getSettingsContentDom } from '../GetSettingsContentDom/GetSettingsContentDom.ts'
@@ -9,14 +9,15 @@ import { getSettingsSideBarDom } from '../GetSettingsSideBarDom/GetSettingsSideB
 
 export const getSettingsMainDom = (
   tabs: readonly Tab[],
-  visibleItems: readonly DisplaySettingItem[],
+  visibleSections: readonly VisibleSection[],
   totalItemCount: number,
+  totalContentHeight: number,
   searchValue: string,
   height: number,
-  itemHeight: number,
+  topSpacerHeight: number,
+  bottomSpacerHeight: number,
 ): readonly VirtualDomNode[] => {
-  const totalHeight = totalItemCount * itemHeight
-  const showScrollBar = totalHeight > height
+  const showScrollBar = totalContentHeight > height
 
   return [
     {
@@ -26,6 +27,6 @@ export const getSettingsMainDom = (
     },
     ...getSettingsSideBarDom(tabs),
     ...getResizerVirtualDom(),
-    ...getSettingsContentDom(visibleItems, tabs, searchValue, showScrollBar),
+    ...getSettingsContentDom(visibleSections, totalItemCount, tabs, searchValue, showScrollBar, topSpacerHeight, bottomSpacerHeight),
   ]
 }

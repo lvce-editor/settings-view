@@ -7,6 +7,7 @@ export default [
       '@typescript-eslint/prefer-readonly-parameter-types': 'off',
       '@cspell/spellchecker': 'off',
       '@typescript-eslint/only-throw-error': 'off',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
     },
   },
 ]

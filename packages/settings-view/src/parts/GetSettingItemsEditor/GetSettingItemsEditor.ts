@@ -16,10 +16,10 @@ export const getSettingItemsEditor = (): readonly SettingItem[] => {
           return 'font size must be of type number'
         }
         const minFontSize = 10
-        const maxFontSize = 100
         if (value < minFontSize) {
           return 'font size must be at least 10'
         }
+        const maxFontSize = 100
         if (value > maxFontSize) {
           return 'font size must not be greater than 100'
         }
@@ -130,10 +130,10 @@ export const getSettingItemsEditor = (): readonly SettingItem[] => {
           return 'font size must be of type number'
         }
         const minTabSize = 1
-        const maxTabSize = 8
         if (value < minTabSize) {
           return `tab size must be at least ${minTabSize}`
         }
+        const maxTabSize = 8
         if (value > maxTabSize) {
           return `tab size must not be greater than ${maxTabSize}`
         }

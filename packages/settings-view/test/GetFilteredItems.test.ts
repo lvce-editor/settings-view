@@ -185,7 +185,7 @@ test('filterBySearch should return all items when search value is only whitespac
     },
   ]
 
-  const result = filterBySearch(items, '   ')
+  const result = filterBySearch(items, ' '.repeat(3))
   expect(result).toHaveLength(2)
 })
 

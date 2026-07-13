@@ -68,7 +68,7 @@ test('getSettingsItemsDom shows items when items is empty but search value is em
 
 test('getSettingsItemsDom shows items when items is empty but search value is only whitespace', () => {
   const items: readonly DisplaySettingItem[] = []
-  const searchValue = '   '
+  const searchValue = ' '.repeat(3)
 
   const result = getSettingsItemsDom(items, searchValue)
 

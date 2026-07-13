@@ -1,4 +1,5 @@
 // TODo use numeric ids
+export const HandleCheckboxBoxClick = 'handleCheckboxBoxClick'
 export const HandleClickClear = 'handleClickClear'
 export const HandleClickFilterButton = 'handleClickFilterButton'
 export const HandleClickTab = 'handleClickTab'

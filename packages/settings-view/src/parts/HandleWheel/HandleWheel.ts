@@ -7,7 +7,7 @@ import { User } from '../InputSource/InputSource.ts'
 export const handleWheel = (state: SettingsState, eventDeltaY: number, inputSource = User): SettingsState => {
   const { deltaY: deltaY, filteredItems, height, itemHeight = 1 } = state
   const itemCount = filteredItems.length
-  const stepLimit = itemCount === 0 ? 10 : Number.POSITIVE_INFINITY
+  const stepLimit = itemCount === 0 ? 10 : Infinity
   const limitedEventDelta = Math.max(-stepLimit, Math.min(stepLimit, eventDeltaY))
   const total = deltaY + limitedEventDelta
   // Prevent scrolling beyond the available content height. If content is smaller

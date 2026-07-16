@@ -10,7 +10,7 @@ export const test: Test = async ({ expect, Locator, SettingsView }) => {
   await SettingsView.selectTab('workbench')
 
   // assert
-  const tab = Locator('.SettingsTab[name="workbench"]')
+  const tab = Locator('.Tab[name="workbench"]')
   await expect(tab).toHaveAttribute('aria-selected', 'true')
   const heading = Locator('.SettingsContentHeading')
   await expect(heading).toHaveText('Workbench')

@@ -1,19 +1,19 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'settings.select-workbench'
+export const name = 'settings.select-features'
 
 export const test: Test = async ({ expect, Locator, SettingsView }) => {
   // arrange
   await SettingsView.show()
 
   // act
-  await SettingsView.selectTab('workbench')
+  await SettingsView.selectTab('features')
 
   // assert
-  const tab = Locator('.SettingsTab[name="workbench"]')
+  const tab = Locator('.SettingsTab[name="features"]')
   await expect(tab).toHaveAttribute('aria-selected', 'true')
   const heading = Locator('.SettingsContentHeading')
-  await expect(heading).toHaveText('Workbench')
-  const themeSetting = Locator('[name="theme"]')
-  await expect(themeSetting).toBeVisible()
+  await expect(heading).toHaveText('Features')
+  const autoSaveSetting = Locator('[name="autoSave"]')
+  await expect(autoSaveSetting).toBeVisible()
 }

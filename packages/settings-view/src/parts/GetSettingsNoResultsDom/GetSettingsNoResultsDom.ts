@@ -3,18 +3,18 @@ import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
+const settingsItemsNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.SettingsItems,
+  type: VirtualDomElements.Div,
+}
+
+const noResultsNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.SettingsNoResults,
+  type: VirtualDomElements.P,
+}
+
 export const getSettingsNoResultsDom = (searchValue: string): readonly VirtualDomNode[] => {
-  return [
-    {
-      childCount: 1,
-      className: ClassNames.SettingsItems,
-      type: VirtualDomElements.Div,
-    },
-    {
-      childCount: 1,
-      className: ClassNames.SettingsNoResults,
-      type: VirtualDomElements.P,
-    },
-    text(SettingStrings.noSettingsMatching(searchValue)),
-  ]
+  return [settingsItemsNode, noResultsNode, text(SettingStrings.noSettingsMatching(searchValue))]
 }

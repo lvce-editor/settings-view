@@ -8,16 +8,15 @@ const parentNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
+const thumbNode: VirtualDomNode = {
+  childCount: 0,
+  className: ClassNames.SettingsScrollBarThumb,
+  type: VirtualDomElements.Div,
+}
+
 export const getScrollBarDom = (visible: boolean): readonly VirtualDomNode[] => {
   if (!visible) {
     return []
   }
-  return [
-    parentNode,
-    {
-      childCount: 0,
-      className: ClassNames.SettingsScrollBarThumb,
-      type: VirtualDomElements.Div,
-    },
-  ]
+  return [parentNode, thumbNode]
 }

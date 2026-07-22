@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
@@ -12,7 +12,7 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 export const getItemUrlVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { description, errorMessage, hasError, heading, id, modified } = item
   const domId = getInputId(id)
-  const inputClassName = hasError ? `${ClassNames.InputBox} ${ClassNames.InputBoxError}` : ClassNames.InputBox
+  const inputClassName = hasError ? mergeClassNames(ClassNames.InputBox, ClassNames.InputBoxError) : ClassNames.InputBox
   const errorChildCount = hasError ? 1 : 0
 
   return [

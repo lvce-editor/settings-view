@@ -5,6 +5,12 @@ import { getSettingsInputBadgeDom } from '../GetSettingsInputBadgeDom/GetSetting
 import { getSettingsInputButtonsDom } from '../GetSettingsInputButtonsDom/GetSettingsInputButtonsDom.ts'
 import { getSettingsInputDom } from '../GetSettingsInputDom/GetSettingsInputDom.ts'
 
+const settingsHeaderNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.SettingsHeader,
+  type: VirtualDomElements.Div,
+}
+
 const getChildCount = (hasSearchValue: boolean): number => {
   return hasSearchValue ? 4 : 3
 }
@@ -12,11 +18,7 @@ const getChildCount = (hasSearchValue: boolean): number => {
 export const getSettingsHeaderDom = (filteredSettingsCount: number, hasSearchValue: boolean): readonly VirtualDomNode[] => {
   const childCount = getChildCount(hasSearchValue)
   return [
-    {
-      childCount: 1,
-      className: ClassNames.SettingsHeader,
-      type: VirtualDomElements.Div,
-    },
+    settingsHeaderNode,
     {
       childCount,
       className: mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField'),

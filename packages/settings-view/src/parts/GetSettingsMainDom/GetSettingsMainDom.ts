@@ -7,6 +7,12 @@ import { getResizerVirtualDom } from '../GetResizerVirtualDom/GetResizerVirtualD
 import { getSettingsContentDom } from '../GetSettingsContentDom/GetSettingsContentDom.ts'
 import { getSettingsSideBarDom } from '../GetSettingsSideBarDom/GetSettingsSideBarDom.ts'
 
+const settingsMainNode: VirtualDomNode = {
+  childCount: 3,
+  className: ClassNames.SettingsMain,
+  type: VirtualDomElements.Div,
+}
+
 export const getSettingsMainDom = (
   tabs: readonly Tab[],
   visibleItems: readonly DisplaySettingItem[],
@@ -19,11 +25,7 @@ export const getSettingsMainDom = (
   const showScrollBar = totalHeight > height
 
   return [
-    {
-      childCount: 3,
-      className: ClassNames.SettingsMain,
-      type: VirtualDomElements.Div,
-    },
+    settingsMainNode,
     ...getSettingsSideBarDom(tabs),
     ...getResizerVirtualDom(),
     ...getSettingsContentDom(visibleItems, tabs, searchValue, showScrollBar),

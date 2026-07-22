@@ -4,13 +4,12 @@ import type { Tab } from '../Tab/Tab.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getSettingsTabsDom } from '../GetSettingsTabsDom/GetSettingsTabsDom.ts'
 
+const settingsSideBarNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.SettingsSideBar,
+  type: VirtualDomElements.Aside,
+}
+
 export const getSettingsSideBarDom = (tabs: readonly Tab[]): readonly VirtualDomNode[] => {
-  return [
-    {
-      childCount: 1,
-      className: ClassNames.SettingsSideBar,
-      type: VirtualDomElements.Aside,
-    },
-    ...getSettingsTabsDom(tabs),
-  ]
+  return [settingsSideBarNode, ...getSettingsTabsDom(tabs)]
 }

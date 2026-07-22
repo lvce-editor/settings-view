@@ -9,6 +9,19 @@ import { getScrollBarDom } from '../GetScrollBarDom/GetScrollBarDom.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
+const settingsContentNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.SettingsContent,
+  onWheel: DomEventListenerFunctions.HandleWheel,
+  type: VirtualDomElements.Div,
+}
+
+const settingsItemWrapperNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.SettingsItemWrapper,
+  type: VirtualDomElements.Div,
+}
+
 export const getSettingsContentDom = (
   visibleItems: readonly DisplaySettingItem[],
   tabs: readonly Tab[],
@@ -19,18 +32,9 @@ export const getSettingsContentDom = (
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
 
   return [
-    {
-      childCount: 2,
-      className: ClassNames.SettingsContent,
-      onWheel: DomEventListenerFunctions.HandleWheel,
-      type: VirtualDomElements.Div,
-    },
+    settingsContentNode,
     ...getContentHeadingDom(headerText),
-    {
-      childCount: 2,
-      className: ClassNames.SettingsItemWrapper,
-      type: VirtualDomElements.Div,
-    },
+    settingsItemWrapperNode,
     ...getSettingsItemsDom(visibleItems, searchValue),
     ...getScrollBarDom(showScrollBar),
   ]

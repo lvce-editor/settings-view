@@ -3,18 +3,20 @@ import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-wo
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
+const resizerDom: readonly VirtualDomNode[] = [
+  {
+    childCount: 1,
+    className: mergeClassNames(ClassNames.Resizer, 'SettingsResizer'),
+    onPointerDown: DomEventListenerFunctions.HandleResizerPointerDown,
+    type: VirtualDomElements.Div,
+  },
+  {
+    childCount: 0,
+    className: ClassNames.ResizerHighlight,
+    type: VirtualDomElements.Div,
+  },
+]
+
 export const getResizerVirtualDom = (): readonly VirtualDomNode[] => {
-  return [
-    {
-      childCount: 1,
-      className: mergeClassNames(ClassNames.Resizer, 'SettingsResizer'),
-      onPointerDown: DomEventListenerFunctions.HandleResizerPointerDown,
-      type: VirtualDomElements.Div,
-    },
-    {
-      childCount: 0,
-      className: ClassNames.ResizerHighlight,
-      type: VirtualDomElements.Div,
-    },
-  ]
+  return resizerDom
 }

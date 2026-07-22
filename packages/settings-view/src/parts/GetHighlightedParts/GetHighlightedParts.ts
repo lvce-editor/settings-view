@@ -1,6 +1,8 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 
+const highlightNode: VirtualDomNode = { childCount: 1, className: 'Highlight', type: VirtualDomElements.Span }
+
 export const getHighlightedParts = (content: string, searchValue: string): readonly VirtualDomNode[] => {
   const query = searchValue.trim()
   if (!query) {
@@ -19,7 +21,7 @@ export const getHighlightedParts = (content: string, searchValue: string): reado
   if (before) {
     nodes.push(text(before))
   }
-  nodes.push({ childCount: 1, className: 'Highlight', type: VirtualDomElements.Span })
+  nodes.push(highlightNode)
   nodes.push(text(match))
   if (after) {
     nodes.push(text(after))

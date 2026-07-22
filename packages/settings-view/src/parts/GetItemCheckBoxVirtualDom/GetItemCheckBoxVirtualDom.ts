@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
@@ -8,10 +8,16 @@ import { getInputId } from '../GetInputId/GetInputId.ts'
 import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 
+const checkBoxWrapperNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.SettingsItemCheckBox,
+  type: VirtualDomElements.Div,
+}
+
 export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { description, errorMessage, hasError, heading, id, modified } = item
   const domId = getInputId(id)
-  const checkBoxClassName = hasError ? `${ClassNames.CheckBox} ${ClassNames.InputBoxError}` : ClassNames.CheckBox
+  const checkBoxClassName = hasError ? mergeClassNames(ClassNames.CheckBox, ClassNames.InputBoxError) : ClassNames.CheckBox
   const errorChildCount = hasError ? 1 : 0
 
   return [
@@ -24,11 +30,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
     },
     ...getItemHeadingDom(heading),
 
-    {
-      childCount: 2,
-      className: ClassNames.SettingsItemCheckBox,
-      type: VirtualDomElements.Div,
-    },
+    checkBoxWrapperNode,
     {
       childCount: 0,
       className: checkBoxClassName,

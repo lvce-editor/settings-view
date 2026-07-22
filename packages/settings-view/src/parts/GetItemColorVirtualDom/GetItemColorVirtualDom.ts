@@ -9,6 +9,12 @@ import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
+const colorInputWrapperNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.SettingsItemCheckBox,
+  type: VirtualDomElements.Div,
+}
+
 export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { description, errorMessage, hasError, heading, id, modified } = item
   const domId = getInputId(id)
@@ -25,11 +31,7 @@ export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly Virtu
     },
     ...getItemHeadingDom(heading),
 
-    {
-      childCount: 2,
-      className: ClassNames.SettingsItemCheckBox,
-      type: VirtualDomElements.Div,
-    },
+    colorInputWrapperNode,
     {
       childCount: 0,
       className: colorInputClassName,

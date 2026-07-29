@@ -15,5 +15,5 @@ export const test: Test = async ({ expect, Locator, SettingsView }) => {
   const settingsItems = Locator('.SettingsItem')
   await expect(settingsItems).toHaveCount(1)
   const scrollBar = Locator('.ScrollBar')
-  await expect(scrollBar).not.toBeVisible()
+  await expect(scrollBar).toBeHidden()
 }

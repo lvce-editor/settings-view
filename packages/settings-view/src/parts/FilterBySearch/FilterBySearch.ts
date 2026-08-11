@@ -2,9 +2,9 @@ import type { SettingItem } from '../SettingItem/SettingItem.ts'
 
 const normalizeSearchText = (value: string): string => {
   return value
-    .replace(/([a-z\d])([A-Z])/g, '$1 $2')
+    .replaceAll(/([a-z\d])([A-Z])/g, '$1 $2')
     .toLowerCase()
-    .replace(/[^a-z\d]+/g, ' ')
+    .replaceAll(/[^a-z\d]+/g, ' ')
     .trim()
 }
 

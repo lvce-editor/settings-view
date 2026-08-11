@@ -28,6 +28,7 @@ export const getSettingItemsEditor = (): readonly SettingItem[] => {
       value: 15,
     },
     {
+      aliases: ['editor font family'],
       category: InputName.TextEditorTab,
       description: SettingStrings.fontFamilyDescription(),
       heading: SettingStrings.fontFamily(),

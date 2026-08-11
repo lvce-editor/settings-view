@@ -141,6 +141,74 @@ test('filterBySearch should filter items case-insensitively', () => {
   expect(result[0].id).toBe('fontSize')
 })
 
+test('filterBySearch should normalize punctuation in the search value', () => {
+  const items: readonly SettingItem[] = [
+    {
+      category: InputName.TextEditorTab,
+      description: 'The font family of the editor',
+      heading: 'Font Family',
+      id: 'editor.fontFamily',
+      type: SettingItemType.String,
+      value: 'Monaco',
+    },
+  ]
+
+  const result = filterBySearch(items, 'font-family')
+  expect(result).toHaveLength(1)
+  expect(result[0].id).toBe('editor.fontFamily')
+})
+
+test('filterBySearch should filter items by id', () => {
+  const items: readonly SettingItem[] = [
+    {
+      category: InputName.TextEditorTab,
+      description: 'Controls how the cursor blinks',
+      heading: 'Cursor Blinking',
+      id: 'editor.cursorBlinking',
+      type: SettingItemType.String,
+      value: 'blink',
+    },
+  ]
+
+  const result = filterBySearch(items, 'editor cursor blinking')
+  expect(result).toHaveLength(1)
+  expect(result[0].id).toBe('editor.cursorBlinking')
+})
+
+test('filterBySearch should filter items by alias', () => {
+  const items: readonly SettingItem[] = [
+    {
+      aliases: ['typeface'],
+      category: InputName.TextEditorTab,
+      description: 'The font family of the editor',
+      heading: 'Font Family',
+      id: 'editor.fontFamily',
+      type: SettingItemType.String,
+      value: 'Monaco',
+    },
+  ]
+
+  const result = filterBySearch(items, 'typeface')
+  expect(result).toHaveLength(1)
+  expect(result[0].id).toBe('editor.fontFamily')
+})
+
+test('filterBySearch should return no items when search value is only punctuation', () => {
+  const items: readonly SettingItem[] = [
+    {
+      category: InputName.TextEditorTab,
+      description: 'The font family of the editor',
+      heading: 'Font Family',
+      id: 'editor.fontFamily',
+      type: SettingItemType.String,
+      value: 'Monaco',
+    },
+  ]
+
+  const result = filterBySearch(items, '---')
+  expect(result).toHaveLength(0)
+})
+
 test('filterBySearch should return all items when search value is empty', () => {
   const items: readonly SettingItem[] = [
     {

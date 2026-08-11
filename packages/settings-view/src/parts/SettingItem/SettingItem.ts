@@ -4,6 +4,7 @@ export interface SettingItemOption {
 }
 
 export interface SettingItem {
+  readonly aliases?: readonly string[]
   readonly category: string
   readonly description: string
   readonly heading: string

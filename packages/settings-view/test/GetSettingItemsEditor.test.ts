@@ -74,6 +74,7 @@ test('getSettingItemsEditor returns expected fontFamily item', () => {
   const fontFamilyItem = items.find((item) => item.id === 'editor.fontFamily')
 
   expect(fontFamilyItem).toBeDefined()
+  expect(fontFamilyItem?.aliases).toEqual(['editor font family'])
   expect(fontFamilyItem?.heading).toBe(SettingStrings.fontFamily())
   expect(fontFamilyItem?.description).toBe(SettingStrings.fontFamilyDescription())
   expect(fontFamilyItem?.type).toBe(SettingItemType.String)

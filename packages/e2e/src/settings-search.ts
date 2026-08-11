@@ -7,7 +7,7 @@ export const test: Test = async ({ expect, Locator, SettingsView }) => {
   await SettingsView.show()
 
   // act
-  await SettingsView.handleInput('font family')
+  await SettingsView.handleInput('font-family')
 
   // assert
   const settingsItems = Locator('.SettingsItem')

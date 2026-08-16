@@ -32,6 +32,8 @@ import { getCommandIds, wrapCommand, wrapGetter } from '../SettingsStates/Settin
 import { useNextSearchValue } from '../UseNextSearchValue/UseNextSearchValue.ts'
 import { usePreviousSearchValue } from '../UsePreviousSearchValue/UsePreviousSearchValue.ts'
 
+const handleDirectMessagePort = (port: any): Promise<void> => handleMessagePort(port, commandMap)
+
 export const commandMap = {
   'Initialize.initialize': Initialize.initialize,
   'Settings.clear': wrapCommand(clear),
@@ -48,7 +50,7 @@ export const commandMap = {
   'Settings.handleInput': wrapCommand(handleInput),
   'Settings.handleInputBlur': wrapCommand(handleInputBlur),
   'Settings.handleInputFocus': wrapCommand(handleInputFocus),
-  'Settings.handleMessagePort': handleMessagePort,
+  'Settings.handleMessagePort': handleDirectMessagePort,
   'Settings.handleResizerPointerDown': wrapCommand(handleResizerPointerDown),
   'Settings.handleResizerPointerMove': wrapCommand(handleResizerPointerMove),
   'Settings.handleResizerPointerUp': wrapCommand(handleResizerPointerUp),

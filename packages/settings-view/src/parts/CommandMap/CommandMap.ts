@@ -12,7 +12,7 @@ import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
 import { handleInputBlur } from '../HandleInputBlur/HandleInputBlur.ts'
 import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
-import { handleMessagePort } from '../HandleMessagePort/HandleMessagePort.ts'
+import { handleMessagePort, setCommandMap } from '../HandleMessagePort/HandleMessagePort.ts'
 import { handleResizerPointerDown } from '../HandleResizerPointerDown/HandleResizerPointerDown.ts'
 import { handleResizerPointerMove } from '../HandleResizerPointerMove/HandleResizerPointerMove.ts'
 import { handleResizerPointerUp } from '../HandleResizerPointerUp/HandleResizerPointerUp.ts'
@@ -67,3 +67,5 @@ export const commandMap = {
   'Settings.useNextSearchValue': wrapCommand(useNextSearchValue),
   'Settings.usePreviousSearchValue': wrapCommand(usePreviousSearchValue),
 }
+
+setCommandMap(commandMap)

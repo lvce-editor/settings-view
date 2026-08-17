@@ -26,9 +26,9 @@ const content = await readFile(rendererWorkerPath, 'utf8')
 const workerPath = join(root, '.tmp/dist/dist/settingsViewWorkerMain.js')
 const remoteUrl = getRemoteUrl(workerPath)
 
-const occurrence = `// const settingsWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\`
-const settingsWorkerUrl = \`${remoteUrl}\``
-const replacement = `const settingsWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\``
+const occurrence = `// const settingsViewWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\`;
+const settingsViewWorkerUrl = \`${remoteUrl}\`;`
+const replacement = `const settingsViewWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\`;`
 if (!content.includes(occurrence)) {
   throw new Error('occurrence not found')
 }

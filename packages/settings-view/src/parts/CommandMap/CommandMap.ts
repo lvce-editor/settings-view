@@ -32,7 +32,7 @@ import { getCommandIds, wrapCommand, wrapGetter } from '../SettingsStates/Settin
 import { useNextSearchValue } from '../UseNextSearchValue/UseNextSearchValue.ts'
 import { usePreviousSearchValue } from '../UsePreviousSearchValue/UsePreviousSearchValue.ts'
 
-const handleDirectMessagePort = (port: any): Promise<void> => handleMessagePort(port, commandMap)
+const handleDirectMessagePort = (port: any, setAsRendererProcess = true): Promise<void> => handleMessagePort(port, commandMap, setAsRendererProcess)
 
 export const commandMap = {
   'Initialize.initialize': Initialize.initialize,

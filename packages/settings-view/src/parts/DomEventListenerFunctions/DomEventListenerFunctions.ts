@@ -2,6 +2,7 @@
 export const HandleClickClear = 'handleClickClear'
 export const HandleClickFilterButton = 'handleClickFilterButton'
 export const HandleClickTab = 'handleClickTab'
+export const HandleContextMenu = 'handleContextMenu'
 export const HandleInput = 'handleInput'
 export const HandleSettingInput = 'handleSettingInput'
 export const HandleSettingChecked = 'handleSettingChecked'

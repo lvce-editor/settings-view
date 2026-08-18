@@ -1,14 +1,14 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { getNewFilteredItems } from '../GetNewFilteredItems/GetNewFilteredItems.ts'
-import { getNewModifiedSettings } from '../GetNewModifiedSettings/GetNewModifiedSettings.ts'
+import { Script } from '../InputSource/InputSource.ts'
 
-export const handleSettingUpdate = (state: SettingsState, name: string, value: any, inputSource: number): SettingsState => {
+export const resetSetting = (state: SettingsState, settingId: string): SettingsState => {
   const { filteredItems, items, modifiedSettings, preferences, searchValue, tabs } = state
-  const newModifiedSettings = getNewModifiedSettings(modifiedSettings, name)
-  const newPreferences = {
-    ...preferences,
-    [name]: value,
+  if (!(settingId in modifiedSettings)) {
+    return state
   }
+  const newModifiedSettings = Object.fromEntries(Object.entries(modifiedSettings).filter(([key]) => key !== settingId))
+  const newPreferences = Object.fromEntries(Object.entries(preferences).filter(([key]) => key !== settingId))
   const newFilteredItems = getNewFilteredItems(
     modifiedSettings,
     newModifiedSettings,
@@ -22,7 +22,7 @@ export const handleSettingUpdate = (state: SettingsState, name: string, value: a
   return {
     ...state,
     filteredItems: newFilteredItems,
-    inputSource,
+    inputSource: Script,
     modifiedSettings: newModifiedSettings,
     preferences: newPreferences,
   }

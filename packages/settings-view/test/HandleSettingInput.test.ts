@@ -24,6 +24,7 @@ test('handleSettingInput converts string to number for number-type settings', ()
   const result = handleSettingInput(state, 'editor.fontSize', '20', User)
 
   expect(result.preferences['editor.fontSize']).toBe(20)
+  expect(result.modifiedSettings['editor.fontSize']).toBe(true)
   expect(typeof result.preferences['editor.fontSize']).toBe('number')
 })
 

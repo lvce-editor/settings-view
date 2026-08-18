@@ -27,6 +27,7 @@ test('getItemStringVirtualDom returns virtual DOM without error when no validati
     {
       childCount: 3,
       className: ClassNames.SettingsItem,
+      name: item.id,
       role: AriaRoles.Group,
       type: VirtualDomElements.Div,
     },
@@ -75,6 +76,7 @@ test('getItemStringVirtualDom returns virtual DOM with error when validation fai
     {
       childCount: 4,
       className: ClassNames.SettingsItem,
+      name: item.id,
       role: AriaRoles.Group,
       type: VirtualDomElements.Div,
     },

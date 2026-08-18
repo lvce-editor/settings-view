@@ -31,6 +31,8 @@ export const numberValue = (): string => I18NString.i18nString(UiStrings.NumberV
 
 export const preview = (): string => I18NString.i18nString(UiStrings.Preview)
 
+export const resetSetting = (): string => I18NString.i18nString(UiStrings.ResetSetting)
+
 export const searchSettings = (): string => I18NString.i18nString(UiStrings.SearchSettings)
 
 export const settingId = (): string => I18NString.i18nString(UiStrings.SettingId)

@@ -307,16 +307,16 @@ test('loadContent should use preferences from RendererWorker', async () => {
 
 test('loadContent should load setting items and preferences in parallel', async () => {
   const events: string[] = []
+  const { promise: itemsCanFinish, resolve: resolveItems } = Promise.withResolvers<void>()
   SettingsWorker.set(
     MockRpc.create({
       commandMap: {},
-      invoke(method: string) {
+      async invoke(method: string) {
         if (method === 'SettingsWorker.getSettingsItems2') {
           events.push('items-started')
-          return Promise.resolve().then(() => {
-            events.push('items-finished')
-            return items
-          })
+          await itemsCanFinish
+          events.push('items-finished')
+          return items
         }
         if (method === 'SettingsWorker.getTabs') {
           return tabs
@@ -331,6 +331,7 @@ test('loadContent should load setting items and preferences in parallel', async 
       invoke(method: string) {
         if (method === 'Preferences.getAll') {
           events.push('preferences-started')
+          resolveItems()
           return {}
         }
         throw new Error(`unexpected method ${method}`)

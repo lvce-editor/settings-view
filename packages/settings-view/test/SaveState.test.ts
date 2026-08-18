@@ -1,6 +1,5 @@
 import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { getTabs } from '../src/parts/GetTabs/GetTabs.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
 import { set } from '../src/parts/SettingsStates/SettingsStates.ts'
@@ -149,7 +148,7 @@ test('saveState saves selectedTab from state', () => {
   const uid = 1
   const state = {
     ...createDefaultState(),
-    tabs: getTabs(),
+    tabs: [{ id: InputName.TextEditorTab, label: 'Text Editor', selected: true }],
   }
   set(uid, state, state)
 

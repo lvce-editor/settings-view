@@ -19,15 +19,6 @@ export default defineConfig([
     },
   },
   {
-    files: [
-      'packages/settings-view/src/parts/GetSettingItemsEditor/GetSettingItemsEditor.ts',
-      'packages/settings-view/src/parts/GetSettingItemsWindow/GetSettingItemsWindow.ts',
-    ],
-    rules: {
-      'virtual-dom/no-object-attribute-values': 'off',
-    },
-  },
-  {
     files: ['packages/settings-view/test/**/*.ts'],
     rules: {
       'virtual-dom/no-inline-event-handlers': 'off',

@@ -20,6 +20,7 @@ export const getItemUrlVirtualDom = (item: DisplaySettingItem): readonly Virtual
       childCount: 3 + errorChildCount,
       className: ClassNames.SettingsItem,
       'data-modified': modified,
+      name: id,
       role: AriaRoles.Group,
       type: VirtualDomElements.Div,
     },

@@ -4,11 +4,12 @@ import { clearHistory } from '../ClearHistory/ClearHistory.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
-import { getMenuEntries } from '../GetMenuEntries/GetMenuEntries.ts'
+import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
 import { getName } from '../GetName/GetName.ts'
 import { handleClickFilterButton } from '../HandleClickFilterButton/HandleClickFilterButton.ts'
 import { handleClickTab } from '../HandleClickTab/HandleClickTab.ts'
+import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
 import { handleInput } from '../HandleInput/HandleInput.ts'
 import { handleInputBlur } from '../HandleInputBlur/HandleInputBlur.ts'
 import { handleInputFocus } from '../HandleInputFocus/HandleInputFocus.ts'
@@ -26,6 +27,7 @@ import * as LoadContent from '../LoadContent/LoadContent.ts'
 import { render2 } from '../Render2/Render2.ts'
 import { renderActions } from '../RenderActions/RenderActions.ts'
 import { renderEventListeners } from '../RenderEventListeners/RenderEventListeners.ts'
+import { resetSetting } from '../ResetSetting/ResetSetting.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
 import { saveState } from '../SaveState/SaveState.ts'
 import { getCommandIds, wrapCommand, wrapGetter } from '../SettingsStates/SettingsStates.ts'
@@ -42,11 +44,12 @@ export const commandMap = {
   'Settings.diff2': Diff2.diff2,
   'Settings.getCommandIds': getCommandIds,
   'Settings.getKeyBindings': getKeyBindings,
-  'Settings.getMenuEntries': getMenuEntries,
+  'Settings.getMenuEntries': wrapGetter(getMenuEntries2),
   'Settings.getMenuIds': getMenuIds,
   'Settings.getName': getName,
   'Settings.handleClickFilterButton': wrapCommand(handleClickFilterButton),
   'Settings.handleClickTab': wrapCommand(handleClickTab),
+  'Settings.handleContextMenu': wrapCommand(handleContextMenu),
   'Settings.handleInput': wrapCommand(handleInput),
   'Settings.handleInputBlur': wrapCommand(handleInputBlur),
   'Settings.handleInputFocus': wrapCommand(handleInputFocus),
@@ -63,6 +66,7 @@ export const commandMap = {
   'Settings.render2': render2,
   'Settings.renderActions': renderActions,
   'Settings.renderEventListeners': renderEventListeners,
+  'Settings.resetSetting': wrapCommand(resetSetting),
   'Settings.restoreState': restoreState,
   'Settings.saveState': wrapGetter(saveState),
   'Settings.terminate': terminate,

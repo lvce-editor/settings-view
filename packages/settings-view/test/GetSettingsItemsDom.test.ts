@@ -28,6 +28,7 @@ test('getSettingsItemsDom returns items when items array is not empty', () => {
   expect(result[0]).toEqual({
     childCount: 1,
     className: 'SettingsItems',
+    onContextMenu: 'handleContextMenu',
     type: VirtualDomElements.Div,
   })
 })
@@ -42,6 +43,7 @@ test('getSettingsItemsDom shows no settings matching message when items is empty
   expect(result[0]).toEqual({
     childCount: 1,
     className: 'SettingsItems',
+    onContextMenu: 'handleContextMenu',
     type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
@@ -62,6 +64,7 @@ test('getSettingsItemsDom shows items when items is empty but search value is em
   expect(result[0]).toEqual({
     childCount: 0,
     className: 'SettingsItems',
+    onContextMenu: 'handleContextMenu',
     type: VirtualDomElements.Div,
   })
 })
@@ -76,6 +79,7 @@ test('getSettingsItemsDom shows items when items is empty but search value is on
   expect(result[0]).toEqual({
     childCount: 0,
     className: 'SettingsItems',
+    onContextMenu: 'handleContextMenu',
     type: VirtualDomElements.Div,
   })
 })
@@ -90,6 +94,7 @@ test('getSettingsItemsDom shows no settings matching message with special charac
     {
       childCount: 1,
       className: 'SettingsItems',
+      onContextMenu: 'handleContextMenu',
       type: VirtualDomElements.Div,
     },
     {
@@ -111,6 +116,7 @@ test('getSettingsItemsDom shows no settings matching message with unicode charac
     {
       childCount: 1,
       className: 'SettingsItems',
+      onContextMenu: 'handleContextMenu',
       type: VirtualDomElements.Div,
     },
     {
@@ -132,6 +138,7 @@ test('getSettingsItemsDom shows no settings matching message with very long sear
     {
       childCount: 1,
       className: 'SettingsItems',
+      onContextMenu: 'handleContextMenu',
       type: VirtualDomElements.Div,
     },
     {
@@ -153,6 +160,7 @@ test('getSettingsItemsDom shows no settings matching message with single charact
     {
       childCount: 1,
       className: 'SettingsItems',
+      onContextMenu: 'handleContextMenu',
       type: VirtualDomElements.Div,
     },
     {
@@ -197,6 +205,7 @@ test('getSettingsItemsDom handles multiple items correctly', () => {
   expect(result[0]).toEqual({
     childCount: 2,
     className: 'SettingsItems',
+    onContextMenu: 'handleContextMenu',
     type: VirtualDomElements.Div,
   })
 })
@@ -211,6 +220,7 @@ test('getSettingsItemsDom handles empty string search values', () => {
   expect(result[0]).toEqual({
     childCount: 0,
     className: 'SettingsItems',
+    onContextMenu: 'handleContextMenu',
     type: VirtualDomElements.Div,
   })
 })
@@ -225,6 +235,7 @@ test('getSettingsItemsDom handles search value with leading and trailing whitesp
     {
       childCount: 1,
       className: 'SettingsItems',
+      onContextMenu: 'handleContextMenu',
       type: VirtualDomElements.Div,
     },
     {
@@ -246,6 +257,7 @@ test('getSettingsItemsDom handles search value with newlines and tabs', () => {
     {
       childCount: 1,
       className: 'SettingsItems',
+      onContextMenu: 'handleContextMenu',
       type: VirtualDomElements.Div,
     },
     {

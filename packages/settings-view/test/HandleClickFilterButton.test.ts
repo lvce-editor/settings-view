@@ -1,40 +1,36 @@
 import { expect, test } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
+import { MenuEntryId } from '@lvce-editor/constants'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleClickFilterButton } from '../src/parts/HandleClickFilterButton/HandleClickFilterButton.ts'
 
-test('handleClickFilterButton returns the state', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method.includes('showContextMenu') || method.includes('ContextMenu')) {
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
+test('handleClickFilterButton uses pointer coordinates', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ContextMenu.show2'() {},
   })
-  RendererWorker.set(mockRpc)
 
-  const state: SettingsState = createDefaultState()
+  const state: SettingsState = { ...createDefaultState(), id: 123 }
   const result = await handleClickFilterButton(state, 100, 200)
-  expect(result).toEqual(state)
+
+  expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 123, MenuEntryId.SettingsFilter, 100, 200, { menuId: MenuEntryId.SettingsFilter }]])
 })
 
-test('handleClickFilterButton returns same state object', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method.includes('showContextMenu') || method.includes('ContextMenu')) {
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
+test('handleClickFilterButton derives the filter-button position for keyboard clicks', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ContextMenu.show2'() {},
   })
-  RendererWorker.set(mockRpc)
 
-  const state: SettingsState = createDefaultState()
-  const result = await handleClickFilterButton(state, 100, 200)
+  const state: SettingsState = {
+    ...createDefaultState(),
+    id: 456,
+    width: 800,
+    x: 100,
+    y: 200,
+  }
+  const result = await handleClickFilterButton(state, 0, 0)
+
   expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 456, MenuEntryId.SettingsFilter, 866, 227, { menuId: MenuEntryId.SettingsFilter }]])
 })

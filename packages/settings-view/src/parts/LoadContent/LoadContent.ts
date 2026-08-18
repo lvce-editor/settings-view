@@ -1,5 +1,4 @@
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
-import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
 import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
@@ -16,8 +15,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const { history, historyIndex, scrollOffset, searchValue, sideBarWidth, tabId } = restoreState(savedState)
   const tabs = await getTabs()
   const newTabs = getUpdatedTabs(tabs, tabId)
-  const items: readonly SettingItem[] = await getSettingItems()
-  const preferences = await getPreferences()
+  const [items, preferences] = await Promise.all([getSettingItems(), getPreferences()])
   const modifiedSettings: ModifiedSettings = getModifiedSettings(preferences)
   const filteredItems = getFilteredItems(items, newTabs, searchValue, modifiedSettings, preferences)
   const { height, itemHeight } = state

@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals'
+import { commandMap } from '../src/parts/CommandMap/CommandMap.ts'
 import { getMenuEntries } from '../src/parts/GetMenuEntries/GetMenuEntries.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
@@ -69,4 +70,11 @@ test('getMenuEntries returns entries in correct order', () => {
   expect(menuEntries[7].id).toBe('filter-settingId')
   expect(menuEntries[8].id).toBe('filter-stable')
   expect(menuEntries[9].id).toBe('filter-tag')
+})
+
+test('every menu entry references a registered command', () => {
+  const menuEntries = getMenuEntries()
+  for (const entry of menuEntries) {
+    expect(Object.hasOwn(commandMap, entry.command)).toBe(true)
+  }
 })

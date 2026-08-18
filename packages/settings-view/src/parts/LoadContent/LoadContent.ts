@@ -14,7 +14,7 @@ import { restoreState } from '../RestoreState/RestoreState.ts'
 
 export const loadContent = async (state: SettingsState, savedState: unknown): Promise<SettingsState> => {
   const { history, historyIndex, scrollOffset, searchValue, sideBarWidth, tabId } = restoreState(savedState)
-  const tabs = getTabs()
+  const tabs = await getTabs()
   const newTabs = getUpdatedTabs(tabs, tabId)
   const items: readonly SettingItem[] = await getSettingItems()
   const preferences = await getPreferences()

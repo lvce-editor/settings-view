@@ -305,6 +305,44 @@ test('loadContent should use preferences from RendererWorker', async () => {
   })
 })
 
+test('loadContent should load setting items and preferences in parallel', async () => {
+  const events: string[] = []
+  SettingsWorker.set(
+    MockRpc.create({
+      commandMap: {},
+      invoke(method: string) {
+        if (method === 'SettingsWorker.getSettingsItems2') {
+          events.push('items-started')
+          return Promise.resolve().then(() => {
+            events.push('items-finished')
+            return items
+          })
+        }
+        if (method === 'SettingsWorker.getTabs') {
+          return tabs
+        }
+        throw new Error(`unexpected method ${method}`)
+      },
+    }),
+  )
+  RendererWorker.set(
+    MockRpc.create({
+      commandMap: {},
+      invoke(method: string) {
+        if (method === 'Preferences.getAll') {
+          events.push('preferences-started')
+          return {}
+        }
+        throw new Error(`unexpected method ${method}`)
+      },
+    }),
+  )
+
+  await loadContent(createDefaultState(), null)
+
+  expect(events).toEqual(['items-started', 'preferences-started', 'items-finished'])
+})
+
 test('loadContent should handle empty preferences', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},

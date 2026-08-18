@@ -3,6 +3,7 @@ import { clear } from '../Clear/Clear.ts'
 import { clearHistory } from '../ClearHistory/ClearHistory.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
+import * as Filter from '../Filter/Filter.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
@@ -42,6 +43,16 @@ export const commandMap = {
   'Settings.clearHistory': wrapCommand(clearHistory),
   'Settings.create': Create.create,
   'Settings.diff2': Diff2.diff2,
+  'Settings.filter.advanced': wrapCommand(Filter.filterAdvanced),
+  'Settings.filter.experimental': wrapCommand(Filter.filterExperimental),
+  'Settings.filter.extensionId': wrapCommand(Filter.filterExtensionId),
+  'Settings.filter.feature': wrapCommand(Filter.filterFeature),
+  'Settings.filter.language': wrapCommand(Filter.filterLanguage),
+  'Settings.filter.modified': wrapCommand(Filter.filterModified),
+  'Settings.filter.preview': wrapCommand(Filter.filterPreview),
+  'Settings.filter.settingId': wrapCommand(Filter.filterSettingId),
+  'Settings.filter.stable': wrapCommand(Filter.filterStable),
+  'Settings.filter.tag': wrapCommand(Filter.filterTag),
   'Settings.getCommandIds': getCommandIds,
   'Settings.getKeyBindings': getKeyBindings,
   'Settings.getMenuEntries': wrapGetter(getMenuEntries2),

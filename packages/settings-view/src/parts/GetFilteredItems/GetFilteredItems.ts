@@ -5,6 +5,7 @@ import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import { filterBySearch } from '../FilterBySearch/FilterBySearch.ts'
 import { filterByTab } from '../FilterByTab/FilterByTab.ts'
+import { parseFilterQuery } from '../ParseFilterQuery/ParseFilterQuery.ts'
 import { validateSettings } from '../ValidateSettings/ValidateSettings.ts'
 
 export const getFilteredItems = (
@@ -14,8 +15,9 @@ export const getFilteredItems = (
   modifiedSettings: ModifiedSettings,
   preferences: Preferences,
 ): readonly DisplaySettingItem[] => {
+  const parsedQuery = parseFilterQuery(searchValue)
   const tabFilteredItems = filterByTab(items, tabs)
-  const searchFilteredItems = filterBySearch(tabFilteredItems, searchValue)
+  const searchFilteredItems = filterBySearch(tabFilteredItems, parsedQuery.query)
   const validated = validateSettings(searchFilteredItems, modifiedSettings, preferences)
-  return validated
+  return parsedQuery.modified ? validated.filter((item) => item.modified) : validated
 }

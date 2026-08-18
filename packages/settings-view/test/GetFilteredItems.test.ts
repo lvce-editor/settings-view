@@ -306,3 +306,30 @@ test('getFilteredItems should combine all operations correctly and return Displa
   expect(result[1].hasError).toBe(false)
   expect(result[1].errorMessage).toBe('')
 })
+
+test('getFilteredItems should filter modified settings', () => {
+  const items: readonly SettingItem[] = [
+    {
+      category: InputName.TextEditorTab,
+      description: 'The font size of the editor',
+      heading: 'Font Size',
+      id: 'editor.fontSize',
+      type: SettingItemType.Number,
+      value: 15,
+    },
+    {
+      category: InputName.TextEditorTab,
+      description: 'The font family of the editor',
+      heading: 'Font Family',
+      id: 'editor.fontFamily',
+      type: SettingItemType.String,
+      value: 'Monaco',
+    },
+  ]
+
+  const result = getFilteredItems(items, [], '@modified font', { 'editor.fontSize': true }, { 'editor.fontSize': 16 })
+
+  expect(result).toHaveLength(1)
+  expect(result[0].id).toBe('editor.fontSize')
+  expect(result[0].modified).toBe(true)
+})

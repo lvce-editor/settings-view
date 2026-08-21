@@ -8,4 +8,9 @@ export interface ContextMenuPropsFilter extends ContextMenuPropsBase {
   readonly menuId: typeof MenuEntryId.SettingsFilter
 }
 
-export type ContextMenuProps = ContextMenuPropsFilter
+export interface ContextMenuPropsSetting extends ContextMenuPropsBase {
+  readonly menuId: typeof MenuEntryId.Settings
+  readonly settingId: string
+}
+
+export type ContextMenuProps = ContextMenuPropsFilter | ContextMenuPropsSetting

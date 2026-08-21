@@ -5,6 +5,80 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { renderSettingValues } from '../src/parts/RenderSettingValues/RenderSettingValues.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
+test('renderSettingValues keeps an empty number preference blank', () => {
+  const oldState = createDefaultState()
+  const newState: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        category: 'editor',
+        description: 'Font size description',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Font Size',
+        id: 'editor.fontSize',
+        modified: true,
+        type: SettingItemType.Number,
+        value: 15,
+      },
+    ],
+    id: 1,
+    preferences: {
+      'editor.fontSize': '',
+    },
+  }
+
+  const result: ViewletCommand = renderSettingValues(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.setInputValues', 1, [{ name: 'editor.fontSize', value: '' }]])
+})
+
+test('renderSettingValues uses item values only for missing preferences', () => {
+  const oldState = createDefaultState()
+  const newState: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        category: 'editor',
+        description: 'Font size description',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Font Size',
+        id: 'editor.fontSize',
+        modified: true,
+        type: SettingItemType.Number,
+        value: 15,
+      },
+      {
+        category: 'editor',
+        description: 'Letter spacing description',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Letter Spacing',
+        id: 'editor.letterSpacing',
+        modified: false,
+        type: SettingItemType.Number,
+        value: 1,
+      },
+    ],
+    id: 1,
+    preferences: {
+      'editor.fontSize': 0,
+    },
+  }
+
+  const result: ViewletCommand = renderSettingValues(oldState, newState)
+
+  expect(result).toEqual([
+    'Viewlet.setInputValues',
+    1,
+    [
+      { name: 'editor.fontSize', value: 0 },
+      { name: 'editor.letterSpacing', value: 1 },
+    ],
+  ])
+})
+
 test.skip('renderSettingValues returns correct ViewletCommand for numeric and string settings', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {

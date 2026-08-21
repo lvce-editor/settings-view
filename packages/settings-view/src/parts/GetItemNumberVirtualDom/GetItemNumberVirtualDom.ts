@@ -35,6 +35,7 @@ export const getItemNumberVirtualDom = (item: DisplaySettingItem): readonly Virt
       childCount,
       className: ClassNames.SettingsItem,
       'data-modified': modified,
+      name: id,
       role: AriaRoles.Group,
       type: VirtualDomElements.Div,
     },

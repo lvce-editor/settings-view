@@ -11,6 +11,7 @@ export interface SettingItem {
   readonly id: string
   readonly options?: readonly SettingItemOption[]
   readonly type: number
-  readonly validate?: (value: any) => string // TODO add defaultValue property
+  readonly validate?: (value: any) => string
+  readonly validationId?: number
   readonly value: any // TODO support different value types
 }

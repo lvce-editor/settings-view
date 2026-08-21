@@ -21,6 +21,11 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       params: ['handleClickFilterButton', EventExpression.ClientX, EventExpression.ClientY],
     },
     {
+      name: DomEventListenerFunctions.HandleContextMenu,
+      params: ['handleContextMenu', EventExpression.TargetName, EventExpression.ClientX, EventExpression.ClientY],
+      preventDefault: true,
+    },
+    {
       name: DomEventListenerFunctions.HandleSettingInput,
       params: ['handleSettingInput', EventExpression.TargetName, EventExpression.TargetValue],
     },

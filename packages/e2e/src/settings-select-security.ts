@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.select-security'
 
+export const skip = 1 // Requires the settings-worker renderer integration.
+
 export const test: Test = async ({ expect, Locator, SettingsView }) => {
   // arrange
   await SettingsView.show()

@@ -26,6 +26,7 @@ export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly Virtu
       childCount: 3 + errorChildCount,
       className: ClassNames.SettingsItem,
       'data-modified': modified,
+      name: id,
       role: AriaRoles.Group,
       type: VirtualDomElements.Div,
     },

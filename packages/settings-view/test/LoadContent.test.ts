@@ -1,10 +1,58 @@
-import { test, expect } from '@jest/globals'
+import { beforeEach, expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { RendererWorker, SettingsWorker } from '@lvce-editor/rpc-registry'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { Script } from '../src/parts/InputSource/InputSource.ts'
 import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
+
+const items = [
+  {
+    category: 'Text Editor',
+    description: 'Controls the font size in pixels.',
+    heading: 'Font Size',
+    id: 'editor.fontSize',
+    type: 2,
+    validationId: 1,
+    value: 15,
+  },
+  {
+    category: 'Text Editor',
+    description: 'Controls how lines should wrap.',
+    heading: 'Word Wrap',
+    id: 'editor.wordWrap',
+    type: 3,
+    validationId: 2,
+    value: 'off',
+  },
+]
+
+const tabs = [
+  { id: 'text-editor', label: 'Text Editor', selected: true },
+  { id: 'workbench', label: 'Workbench', selected: false },
+  { id: 'window', label: 'Window', selected: false },
+  { id: 'features', label: 'Features', selected: false },
+  { id: 'applications', label: 'Applications', selected: false },
+  { id: 'security', label: 'Security', selected: false },
+  { id: 'extensions', label: 'Extensions', selected: false },
+]
+
+beforeEach(() => {
+  SettingsWorker.set(
+    MockRpc.create({
+      commandMap: {},
+      invoke(method: string) {
+        if (method === 'SettingsWorker.getSettingsItems2') {
+          return items
+        }
+        if (method === 'SettingsWorker.getTabs') {
+          return tabs
+        }
+        throw new Error(`unexpected method ${method}`)
+      },
+    }),
+  )
+})
 
 test('loadContent should return state with tabs loaded when savedState is null', async () => {
   const mockRpc = MockRpc.create({
@@ -255,6 +303,45 @@ test('loadContent should use preferences from RendererWorker', async () => {
     'editor.fontSize': true,
     'editor.wordWrap': true,
   })
+})
+
+test('loadContent should load setting items and preferences in parallel', async () => {
+  const events: string[] = []
+  const { promise: itemsCanFinish, resolve: resolveItems } = Promise.withResolvers<void>()
+  SettingsWorker.set(
+    MockRpc.create({
+      commandMap: {},
+      async invoke(method: string) {
+        if (method === 'SettingsWorker.getSettingsItems2') {
+          events.push('items-started')
+          await itemsCanFinish
+          events.push('items-finished')
+          return items
+        }
+        if (method === 'SettingsWorker.getTabs') {
+          return tabs
+        }
+        throw new Error(`unexpected method ${method}`)
+      },
+    }),
+  )
+  RendererWorker.set(
+    MockRpc.create({
+      commandMap: {},
+      invoke(method: string) {
+        if (method === 'Preferences.getAll') {
+          events.push('preferences-started')
+          resolveItems()
+          return {}
+        }
+        throw new Error(`unexpected method ${method}`)
+      },
+    }),
+  )
+
+  await loadContent(createDefaultState(), null)
+
+  expect(events).toEqual(['items-started', 'preferences-started', 'items-finished'])
 })
 
 test('loadContent should handle empty preferences', async () => {

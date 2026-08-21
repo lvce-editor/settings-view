@@ -19,6 +19,7 @@ export const getItemSelectVirtualDom = (item: DisplaySettingItem): readonly Virt
     {
       childCount: 3 + errorChildCount,
       className: ClassNames.SettingsItem,
+      name: id,
       role: AriaRoles.Group,
       type: VirtualDomElements.Div,
     },

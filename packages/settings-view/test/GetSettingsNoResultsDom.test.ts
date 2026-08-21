@@ -12,6 +12,7 @@ test('getSettingsNoResultsDom returns correct virtual DOM structure', () => {
     {
       childCount: 1,
       className: ClassNames.SettingsItems,
+      onContextMenu: 'handleContextMenu',
       type: VirtualDomElements.Div,
     },
     {
@@ -31,6 +32,7 @@ test('getSettingsNoResultsDom with empty search value', () => {
     {
       childCount: 1,
       className: ClassNames.SettingsItems,
+      onContextMenu: 'handleContextMenu',
       type: VirtualDomElements.Div,
     },
     {
@@ -50,6 +52,7 @@ test('getSettingsNoResultsDom with special characters', () => {
     {
       childCount: 1,
       className: ClassNames.SettingsItems,
+      onContextMenu: 'handleContextMenu',
       type: VirtualDomElements.Div,
     },
     {

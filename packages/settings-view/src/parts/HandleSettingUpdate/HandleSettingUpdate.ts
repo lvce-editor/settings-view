@@ -23,6 +23,7 @@ export const handleSettingUpdate = (state: SettingsState, name: string, value: a
     ...state,
     filteredItems: newFilteredItems,
     inputSource,
+    modifiedSettings: newModifiedSettings,
     preferences: newPreferences,
   }
 }

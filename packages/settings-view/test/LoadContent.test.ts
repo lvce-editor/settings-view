@@ -1,5 +1,5 @@
 import { beforeEach, expect, test } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
+import { createMockRpc } from '@lvce-editor/rpc'
 import { RendererWorker, SettingsWorker } from '@lvce-editor/rpc-registry'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -37,33 +37,27 @@ const tabs = [
   { id: 'extensions', label: 'Extensions', selected: false },
 ]
 
+const createRendererWorkerRpc = (getAllPreferences: () => unknown = () => ({})): ReturnType<typeof createMockRpc> => {
+  return createMockRpc({
+    commandMap: {
+      'Preferences.getAll': getAllPreferences,
+    },
+  })
+}
+
 beforeEach(() => {
   SettingsWorker.set(
-    MockRpc.create({
-      commandMap: {},
-      invoke(method: string) {
-        if (method === 'SettingsWorker.getSettingsItems2') {
-          return items
-        }
-        if (method === 'SettingsWorker.getTabs') {
-          return tabs
-        }
-        throw new Error(`unexpected method ${method}`)
+    createMockRpc({
+      commandMap: {
+        'SettingsWorker.getSettingsItems2': () => items,
+        'SettingsWorker.getTabs': () => tabs,
       },
     }),
   )
 })
 
 test('loadContent should return state with tabs loaded when savedState is null', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = createDefaultState()
@@ -93,15 +87,7 @@ test('loadContent should return state with tabs loaded when savedState is null',
 })
 
 test('loadContent should preserve other state properties', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = {
@@ -132,15 +118,7 @@ test('loadContent should preserve other state properties', async () => {
 })
 
 test('loadContent should restore tabId from savedState', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = createDefaultState()
@@ -155,15 +133,7 @@ test('loadContent should restore tabId from savedState', async () => {
 })
 
 test('loadContent should restore searchValue from savedState', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = createDefaultState()
@@ -177,15 +147,7 @@ test('loadContent should restore searchValue from savedState', async () => {
 })
 
 test('loadContent should restore scrollOffset from savedState', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = createDefaultState()
@@ -199,15 +161,7 @@ test('loadContent should restore scrollOffset from savedState', async () => {
 })
 
 test('loadContent should restore history from savedState', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = createDefaultState()
@@ -223,15 +177,7 @@ test('loadContent should restore history from savedState', async () => {
 })
 
 test('loadContent should compute visibleItems based on scrollOffset and height', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = {
@@ -251,15 +197,7 @@ test('loadContent should compute visibleItems based on scrollOffset and height',
 })
 
 test('loadContent should compute scrollBar metrics', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = {
@@ -282,15 +220,7 @@ test('loadContent should use preferences from RendererWorker', async () => {
     'editor.fontSize': 18,
     'editor.wordWrap': 'on',
   }
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method.includes('getAllPreferences') || method.includes('Preferences')) {
-        return preferences
-      }
-      return {}
-    },
-  })
+  const mockRpc = createRendererWorkerRpc(() => preferences)
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = createDefaultState()
@@ -309,33 +239,23 @@ test('loadContent should load setting items and preferences in parallel', async 
   const events: string[] = []
   const { promise: itemsCanFinish, resolve: resolveItems } = Promise.withResolvers<void>()
   SettingsWorker.set(
-    MockRpc.create({
-      commandMap: {},
-      async invoke(method: string) {
-        if (method === 'SettingsWorker.getSettingsItems2') {
+    createMockRpc({
+      commandMap: {
+        async 'SettingsWorker.getSettingsItems2'() {
           events.push('items-started')
           await itemsCanFinish
           events.push('items-finished')
           return items
-        }
-        if (method === 'SettingsWorker.getTabs') {
-          return tabs
-        }
-        throw new Error(`unexpected method ${method}`)
+        },
+        'SettingsWorker.getTabs': () => tabs,
       },
     }),
   )
   RendererWorker.set(
-    MockRpc.create({
-      commandMap: {},
-      invoke(method: string) {
-        if (method === 'Preferences.getAll') {
-          events.push('preferences-started')
-          resolveItems()
-          return {}
-        }
-        throw new Error(`unexpected method ${method}`)
-      },
+    createRendererWorkerRpc(() => {
+      events.push('preferences-started')
+      resolveItems()
+      return {}
     }),
   )
 
@@ -345,15 +265,7 @@ test('loadContent should load setting items and preferences in parallel', async 
 })
 
 test('loadContent should handle empty preferences', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = createDefaultState()
@@ -366,15 +278,7 @@ test('loadContent should handle empty preferences', async () => {
 })
 
 test('loadContent should filter items based on searchValue and tabId', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        return {}
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
+  const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
   const initialState: SettingsState = createDefaultState()
@@ -392,14 +296,8 @@ test('loadContent should filter items based on searchValue and tabId', async () 
 })
 
 test('loadContent should handle RPC error and return empty preferences', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'getAllPreferences') {
-        throw new Error('RPC error')
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
+  const mockRpc = createRendererWorkerRpc(() => {
+    throw new Error('RPC error')
   })
   RendererWorker.set(mockRpc)
 

@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals'
+import { getItemArrayVirtualDom } from '../src/parts/GetItemArrayVirtualDom/GetItemArrayVirtualDom.ts'
 import { getItemCheckBoxVirtualDom } from '../src/parts/GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
 import { getItemColorVirtualDom } from '../src/parts/GetItemColorVirtualDom/GetItemColorVirtualDom.ts'
 import { getItemNumberVirtualDom } from '../src/parts/GetItemNumberVirtualDom/GetItemNumberVirtualDom.ts'
@@ -8,6 +9,11 @@ import { getItemUnknownVirtualDom } from '../src/parts/GetItemUnknownVirtualDom/
 import { getItemUrlVirtualDom } from '../src/parts/GetItemUrlDom/GetItemUrlDom.ts'
 import { getItemRender } from '../src/parts/GetSettingsItemRenderer/GetSettingsItemRenderer.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
+
+test('getItemRender returns getItemArrayVirtualDom for SettingItemType.Array', () => {
+  const renderer = getItemRender(SettingItemType.Array)
+  expect(renderer).toBe(getItemArrayVirtualDom)
+})
 
 test('getItemRender returns getItemNumberVirtualDom for SettingItemType.Number', () => {
   const renderer = getItemRender(SettingItemType.Number)

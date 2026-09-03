@@ -5,6 +5,34 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { renderSettingValues } from '../src/parts/RenderSettingValues/RenderSettingValues.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
+test('renderSettingValues serializes array values as JSON', () => {
+  const oldState = createDefaultState()
+  const newState: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        category: 'features',
+        description: 'Keyboard shortcuts handled by the simple browser',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Simple Browser Shortcuts',
+        id: 'simpleBrowser.shortcuts',
+        modified: true,
+        type: SettingItemType.Array,
+        value: [],
+      },
+    ],
+    id: 1,
+    preferences: {
+      'simpleBrowser.shortcuts': ['ctrl+p', 'ctrl+b'],
+    },
+  }
+
+  const result: ViewletCommand = renderSettingValues(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.setInputValues', 1, [{ name: 'simpleBrowser.shortcuts', value: '["ctrl+p","ctrl+b"]' }]])
+})
+
 test('renderSettingValues keeps an empty number preference blank', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {

@@ -6,6 +6,37 @@ import { handleSettingInput } from '../src/parts/HandleSettingInput/HandleSettin
 import { User } from '../src/parts/InputSource/InputSource.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
+const arraySetting: SettingItem = {
+  category: 'features',
+  description: 'Keyboard shortcuts handled by the simple browser',
+  heading: 'Simple Browser Shortcuts',
+  id: 'simpleBrowser.shortcuts',
+  type: SettingItemType.Array,
+  value: [],
+}
+
+test('handleSettingInput parses array settings from JSON', () => {
+  const state: SettingsState = {
+    ...createDefaultState(),
+    items: [arraySetting],
+  }
+
+  const result = handleSettingInput(state, 'simpleBrowser.shortcuts', '["ctrl+p", "ctrl+b"]', User)
+
+  expect(result.preferences['simpleBrowser.shortcuts']).toEqual(['ctrl+p', 'ctrl+b'])
+})
+
+test.each(['invalid', '{}'])('handleSettingInput ignores invalid array value %s', (value) => {
+  const state: SettingsState = {
+    ...createDefaultState(),
+    items: [arraySetting],
+  }
+
+  const result = handleSettingInput(state, 'simpleBrowser.shortcuts', value, User)
+
+  expect(result).toBe(state)
+})
+
 test('handleSettingInput converts string to number for number-type settings', () => {
   const numberSetting: SettingItem = {
     category: 'editor',

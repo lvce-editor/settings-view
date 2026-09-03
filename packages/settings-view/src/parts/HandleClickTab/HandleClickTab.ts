@@ -4,11 +4,7 @@ import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
 import { getUpdatedTabs } from '../GetUpdatedTabs/GetUpdatedTabs.ts'
 
-export const handleClickTab = (state: SettingsState, name: string): SettingsState => {
-  if (!name) {
-    return state
-  }
-
+export const handleClickTab = (state: SettingsState, name: string = ''): SettingsState => {
   const { height, itemHeight, items, modifiedSettings, preferences, scrollOffset, searchValue, tabs } = state
   const updatedTabs = getUpdatedTabs(tabs, name)
   const filteredItems = getFilteredItems(items, updatedTabs, searchValue, modifiedSettings, preferences)

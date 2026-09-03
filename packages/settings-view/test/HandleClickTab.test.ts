@@ -2,10 +2,23 @@ import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleClickTab } from '../src/parts/HandleClickTab/HandleClickTab.ts'
 
-test('handleClickTab returns same state when name is empty', () => {
-  const state = createDefaultState()
+test('handleClickTab clears the selected tab and shows items from all categories when name is empty', () => {
+  const state = {
+    ...createDefaultState(),
+    items: [
+      { category: 'tab-1', description: '', heading: 'First', id: 'first', type: 0, value: '' },
+      { category: 'tab-2', description: '', heading: 'Second', id: 'second', type: 0, value: '' },
+    ],
+    tabs: [
+      { id: 'tab-1', label: 'Tab 1', selected: true },
+      { id: 'tab-2', label: 'Tab 2', selected: false },
+    ],
+  }
+
   const result = handleClickTab(state, '')
-  expect(result).toEqual(state)
+
+  expect(result.tabs.every((tab) => !tab.selected)).toBe(true)
+  expect(result.filteredItems.map((item) => item.id)).toEqual(['first', 'second'])
 })
 
 test('handleClickTab returns new state object when name is provided', () => {

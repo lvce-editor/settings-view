@@ -2,11 +2,13 @@ import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Tab } from '../Tab/Tab.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getSettingsTabsDom } from '../GetSettingsTabsDom/GetSettingsTabsDom.ts'
 
 const settingsSideBarNode: VirtualDomNode = {
   childCount: 1,
   className: ClassNames.SettingsSideBar,
+  onClick: DomEventListenerFunctions.HandleClickTab,
   type: VirtualDomElements.Aside,
 }
 

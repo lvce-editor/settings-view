@@ -12,7 +12,7 @@ export const test: Test = async ({ expect, Locator, SettingsView }) => {
   await expect(applicationsTab).toHaveAttribute('aria-selected', 'true')
 
   const sideBar = Locator('.SettingsSideBar')
-  await sideBar.click()
+  await sideBar.dispatchEvent('click', { bubbles: true } as unknown as string)
 
   await expect(applicationsTab).toHaveAttribute('aria-selected', 'false')
   const heading = Locator('.SettingsContentHeading')

@@ -34,8 +34,8 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
 
     checkBoxWrapperNode,
     {
-      childCount: 0,
       checked: isChecked,
+      childCount: 0,
       className: checkBoxClassName,
       id: domId,
       inputType: 'checkbox',

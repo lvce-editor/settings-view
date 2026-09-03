@@ -1,11 +1,11 @@
 import { expect, test } from '@jest/globals'
 import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
-import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
 import { getItemArrayVirtualDom } from '../src/parts/GetItemArrayVirtualDom/GetItemArrayVirtualDom.ts'
-import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
+import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
 
 test('getItemArrayVirtualDom renders an editable array setting', () => {
   const item: DisplaySettingItem = {

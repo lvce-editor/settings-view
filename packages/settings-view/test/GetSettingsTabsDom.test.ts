@@ -1,6 +1,5 @@
 import { expect, test } from '@jest/globals'
 import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getSettingsTabsDom } from '../src/parts/GetSettingsTabsDom/GetSettingsTabsDom.ts'
 
 test('getSettingsTabsDom returns expected DOM structure for single tab', () => {
@@ -11,7 +10,6 @@ test('getSettingsTabsDom returns expected DOM structure for single tab', () => {
     {
       childCount: 1,
       className: 'SettingsTabs',
-      onClick: DomEventListenerFunctions.HandleClickTab,
       role: AriaRoles.TabList,
       type: VirtualDomElements.Ul,
     },
@@ -42,7 +40,6 @@ test('getSettingsTabsDom returns expected DOM structure for multiple tabs', () =
     {
       childCount: 3,
       className: 'SettingsTabs',
-      onClick: DomEventListenerFunctions.HandleClickTab,
       role: AriaRoles.TabList,
       type: VirtualDomElements.Ul,
     },
@@ -89,7 +86,6 @@ test('getSettingsTabsDom handles empty tabs array', () => {
     {
       childCount: 0,
       className: 'SettingsTabs',
-      onClick: DomEventListenerFunctions.HandleClickTab,
       role: AriaRoles.TabList,
       type: VirtualDomElements.Ul,
     },
@@ -109,7 +105,6 @@ test('getSettingsTabsDom handles tabs with special characters', () => {
     {
       childCount: 2,
       className: 'SettingsTabs',
-      onClick: DomEventListenerFunctions.HandleClickTab,
       role: AriaRoles.TabList,
       type: VirtualDomElements.Ul,
     },

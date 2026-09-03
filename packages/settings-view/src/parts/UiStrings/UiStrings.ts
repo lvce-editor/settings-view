@@ -1,4 +1,5 @@
 export const Advanced = 'Advanced'
+export const ArrayValue = 'array value'
 export const Clear = 'Clear'
 export const ColorValue = 'Color value'
 export const Experimental = 'Experimental'

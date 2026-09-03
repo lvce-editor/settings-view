@@ -3,6 +3,8 @@ import * as UiStrings from '../UiStrings/UiStrings.ts'
 
 export const advanced = (): string => I18NString.i18nString(UiStrings.Advanced)
 
+export const arrayValue = (): string => I18NString.i18nString(UiStrings.ArrayValue)
+
 export const clear = (): string => I18NString.i18nString(UiStrings.Clear)
 
 export const colorValue = (): string => I18NString.i18nString(UiStrings.ColorValue)

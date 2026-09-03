@@ -88,3 +88,20 @@ test('validateSettings handles items without validation functions', () => {
     value: true,
   })
 })
+
+test('validateSettings uses the configured preference as the displayed value', () => {
+  const items: SettingItem[] = [
+    {
+      category: 'simple browser',
+      description: 'Show an audio indicator',
+      heading: 'Audio Indicator',
+      id: 'simpleBrowser.audioIndicator.enabled',
+      type: SettingItemType.Boolean,
+      value: false,
+    },
+  ]
+
+  const result = validateSettings(items, {}, { 'simpleBrowser.audioIndicator.enabled': true })
+
+  expect(result[0].value).toBe(true)
+})

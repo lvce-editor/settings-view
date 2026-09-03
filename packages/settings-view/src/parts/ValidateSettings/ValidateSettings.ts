@@ -25,7 +25,7 @@ export const validateSettings = (
       modified,
       options: item.options,
       type: item.type,
-      value: item.value,
+      value,
     }
   })
 }

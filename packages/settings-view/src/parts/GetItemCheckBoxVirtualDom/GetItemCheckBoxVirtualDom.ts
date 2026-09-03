@@ -15,10 +15,11 @@ const checkBoxWrapperNode: VirtualDomNode = {
 }
 
 export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
-  const { description, errorMessage, hasError, heading, id, modified } = item
+  const { description, errorMessage, hasError, heading, id, modified, value } = item
   const domId = getInputId(id)
   const checkBoxClassName = hasError ? mergeClassNames(ClassNames.CheckBox, ClassNames.InputBoxError) : ClassNames.CheckBox
   const errorChildCount = hasError ? 1 : 0
+  const isChecked = value === true || value === 'true'
 
   return [
     {
@@ -33,6 +34,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly Vi
 
     checkBoxWrapperNode,
     {
+      checked: isChecked,
       childCount: 0,
       className: checkBoxClassName,
       id: domId,

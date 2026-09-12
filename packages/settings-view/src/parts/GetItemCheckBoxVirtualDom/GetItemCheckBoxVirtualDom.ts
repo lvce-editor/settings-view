@@ -8,6 +8,8 @@ import { getInputId } from '../GetInputId/GetInputId.ts'
 import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 
+const errorCheckBoxClassName = mergeClassNames(ClassNames.CheckBox, ClassNames.InputBoxError)
+
 const checkBoxWrapperNode: VirtualDomNode = {
   childCount: 2,
   className: ClassNames.SettingsItemCheckBox,
@@ -17,7 +19,7 @@ const checkBoxWrapperNode: VirtualDomNode = {
 export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { description, errorMessage, hasError, heading, id, modified, value } = item
   const domId = getInputId(id)
-  const checkBoxClassName = hasError ? mergeClassNames(ClassNames.CheckBox, ClassNames.InputBoxError) : ClassNames.CheckBox
+  const checkBoxClassName = hasError ? errorCheckBoxClassName : ClassNames.CheckBox
   const errorChildCount = hasError ? 1 : 0
   const isChecked = value === true || value === 'true'
 

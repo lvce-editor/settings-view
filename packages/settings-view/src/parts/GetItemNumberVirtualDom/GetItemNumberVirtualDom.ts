@@ -10,6 +10,8 @@ import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import { getSettingsModifiedIndicatorDom } from '../GetSettingsModifiedIndicatorDom/GetSettingsModifiedIndicatorDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
+const errorInputClassName = mergeClassNames(ClassNames.InputBox, ClassNames.InputBoxError)
+
 const getChildCount = (modified: boolean, hasError: boolean): number => {
   const modifiedChildCount = modified ? 1 : 0
   const errorChildCount = hasError ? 1 : 0
@@ -19,7 +21,7 @@ const getChildCount = (modified: boolean, hasError: boolean): number => {
 
 const getInputClassName = (hasError: boolean): string => {
   if (hasError) {
-    return mergeClassNames(ClassNames.InputBox, ClassNames.InputBoxError)
+    return errorInputClassName
   }
   return ClassNames.InputBox
 }

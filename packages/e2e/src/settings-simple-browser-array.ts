@@ -14,6 +14,8 @@ export const test: Test = async ({ expect, Locator, SettingsView }) => {
   // assert
   const shortcutsSetting = Locator('.SettingsItem[name="simpleBrowser.shortcuts"]')
   await expect(shortcutsSetting).toBeVisible()
-  await expect(shortcutsSetting.locator('h3')).toHaveText('Simple Browser Shortcuts')
-  await expect(shortcutsSetting.locator('.InputBox')).toHaveValue('[]')
+  const heading = shortcutsSetting.locator('h3')
+  await expect(heading).toHaveText('Simple Browser Shortcuts')
+  const input = shortcutsSetting.locator('.InputBox')
+  await expect(input).toHaveValue('[]')
 }

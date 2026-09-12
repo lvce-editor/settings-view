@@ -5,6 +5,8 @@ import { getSettingsInputBadgeDom } from '../GetSettingsInputBadgeDom/GetSetting
 import { getSettingsInputButtonsDom } from '../GetSettingsInputButtonsDom/GetSettingsInputButtonsDom.ts'
 import { getSettingsInputDom } from '../GetSettingsInputDom/GetSettingsInputDom.ts'
 
+const inputWrapperClassName = mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField')
+
 const settingsHeaderNode: VirtualDomNode = {
   childCount: 1,
   className: ClassNames.SettingsHeader,
@@ -21,7 +23,7 @@ export const getSettingsHeaderDom = (filteredSettingsCount: number, hasSearchVal
     settingsHeaderNode,
     {
       childCount,
-      className: mergeClassNames(ClassNames.SettingsInputWrapper, 'SearchField'),
+      className: inputWrapperClassName,
       type: VirtualDomElements.Div,
     },
     ...getSettingsInputDom(),

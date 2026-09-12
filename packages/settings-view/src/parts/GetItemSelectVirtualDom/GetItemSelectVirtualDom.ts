@@ -9,10 +9,12 @@ import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import { getOptionDom } from '../GetOptionDom/GetOptionDom.ts'
 
+const errorSelectClassName = mergeClassNames(ClassNames.Select, ClassNames.InputBoxError)
+
 export const getItemSelectVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { description, errorMessage, hasError, heading, id, options } = item
   const domId = getInputId(id)
-  const selectClassName = hasError ? mergeClassNames(ClassNames.Select, ClassNames.InputBoxError) : ClassNames.Select
+  const selectClassName = hasError ? errorSelectClassName : ClassNames.Select
   const errorChildCount = hasError ? 1 : 0
 
   return [

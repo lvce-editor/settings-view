@@ -5,6 +5,8 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
+const searchInputClassName = mergeClassNames(ClassNames.InputBox, ClassNames.SettingsSearchInput, 'MultilineInputBox')
+
 export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
   const placeholder = SettingStrings.searchSettings()
   return [
@@ -13,7 +15,7 @@ export const getSettingsInputDom = (): readonly VirtualDomNode[] => {
       autocomplete: 'off',
       autocorrect: 'off',
       childCount: 0,
-      className: mergeClassNames(ClassNames.InputBox, ClassNames.SettingsSearchInput, 'MultilineInputBox'),
+      className: searchInputClassName,
       name: InputName.SettingsSearch,
       onFocus: DomEventListenerFunctions.HandleInputFocus,
       onInput: DomEventListenerFunctions.HandleInput,

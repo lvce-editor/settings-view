@@ -9,6 +9,9 @@ import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
+const errorColorInputClassName = mergeClassNames('ColorInput', ClassNames.InputBoxError)
+const defaultColorInputClassName = mergeClassNames('ColorInput')
+
 const colorInputWrapperNode: VirtualDomNode = {
   childCount: 2,
   className: ClassNames.SettingsItemCheckBox,
@@ -18,7 +21,7 @@ const colorInputWrapperNode: VirtualDomNode = {
 export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
   const { description, errorMessage, hasError, heading, id, modified } = item
   const domId = getInputId(id)
-  const colorInputClassName = hasError ? mergeClassNames('ColorInput', ClassNames.InputBoxError) : mergeClassNames('ColorInput')
+  const colorInputClassName = hasError ? errorColorInputClassName : defaultColorInputClassName
   const errorChildCount = hasError ? 1 : 0
 
   return [

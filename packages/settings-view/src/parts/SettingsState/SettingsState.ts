@@ -1,6 +1,7 @@
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
 import type { ModifiedSettings } from '../ModifiedSettings/ModifiedSettings.ts'
 import type { Preferences } from '../Preferences/Preferences.ts'
+import type { SchemaError } from '../SchemaError/SchemaError.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
 import type { Tab } from '../Tab/Tab.ts'
 
@@ -25,6 +26,7 @@ export interface SettingsState {
   readonly minLineY: number
   readonly modifiedSettings: ModifiedSettings
   readonly preferences: Preferences
+  readonly schemaErrors?: readonly SchemaError[]
   readonly scrollBarMinHeight: number
   readonly scrollBarThumbHeight: number
   readonly scrollBarThumbTop: number

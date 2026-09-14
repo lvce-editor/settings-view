@@ -3,6 +3,7 @@ import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-wo
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getSettingsDom } from '../src/parts/GetSettingsDom/GetSettingsDom.ts'
+import * as InputName from '../src/parts/InputName/InputName.ts'
 
 test('getSettingsDom returns correct structure', () => {
   const state = createDefaultState()
@@ -64,4 +65,23 @@ test('getSettingsDom handles whitespace-only searchValue', () => {
     className: mergeClassNames(ClassNames.Viewlet, ClassNames.Settings),
     type: VirtualDomElements.Div,
   })
+})
+
+test('getSettingsDom filters schema errors using the current search value', () => {
+  const state = createDefaultState()
+  const stateWithSchemaErrors = {
+    ...state,
+    schemaErrors: [
+      { id: 'one.setting', message: 'unknown type', source: 'First Extension' },
+      { id: 'two.setting', message: 'missing value', source: 'Second Extension' },
+    ],
+    searchValue: 'second',
+    tabs: [{ id: InputName.SchemaErrorsTab, label: 'Schema Errors', selected: true }],
+  }
+
+  const result = getSettingsDom(stateWithSchemaErrors)
+  const serialized = JSON.stringify(result)
+
+  expect(serialized).toContain('two.setting: missing value')
+  expect(serialized).not.toContain('one.setting: unknown type')
 })

@@ -4,6 +4,7 @@ import { clearHistory } from '../ClearHistory/ClearHistory.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Filter from '../Filter/Filter.ts'
+import { getComponentState } from '../GetComponentState/GetComponentState.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
@@ -31,6 +32,7 @@ import { renderEventListeners } from '../RenderEventListeners/RenderEventListene
 import { resetSetting } from '../ResetSetting/ResetSetting.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
 import { saveState } from '../SaveState/SaveState.ts'
+import { setComponentState } from '../SetComponentState/SetComponentState.ts'
 import { getCommandIds, wrapCommand, wrapGetter } from '../SettingsStates/SettingsStates.ts'
 import { useNextSearchValue } from '../UseNextSearchValue/UseNextSearchValue.ts'
 import { usePreviousSearchValue } from '../UsePreviousSearchValue/UsePreviousSearchValue.ts'
@@ -54,6 +56,7 @@ export const commandMap = {
   'Settings.filterStable': wrapCommand(Filter.filterStable),
   'Settings.filterTag': wrapCommand(Filter.filterTag),
   'Settings.getCommandIds': getCommandIds,
+  'Settings.getComponentState': getComponentState,
   'Settings.getKeyBindings': getKeyBindings,
   'Settings.getMenuEntries': wrapGetter(getMenuEntries2),
   'Settings.getMenuIds': getMenuIds,
@@ -80,6 +83,7 @@ export const commandMap = {
   'Settings.resetSetting': wrapCommand(resetSetting),
   'Settings.restoreState': restoreState,
   'Settings.saveState': wrapGetter(saveState),
+  'Settings.setComponentState': setComponentState,
   'Settings.terminate': terminate,
   'Settings.useNextSearchValue': wrapCommand(useNextSearchValue),
   'Settings.usePreviousSearchValue': wrapCommand(usePreviousSearchValue),

@@ -3,7 +3,6 @@ import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
 import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
-import { getFilteredSchemaErrors } from '../GetFilteredSchemaErrors/GetFilteredSchemaErrors.ts'
 import { getModifiedSettings } from '../GetModifiedSettings/GetModifiedSettings.ts'
 import { getPreferences } from '../GetPreferences/GetPreferences.ts'
 import { getSchemaErrors } from '../GetSchemaErrors/GetSchemaErrors.ts'
@@ -35,7 +34,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
     minLineY,
     modifiedSettings,
     preferences,
-    schemaErrors: getFilteredSchemaErrors(schemaErrors, searchValue),
+    schemaErrors,
     scrollBarThumbHeight: thumbHeight,
     scrollBarThumbTop: thumbTop,
     scrollOffset,

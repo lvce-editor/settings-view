@@ -3,8 +3,10 @@ import type { SettingsState } from '../SettingsState/SettingsState.ts'
 import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
 import { computeVisibleItems } from '../ComputeVisibleItems/ComputeVisibleItems.ts'
 import { getFilteredItems } from '../GetFilteredItems/GetFilteredItems.ts'
+import { getFilteredSchemaErrors } from '../GetFilteredSchemaErrors/GetFilteredSchemaErrors.ts'
 import { getModifiedSettings } from '../GetModifiedSettings/GetModifiedSettings.ts'
 import { getPreferences } from '../GetPreferences/GetPreferences.ts'
+import { getSchemaErrors } from '../GetSchemaErrors/GetSchemaErrors.ts'
 import { getSettingItems } from '../GetSettingItems/GetSettingItems.ts'
 import { getTabs } from '../GetTabs/GetTabs.ts'
 import { getUpdatedTabs } from '../GetUpdatedTabs/GetUpdatedTabs.ts'
@@ -15,7 +17,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const { history, historyIndex, scrollOffset, searchValue, sideBarWidth, tabId } = restoreState(savedState)
   const tabs = await getTabs()
   const newTabs = getUpdatedTabs(tabs, tabId)
-  const [items, preferences] = await Promise.all([getSettingItems(), getPreferences()])
+  const [items, preferences, schemaErrors] = await Promise.all([getSettingItems(), getPreferences(), getSchemaErrors()])
   const modifiedSettings: ModifiedSettings = getModifiedSettings(preferences)
   const filteredItems = getFilteredItems(items, newTabs, searchValue, modifiedSettings, preferences)
   const { height, itemHeight } = state
@@ -33,6 +35,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
     minLineY,
     modifiedSettings,
     preferences,
+    schemaErrors: getFilteredSchemaErrors(schemaErrors, searchValue),
     scrollBarThumbHeight: thumbHeight,
     scrollBarThumbTop: thumbTop,
     scrollOffset,

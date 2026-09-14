@@ -1,12 +1,15 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
+import type { SchemaError } from '../SchemaError/SchemaError.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getContentHeadingDom } from '../GetContentHeadingDom/GetContentHeadingDom.ts'
+import { getSchemaErrorsDom } from '../GetSchemaErrorsDom/GetSchemaErrorsDom.ts'
 import { getScrollBarDom } from '../GetScrollBarDom/GetScrollBarDom.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
+import * as InputName from '../InputName/InputName.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 const settingsContentNode: VirtualDomNode = {
@@ -27,6 +30,7 @@ export const getSettingsContentDom = (
   tabs: readonly Tab[],
   searchValue: string,
   showScrollBar: boolean,
+  schemaErrors: readonly SchemaError[] = [],
 ): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
@@ -35,7 +39,7 @@ export const getSettingsContentDom = (
     settingsContentNode,
     ...getContentHeadingDom(headerText),
     settingsItemWrapperNode,
-    ...getSettingsItemsDom(visibleItems, searchValue),
+    ...(selectedTab?.id === InputName.SchemaErrorsTab ? getSchemaErrorsDom(schemaErrors) : getSettingsItemsDom(visibleItems, searchValue)),
     ...getScrollBarDom(showScrollBar),
   ]
 }

@@ -23,6 +23,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     minLineY: 0,
     modifiedSettings: {},
     preferences: {},
+    schemaErrors: [],
     scrollBarMinHeight: 0,
     scrollBarThumbHeight: 0,
     scrollBarThumbTop: 0,

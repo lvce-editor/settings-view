@@ -6,3 +6,4 @@ export const Array = 4
 export const Number = 5
 export const Color = 6
 export const Url = 7
+export const Object = 8

@@ -79,7 +79,7 @@ test('handleWheel clamps to max based on content height minus viewport', () => {
       value: '',
     })),
   }
-  // totalContentHeight = 10 * 100 = 1000, viewport = 600 => max = 400
-  const state3 = handleWheel(state2, 500)
-  expect(state3.deltaY).toBe(400)
+  // totalContentHeight = 10 * 100 = 1000, settings content viewport = 600 - 114 => max = 514
+  const state3 = handleWheel(state2, 600)
+  expect(state3.deltaY).toBe(514)
 })

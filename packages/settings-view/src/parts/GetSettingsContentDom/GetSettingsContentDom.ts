@@ -33,6 +33,8 @@ export const getSettingsContentDom = (
   showScrollBar: boolean,
   schemaErrors: readonly SchemaError[] = [],
   preferences: Preferences = {},
+  topSpacerHeight = 0,
+  bottomSpacerHeight = 0,
 ): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
@@ -43,7 +45,7 @@ export const getSettingsContentDom = (
     settingsItemWrapperNode,
     ...(selectedTab?.id === InputName.SchemaErrorsTab
       ? getSchemaErrorsDom(schemaErrors)
-      : getSettingsItemsDom(visibleItems, searchValue, preferences)),
+      : getSettingsItemsDom(visibleItems, searchValue, preferences, topSpacerHeight, bottomSpacerHeight)),
     ...getScrollBarDom(showScrollBar),
   ]
 }

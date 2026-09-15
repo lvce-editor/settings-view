@@ -26,6 +26,18 @@ export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] 
   const hasSearchValue = searchValue.trim().length > 0
   const filteredSchemaErrors = getFilteredSchemaErrors(schemaErrors, searchValue)
   const filteredItemsCount = getFilteredItemsCount(isSchemaErrorsTab, filteredSchemaErrors.length, filteredItems.length)
-  const mainDom = getSettingsMainDom(tabs, visibleItems, filteredItemsCount, searchValue, height, itemHeight, filteredSchemaErrors, preferences)
+  const { maxLineY, minLineY } = state
+  const mainDom = getSettingsMainDom(
+    tabs,
+    visibleItems,
+    filteredItemsCount,
+    searchValue,
+    height,
+    itemHeight,
+    minLineY,
+    maxLineY,
+    filteredSchemaErrors,
+    preferences,
+  )
   return [parentNode, ...getSettingsHeaderDom(filteredItemsCount, hasSearchValue), ...mainDom]
 }

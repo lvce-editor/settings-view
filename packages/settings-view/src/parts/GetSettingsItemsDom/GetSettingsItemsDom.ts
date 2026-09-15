@@ -44,8 +44,10 @@ export const getSettingsItemsDom = (
   if (items.length === 0) {
     return [settingsItemsNode]
   }
-  const hasVirtualSpacers = topSpacerHeight !== 0 || bottomSpacerHeight !== 0
-  const childCount = items.length + (hasVirtualSpacers ? 2 : 0)
+  const topSpacerCount = topSpacerHeight === 0 ? 0 : 1
+  const bottomSpacerCount = bottomSpacerHeight === 0 ? 0 : 1
+  const spacerCount = topSpacerCount + bottomSpacerCount
+  const childCount = items.length + spacerCount
   return [
     {
       ...settingsItemsNode,

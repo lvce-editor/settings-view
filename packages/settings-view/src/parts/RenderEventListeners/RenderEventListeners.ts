@@ -31,7 +31,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleSettingChecked,
-      params: ['handleSettingChecked', EventExpression.TargetName, EventExpression.TargetValue],
+      params: ['handleSettingChecked', EventExpression.TargetName, EventExpression.TargetChecked],
     },
     // {
     //   name: DomEventListenerFunctions.HandleScroll,

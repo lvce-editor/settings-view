@@ -44,7 +44,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
     {
       checked: true,
       childCount: 0,
-      className: 'CheckBox',
+      className: ClassNames.Toggle,
       id: domId,
       inputType: 'checkbox',
       name: 'testItem',
@@ -120,7 +120,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
     {
       checked: true,
       childCount: 0,
-      className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
+      className: `${ClassNames.Toggle} ${ClassNames.InputBoxError}`,
       id: domId,
       inputType: 'checkbox',
       name: 'testItem',
@@ -184,7 +184,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for modified item'
     {
       checked: true,
       childCount: 0,
-      className: 'CheckBox',
+      className: ClassNames.Toggle,
       id: domId,
       inputType: 'checkbox',
       name: 'testItem',
@@ -242,7 +242,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
     {
       checked: true,
       childCount: 0,
-      className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
+      className: `${ClassNames.Toggle} ${ClassNames.InputBoxError}`,
       id: domId,
       inputType: 'checkbox',
       name: 'testItem',
@@ -306,7 +306,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
     {
       checked: true,
       childCount: 0,
-      className: 'CheckBox',
+      className: ClassNames.Toggle,
       id: domId,
       inputType: 'checkbox',
       name: 'testItem',
@@ -364,7 +364,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
     {
       checked: true,
       childCount: 0,
-      className: 'CheckBox',
+      className: ClassNames.Toggle,
       id: domId,
       inputType: 'checkbox',
       name: 'testItem',
@@ -422,7 +422,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with hasE
     {
       checked: true,
       childCount: 0,
-      className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
+      className: `${ClassNames.Toggle} ${ClassNames.InputBoxError}`,
       id: domId,
       inputType: 'checkbox',
       name: 'testItem',
@@ -480,7 +480,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with diff
     {
       checked: true,
       childCount: 0,
-      className: 'CheckBox',
+      className: ClassNames.Toggle,
       id: domId,
       inputType: 'checkbox',
       name: 'different.setting.id',
@@ -538,7 +538,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with long
     {
       checked: true,
       childCount: 0,
-      className: `${ClassNames.CheckBox} ${ClassNames.InputBoxError}`,
+      className: `${ClassNames.Toggle} ${ClassNames.InputBoxError}`,
       id: domId,
       inputType: 'checkbox',
       name: 'testItem',
@@ -561,4 +561,40 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with long
   ]
 
   expect(result).toEqual(expectedDom)
+})
+
+test('getItemCheckBoxVirtualDom renders a checkbox when toggles are disabled', () => {
+  const item: DisplaySettingItem = {
+    category: 'test',
+    description: 'Test Description',
+    errorMessage: '',
+    hasError: false,
+    heading: 'Test Heading',
+    id: 'testItem',
+    modified: false,
+    type: 2,
+    value: true,
+  }
+
+  const result = getItemCheckBoxVirtualDom(item, { 'settings.useToggles': false })
+
+  expect(result.find((node) => node.inputType === 'checkbox')).toMatchObject({ className: ClassNames.CheckBox })
+})
+
+test('getItemCheckBoxVirtualDom uses the preference value for the setting', () => {
+  const item: DisplaySettingItem = {
+    category: 'test',
+    description: 'Test Description',
+    errorMessage: '',
+    hasError: false,
+    heading: 'Test Heading',
+    id: 'testItem',
+    modified: false,
+    type: 2,
+    value: false,
+  }
+
+  const result = getItemCheckBoxVirtualDom(item, { testItem: true })
+
+  expect(result.find((node) => node.inputType === 'checkbox')).toMatchObject({ checked: true })
 })

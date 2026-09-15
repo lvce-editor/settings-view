@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { AriaRoles, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
+import type { Preferences } from '../Preferences/Preferences.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getErrorMessageDom } from '../GetErrorMessageDom/GetErrorMessageDom.ts'
@@ -9,6 +10,8 @@ import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
 
 const errorCheckBoxClassName = mergeClassNames(ClassNames.CheckBox, ClassNames.InputBoxError)
+const errorToggleClassName = mergeClassNames(ClassNames.Toggle, ClassNames.InputBoxError)
+const settingUseToggles = 'settings.useToggles'
 
 const checkBoxWrapperNode: VirtualDomNode = {
   childCount: 2,
@@ -16,12 +19,17 @@ const checkBoxWrapperNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
-export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem, preferences: Preferences = {}): readonly VirtualDomNode[] => {
   const { description, errorMessage, hasError, heading, id, modified, value } = item
   const domId = getInputId(id)
-  const checkBoxClassName = hasError ? errorCheckBoxClassName : ClassNames.CheckBox
+  const useToggles = preferences[settingUseToggles] !== false && preferences[settingUseToggles] !== 'false'
+  let checkBoxClassName = useToggles ? ClassNames.Toggle : ClassNames.CheckBox
+  if (hasError) {
+    checkBoxClassName = useToggles ? errorToggleClassName : errorCheckBoxClassName
+  }
   const errorChildCount = hasError ? 1 : 0
-  const isChecked = value === true || value === 'true'
+  const currentValue = preferences[id] ?? value
+  const isChecked = currentValue === true || currentValue === 'true'
 
   return [
     {

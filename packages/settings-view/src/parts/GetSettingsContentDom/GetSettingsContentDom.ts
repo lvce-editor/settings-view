@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
+import type { Preferences } from '../Preferences/Preferences.ts'
 import type { SchemaError } from '../SchemaError/SchemaError.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -31,6 +32,7 @@ export const getSettingsContentDom = (
   searchValue: string,
   showScrollBar: boolean,
   schemaErrors: readonly SchemaError[] = [],
+  preferences: Preferences = {},
 ): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
@@ -39,7 +41,9 @@ export const getSettingsContentDom = (
     settingsContentNode,
     ...getContentHeadingDom(headerText),
     settingsItemWrapperNode,
-    ...(selectedTab?.id === InputName.SchemaErrorsTab ? getSchemaErrorsDom(schemaErrors) : getSettingsItemsDom(visibleItems, searchValue)),
+    ...(selectedTab?.id === InputName.SchemaErrorsTab
+      ? getSchemaErrorsDom(schemaErrors)
+      : getSettingsItemsDom(visibleItems, searchValue, preferences)),
     ...getScrollBarDom(showScrollBar),
   ]
 }

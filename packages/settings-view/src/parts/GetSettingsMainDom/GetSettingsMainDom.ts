@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
+import type { Preferences } from '../Preferences/Preferences.ts'
 import type { SchemaError } from '../SchemaError/SchemaError.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -22,6 +23,7 @@ export const getSettingsMainDom = (
   height: number,
   itemHeight: number,
   schemaErrors: readonly SchemaError[] = [],
+  preferences: Preferences = {},
 ): readonly VirtualDomNode[] => {
   const totalHeight = totalItemCount * itemHeight
   const showScrollBar = totalHeight > height
@@ -30,6 +32,6 @@ export const getSettingsMainDom = (
     settingsMainNode,
     ...getSettingsSideBarDom(tabs),
     ...getResizerVirtualDom(),
-    ...getSettingsContentDom(visibleItems, tabs, searchValue, showScrollBar, schemaErrors),
+    ...getSettingsContentDom(visibleItems, tabs, searchValue, showScrollBar, schemaErrors, preferences),
   ]
 }

@@ -1,5 +1,7 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
+export const skip = 1 // Requires the settings-worker renderer integration.
+
 export const name = 'settings.boolean-item'
 
 export const test: Test = async ({ Command, expect, Locator, SettingsView }) => {

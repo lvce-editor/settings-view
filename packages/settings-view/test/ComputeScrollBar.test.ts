@@ -60,3 +60,15 @@ test('computeScrollBar: honors larger scrollBarMinHeight', () => {
   expect(result.thumbHeight).toBe(40)
   expect(result.thumbTop).toBe(280)
 })
+
+test('computeScrollBar: reaches the end of the track at the maximum scroll offset', () => {
+  const height = 486
+  const totalItemCount = 10
+  const itemHeight = 100
+  const scrollOffset = 514
+  const scrollBarMinHeight = 20
+
+  const result = computeScrollBar(height, totalItemCount, itemHeight, scrollOffset, scrollBarMinHeight)
+
+  expect(result.thumbTop + result.thumbHeight).toBe(height)
+})

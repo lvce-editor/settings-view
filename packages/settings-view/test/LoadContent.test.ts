@@ -150,6 +150,19 @@ test('loadContent should restore scrollOffset from savedState', async () => {
   const mockRpc = createRendererWorkerRpc()
   RendererWorker.set(mockRpc)
 
+  SettingsWorker.set(
+    createMockRpc({
+      commandMap: {
+        'SettingsWorker.getSettingsItems2': () =>
+          Array.from({ length: 10 }, (_, index) => ({
+            ...items[index % items.length],
+            id: `setting.${index}`,
+          })),
+        'SettingsWorker.getTabs': () => tabs,
+      },
+    }),
+  )
+
   const initialState: SettingsState = createDefaultState()
   const savedState = {
     scrollOffset: 500,

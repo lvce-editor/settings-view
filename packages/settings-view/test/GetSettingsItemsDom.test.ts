@@ -210,6 +210,33 @@ test('getSettingsItemsDom handles multiple items correctly', () => {
   })
 })
 
+test('getSettingsItemsDom adds virtual spacers around visible items', () => {
+  const items: readonly DisplaySettingItem[] = [
+    {
+      category: InputName.TextEditorTab,
+      description: 'The font size of the editor',
+      errorMessage: '',
+      hasError: false,
+      heading: 'Font Size',
+      id: 'fontSize',
+      modified: false,
+      type: SettingItemType.Number,
+      value: '15px',
+    },
+  ]
+
+  const result = getSettingsItemsDom(items, '', {}, 200, 300)
+
+  expect(result[0]).toEqual({
+    childCount: 3,
+    className: 'SettingsItems',
+    onContextMenu: 'handleContextMenu',
+    type: VirtualDomElements.Div,
+  })
+  expect(result[1]).toMatchObject({ className: 'SettingsItemsSpacer', height: '200px;' })
+  expect(result[result.length - 1]).toMatchObject({ className: 'SettingsItemsSpacer', height: '300px;' })
+})
+
 test('getSettingsItemsDom handles empty string search values', () => {
   const items: readonly DisplaySettingItem[] = []
   const searchValue = ''

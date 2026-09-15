@@ -7,6 +7,7 @@ import { getModifiedSettings } from '../GetModifiedSettings/GetModifiedSettings.
 import { getPreferences } from '../GetPreferences/GetPreferences.ts'
 import { getSchemaErrors } from '../GetSchemaErrors/GetSchemaErrors.ts'
 import { getSettingItems } from '../GetSettingItems/GetSettingItems.ts'
+import { getSettingsViewportHeight } from '../GetSettingsViewportHeight/GetSettingsViewportHeight.ts'
 import { getTabs } from '../GetTabs/GetTabs.ts'
 import { getUpdatedTabs } from '../GetUpdatedTabs/GetUpdatedTabs.ts'
 import { Script } from '../InputSource/InputSource.ts'
@@ -20,9 +21,12 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const modifiedSettings: ModifiedSettings = getModifiedSettings(preferences)
   const filteredItems = getFilteredItems(items, newTabs, searchValue, modifiedSettings, preferences)
   const { height, itemHeight } = state
-  const { maxLineY, minLineY, visibleItems } = computeVisibleItems(filteredItems, height, scrollOffset, itemHeight)
+  const viewportHeight = getSettingsViewportHeight(height)
+  const maxScrollable = Math.max(0, filteredItems.length * itemHeight - viewportHeight)
+  const nextScrollOffset = Math.min(Math.max(0, scrollOffset), maxScrollable)
+  const { maxLineY, minLineY, visibleItems } = computeVisibleItems(filteredItems, viewportHeight, nextScrollOffset, itemHeight)
   const { scrollBarMinHeight } = state
-  const { thumbHeight, thumbTop } = computeScrollBar(height, filteredItems.length, itemHeight, scrollOffset, scrollBarMinHeight)
+  const { thumbHeight, thumbTop } = computeScrollBar(viewportHeight, filteredItems.length, itemHeight, nextScrollOffset, scrollBarMinHeight)
   return {
     ...state,
     filteredItems,
@@ -37,7 +41,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
     schemaErrors,
     scrollBarThumbHeight: thumbHeight,
     scrollBarThumbTop: thumbTop,
-    scrollOffset,
+    scrollOffset: nextScrollOffset,
     searchValue,
     sideBarWidth,
     tabs: newTabs,

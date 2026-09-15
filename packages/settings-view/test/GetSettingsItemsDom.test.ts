@@ -237,6 +237,27 @@ test('getSettingsItemsDom adds virtual spacers around visible items', () => {
   expect(result[result.length - 1]).toMatchObject({ className: 'SettingsItemsSpacer', height: '300px;' })
 })
 
+test('getSettingsItemsDom counts only rendered virtual spacers', () => {
+  const items: readonly DisplaySettingItem[] = [
+    {
+      category: InputName.TextEditorTab,
+      description: 'The font size of the editor',
+      errorMessage: '',
+      hasError: false,
+      heading: 'Font Size',
+      id: 'fontSize',
+      modified: false,
+      type: SettingItemType.Number,
+      value: '15px',
+    },
+  ]
+
+  const result = getSettingsItemsDom(items, '', {}, 200, 0)
+
+  expect(result[0]).toMatchObject({ childCount: 2 })
+  expect(result).toHaveLength(8)
+})
+
 test('getSettingsItemsDom handles empty string search values', () => {
   const items: readonly DisplaySettingItem[] = []
   const searchValue = ''

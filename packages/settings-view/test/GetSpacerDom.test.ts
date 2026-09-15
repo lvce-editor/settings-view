@@ -11,7 +11,7 @@ test('getSpacerDom returns spacer div with height', () => {
     {
       childCount: 0,
       className: ClassNames.SettingsItemsSpacer,
-      height: `${height}px;`,
+      height: `${height}px`,
       type: VirtualDomElements.Div,
     },
   ])
@@ -25,7 +25,7 @@ test('getSpacerDom with zero height', () => {
     {
       childCount: 0,
       className: ClassNames.SettingsItemsSpacer,
-      height: `0px;`,
+      height: `0px`,
       type: VirtualDomElements.Div,
     },
   ])

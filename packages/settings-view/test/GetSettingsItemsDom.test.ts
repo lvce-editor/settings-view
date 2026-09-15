@@ -233,8 +233,8 @@ test('getSettingsItemsDom adds virtual spacers around visible items', () => {
     onContextMenu: 'handleContextMenu',
     type: VirtualDomElements.Div,
   })
-  expect(result[1]).toMatchObject({ className: 'SettingsItemsSpacer', height: '200px;' })
-  expect(result[result.length - 1]).toMatchObject({ className: 'SettingsItemsSpacer', height: '300px;' })
+  expect(result[1]).toMatchObject({ className: 'SettingsItemsSpacer', height: '200px' })
+  expect(result[result.length - 1]).toMatchObject({ className: 'SettingsItemsSpacer', height: '300px' })
 })
 
 test('getSettingsItemsDom counts only rendered virtual spacers', () => {

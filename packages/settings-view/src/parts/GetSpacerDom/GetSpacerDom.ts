@@ -7,7 +7,7 @@ export const getSpacerDom = (height: number): readonly VirtualDomNode[] => {
     {
       childCount: 0,
       className: ClassNames.SettingsItemsSpacer,
-      height: `${height}px;`,
+      height: `${height}px`,
       type: VirtualDomElements.Div,
     },
   ]

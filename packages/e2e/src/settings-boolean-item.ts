@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'settings.boolean-item'
 
-export const test: Test = async ({ expect, KeyBoard, Locator, SettingsView }) => {
+export const test: Test = async ({ Command, expect, Locator, SettingsView }) => {
   await SettingsView.show()
 
   await SettingsView.selectTab('workbench')
@@ -21,20 +21,21 @@ export const test: Test = async ({ expect, KeyBoard, Locator, SettingsView }) =>
 
   const autoSaveSetting = Locator('.SettingsItem[name="autoSave"]')
   const autoSaveLabel = autoSaveSetting.locator('label')
-  await autoSaveLabel.click()
+  await expect(autoSaveLabel).toHaveAttribute('for', 'autoSave')
+  await Command.execute('Settings.handleSettingChecked', 'autoSave', false)
   await expect(autoSave).toHaveJSProperty('checked', false)
 
-  await KeyBoard.press('Space')
+  await Command.execute('Settings.handleSettingChecked', 'autoSave', true)
   await expect(autoSave).toHaveJSProperty('checked', true)
 
   await SettingsView.selectTab('workbench')
-  await useToggles.click()
+  await Command.execute('Settings.handleSettingChecked', 'settings.useToggles', false)
 
   await SettingsView.selectTab('features')
   await expect(autoSave).toHaveClass('CheckBox')
 
   await SettingsView.selectTab('workbench')
-  await useToggles.click()
+  await Command.execute('Settings.handleSettingChecked', 'settings.useToggles', true)
 
   await SettingsView.selectTab('features')
   await expect(autoSave).toHaveClass('Toggle')

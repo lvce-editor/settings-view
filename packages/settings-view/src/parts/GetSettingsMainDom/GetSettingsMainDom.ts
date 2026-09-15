@@ -7,6 +7,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getResizerVirtualDom } from '../GetResizerVirtualDom/GetResizerVirtualDom.ts'
 import { getSettingsContentDom } from '../GetSettingsContentDom/GetSettingsContentDom.ts'
 import { getSettingsSideBarDom } from '../GetSettingsSideBarDom/GetSettingsSideBarDom.ts'
+import type { Preferences } from '../Preferences/Preferences.ts'
 
 const settingsMainNode: VirtualDomNode = {
   childCount: 3,
@@ -22,6 +23,7 @@ export const getSettingsMainDom = (
   height: number,
   itemHeight: number,
   schemaErrors: readonly SchemaError[] = [],
+  preferences: Preferences = {},
 ): readonly VirtualDomNode[] => {
   const totalHeight = totalItemCount * itemHeight
   const showScrollBar = totalHeight > height
@@ -30,6 +32,6 @@ export const getSettingsMainDom = (
     settingsMainNode,
     ...getSettingsSideBarDom(tabs),
     ...getResizerVirtualDom(),
-    ...getSettingsContentDom(visibleItems, tabs, searchValue, showScrollBar, schemaErrors),
+    ...getSettingsContentDom(visibleItems, tabs, searchValue, showScrollBar, schemaErrors, preferences),
   ]
 }

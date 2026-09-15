@@ -5,8 +5,13 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getItemVirtualDom } from '../GetItemVirtualDom/GetItemVirtualDom.ts'
 import { getSettingsNoResultsDom } from '../GetSettingsNoResultsDom/GetSettingsNoResultsDom.ts'
+import type { Preferences } from '../Preferences/Preferences.ts'
 
-export const getSettingsItemsDom = (items: readonly DisplaySettingItem[], searchValue: string): readonly VirtualDomNode[] => {
+export const getSettingsItemsDom = (
+  items: readonly DisplaySettingItem[],
+  searchValue: string,
+  preferences: Preferences = {},
+): readonly VirtualDomNode[] => {
   if (items.length === 0 && searchValue && searchValue.trim()) {
     return getSettingsNoResultsDom(searchValue)
   }
@@ -17,6 +22,6 @@ export const getSettingsItemsDom = (items: readonly DisplaySettingItem[], search
       onContextMenu: DomEventListenerFunctions.HandleContextMenu,
       type: VirtualDomElements.Div,
     },
-    ...items.flatMap(getItemVirtualDom),
+    ...items.flatMap((item) => getItemVirtualDom(item, preferences)),
   ]
 }

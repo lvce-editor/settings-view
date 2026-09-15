@@ -7,8 +7,11 @@ import { getErrorMessageDom } from '../GetErrorMessageDom/GetErrorMessageDom.ts'
 import { getInputId } from '../GetInputId/GetInputId.ts'
 import { getItemHeadingDom } from '../GetItemHeadingDom/GetItemHeadingDom.ts'
 import { getItemLabelDom } from '../GetItemLabelDom/GetItemLabelDom.ts'
+import type { Preferences } from '../Preferences/Preferences.ts'
 
 const errorCheckBoxClassName = mergeClassNames(ClassNames.CheckBox, ClassNames.InputBoxError)
+const errorToggleClassName = mergeClassNames(ClassNames.Toggle, ClassNames.InputBoxError)
+const settingUseToggles = 'settings.useToggles'
 
 const checkBoxWrapperNode: VirtualDomNode = {
   childCount: 2,
@@ -16,12 +19,20 @@ const checkBoxWrapperNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
-export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
+export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem, preferences: Preferences = {}): readonly VirtualDomNode[] => {
   const { description, errorMessage, hasError, heading, id, modified, value } = item
   const domId = getInputId(id)
-  const checkBoxClassName = hasError ? errorCheckBoxClassName : ClassNames.CheckBox
+  const useToggles = preferences[settingUseToggles] !== false && preferences[settingUseToggles] !== 'false'
+  const checkBoxClassName = useToggles
+    ? hasError
+      ? errorToggleClassName
+      : ClassNames.Toggle
+    : hasError
+      ? errorCheckBoxClassName
+      : ClassNames.CheckBox
   const errorChildCount = hasError ? 1 : 0
-  const isChecked = value === true || value === 'true'
+  const currentValue = preferences[id] ?? value
+  const isChecked = currentValue === true || currentValue === 'true'
 
   return [
     {

@@ -12,3 +12,11 @@ test('renderEventListeners returns array of DomEventListener objects', () => {
     preventDefault: true,
   })
 })
+
+test('renderEventListeners reads the checked value for boolean settings', () => {
+  const eventListeners = renderEventListeners()
+  expect(eventListeners).toContainEqual({
+    name: DomEventListenerFunctions.HandleSettingChecked,
+    params: ['handleSettingChecked', EventExpression.TargetName, EventExpression.TargetChecked],
+  })
+})

@@ -1,5 +1,6 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import type { DisplaySettingItem } from '../DisplaySettingItem/DisplaySettingItem.ts'
+import type { Preferences } from '../Preferences/Preferences.ts'
 import { getItemArrayVirtualDom } from '../GetItemArrayVirtualDom/GetItemArrayVirtualDom.ts'
 import { getItemCheckBoxVirtualDom } from '../GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
 import { getItemColorVirtualDom } from '../GetItemColorVirtualDom/GetItemColorVirtualDom.ts'
@@ -11,7 +12,7 @@ import { getItemUrlVirtualDom } from '../GetItemUrlDom/GetItemUrlDom.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 
 export interface ItemRenderer {
-  (item: DisplaySettingItem): readonly VirtualDomNode[]
+  (item: DisplaySettingItem, preferences?: Preferences): readonly VirtualDomNode[]
 }
 
 export const getItemRender = (type: number): ItemRenderer => {

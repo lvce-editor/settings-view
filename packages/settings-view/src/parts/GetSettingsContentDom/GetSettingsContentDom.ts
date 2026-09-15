@@ -10,6 +10,7 @@ import { getSchemaErrorsDom } from '../GetSchemaErrorsDom/GetSchemaErrorsDom.ts'
 import { getScrollBarDom } from '../GetScrollBarDom/GetScrollBarDom.ts'
 import { getSettingsItemsDom } from '../GetSettingsItemsDom/GetSettingsItemsDom.ts'
 import * as InputName from '../InputName/InputName.ts'
+import type { Preferences } from '../Preferences/Preferences.ts'
 import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 
 const settingsContentNode: VirtualDomNode = {
@@ -31,6 +32,7 @@ export const getSettingsContentDom = (
   searchValue: string,
   showScrollBar: boolean,
   schemaErrors: readonly SchemaError[] = [],
+  preferences: Preferences = {},
 ): readonly VirtualDomNode[] => {
   const selectedTab = tabs.find((tab) => tab.selected)
   const headerText = selectedTab ? selectedTab.label : SettingStrings.settingsContent()
@@ -39,7 +41,9 @@ export const getSettingsContentDom = (
     settingsContentNode,
     ...getContentHeadingDom(headerText),
     settingsItemWrapperNode,
-    ...(selectedTab?.id === InputName.SchemaErrorsTab ? getSchemaErrorsDom(schemaErrors) : getSettingsItemsDom(visibleItems, searchValue)),
+    ...(selectedTab?.id === InputName.SchemaErrorsTab
+      ? getSchemaErrorsDom(schemaErrors)
+      : getSettingsItemsDom(visibleItems, searchValue, preferences)),
     ...getScrollBarDom(showScrollBar),
   ]
 }

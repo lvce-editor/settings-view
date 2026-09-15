@@ -21,11 +21,11 @@ const getFilteredItemsCount = (isSchemaErrorsTab: boolean, schemaErrorsLength: n
 }
 
 export const getSettingsDom = (state: SettingsState): readonly VirtualDomNode[] => {
-  const { filteredItems, height, itemHeight, schemaErrors = [], searchValue, tabs, visibleItems } = state
+  const { filteredItems, height, itemHeight, preferences, schemaErrors = [], searchValue, tabs, visibleItems } = state
   const isSchemaErrorsTab = tabs.some((tab) => tab.selected && tab.id === InputName.SchemaErrorsTab)
   const hasSearchValue = searchValue.trim().length > 0
   const filteredSchemaErrors = getFilteredSchemaErrors(schemaErrors, searchValue)
   const filteredItemsCount = getFilteredItemsCount(isSchemaErrorsTab, filteredSchemaErrors.length, filteredItems.length)
-  const mainDom = getSettingsMainDom(tabs, visibleItems, filteredItemsCount, searchValue, height, itemHeight, filteredSchemaErrors)
+  const mainDom = getSettingsMainDom(tabs, visibleItems, filteredItemsCount, searchValue, height, itemHeight, filteredSchemaErrors, preferences)
   return [parentNode, ...getSettingsHeaderDom(filteredItemsCount, hasSearchValue), ...mainDom]
 }

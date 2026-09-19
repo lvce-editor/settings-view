@@ -2,6 +2,7 @@ import { test, expect } from '@jest/globals'
 import type { SettingsState } from '../src/parts/SettingsState/SettingsState.ts'
 import type { ViewletCommand } from '../src/parts/ViewletCommand/ViewletCommand.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { User } from '../src/parts/InputSource/InputSource.ts'
 import { renderSettingValues } from '../src/parts/RenderSettingValues/RenderSettingValues.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 
@@ -105,6 +106,69 @@ test('renderSettingValues uses item values only for missing preferences', () => 
       { name: 'editor.letterSpacing', value: 1 },
     ],
   ])
+})
+
+test('renderSettingValues does not reset a color input changed by the user', () => {
+  const oldState: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        category: 'editor',
+        description: 'Editor background description',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Editor background',
+        id: 'editor.background',
+        modified: false,
+        type: SettingItemType.Color,
+        value: '#000000',
+      },
+    ],
+    preferences: {
+      'editor.background': '#000000',
+    },
+  }
+  const newState: SettingsState = {
+    ...oldState,
+    inputSource: User,
+    modifiedSettings: {
+      'editor.background': true,
+    },
+    preferences: {
+      'editor.background': '#ffffff',
+    },
+  }
+
+  const result = renderSettingValues(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.setInputValues', 1, []])
+})
+
+test('renderSettingValues initializes a color input when its value did not change', () => {
+  const state: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        category: 'editor',
+        description: 'Editor background description',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Editor background',
+        id: 'editor.background',
+        modified: false,
+        type: SettingItemType.Color,
+        value: '#000000',
+      },
+    ],
+    inputSource: User,
+    preferences: {
+      'editor.background': '#ffffff',
+    },
+  }
+
+  const result = renderSettingValues(state, state)
+
+  expect(result).toEqual(['Viewlet.setInputValues', 1, [{ name: 'editor.background', value: '#ffffff' }]])
 })
 
 test.skip('renderSettingValues returns correct ViewletCommand for numeric and string settings', () => {

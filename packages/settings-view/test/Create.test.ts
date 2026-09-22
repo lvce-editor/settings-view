@@ -8,3 +8,9 @@ test('create function exists and can be called', () => {
   const state = get(1)
   expect(state).toBeDefined()
 })
+
+test('create initializes the minimum scrollbar thumb height', () => {
+  create(2, 'test://uri', 0, 0, 100, 100)
+  const { newState } = get(2)
+  expect(newState.scrollBarMinHeight).toBe(20)
+})

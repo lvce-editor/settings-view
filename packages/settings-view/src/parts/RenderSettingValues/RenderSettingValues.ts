@@ -3,7 +3,7 @@ import type { ViewletCommand } from '../ViewletCommand/ViewletCommand.ts'
 import { User } from '../InputSource/InputSource.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 
-const enabledTypes: readonly number[] = [SettingItemType.Array, SettingItemType.Number, SettingItemType.String, SettingItemType.Color]
+const enabledTypes: readonly number[] = [SettingItemType.Array, SettingItemType.Enum, SettingItemType.Number, SettingItemType.String, SettingItemType.Color]
 
 const getInputValue = (type: number, value: any): any => {
   if (type === SettingItemType.Array) {

@@ -34,6 +34,38 @@ test('renderSettingValues serializes array values as JSON', () => {
   expect(result).toEqual(['Viewlet.setInputValues', 1, [{ name: 'simpleBrowser.shortcuts', value: '["ctrl+p","ctrl+b"]' }]])
 })
 
+test('renderSettingValues applies the persisted value to enum controls', () => {
+  const oldState = createDefaultState()
+  const newState: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        category: 'workbench',
+        description: 'Controls the location of the side bar',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Side Bar Location',
+        id: 'workbench.sideBarLocation',
+        modified: true,
+        options: [
+          { id: 'left', label: 'Left' },
+          { id: 'right', label: 'Right' },
+        ],
+        type: SettingItemType.Enum,
+        value: 'right',
+      },
+    ],
+    id: 1,
+    preferences: {
+      'workbench.sideBarLocation': 'left',
+    },
+  }
+
+  const result: ViewletCommand = renderSettingValues(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.setInputValues', 1, [{ name: 'workbench.sideBarLocation', value: 'left' }]])
+})
+
 test('renderSettingValues keeps an empty number preference blank', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {

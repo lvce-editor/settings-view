@@ -52,7 +52,7 @@ test('getItemUrlVirtualDom returns virtual DOM without error when no validation'
       inputType: 'url',
       name: 'test',
       onInput: DomEventListenerFunctions.HandleSettingInput,
-      placeholder: SettingStrings.numberValue(),
+      placeholder: SettingStrings.urlValue(),
       type: VirtualDomElements.Input,
     },
   ])
@@ -102,7 +102,7 @@ test('getItemUrlVirtualDom returns virtual DOM with error when validation fails'
       inputType: 'url',
       name: 'test',
       onInput: DomEventListenerFunctions.HandleSettingInput,
-      placeholder: SettingStrings.numberValue(),
+      placeholder: SettingStrings.urlValue(),
       type: VirtualDomElements.Input,
     },
     {
@@ -158,7 +158,7 @@ test('getItemUrlVirtualDom handles modified state', () => {
       inputType: 'url',
       name: 'test',
       onInput: DomEventListenerFunctions.HandleSettingInput,
-      placeholder: SettingStrings.numberValue(),
+      placeholder: SettingStrings.urlValue(),
       type: VirtualDomElements.Input,
     },
   ])
@@ -208,7 +208,7 @@ test('getItemUrlVirtualDom uses correct input type', () => {
       inputType: 'url',
       name: 'test',
       onInput: DomEventListenerFunctions.HandleSettingInput,
-      placeholder: SettingStrings.numberValue(),
+      placeholder: SettingStrings.urlValue(),
       type: VirtualDomElements.Input,
     },
   ])
@@ -258,7 +258,7 @@ test('getItemUrlVirtualDom handles id with dots', () => {
       inputType: 'url',
       name: 'test.setting.url',
       onInput: DomEventListenerFunctions.HandleSettingInput,
-      placeholder: SettingStrings.numberValue(),
+      placeholder: SettingStrings.urlValue(),
       type: VirtualDomElements.Input,
     },
   ])
@@ -308,7 +308,7 @@ test('getItemUrlVirtualDom returns correct structure with different properties',
       inputType: 'url',
       name: 'homepage',
       onInput: DomEventListenerFunctions.HandleSettingInput,
-      placeholder: SettingStrings.numberValue(),
+      placeholder: SettingStrings.urlValue(),
       type: VirtualDomElements.Input,
     },
   ])

@@ -48,3 +48,5 @@ export const stringValue = (): string => I18NString.i18nString(UiStrings.StringV
 export const tag = (): string => I18NString.i18nString(UiStrings.Tag)
 
 export const unknownSettingType = (): string => I18NString.i18nString(UiStrings.UnknownSettingType)
+
+export const urlValue = (): string => I18NString.i18nString(UiStrings.UrlValue)

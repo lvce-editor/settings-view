@@ -35,7 +35,7 @@ export const getItemUrlVirtualDom = (item: DisplaySettingItem): readonly Virtual
       inputType: 'url',
       name: id,
       onInput: DomEventListenerFunctions.HandleSettingInput,
-      placeholder: SettingStrings.numberValue(),
+      placeholder: SettingStrings.urlValue(),
       type: VirtualDomElements.Input,
     },
     ...getErrorMessageDom(errorMessage),

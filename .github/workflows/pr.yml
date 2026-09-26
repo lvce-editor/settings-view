@@ -51,3 +51,62 @@ jobs:
         run: npm run measure
         env:
           PLAYWRIGHT_BROWSERS_PATH: 0
+
+  reproduce-search-clear:
+    name: reproduce-search-clear (macos-15, attempt ${{ matrix.attempt }})
+    strategy:
+      fail-fast: false
+      matrix:
+        attempt: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Replay the reported release's runtime and skipped-test startup path.
+          ref: 31e1da4bb69c0e23b52d6aefe7544f2c46cd875c
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Compute node modules cache key
+        id: nodeModulesCacheKey
+        run: echo "value=$(node packages/build/src/computeNodeModulesCacheKey.ts)" >> $GITHUB_OUTPUT
+        shell: bash
+      - uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-cacheNodeModules-${{ steps.nodeModulesCacheKey.outputs.value }}
+      - name: npm ci
+        run: npm ci
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+      - run: npm run build
+      - run: npm run build:static
+      - run: npm test
+      - run: npm run type-check
+      - run: npm run lint
+      - name: install playwright dependencies
+        working-directory: ./packages/e2e
+        run: npx playwright install chromium
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: 0
+      - name: e2e
+        working-directory: ./packages/e2e
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run e2e:headless 2>&1 | tee e2e-attempt-${{ matrix.attempt }}.log
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: 0
+      - name: Upload e2e evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: settings-search-clear-macos-attempt-${{ matrix.attempt }}
+          path: |
+            packages/e2e/e2e-attempt-*.log
+            packages/e2e/screenshots/**
+            packages/e2e/test-results/**
+            packages/e2e/renderer-worker-traces/**
+          if-no-files-found: warn

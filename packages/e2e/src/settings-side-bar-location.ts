@@ -10,8 +10,10 @@ export const test: Test = async ({ Command, expect, Locator, Main, Settings, Set
   const options = sideBarLocation.locator('option')
   await expect(sideBarLocation).toBeVisible()
   await expect(options).toHaveCount(2)
-  await expect(options.nth(0)).toHaveText('Left')
-  await expect(options.nth(1)).toHaveText('Right')
+  const leftOption = options.nth(0)
+  const rightOption = options.nth(1)
+  await expect(leftOption).toHaveText('Left')
+  await expect(rightOption).toHaveText('Right')
   await expect(sideBarLocation).toHaveValue('right')
 
   await Command.execute('Settings.handleSettingSelect', 'workbench.sideBarLocation', 'left')
@@ -24,5 +26,5 @@ export const test: Test = async ({ Command, expect, Locator, Main, Settings, Set
   await Main.closeActiveEditor()
   await SettingsView.show()
   await SettingsView.handleInput('side bar location')
-  await expect(Locator('select[name="workbench.sideBarLocation"]')).toHaveValue('left')
+  await expect(sideBarLocation).toHaveValue('left')
 }

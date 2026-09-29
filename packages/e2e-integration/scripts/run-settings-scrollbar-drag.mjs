@@ -27,7 +27,7 @@ try {
 
   const scrollBar = page.locator('.SettingsContent .ScrollBar')
   const thumb = page.locator('.SettingsContent .ScrollBarThumb')
-  const firstItem = page.locator('.SettingsContent .SettingsItem').first()
+  const firstItem = page.locator('.SettingsContent .SettingsItem[name]').first()
   await expect(scrollBar).toBeVisible()
   await expect(firstItem).toBeVisible()
   const firstItemBefore = await firstItem.getAttribute('name')

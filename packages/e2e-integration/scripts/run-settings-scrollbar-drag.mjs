@@ -9,7 +9,7 @@ const { chromium, expect } = appRequire('@playwright/test')
 const express = appRequire('express')
 const cors = appRequire('cors')
 
-const staticPath = join(application, 'packages/build/.tmp/export-test/dist')
+const staticPath = join(application, 'packages/build/.tmp/dist')
 const app = express()
 app.use(cors({}))
 app.use(express.static(staticPath, { immutable: true, maxAge: 86400 }))

@@ -45,6 +45,13 @@ try {
     await page.mouse.up()
   }
   await expect.poll(() => firstItem.innerText()).not.toBe(firstItemBefore)
+  await expect
+    .poll(async () => {
+      const currentThumbBox = await thumb.boundingBox()
+      if (!currentThumbBox) return Number.POSITIVE_INFINITY
+      return Math.round(Math.abs(trackBox.y + trackBox.height - (currentThumbBox.y + currentThumbBox.height)))
+    })
+    .toBeLessThanOrEqual(1)
 
   const firstItemAfterRelease = await firstItem.innerText()
   await page.mouse.move(trackBox.x - 50, trackBox.y + 1)
@@ -59,6 +66,13 @@ try {
   } finally {
     await page.mouse.up()
   }
+  await expect
+    .poll(async () => {
+      const currentThumbBox = await thumb.boundingBox()
+      if (!currentThumbBox) return Number.POSITIVE_INFINITY
+      return Math.round(Math.abs(currentThumbBox.y - trackBox.y))
+    })
+    .toBeLessThanOrEqual(1)
   await expect.poll(() => firstItem.innerText()).toBe(firstItemBefore)
 } finally {
   await browser?.close()

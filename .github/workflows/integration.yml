@@ -44,3 +44,7 @@ jobs:
         working-directory: .tmp/lvce-integration/packages/extension-host-worker-tests
         shell: bash
         run: npm run e2e:headless --
+      - name: Run native scrollbar pointer-drag regression
+        run: node packages/e2e-integration/scripts/run-settings-scrollbar-drag.mjs .tmp/lvce-integration
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: 0

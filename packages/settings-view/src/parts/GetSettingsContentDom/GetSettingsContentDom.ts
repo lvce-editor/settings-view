@@ -20,11 +20,11 @@ const settingsContentNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
-const settingsItemWrapperNode: VirtualDomNode = {
-  childCount: 2,
+const getSettingsItemWrapperNode = (showScrollBar: boolean): VirtualDomNode => ({
+  childCount: showScrollBar ? 2 : 1,
   className: ClassNames.SettingsItemWrapper,
   type: VirtualDomElements.Div,
-}
+})
 
 export const getSettingsContentDom = (
   visibleItems: readonly DisplaySettingItem[],
@@ -42,7 +42,7 @@ export const getSettingsContentDom = (
   return [
     settingsContentNode,
     ...getContentHeadingDom(headerText),
-    settingsItemWrapperNode,
+    getSettingsItemWrapperNode(showScrollBar),
     ...(selectedTab?.id === InputName.SchemaErrorsTab
       ? getSchemaErrorsDom(schemaErrors)
       : getSettingsItemsDom(visibleItems, searchValue, preferences, topSpacerHeight, bottomSpacerHeight)),

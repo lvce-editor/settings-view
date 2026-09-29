@@ -12,4 +12,4 @@ cd /path/to/disposable/lvce-editor/packages/extension-host-worker-tests
 npm run e2e:headless --
 ```
 
-Preparation replaces the disposable application's scenarios and fixtures and overlays local build artifacts. See `config.json` for artifact and script destinations, and `.github/workflows/integration.yml` for static export, Electron, and settings requirements. Update the pinned application commit when its runtime needs updating.
+Before preparation, install the disposable application's dependencies and run `npm run build:static`. Preparation replaces its scenarios and fixtures, overlays local build artifacts, and copies generated settings contributions into the path used by the development server. See `config.json` for artifact and script destinations, and `.github/workflows/integration.yml` for the pinned application and platform matrix. Update the pinned application commit when its runtime needs updating.

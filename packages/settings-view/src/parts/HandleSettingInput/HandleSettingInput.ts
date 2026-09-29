@@ -1,9 +1,9 @@
 import type { SettingsState } from '../SettingsState/SettingsState.ts'
-import { handleSettingUpdate } from '../HandleSettingUpdate/HandleSettingUpdate.ts'
 import { User } from '../InputSource/InputSource.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
+import { updateSetting } from '../UpdateSetting/UpdateSetting.ts'
 
-export const handleSettingInput = (state: SettingsState, name: string, value: string, inputSource = User): SettingsState => {
+export const handleSettingInput = async (state: SettingsState, name: string, value: string, inputSource = User): Promise<SettingsState> => {
   const { items } = state
 
   // TODO maybe have separate input functions for number and string inputs
@@ -15,7 +15,7 @@ export const handleSettingInput = (state: SettingsState, name: string, value: st
       if (!Array.isArray(arrayValue)) {
         return state
       }
-      return handleSettingUpdate(state, name, arrayValue, inputSource)
+      return updateSetting(state, name, arrayValue, inputSource)
     } catch {
       return state
     }
@@ -23,8 +23,8 @@ export const handleSettingInput = (state: SettingsState, name: string, value: st
 
   if (settingItem && settingItem.type === SettingItemType.Number) {
     const numberValue = value === '' ? '' : Number(value)
-    return handleSettingUpdate(state, name, numberValue, inputSource)
+    return updateSetting(state, name, numberValue, inputSource)
   }
 
-  return handleSettingUpdate(state, name, value, inputSource)
+  return updateSetting(state, name, value, inputSource)
 }

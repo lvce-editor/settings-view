@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, readFile, realpath, rm } from 'node:fs/promises'
+import { access, cp, mkdir, readdir, readFile, realpath, rm } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -33,3 +33,25 @@ for (const [from, to] of config.artifacts) {
   })
   await cp(join(owner, from), target, { recursive: true })
 }
+
+// The development server resolves settings contributions relative to the
+// renderer worker package, while the static build emits them at its root.
+const distPath = join(application, 'packages/build/.tmp/dist')
+let copiedBuiltinSettings = false
+for (const entry of await readdir(distPath, { withFileTypes: true })) {
+  if (!entry.isDirectory()) continue
+  const source = join(distPath, entry.name, 'builtin-settings')
+  try {
+    await access(source)
+  } catch (error) {
+    if (error.code === 'ENOENT') continue
+    throw error
+  }
+  const target = join(application, 'packages/renderer-worker/node_modules/builtin-settings')
+  await rm(target, { recursive: true, force: true })
+  await mkdir(dirname(target), { recursive: true })
+  await cp(source, target, { recursive: true })
+  copiedBuiltinSettings = true
+  break
+}
+if (!copiedBuiltinSettings) throw new Error('Build the application static assets before preparing integration tests')

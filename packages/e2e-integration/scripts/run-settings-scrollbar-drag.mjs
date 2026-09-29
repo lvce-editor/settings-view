@@ -27,10 +27,10 @@ try {
 
   const scrollBar = page.locator('.SettingsContent .ScrollBar')
   const thumb = page.locator('.SettingsContent .ScrollBarThumb')
-  const firstItem = page.locator('.SettingsContent .SettingsItem[name]').first()
+  const firstItem = page.locator('.SettingsContent .SettingsItem').first()
   await expect(scrollBar).toBeVisible()
   await expect(firstItem).toBeVisible()
-  const firstItemBefore = await firstItem.getAttribute('name')
+  const firstItemBefore = await firstItem.innerText()
   if (!firstItemBefore) throw new Error('Expected the first settings item to have a name')
 
   const trackBox = await scrollBar.boundingBox()
@@ -44,11 +44,11 @@ try {
   } finally {
     await page.mouse.up()
   }
-  await expect(firstItem).not.toHaveAttribute('name', firstItemBefore)
+  await expect(firstItem).not.toHaveText(firstItemBefore)
 
-  const firstItemAfterRelease = await firstItem.getAttribute('name')
+  const firstItemAfterRelease = await firstItem.innerText()
   await page.mouse.move(trackBox.x - 50, trackBox.y + 1)
-  await expect(firstItem).toHaveAttribute('name', firstItemAfterRelease)
+  await expect(firstItem).toHaveText(firstItemAfterRelease)
 
   const bottomThumbBox = await thumb.boundingBox()
   if (!bottomThumbBox) throw new Error('Expected the settings scrollbar thumb to remain visible after dragging')
@@ -59,7 +59,7 @@ try {
   } finally {
     await page.mouse.up()
   }
-  await expect(firstItem).toHaveAttribute('name', firstItemBefore)
+  await expect(firstItem).toHaveText(firstItemBefore)
 } finally {
   await browser?.close()
   await new Promise((resolveClose, reject) => {

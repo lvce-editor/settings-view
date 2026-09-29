@@ -44,11 +44,11 @@ try {
   } finally {
     await page.mouse.up()
   }
-  await expect(firstItem).not.toHaveText(firstItemBefore)
+  await expect.poll(() => firstItem.innerText()).not.toBe(firstItemBefore)
 
   const firstItemAfterRelease = await firstItem.innerText()
   await page.mouse.move(trackBox.x - 50, trackBox.y + 1)
-  await expect(firstItem).toHaveText(firstItemAfterRelease)
+  await expect.poll(() => firstItem.innerText()).toBe(firstItemAfterRelease)
 
   const bottomThumbBox = await thumb.boundingBox()
   if (!bottomThumbBox) throw new Error('Expected the settings scrollbar thumb to remain visible after dragging')
@@ -59,7 +59,7 @@ try {
   } finally {
     await page.mouse.up()
   }
-  await expect(firstItem).toHaveText(firstItemBefore)
+  await expect.poll(() => firstItem.innerText()).toBe(firstItemBefore)
 } finally {
   await browser?.close()
   await new Promise((resolveClose, reject) => {

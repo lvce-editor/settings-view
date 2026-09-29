@@ -27,6 +27,8 @@ export interface SettingsState {
   readonly modifiedSettings: ModifiedSettings
   readonly preferences: Preferences
   readonly schemaErrors?: readonly SchemaError[]
+  readonly scrollBarActive?: boolean
+  readonly scrollBarHandleOffset?: number
   readonly scrollBarMinHeight: number
   readonly scrollBarThumbHeight: number
   readonly scrollBarThumbTop: number

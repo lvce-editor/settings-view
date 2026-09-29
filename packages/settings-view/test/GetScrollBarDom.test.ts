@@ -1,6 +1,7 @@
 import { test, expect } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getScrollBarDom } from '../src/parts/GetScrollBarDom/GetScrollBarDom.ts'
 
 test('getScrollBarDom returns scrollbar with thumb when visible is true', () => {
@@ -10,6 +11,7 @@ test('getScrollBarDom returns scrollbar with thumb when visible is true', () => 
   expect(result[0]).toEqual({
     childCount: 1,
     className: `${ClassNames.SettingsScrollBar} ${ClassNames.SettingsScrollBarSmall}`,
+    onPointerDown: DomEventListenerFunctions.HandleScrollBarPointerDown,
     type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({

@@ -7,7 +7,11 @@ export const updateSetting = async (state: SettingsState, name: string, value: a
   const { id } = state
   const newState = handleSettingUpdate(state, name, value, inputSource)
   if (inputSource === User && newState !== state) {
-    await RendererWorker.invoke('Application.executeForView', id, 'Preferences.update', { [name]: value })
+    if (name === 'workbench.colorTheme') {
+      await RendererWorker.invoke('Application.executeForView', id, 'ColorTheme.setColorTheme', value)
+    } else {
+      await RendererWorker.invoke('Application.executeForView', id, 'Preferences.update', { [name]: value })
+    }
   }
   return newState
 }

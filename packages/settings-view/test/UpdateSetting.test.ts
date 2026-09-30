@@ -27,3 +27,15 @@ test('updateSetting does not persist script updates', async () => {
 
   expect(invoke).not.toHaveBeenCalled()
 })
+
+test('updateSetting applies and persists color theme selections through the color theme API', async () => {
+  const invoke = jest.fn<(...args: readonly unknown[]) => Promise<void>>().mockResolvedValue(undefined)
+  RendererWorker.set({ invoke } as never)
+  const state = createDefaultState()
+  const { id } = state
+
+  const result = await updateSetting(state, 'workbench.colorTheme', 'cobalt2', User)
+
+  expect(result.preferences).toEqual({ 'workbench.colorTheme': 'cobalt2' })
+  expect(invoke).toHaveBeenCalledWith('Application.executeForView', id, 'ColorTheme.setColorTheme', 'cobalt2')
+})

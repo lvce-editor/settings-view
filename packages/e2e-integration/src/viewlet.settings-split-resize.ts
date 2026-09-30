@@ -19,5 +19,6 @@ export const test: Test = async ({ Command, expect, Locator, Main, SettingsView 
   const settingsComponent = components.find(({ displayName }) => displayName === 'Settings')
   if (!settingsComponent) throw new Error('Settings component state not found')
   const state = (await Command.execute('ComponentState.getState', settingsComponent.uid)) as { width: number }
-  await expect(settings).toHaveCSS('width', `${state.width}px`)
+  const { width } = state
+  await expect(settings).toHaveCSS('width', `${width}px`)
 }

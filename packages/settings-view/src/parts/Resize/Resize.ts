@@ -11,11 +11,11 @@ export interface Dimensions {
 }
 
 export const resize = (state: SettingsState, dimensions: Dimensions): SettingsState => {
-  const { filteredItems, itemHeight, scrollBarMinHeight, sideBarMinWidth, minContentWidth } = state
+  const { filteredItems, itemHeight, minContentWidth, scrollBarMinHeight, scrollOffset: currentScrollOffset, sideBarMinWidth, sideBarWidth } = state
   const { height, width } = dimensions
   const viewportHeight = getSettingsViewportHeight(height)
   const maxScrollable = Math.max(0, filteredItems.length * itemHeight - viewportHeight)
-  const scrollOffset = Math.max(0, Math.min(state.scrollOffset, maxScrollable))
+  const scrollOffset = Math.max(0, Math.min(currentScrollOffset, maxScrollable))
   const { maxLineY, minLineY, visibleItems } = computeVisibleItems(filteredItems, viewportHeight, scrollOffset, itemHeight)
   const { thumbHeight, thumbTop } = computeScrollBar(viewportHeight, filteredItems.length, itemHeight, scrollOffset, scrollBarMinHeight)
   const maxSideBarWidth = width - minContentWidth
@@ -28,7 +28,7 @@ export const resize = (state: SettingsState, dimensions: Dimensions): SettingsSt
     scrollBarThumbHeight: thumbHeight,
     scrollBarThumbTop: thumbTop,
     scrollOffset,
-    sideBarWidth: Math.max(sideBarMinWidth, Math.min(state.sideBarWidth, maxSideBarWidth)),
+    sideBarWidth: Math.max(sideBarMinWidth, Math.min(sideBarWidth, maxSideBarWidth)),
     visibleItems,
   }
 }

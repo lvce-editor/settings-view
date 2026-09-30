@@ -32,8 +32,8 @@ import * as LoadContent from '../LoadContent/LoadContent.ts'
 import { render2 } from '../Render2/Render2.ts'
 import { renderActions } from '../RenderActions/RenderActions.ts'
 import { renderEventListeners } from '../RenderEventListeners/RenderEventListeners.ts'
-import * as Resize from '../Resize/Resize.ts'
 import { resetSetting } from '../ResetSetting/ResetSetting.ts'
+import * as Resize from '../Resize/Resize.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
 import { saveState } from '../SaveState/SaveState.ts'
 import { setComponentState } from '../SetComponentState/SetComponentState.ts'
@@ -87,8 +87,8 @@ export const commandMap = {
   'Settings.render2': render2,
   'Settings.renderActions': renderActions,
   'Settings.renderEventListeners': renderEventListeners,
-  'Settings.resize': wrapCommand(Resize.resize),
   'Settings.resetSetting': wrapCommand(resetSetting),
+  'Settings.resize': wrapCommand(Resize.resize),
   'Settings.restoreState': restoreState,
   'Settings.saveState': wrapGetter(saveState),
   'Settings.setComponentState': setComponentState,

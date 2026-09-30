@@ -16,9 +16,9 @@ test('getSettingItemsWithThemeOptions adds discovered themes and preserves an un
     },
   ]
 
-  const result = await getSettingItemsWithThemeOptions(items, 42, { 'workbench.colorTheme': 'removed-theme' })
+  const result = await getSettingItemsWithThemeOptions(items, { 'workbench.colorTheme': 'removed-theme' })
 
-  expect(invoke).toHaveBeenCalledWith('Application.executeForView', 42, 'ColorTheme.getColorThemeNames')
+  expect(invoke).toHaveBeenCalledWith('ColorTheme.getColorThemeNames')
   expect(result[0].options).toEqual([
     { id: 'slime', label: 'slime' },
     { id: 'cobalt2', label: 'cobalt2' },
@@ -36,7 +36,7 @@ test('getSettingItemsWithThemeOptions leaves unrelated rows unchanged', async ()
     value: 'monospace',
   }
 
-  const result = await getSettingItemsWithThemeOptions([item], 42, {})
+  const result = await getSettingItemsWithThemeOptions([item], {})
 
   expect(result).toEqual([item])
 })
@@ -55,7 +55,7 @@ test('getSettingItemsWithThemeOptions does not duplicate the selected available 
     },
   ]
 
-  const result = await getSettingItemsWithThemeOptions(items, 42, { 'workbench.colorTheme': 'cobalt2' })
+  const result = await getSettingItemsWithThemeOptions(items, { 'workbench.colorTheme': 'cobalt2' })
 
   expect(result[0].options).toEqual([
     { id: 'slime', label: 'slime' },

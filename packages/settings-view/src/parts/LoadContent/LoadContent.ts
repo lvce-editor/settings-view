@@ -15,12 +15,11 @@ import { Script } from '../InputSource/InputSource.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
 
 export const loadContent = async (state: SettingsState, savedState: unknown): Promise<SettingsState> => {
-  const { id } = state
   const { history, historyIndex, scrollOffset, searchValue, sideBarWidth, tabId } = restoreState(savedState)
   const tabs = await getTabs()
   const newTabs = getUpdatedTabs(tabs, tabId)
   const [items, preferences, schemaErrors] = await Promise.all([getSettingItems(), getPreferences(), getSchemaErrors()])
-  const itemsWithThemeOptions = await getSettingItemsWithThemeOptions(items, id, preferences)
+  const itemsWithThemeOptions = await getSettingItemsWithThemeOptions(items, preferences)
   const modifiedSettings: ModifiedSettings = getModifiedSettings(preferences)
   const filteredItems = getFilteredItems(itemsWithThemeOptions, newTabs, searchValue, modifiedSettings, preferences)
   const { height, itemHeight } = state

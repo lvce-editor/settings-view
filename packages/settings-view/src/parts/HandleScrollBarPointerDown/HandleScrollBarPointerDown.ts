@@ -3,6 +3,9 @@ import { computeScrollBar } from '../ComputeScrollBar/ComputeScrollBar.ts'
 import { getSettingsViewportHeight } from '../GetSettingsViewportHeight/GetSettingsViewportHeight.ts'
 import { handleScrollBarPointerMove } from '../HandleScrollBarPointerMove/HandleScrollBarPointerMove.ts'
 
+// Temporary browser-worker diagnostic; removed after the drag investigation.
+declare const console: { warn(message: string, data: string): void }
+
 export const handleScrollBarPointerDown = (state: SettingsState, clientY: number): SettingsState => {
   {
     const { height, scrollBarActive, scrollBarHandleOffset, scrollBarThumbTop, x, y } = state

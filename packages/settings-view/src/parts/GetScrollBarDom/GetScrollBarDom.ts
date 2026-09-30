@@ -6,13 +6,13 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 const parentNode: VirtualDomNode = {
   childCount: 1,
   className: mergeClassNames(ClassNames.SettingsScrollBar, ClassNames.SettingsScrollBarSmall),
-  onPointerDown: DomEventListenerFunctions.HandleScrollBarPointerDown,
   type: VirtualDomElements.Div,
 }
 
 const thumbNode: VirtualDomNode = {
   childCount: 0,
   className: ClassNames.SettingsScrollBarThumb,
+  onPointerDown: DomEventListenerFunctions.HandleScrollBarPointerDown,
   type: VirtualDomElements.Div,
 }
 

@@ -32,6 +32,7 @@ export interface SettingsState {
   readonly scrollBarMinHeight: number
   readonly scrollBarThumbHeight: number
   readonly scrollBarThumbTop: number
+  readonly scrollBarTrackHeight?: number
   readonly scrollOffset: number
   readonly searchValue: string
   readonly sideBarMinWidth: number

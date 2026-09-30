@@ -23,9 +23,6 @@ try {
   })
   browser = await chromium.launch({ headless: true })
   const page = await browser.newPage()
-  page.on('console', (message) => {
-    if (message.text().includes('[DEBUG-settings-drag]')) console.info(message.text())
-  })
   await page.goto('http://localhost:3000/tests/viewlet.settings-scrollbar-drag.html')
 
   const scrollBar = page.locator('.SettingsContent .ScrollBar')
@@ -57,6 +54,8 @@ try {
 
   await page.mouse.move(thumbBox.x + thumbBox.width / 2, thumbBox.y + thumbBox.height / 2)
   await page.mouse.down()
+  await expect.poll(() => firstItem.innerText()).toBe(firstItemBefore)
+  await expect.poll(async () => (await thumb.boundingBox()).y).toBe(thumbBox.y)
   try {
     await page.mouse.move(trackBox.x - 50, trackBox.y + trackBox.height - 1, { steps: 8 })
   } finally {

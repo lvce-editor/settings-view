@@ -40,8 +40,14 @@ try {
     track: await scrollBar.boundingBox(),
     thumb: await thumb.boundingBox(),
     firstItem: await firstItem.innerText(),
-    thumbTop: await page.locator('.Settings').first().evaluate((element) => getComputedStyle(element).getPropertyValue('--ScrollBarThumbTop')),
-    itemsTranslateY: await page.locator('.Settings').first().evaluate((element) => getComputedStyle(element).getPropertyValue('--SettingsItemsTranslateY')),
+    thumbTop: await page
+      .locator('.Settings')
+      .first()
+      .evaluate((element) => getComputedStyle(element).getPropertyValue('--ScrollBarThumbTop')),
+    itemsTranslateY: await page
+      .locator('.Settings')
+      .first()
+      .evaluate((element) => getComputedStyle(element).getPropertyValue('--SettingsItemsTranslateY')),
   })
   console.info('scrollbar before drag', JSON.stringify(await getMetrics()))
 

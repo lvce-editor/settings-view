@@ -128,7 +128,7 @@ test.skip('diff returns RenderSettingValues when filteredItems change', () => {
         hasError: false,
         heading: 'Font Size',
         id: 'fontSize',
-        modified: false,
+        isModified: false,
         type: SettingItemType.Number,
         value: '15',
       },

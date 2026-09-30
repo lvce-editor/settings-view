@@ -13,7 +13,7 @@ export const validateSettings = (
     const value = preferences[item.id] ?? item.value
     const errorMessage = item.validate ? item.validate(value) : ''
     const hasError = errorMessage.length > 0
-    const modified = isItemModified(item, modifiedSettings)
+    const isModified = isItemModified(item, modifiedSettings)
 
     return {
       category: item.category,
@@ -22,7 +22,7 @@ export const validateSettings = (
       hasError,
       heading: item.heading,
       id: item.id,
-      modified,
+      isModified,
       options: item.options,
       type: item.type,
       value,

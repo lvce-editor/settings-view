@@ -20,7 +20,7 @@ const checkBoxWrapperNode: VirtualDomNode = {
 }
 
 export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem, preferences: Preferences = {}): readonly VirtualDomNode[] => {
-  const { description, errorMessage, hasError, heading, id, modified, value } = item
+  const { description, errorMessage, hasError, heading, id, isModified, value } = item
   const domId = getInputId(id)
   const useToggles = preferences[settingUseToggles] !== false && preferences[settingUseToggles] !== 'false'
   let checkBoxClassName = useToggles ? ClassNames.Toggle : ClassNames.CheckBox
@@ -35,7 +35,7 @@ export const getItemCheckBoxVirtualDom = (item: DisplaySettingItem, preferences:
     {
       childCount: 2 + errorChildCount,
       className: ClassNames.SettingsItem,
-      'data-modified': modified,
+      'data-modified': isModified,
       name: id,
       role: AriaRoles.Group,
       type: VirtualDomElements.Div,

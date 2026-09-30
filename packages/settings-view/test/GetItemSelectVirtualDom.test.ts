@@ -13,7 +13,7 @@ test('getItemSelectVirtualDom returns virtual DOM with error when validation fai
     hasError: true,
     heading: 'Test Select Setting',
     id: 'test',
-    modified: false,
+    isModified: false,
     options: [
       { id: 'option1', label: 'Option 1' },
       { id: 'option2', label: 'Option 2' },

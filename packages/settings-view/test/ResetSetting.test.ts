@@ -20,7 +20,7 @@ test('resetSetting restores the default value and modified status', () => {
         ...item,
         errorMessage: '',
         hasError: false,
-        modified: true,
+        isModified: true,
       },
     ],
     items: [item],
@@ -32,7 +32,7 @@ test('resetSetting restores the default value and modified status', () => {
 
   expect(result.preferences).toEqual({})
   expect(result.modifiedSettings).toEqual({})
-  expect(result.filteredItems[0]).toMatchObject({ id: 'editor.fontSize', modified: false, value: 15 })
+  expect(result.filteredItems[0]).toMatchObject({ id: 'editor.fontSize', isModified: false, value: 15 })
   expect(result.inputSource).toBe(Script)
 })
 

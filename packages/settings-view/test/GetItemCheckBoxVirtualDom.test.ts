@@ -13,7 +13,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for normal item', 
     hasError: false,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: false,
+    isModified: false,
     type: 2,
     value: true,
   }
@@ -71,7 +71,7 @@ test('getItemCheckBoxVirtualDom renders a false value as unchecked', () => {
     hasError: false,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: false,
+    isModified: false,
     type: 2,
     value: false,
   }
@@ -89,7 +89,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
     hasError: true,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: false,
+    isModified: false,
     type: 2,
     value: true,
   }
@@ -153,7 +153,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for modified item'
     hasError: false,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: true,
+    isModified: true,
     type: 2,
     value: true,
   }
@@ -211,7 +211,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with erro
     hasError: true,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: true,
+    isModified: true,
     type: 2,
     value: true,
   }
@@ -275,7 +275,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
     hasError: false,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: false,
+    isModified: false,
     type: 2,
     value: true,
   }
@@ -333,7 +333,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with empt
     hasError: false,
     heading: '',
     id: 'testItem',
-    modified: false,
+    isModified: false,
     type: 2,
     value: true,
   }
@@ -391,7 +391,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with hasE
     hasError: true,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: false,
+    isModified: false,
     type: 2,
     value: true,
   }
@@ -449,7 +449,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with diff
     hasError: false,
     heading: 'Test Heading',
     id: 'different.setting.id',
-    modified: false,
+    isModified: false,
     type: 2,
     value: true,
   }
@@ -507,7 +507,7 @@ test('getItemCheckBoxVirtualDom returns correct DOM structure for item with long
     hasError: true,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: false,
+    isModified: false,
     type: 2,
     value: true,
   }
@@ -571,7 +571,7 @@ test('getItemCheckBoxVirtualDom renders a checkbox when toggles are disabled', (
     hasError: false,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: false,
+    isModified: false,
     type: 2,
     value: true,
   }
@@ -589,7 +589,7 @@ test('getItemCheckBoxVirtualDom uses the preference value for the setting', () =
     hasError: false,
     heading: 'Test Heading',
     id: 'testItem',
-    modified: false,
+    isModified: false,
     type: 2,
     value: false,
   }

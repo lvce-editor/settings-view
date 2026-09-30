@@ -16,7 +16,7 @@ test('getItemStringVirtualDom returns virtual DOM without error when no validati
     hasError: false,
     heading: 'Test Setting',
     id: 'test',
-    modified: false,
+    isModified: false,
     type: SettingItemType.String,
     value: 'test value',
   }
@@ -65,7 +65,7 @@ test('getItemStringVirtualDom returns virtual DOM with error when validation fai
     hasError: true,
     heading: 'Test Setting',
     id: 'test',
-    modified: false,
+    isModified: false,
     type: SettingItemType.String,
     value: 'invalid value',
   }

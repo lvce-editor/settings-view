@@ -36,6 +36,14 @@ try {
   const trackBox = await scrollBar.boundingBox()
   const thumbBox = await thumb.boundingBox()
   if (!trackBox || !thumbBox) throw new Error('Expected the settings scrollbar track and thumb to have visible bounds')
+  const getMetrics = async () => ({
+    track: await scrollBar.boundingBox(),
+    thumb: await thumb.boundingBox(),
+    firstItem: await firstItem.innerText(),
+    thumbTop: await page.locator('.Settings').first().evaluate((element) => getComputedStyle(element).getPropertyValue('--ScrollBarThumbTop')),
+    itemsTranslateY: await page.locator('.Settings').first().evaluate((element) => getComputedStyle(element).getPropertyValue('--SettingsItemsTranslateY')),
+  })
+  console.info('scrollbar before drag', JSON.stringify(await getMetrics()))
 
   await page.mouse.move(thumbBox.x + thumbBox.width / 2, thumbBox.y + thumbBox.height / 2)
   await page.mouse.down()
@@ -44,6 +52,7 @@ try {
   } finally {
     await page.mouse.up()
   }
+  console.info('scrollbar after bottom drag', JSON.stringify(await getMetrics()))
   await expect.poll(() => firstItem.innerText()).not.toBe(firstItemBefore)
   await expect
     .poll(async () => {
@@ -66,6 +75,7 @@ try {
   } finally {
     await page.mouse.up()
   }
+  console.info('scrollbar after top drag', JSON.stringify(await getMetrics()))
   await expect
     .poll(async () => {
       const currentThumbBox = await thumb.boundingBox()

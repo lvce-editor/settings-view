@@ -16,7 +16,7 @@ test('getItemUrlVirtualDom returns virtual DOM without error when no validation'
     hasError: false,
     heading: 'Test Setting',
     id: 'test',
-    modified: false,
+    isModified: false,
     type: SettingItemType.Url,
     value: 'https://example.com',
   }
@@ -66,7 +66,7 @@ test('getItemUrlVirtualDom returns virtual DOM with error when validation fails'
     hasError: true,
     heading: 'Test Setting',
     id: 'test',
-    modified: false,
+    isModified: false,
     type: SettingItemType.Url,
     value: 'invalid url',
   }
@@ -122,7 +122,7 @@ test('getItemUrlVirtualDom handles modified state', () => {
     hasError: false,
     heading: 'Test Setting',
     id: 'test',
-    modified: true,
+    isModified: true,
     type: SettingItemType.Url,
     value: 'https://example.com',
   }
@@ -172,7 +172,7 @@ test('getItemUrlVirtualDom uses correct input type', () => {
     hasError: false,
     heading: 'Test Setting',
     id: 'test',
-    modified: false,
+    isModified: false,
     type: SettingItemType.Url,
     value: 'https://example.com',
   }
@@ -222,7 +222,7 @@ test('getItemUrlVirtualDom handles id with dots', () => {
     hasError: false,
     heading: 'Test Setting',
     id: 'test.setting.url',
-    modified: false,
+    isModified: false,
     type: SettingItemType.Url,
     value: 'https://example.com',
   }
@@ -272,7 +272,7 @@ test('getItemUrlVirtualDom returns correct structure with different properties',
     hasError: false,
     heading: 'Homepage',
     id: 'homepage',
-    modified: true,
+    isModified: true,
     type: SettingItemType.Url,
     value: 'https://example.com',
   }

@@ -19,5 +19,5 @@ export const getFilteredItems = (
   const tabFilteredItems = filterByTab(items, tabs)
   const searchFilteredItems = filterBySearch(tabFilteredItems, parsedQuery.query)
   const validated = validateSettings(searchFilteredItems, modifiedSettings, preferences)
-  return parsedQuery.modified ? validated.filter((item) => item.modified) : validated
+  return parsedQuery.modified ? validated.filter((item) => item.isModified) : validated
 }

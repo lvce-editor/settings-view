@@ -13,7 +13,7 @@ test('getItemNumberVirtualDom returns virtual DOM with error when validation fai
     hasError: true,
     heading: 'Test Number Setting',
     id: 'test',
-    modified: false,
+    isModified: false,
     type: SettingItemType.Number,
     value: -5,
   }

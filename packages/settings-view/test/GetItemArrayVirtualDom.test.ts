@@ -15,7 +15,7 @@ test('getItemArrayVirtualDom renders an editable array setting', () => {
     hasError: false,
     heading: 'Simple Browser Shortcuts',
     id: 'simpleBrowser.shortcuts',
-    modified: false,
+    isModified: false,
     type: SettingItemType.Array,
     value: [],
   }
@@ -63,7 +63,7 @@ test('getItemArrayVirtualDom renders validation errors', () => {
     hasError: true,
     heading: 'Simple Browser Shortcuts',
     id: 'simpleBrowser.shortcuts',
-    modified: true,
+    isModified: true,
     type: SettingItemType.Array,
     value: 'invalid',
   }

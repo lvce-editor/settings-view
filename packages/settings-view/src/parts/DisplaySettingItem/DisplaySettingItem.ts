@@ -10,7 +10,7 @@ export interface DisplaySettingItem {
   readonly hasError: boolean
   readonly heading: string
   readonly id: string
-  readonly modified: boolean
+  readonly isModified: boolean
   readonly options?: readonly DisplaySettingItemOption[]
   readonly type: number
   readonly value: any

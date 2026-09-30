@@ -13,7 +13,7 @@ const createScrollableState = (): ReturnType<typeof createDefaultState> => ({
     hasError: false,
     heading: '',
     id: String(index),
-    modified: false,
+    isModified: false,
     type: 0,
     value: '',
   })),

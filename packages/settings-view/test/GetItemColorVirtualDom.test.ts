@@ -15,7 +15,7 @@ test('getItemColorVirtualDom returns virtual DOM without error when no validatio
     hasError: false,
     heading: 'Test Color Setting',
     id: 'test.color',
-    modified: false,
+    isModified: false,
     type: SettingItemType.Color,
     value: '#ff0000',
   }
@@ -70,7 +70,7 @@ test('getItemColorVirtualDom returns virtual DOM with error when validation fail
     hasError: true,
     heading: 'Test Color Setting',
     id: 'test.color',
-    modified: true,
+    isModified: true,
     type: SettingItemType.Color,
     value: 'invalid',
   }

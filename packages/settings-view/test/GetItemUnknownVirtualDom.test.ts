@@ -14,7 +14,7 @@ test('getItemUnknownVirtualDom returns correct virtual DOM structure', () => {
     hasError: false,
     heading: 'Unknown',
     id: 'test.unknown',
-    modified: false,
+    isModified: false,
     type: SettingItemType.None,
     value: undefined,
   }

@@ -12,7 +12,7 @@ import * as SettingStrings from '../SettingStrings/SettingStrings.ts'
 const errorInputClassName = mergeClassNames(ClassNames.InputBox, ClassNames.InputBoxError)
 
 export const getItemArrayVirtualDom = (item: DisplaySettingItem): readonly VirtualDomNode[] => {
-  const { description, errorMessage, hasError, heading, id, modified } = item
+  const { description, errorMessage, hasError, heading, id, isModified } = item
   const domId = getInputId(id)
   const inputClassName = hasError ? errorInputClassName : ClassNames.InputBox
   const errorChildCount = hasError ? 1 : 0
@@ -21,7 +21,7 @@ export const getItemArrayVirtualDom = (item: DisplaySettingItem): readonly Virtu
     {
       childCount: 3 + errorChildCount,
       className: ClassNames.SettingsItem,
-      'data-modified': modified,
+      'data-modified': isModified,
       name: id,
       role: AriaRoles.Group,
       type: VirtualDomElements.Div,

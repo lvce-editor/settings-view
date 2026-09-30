@@ -4,6 +4,13 @@ import { getSettingsViewportHeight } from '../GetSettingsViewportHeight/GetSetti
 import { handleScrollBarPointerMove } from '../HandleScrollBarPointerMove/HandleScrollBarPointerMove.ts'
 
 export const handleScrollBarPointerDown = (state: SettingsState, clientY: number): SettingsState => {
+  {
+    const { height, scrollBarActive, scrollBarHandleOffset, scrollBarThumbTop, x, y } = state
+    console.warn(
+      '[DEBUG-settings-drag] HandleScrollBarPointerDown',
+      JSON.stringify({ clientY, height, scrollBarActive, scrollBarHandleOffset, scrollBarThumbTop, x, y }),
+    )
+  }
   const { filteredItems, height, itemHeight, scrollBarMinHeight, scrollBarThumbHeight, scrollBarThumbTop, scrollOffset, y } = state
   const viewportHeight = getSettingsViewportHeight(height)
   const { thumbHeight, thumbTop } = computeScrollBar(viewportHeight, filteredItems.length, itemHeight, scrollOffset, scrollBarMinHeight)

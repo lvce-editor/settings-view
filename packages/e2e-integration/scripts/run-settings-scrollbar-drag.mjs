@@ -23,6 +23,9 @@ try {
   })
   browser = await chromium.launch({ headless: true })
   const page = await browser.newPage()
+  page.on('console', (message) => {
+    if (message.text().includes('[DEBUG-settings-drag]')) console.info(message.text())
+  })
   await page.goto('http://localhost:3000/tests/viewlet.settings-scrollbar-drag.html')
 
   const scrollBar = page.locator('.SettingsContent .ScrollBar')
@@ -37,6 +40,7 @@ try {
   const thumbBox = await thumb.boundingBox()
   if (!trackBox || !thumbBox) throw new Error('Expected the settings scrollbar track and thumb to have visible bounds')
   const getMetrics = async () => ({
+    settings: await page.locator('.Settings').first().boundingBox(),
     track: await scrollBar.boundingBox(),
     thumb: await thumb.boundingBox(),
     firstItem: await firstItem.innerText(),

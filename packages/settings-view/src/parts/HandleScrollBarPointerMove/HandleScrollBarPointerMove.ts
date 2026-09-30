@@ -6,6 +6,13 @@ import { getSettingsViewportHeight } from '../GetSettingsViewportHeight/GetSetti
 import { User } from '../InputSource/InputSource.ts'
 
 export const handleScrollBarPointerMove = (state: SettingsState, clientY: number): SettingsState => {
+  {
+    const { height, scrollBarActive, scrollBarHandleOffset, scrollBarThumbTop, x, y } = state
+    console.warn(
+      '[DEBUG-settings-drag] HandleScrollBarPointerMove',
+      JSON.stringify({ clientY, height, scrollBarActive, scrollBarHandleOffset, scrollBarThumbTop, x, y }),
+    )
+  }
   const { scrollBarActive } = state
   if (!scrollBarActive) {
     return state

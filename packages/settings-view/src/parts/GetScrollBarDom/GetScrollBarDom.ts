@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
 const parentNode: VirtualDomNode = {
   childCount: 1,
@@ -11,6 +12,7 @@ const parentNode: VirtualDomNode = {
 const thumbNode: VirtualDomNode = {
   childCount: 0,
   className: ClassNames.SettingsScrollBarThumb,
+  onPointerDown: DomEventListenerFunctions.HandleScrollBarPointerDown,
   type: VirtualDomElements.Div,
 }
 

@@ -82,3 +82,11 @@ test('renderItems returns correct ViewletCommand with empty search value', () =>
   expect(Array.isArray(result[2])).toBe(true)
   expect(result[2].length).toBeGreaterThan(0)
 })
+
+test('renderItems patches the existing tree while the scrollbar holds pointer capture', () => {
+  const oldState = { ...createDefaultState(), scrollBarActive: true }
+  const newState = { ...oldState, deltaY: 100, scrollOffset: 100 }
+  const result = renderItems(oldState, newState)
+  expect(result[0]).toBe('Viewlet.setPatches')
+  expect(result[1]).toBe(newState.id)
+})

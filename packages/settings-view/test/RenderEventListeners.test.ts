@@ -20,3 +20,21 @@ test('renderEventListeners reads the checked value for boolean settings', () => 
     params: ['handleSettingChecked', EventExpression.TargetName, EventExpression.TargetChecked],
   })
 })
+
+test('renderEventListeners tracks settings scrollbar pointer dragging', () => {
+  const eventListeners = renderEventListeners()
+  expect(eventListeners).toContainEqual({
+    name: DomEventListenerFunctions.HandleScrollBarPointerDown,
+    params: ['handleScrollBarPointerDown', EventExpression.ClientY, 'event.currentTarget.parentNode.clientHeight'],
+    preventDefault: true,
+    trackPointerEvents: [DomEventListenerFunctions.HandleScrollBarPointerMove, DomEventListenerFunctions.HandleScrollBarPointerCaptureLost],
+  })
+  expect(eventListeners).toContainEqual({
+    name: DomEventListenerFunctions.HandleScrollBarPointerMove,
+    params: ['handleScrollBarPointerMove', EventExpression.ClientY],
+  })
+  expect(eventListeners).toContainEqual({
+    name: DomEventListenerFunctions.HandleScrollBarPointerCaptureLost,
+    params: ['handleScrollBarPointerCaptureLost'],
+  })
+})

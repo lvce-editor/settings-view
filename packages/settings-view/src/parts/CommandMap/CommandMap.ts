@@ -20,6 +20,9 @@ import { handleResizerPointerDown } from '../HandleResizerPointerDown/HandleResi
 import { handleResizerPointerMove } from '../HandleResizerPointerMove/HandleResizerPointerMove.ts'
 import { handleResizerPointerUp } from '../HandleResizerPointerUp/HandleResizerPointerUp.ts'
 import { handleScroll } from '../HandleScroll/HandleScroll.ts'
+import { handleScrollBarPointerCaptureLost } from '../HandleScrollBarPointerCaptureLost/HandleScrollBarPointerCaptureLost.ts'
+import { handleScrollBarPointerDown } from '../HandleScrollBarPointerDown/HandleScrollBarPointerDown.ts'
+import { handleScrollBarPointerMove } from '../HandleScrollBarPointerMove/HandleScrollBarPointerMove.ts'
 import { handleSettingChecked } from '../HandleSettingChecked/HandleSettingChecked.ts'
 import { handleSettingInput } from '../HandleSettingInput/HandleSettingInput.ts'
 import { handleSettingSelect } from '../HandleSettingSelect/HandleSettingSelect.ts'
@@ -72,6 +75,9 @@ export const commandMap = {
   'Settings.handleResizerPointerMove': wrapCommand(handleResizerPointerMove),
   'Settings.handleResizerPointerUp': wrapCommand(handleResizerPointerUp),
   'Settings.handleScroll': wrapCommand(handleScroll),
+  'Settings.handleScrollBarPointerCaptureLost': wrapCommand(handleScrollBarPointerCaptureLost),
+  'Settings.handleScrollBarPointerDown': wrapCommand(handleScrollBarPointerDown),
+  'Settings.handleScrollBarPointerMove': wrapCommand(handleScrollBarPointerMove),
   'Settings.handleSettingChecked': wrapCommand(handleSettingChecked),
   'Settings.handleSettingInput': wrapCommand(handleSettingInput),
   'Settings.handleSettingSelect': wrapCommand(handleSettingSelect),

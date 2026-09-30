@@ -40,7 +40,14 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Prepare owned integration tests
         run: node packages/e2e-integration/prepare.mjs .tmp/lvce-integration
+      - name: Rebuild prepared application static assets
+        working-directory: .tmp/lvce-integration
+        run: npm run build:static
       - name: Run owned integration tests
         working-directory: .tmp/lvce-integration/packages/extension-host-worker-tests
         shell: bash
         run: npm run e2e:headless --
+      - name: Run native scrollbar pointer-drag regression
+        run: node packages/e2e-integration/scripts/run-settings-scrollbar-drag.mjs .tmp/lvce-integration
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: 0

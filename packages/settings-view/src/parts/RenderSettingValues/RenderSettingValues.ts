@@ -7,12 +7,16 @@ const enabledTypes: readonly number[] = [
   SettingItemType.Array,
   SettingItemType.Enum,
   SettingItemType.Number,
+  SettingItemType.Object,
   SettingItemType.String,
   SettingItemType.Color,
 ]
 
 const getInputValue = (type: number, value: any): any => {
   if (type === SettingItemType.Array) {
+    return JSON.stringify(value)
+  }
+  if (type === SettingItemType.Object) {
     return JSON.stringify(value)
   }
   return value

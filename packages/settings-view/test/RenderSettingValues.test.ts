@@ -34,6 +34,34 @@ test('renderSettingValues serializes array values as JSON', () => {
   expect(result).toEqual(['Viewlet.setInputValues', 1, [{ name: 'simpleBrowser.shortcuts', value: '["ctrl+p","ctrl+b"]' }]])
 })
 
+test('renderSettingValues serializes object values as JSON', () => {
+  const oldState = createDefaultState()
+  const newState: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        category: 'git',
+        description: 'Maps Git remote hosts to repository website base URLs',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Remote Hosts',
+        id: 'git.remoteHosts',
+        isModified: true,
+        type: SettingItemType.Object,
+        value: { 'github.com': 'https://github.com' },
+      },
+    ],
+    id: 1,
+    preferences: {
+      'git.remoteHosts': { 'github.com': 'https://example.com' },
+    },
+  }
+
+  const result: ViewletCommand = renderSettingValues(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.setInputValues', 1, [{ name: 'git.remoteHosts', value: '{"github.com":"https://example.com"}' }]])
+})
+
 test('renderSettingValues applies the persisted value to enum controls', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {

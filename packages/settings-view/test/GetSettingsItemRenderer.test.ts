@@ -3,6 +3,7 @@ import { getItemArrayVirtualDom } from '../src/parts/GetItemArrayVirtualDom/GetI
 import { getItemCheckBoxVirtualDom } from '../src/parts/GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
 import { getItemColorVirtualDom } from '../src/parts/GetItemColorVirtualDom/GetItemColorVirtualDom.ts'
 import { getItemNumberVirtualDom } from '../src/parts/GetItemNumberVirtualDom/GetItemNumberVirtualDom.ts'
+import { getItemObjectVirtualDom } from '../src/parts/GetItemObjectVirtualDom/GetItemObjectVirtualDom.ts'
 import { getItemSelectVirtualDom } from '../src/parts/GetItemSelectVirtualDom/GetItemSelectVirtualDom.ts'
 import { getItemStringVirtualDom } from '../src/parts/GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import { getItemUnknownVirtualDom } from '../src/parts/GetItemUnknownVirtualDom/GetItemUnknownVirtualDom.ts'
@@ -18,6 +19,11 @@ test('getItemRender returns getItemArrayVirtualDom for SettingItemType.Array', (
 test('getItemRender returns getItemNumberVirtualDom for SettingItemType.Number', () => {
   const renderer = getItemRender(SettingItemType.Number)
   expect(renderer).toBe(getItemNumberVirtualDom)
+})
+
+test('getItemRender returns getItemObjectVirtualDom for SettingItemType.Object', () => {
+  const renderer = getItemRender(SettingItemType.Object)
+  expect(renderer).toBe(getItemObjectVirtualDom)
 })
 
 test('getItemRender returns getItemCheckBoxVirtualDom for SettingItemType.Boolean', () => {

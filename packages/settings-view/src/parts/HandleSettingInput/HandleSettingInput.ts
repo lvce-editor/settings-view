@@ -21,6 +21,18 @@ export const handleSettingInput = async (state: SettingsState, name: string, val
     }
   }
 
+  if (settingItem && settingItem.type === SettingItemType.Object) {
+    try {
+      const objectValue = JSON.parse(value)
+      if (typeof objectValue !== 'object' || objectValue === null || Array.isArray(objectValue)) {
+        return state
+      }
+      return updateSetting(state, name, objectValue, inputSource)
+    } catch {
+      return state
+    }
+  }
+
   if (settingItem && settingItem.type === SettingItemType.Number) {
     const numberValue = value === '' ? '' : Number(value)
     return updateSetting(state, name, numberValue, inputSource)

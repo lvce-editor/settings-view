@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           repository: lvce-editor/lvce-editor
-          ref: 565db4194346eb87be385d46951f9b4cf50237cb
+          ref: de56ea53965eabb630a159a1854f0d8aed58e5ff
           path: .tmp/lvce-integration
       - uses: actions/setup-node@v6
         with:

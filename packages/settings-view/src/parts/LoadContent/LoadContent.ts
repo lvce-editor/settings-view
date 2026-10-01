@@ -7,6 +7,7 @@ import { getModifiedSettings } from '../GetModifiedSettings/GetModifiedSettings.
 import { getPreferences } from '../GetPreferences/GetPreferences.ts'
 import { getSchemaErrors } from '../GetSchemaErrors/GetSchemaErrors.ts'
 import { getSettingItems } from '../GetSettingItems/GetSettingItems.ts'
+import { getSettingItemsWithThemeOptions } from '../GetSettingItemsWithThemeOptions/GetSettingItemsWithThemeOptions.ts'
 import { getSettingsViewportHeight } from '../GetSettingsViewportHeight/GetSettingsViewportHeight.ts'
 import { getTabs } from '../GetTabs/GetTabs.ts'
 import { getUpdatedTabs } from '../GetUpdatedTabs/GetUpdatedTabs.ts'
@@ -18,8 +19,9 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
   const tabs = await getTabs()
   const newTabs = getUpdatedTabs(tabs, tabId)
   const [items, preferences, schemaErrors] = await Promise.all([getSettingItems(), getPreferences(), getSchemaErrors()])
+  const itemsWithThemeOptions = await getSettingItemsWithThemeOptions(items, preferences)
   const modifiedSettings: ModifiedSettings = getModifiedSettings(preferences)
-  const filteredItems = getFilteredItems(items, newTabs, searchValue, modifiedSettings, preferences)
+  const filteredItems = getFilteredItems(itemsWithThemeOptions, newTabs, searchValue, modifiedSettings, preferences)
   const { height, itemHeight } = state
   const viewportHeight = getSettingsViewportHeight(height)
   const maxScrollable = Math.max(0, filteredItems.length * itemHeight - viewportHeight)
@@ -33,7 +35,7 @@ export const loadContent = async (state: SettingsState, savedState: unknown): Pr
     history,
     historyIndex,
     inputSource: Script,
-    items,
+    items: itemsWithThemeOptions,
     maxLineY,
     minLineY,
     modifiedSettings,

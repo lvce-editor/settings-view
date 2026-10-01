@@ -11,24 +11,21 @@ export const test: Test = async ({ Command, expect, Locator, Settings, SettingsV
   await SettingsView.selectTab('text-editor')
   await SettingsView.handleScroll(18_500)
 
-  const colorRow = Locator('.SettingsItems > .SettingsItem', { hasText: 'Editor background' })
-  const booleanRow = Locator('.SettingsItems > .SettingsItem', { hasText: 'Show Unused' })
+  await SettingsView.handleInput('editor.background')
+  const colorRow = Locator('.SettingsItem:has(input[type="color"])')
   const colorInput = colorRow.locator('input[type="color"]')
-  const booleanInput = booleanRow.locator('input[type="checkbox"]')
-
   await expect(colorRow).toBeVisible()
-  await expect(booleanRow).toBeVisible()
   await expect(colorInput).toBeVisible()
-  await expect(booleanInput).toBeVisible()
-
-  await SettingsView.handleInput('editor')
-  await expect(colorRow).toBeVisible()
-  await expect(booleanRow).toBeVisible()
-  await expect(colorInput).toBeVisible()
-  await expect(booleanInput).toBeVisible()
 
   await Command.execute('Settings.handleSettingInput', 'editor.background', '#123456')
   await expect(colorInput).toHaveValue('#123456')
+
+  await SettingsView.handleInput('editor.showUnused')
+  const booleanRow = Locator('.SettingsItem:has(input[type="checkbox"])')
+  const booleanInput = booleanRow.locator('input[type="checkbox"]')
+  await expect(booleanRow).toBeVisible()
+  await expect(booleanInput).toBeVisible()
+
   await booleanRow.locator('.Label').click()
   await expect(booleanInput).toHaveJSProperty('checked', true)
 }

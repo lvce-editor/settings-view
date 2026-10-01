@@ -6,7 +6,12 @@ import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 const themeSettingId = 'workbench.colorTheme'
 
 const getOptions = async (): Promise<readonly { id: string; label: string }[]> => {
-  const themeNames: readonly string[] = await RendererWorker.invoke('ColorTheme.getColorThemeNames')
+  let themeNames: readonly string[]
+  try {
+    themeNames = await RendererWorker.invoke('ColorTheme.getColorThemeNames')
+  } catch {
+    return []
+  }
   return themeNames.map((name) => ({
     id: name,
     label: name,

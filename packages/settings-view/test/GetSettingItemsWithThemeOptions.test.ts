@@ -84,3 +84,22 @@ test('getSettingItemsWithThemeOptions removes duplicate canonical theme rows', a
   expect(result[0].heading).toBe('Color Theme')
   expect(result[0].type).toBe(1)
 })
+
+test('getSettingItemsWithThemeOptions preserves the current theme if discovery is unavailable', async () => {
+  const invoke = jest.fn<(...args: readonly unknown[]) => Promise<readonly string[]>>().mockRejectedValue(new Error('method unavailable'))
+  RendererWorker.set({ invoke } as never)
+  const items = [
+    {
+      category: 'workbench',
+      description: 'The color theme of the workbench',
+      heading: 'Color Theme',
+      id: 'workbench.colorTheme',
+      type: 2,
+      value: 'slime',
+    },
+  ]
+
+  const result = await getSettingItemsWithThemeOptions(items, { 'workbench.colorTheme': 'removed-theme' })
+
+  expect(result[0].options).toEqual([{ id: 'removed-theme', label: 'removed-theme (Unavailable)' }])
+})

@@ -8,7 +8,7 @@ export const test: Test = async ({ Command, expect, Locator, Main, SettingsView 
 
   const colorTheme = Locator('select[name="workbench.colorTheme"]')
   await expect(colorTheme).toBeVisible()
-  await expect(colorTheme.locator('option')).not.toHaveCount(0)
+  await expect(colorTheme.locator('option').first()).toBeVisible()
 
   await Command.execute('Settings.handleSettingSelect', 'workbench.colorTheme', 'cobalt2')
   await expect(colorTheme).toHaveValue('cobalt2')

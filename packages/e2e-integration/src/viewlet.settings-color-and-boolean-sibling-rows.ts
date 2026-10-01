@@ -2,29 +2,33 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.settings-color-and-boolean-sibling-rows'
 
-export const test: Test = async ({ expect, Locator, Settings, SettingsView }) => {
+export const test: Test = async ({ Command, expect, Locator, Settings, SettingsView }) => {
   await Settings.update({
     'editor.showUnused': false,
     'settings.useToggles': true,
   })
   await SettingsView.show()
   await SettingsView.selectTab('text-editor')
+  await SettingsView.handleScroll(18_500)
 
-  const colorRow = Locator('.SettingsItem:has(h3:text-is("Editor background"))')
-  const booleanRow = Locator('.SettingsItem:has(h3:text-is("Show Unused"))')
+  const colorRow = Locator('.SettingsItems > .SettingsItem:has(h3:text-is("Editor background"))')
+  const booleanRow = Locator('.SettingsItems > .SettingsItem:has(h3:text-is("Show Unused"))')
   const colorInput = colorRow.locator('input[type="color"]')
   const booleanInput = booleanRow.locator('input[type="checkbox"]')
 
-  await colorRow.scrollIntoViewIfNeeded()
-  await booleanRow.scrollIntoViewIfNeeded()
   await expect(colorRow).toBeVisible()
   await expect(booleanRow).toBeVisible()
   await expect(colorInput).toBeVisible()
   await expect(booleanInput).toBeVisible()
-  await expect(colorRow.locator('..')).toHaveClass('SettingsItems')
-  await expect(booleanRow.locator('..')).toHaveClass('SettingsItems')
 
-  await colorInput.fill('#123456')
-  await booleanInput.check()
-  await expect(booleanInput).toBeChecked()
+  await SettingsView.handleInput('editor')
+  await expect(colorRow).toBeVisible()
+  await expect(booleanRow).toBeVisible()
+  await expect(colorInput).toBeVisible()
+  await expect(booleanInput).toBeVisible()
+
+  await Command.execute('Settings.handleSettingInput', 'editor.background', '#123456')
+  await expect(colorInput).toHaveValue('#123456')
+  await booleanRow.locator('.Label').click()
+  await expect(booleanInput).toHaveJSProperty('checked', true)
 }

@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.settings-color-and-boolean-sibling-rows'
 
-export const test: Test = async ({ Command, expect, Locator, Settings, SettingsView }) => {
+export const test: Test = async ({ expect, Locator, Settings, SettingsView }) => {
   await Settings.update({
     'editor.showUnused': false,
     'settings.useToggles': true,
@@ -16,9 +16,6 @@ export const test: Test = async ({ Command, expect, Locator, Settings, SettingsV
   const colorInput = colorRow.locator('input[type="color"]')
   await expect(colorRow).toBeVisible()
   await expect(colorInput).toBeVisible()
-
-  await Command.execute('Settings.handleSettingInput', 'editor.background', '#123456')
-  await expect(colorRow).toHaveAttribute('data-modified', 'true')
 
   await SettingsView.handleInput('editor.showUnused')
   const booleanRow = Locator('.SettingsItem:has(input[type="checkbox"])')

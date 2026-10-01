@@ -15,6 +15,15 @@ const arraySetting: SettingItem = {
   value: [],
 }
 
+const objectSetting: SettingItem = {
+  category: 'git',
+  description: 'Maps Git remote hosts to repository website base URLs',
+  heading: 'Remote Hosts',
+  id: 'git.remoteHosts',
+  type: SettingItemType.Object,
+  value: { 'github.com': 'https://github.com' },
+}
+
 test('handleSettingInput parses array settings from JSON', async () => {
   const state: SettingsState = {
     ...createDefaultState(),
@@ -35,6 +44,30 @@ test.each(['invalid', '{}'])('handleSettingInput ignores invalid array value %s'
   const result = await handleSettingInput(state, 'simpleBrowser.shortcuts', value, Script)
 
   expect(result).toBe(state)
+})
+
+test('handleSettingInput parses object settings from JSON', async () => {
+  const state: SettingsState = {
+    ...createDefaultState(),
+    items: [objectSetting],
+  }
+
+  const result = await handleSettingInput(state, 'git.remoteHosts', '{"github.com":"https://example.com"}', Script)
+
+  expect(result.preferences['git.remoteHosts']).toEqual({ 'github.com': 'https://example.com' })
+  expect(result.modifiedSettings['git.remoteHosts']).toBe(true)
+})
+
+test.each(['invalid', '[]', 'null'])('handleSettingInput ignores invalid object value %s', async (value) => {
+  const state: SettingsState = {
+    ...createDefaultState(),
+    items: [objectSetting],
+  }
+
+  const result = await handleSettingInput(state, 'git.remoteHosts', value, Script)
+
+  expect(result).toBe(state)
+  expect(result.preferences['git.remoteHosts']).toBeUndefined()
 })
 
 test('handleSettingInput converts string to number for number-type settings', async () => {

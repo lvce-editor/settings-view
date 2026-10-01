@@ -3,6 +3,18 @@ import { User } from '../InputSource/InputSource.ts'
 import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 import { updateSetting } from '../UpdateSetting/UpdateSetting.ts'
 
+const parseObjectValue = (value: string): Record<string, unknown> | undefined => {
+  try {
+    const parsedValue = JSON.parse(value)
+    if (typeof parsedValue !== 'object' || parsedValue === null || Array.isArray(parsedValue)) {
+      return undefined
+    }
+    return parsedValue
+  } catch {
+    return undefined
+  }
+}
+
 export const handleSettingInput = async (state: SettingsState, name: string, value: string, inputSource = User): Promise<SettingsState> => {
   const { items } = state
 
@@ -19,6 +31,14 @@ export const handleSettingInput = async (state: SettingsState, name: string, val
     } catch {
       return state
     }
+  }
+
+  if (settingItem && settingItem.type === SettingItemType.Object) {
+    const objectValue = parseObjectValue(value)
+    if (!objectValue) {
+      return state
+    }
+    return updateSetting(state, name, objectValue, inputSource)
   }
 
   if (settingItem && settingItem.type === SettingItemType.Number) {

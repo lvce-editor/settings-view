@@ -31,6 +31,8 @@ export const noSettingsMatching = (searchTerm: string): string => {
 
 export const numberValue = (): string => I18NString.i18nString(UiStrings.NumberValue)
 
+export const objectValue = (): string => I18NString.i18nString(UiStrings.ObjectValue)
+
 export const preview = (): string => I18NString.i18nString(UiStrings.Preview)
 
 export const resetSetting = (): string => I18NString.i18nString(UiStrings.ResetSetting)

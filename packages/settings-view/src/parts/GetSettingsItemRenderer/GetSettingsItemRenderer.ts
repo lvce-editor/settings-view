@@ -5,6 +5,7 @@ import { getItemArrayVirtualDom } from '../GetItemArrayVirtualDom/GetItemArrayVi
 import { getItemCheckBoxVirtualDom } from '../GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
 import { getItemColorVirtualDom } from '../GetItemColorVirtualDom/GetItemColorVirtualDom.ts'
 import { getItemNumberVirtualDom } from '../GetItemNumberVirtualDom/GetItemNumberVirtualDom.ts'
+import { getItemObjectVirtualDom } from '../GetItemObjectVirtualDom/GetItemObjectVirtualDom.ts'
 import { getItemSelectVirtualDom } from '../GetItemSelectVirtualDom/GetItemSelectVirtualDom.ts'
 import { getItemStringVirtualDom } from '../GetItemStringVirtualDom/GetItemStringVirtualDom.ts'
 import { getItemUnknownVirtualDom } from '../GetItemUnknownVirtualDom/GetItemUnknownVirtualDom.ts'
@@ -27,6 +28,8 @@ export const getItemRender = (type: number): ItemRenderer => {
       return getItemSelectVirtualDom
     case SettingItemType.Number:
       return getItemNumberVirtualDom
+    case SettingItemType.Object:
+      return getItemObjectVirtualDom
     case SettingItemType.String:
       return getItemStringVirtualDom
     case SettingItemType.Url:

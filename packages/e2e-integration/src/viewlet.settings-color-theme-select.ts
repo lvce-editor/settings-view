@@ -4,7 +4,7 @@ export const name = 'viewlet.settings-color-theme-select'
 
 export const test: Test = async ({ Command, expect, Locator, Main, SettingsView }) => {
   await SettingsView.show()
-  await SettingsView.selectTab('workbench')
+  await SettingsView.handleInput('color theme')
 
   const colorTheme = Locator('select[name="workbench.colorTheme"]')
   await expect(colorTheme).toBeVisible()
@@ -18,6 +18,6 @@ export const test: Test = async ({ Command, expect, Locator, Main, SettingsView 
 
   await Main.closeActiveEditor()
   await SettingsView.show()
-  await SettingsView.selectTab('workbench')
+  await SettingsView.handleInput('color theme')
   await expect(Locator('select[name="workbench.colorTheme"]')).toHaveValue('cobalt2')
 }

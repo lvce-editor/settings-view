@@ -66,6 +66,38 @@ test('renderSettingValues applies the persisted value to enum controls', () => {
   expect(result).toEqual(['Viewlet.setInputValues', 1, [{ name: 'workbench.sideBarLocation', value: 'left' }]])
 })
 
+test('renderSettingValues maps legacy namespaced enum values to current option ids', () => {
+  const oldState = createDefaultState()
+  const newState: SettingsState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        category: 'text-editor',
+        description: 'Controls the display of line numbers',
+        errorMessage: '',
+        hasError: false,
+        heading: 'Line Numbers',
+        id: 'editor.lineNumbers',
+        isModified: true,
+        options: [
+          { id: 'on', label: 'On' },
+          { id: 'off', label: 'off' },
+        ],
+        type: SettingItemType.Enum,
+        value: 'on',
+      },
+    ],
+    id: 1,
+    preferences: {
+      'editor.lineNumbers': 'editor.off',
+    },
+  }
+
+  const result = renderSettingValues(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.setInputValues', 1, [{ name: 'editor.lineNumbers', value: 'off' }]])
+})
+
 test('renderSettingValues keeps an empty number preference blank', () => {
   const oldState = createDefaultState()
   const newState: SettingsState = {

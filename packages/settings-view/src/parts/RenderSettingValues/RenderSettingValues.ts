@@ -18,6 +18,15 @@ const getInputValue = (type: number, value: any): any => {
   return value
 }
 
+const getEnumInputValue = (item: SettingsState['filteredItems'][number], value: any): any => {
+  if (item.type !== SettingItemType.Enum || typeof value !== 'string') {
+    return value
+  }
+  const legacyPrefix = `${item.id.split('.', 1)[0]}.`
+  const matchingOption = item.options?.find((option) => `${legacyPrefix}${option.id}` === value)
+  return matchingOption?.id ?? value
+}
+
 const shouldRenderSettingValue = (oldState: SettingsState, newState: SettingsState, item: SettingsState['filteredItems'][number]): boolean => {
   if (item.type !== SettingItemType.Color || newState.inputSource !== User) {
     return true
@@ -29,7 +38,8 @@ export const renderSettingValues = (oldState: SettingsState, newState: SettingsS
   const { filteredItems, id, preferences } = newState
   const enabledSettings = filteredItems.filter((item) => enabledTypes.includes(item.type) && shouldRenderSettingValue(oldState, newState, item))
   const inputValues = enabledSettings.map((item) => {
-    const value = getInputValue(item.type, preferences[item.id] ?? item.value)
+    const inputValue = preferences[item.id] ?? item.value
+    const value = getInputValue(item.type, getEnumInputValue(item, inputValue))
     return {
       name: item.id,
       value,

@@ -9,6 +9,9 @@ export const updateSetting = async (state: SettingsState, name: string, value: a
   if (inputSource === User && newState !== state) {
     if (name === 'workbench.colorTheme') {
       await RendererWorker.invoke('ColorTheme.setColorTheme', value)
+    } else if (name === 'workbench.sideBarLocation') {
+      const command = value === 'left' ? 'Layout.moveSideBarLeft' : 'Layout.moveSideBarRight'
+      await RendererWorker.invoke('Application.executeForView', id, command)
     } else {
       await RendererWorker.invoke('Application.executeForView', id, 'Preferences.update', { [name]: value })
     }

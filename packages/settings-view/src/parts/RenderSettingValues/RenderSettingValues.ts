@@ -22,7 +22,7 @@ const getEnumInputValue = (item: SettingsState['filteredItems'][number], value: 
   if (item.type !== SettingItemType.Enum || typeof value !== 'string') {
     return value
   }
-  const legacyPrefix = `${item.id.split('.')[0]}.`
+  const legacyPrefix = `${item.id.split('.', 1)[0]}.`
   const matchingOption = item.options?.find((option) => `${legacyPrefix}${option.id}` === value)
   return matchingOption?.id ?? value
 }

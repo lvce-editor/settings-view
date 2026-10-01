@@ -11,7 +11,7 @@ test('getSettingItemsWithThemeOptions adds discovered themes and preserves an un
       description: 'The color theme of the workbench',
       heading: 'Color Theme',
       id: 'workbench.colorTheme',
-      type: 1,
+      type: 2,
       value: 'slime',
     },
   ]
@@ -24,6 +24,8 @@ test('getSettingItemsWithThemeOptions adds discovered themes and preserves an un
     { id: 'cobalt2', label: 'cobalt2' },
     { id: 'removed-theme', label: 'removed-theme (Unavailable)' },
   ])
+  expect(result).toHaveLength(1)
+  expect(result[0].type).toBe(1)
 })
 
 test('getSettingItemsWithThemeOptions leaves unrelated rows unchanged', async () => {
@@ -61,4 +63,24 @@ test('getSettingItemsWithThemeOptions does not duplicate the selected available 
     { id: 'slime', label: 'slime' },
     { id: 'cobalt2', label: 'cobalt2' },
   ])
+})
+
+test('getSettingItemsWithThemeOptions removes duplicate canonical theme rows', async () => {
+  const invoke = jest.fn<(...args: readonly unknown[]) => Promise<readonly string[]>>().mockResolvedValue(['slime'])
+  RendererWorker.set({ invoke } as never)
+  const themeItem = {
+    category: 'workbench',
+    description: 'The color theme of the workbench',
+    heading: 'Color Theme',
+    id: 'workbench.colorTheme',
+    type: 2,
+    value: 'slime',
+  }
+  const duplicateThemeItem = { ...themeItem, heading: 'Theme', type: 1 }
+
+  const result = await getSettingItemsWithThemeOptions([themeItem, duplicateThemeItem], {})
+
+  expect(result).toHaveLength(1)
+  expect(result[0].heading).toBe('Color Theme')
+  expect(result[0].type).toBe(1)
 })

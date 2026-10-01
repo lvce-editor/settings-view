@@ -1,6 +1,7 @@
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { Preferences } from '../Preferences/Preferences.ts'
 import type { SettingItem } from '../SettingItem/SettingItem.ts'
+import * as SettingItemType from '../SettingItemType/SettingItemType.ts'
 
 const themeSettingId = 'workbench.colorTheme'
 
@@ -25,5 +26,7 @@ export const getSettingItemsWithThemeOptions = async (items: readonly SettingIte
       label: `${currentTheme} (Unavailable)`,
     })
   }
-  return items.map((item) => (item === themeItem ? { ...item, options } : item))
+  return items
+    .filter((item) => item === themeItem || item.id !== themeSettingId)
+    .map((item) => (item === themeItem ? { ...item, options, type: SettingItemType.Enum } : item))
 }

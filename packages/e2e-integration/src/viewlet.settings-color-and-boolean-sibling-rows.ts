@@ -11,8 +11,8 @@ export const test: Test = async ({ Command, expect, Locator, Settings, SettingsV
   await SettingsView.selectTab('text-editor')
   await SettingsView.handleScroll(18_500)
 
-  const colorRow = Locator('.SettingsItems > .SettingsItem:has(h3:text-is("Editor background"))')
-  const booleanRow = Locator('.SettingsItems > .SettingsItem:has(h3:text-is("Show Unused"))')
+  const colorRow = Locator('.SettingsItems > .SettingsItem', { hasText: 'Editor background' })
+  const booleanRow = Locator('.SettingsItems > .SettingsItem', { hasText: 'Show Unused' })
   const colorInput = colorRow.locator('input[type="color"]')
   const booleanInput = booleanRow.locator('input[type="checkbox"]')
 

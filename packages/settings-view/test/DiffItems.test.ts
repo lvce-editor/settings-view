@@ -11,6 +11,33 @@ test('isEqual returns true for same state reference', () => {
   expect(result).toBe(true)
 })
 
+test('isEqual returns false when resizing changes visible items without changing the filtered items or scroll delta', () => {
+  const oldState: SettingsState = {
+    ...createDefaultState(),
+    deltaY: 0,
+    filteredItems: [],
+    visibleItems: [],
+  }
+  const newState: SettingsState = {
+    ...oldState,
+    visibleItems: [
+      {
+        category: 'test',
+        description: '',
+        errorMessage: '',
+        hasError: false,
+        heading: 'visible',
+        id: 'visible',
+        isModified: false,
+        type: 3,
+        value: '',
+      },
+    ],
+  }
+
+  expect(isEqual(oldState, newState)).toBe(false)
+})
+
 test('isEqual returns false for different state objects with same values', () => {
   const oldState: SettingsState = createDefaultState()
   const newState: SettingsState = createDefaultState()

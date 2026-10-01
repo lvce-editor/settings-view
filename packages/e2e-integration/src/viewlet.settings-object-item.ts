@@ -9,12 +9,14 @@ export const test: Test = async ({ expect, KeyBoard, Locator, Main, Settings, Se
   })
 
   await SettingsView.show()
+  await SettingsView.selectTab('workbench')
   await SettingsView.handleInput('browser view keybindings')
   const keybindings = Locator('.SettingsItem[name="keyBindings.fallTroughBrowserView"]')
   await expect(keybindings).toBeVisible()
   await expect(keybindings.locator('h3')).toHaveText('Browser View Keybindings')
   await expect(keybindings.locator('input')).toHaveValue('["ctrl+p","ctrl+shift+p","ctrl+b","ctrl+m","ctrl+Tab"]')
 
+  await SettingsView.selectTab('')
   await SettingsView.handleInput('remote hosts')
   const remoteHosts = Locator('.SettingsItem[name="git.remoteHosts"]')
   const input = remoteHosts.locator('input')

@@ -26,7 +26,7 @@ export const getItemColorVirtualDom = (item: DisplaySettingItem): readonly Virtu
 
   return [
     {
-      childCount: 3 + errorChildCount,
+      childCount: 2 + errorChildCount,
       className: ClassNames.SettingsItem,
       'data-modified': isModified,
       name: id,

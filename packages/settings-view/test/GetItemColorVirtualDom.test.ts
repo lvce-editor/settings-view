@@ -3,6 +3,7 @@ import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-wo
 import type { DisplaySettingItem } from '../src/parts/DisplaySettingItem/DisplaySettingItem.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import { getItemCheckBoxVirtualDom } from '../src/parts/GetItemCheckBoxVirtualDom/GetItemCheckBoxVirtualDom.ts'
 import { getItemColorVirtualDom } from '../src/parts/GetItemColorVirtualDom/GetItemColorVirtualDom.ts'
 import * as SettingItemType from '../src/parts/SettingItemType/SettingItemType.ts'
 import * as SettingStrings from '../src/parts/SettingStrings/SettingStrings.ts'
@@ -24,7 +25,7 @@ test('getItemColorVirtualDom returns virtual DOM without error when no validatio
 
   expect(result).toEqual([
     {
-      childCount: 3,
+      childCount: 2,
       className: ClassNames.SettingsItem,
       'data-modified': false,
       name: item.id,
@@ -79,7 +80,7 @@ test('getItemColorVirtualDom returns virtual DOM with error when validation fail
 
   expect(result).toEqual([
     {
-      childCount: 4,
+      childCount: 3,
       className: ClassNames.SettingsItem,
       'data-modified': true,
       name: item.id,
@@ -121,4 +122,52 @@ test('getItemColorVirtualDom returns virtual DOM with error when validation fail
     },
     text('Invalid color value'),
   ])
+})
+
+test('getItemColorVirtualDom keeps the following boolean setting as a sibling row', () => {
+  const colorItem: DisplaySettingItem = {
+    category: 'test',
+    description: 'Editor background color',
+    errorMessage: '',
+    hasError: false,
+    heading: 'Editor background',
+    id: 'editor.background',
+    isModified: false,
+    type: SettingItemType.Color,
+    value: '#567567',
+  }
+  const booleanItem: DisplaySettingItem = {
+    category: 'test',
+    description: 'Controls whether unused code is shown',
+    errorMessage: '',
+    hasError: false,
+    heading: 'Show Unused',
+    id: 'editor.showUnused',
+    isModified: false,
+    type: SettingItemType.Boolean,
+    value: true,
+  }
+  const nodes = [...getItemColorVirtualDom(colorItem), ...getItemCheckBoxVirtualDom(booleanItem)]
+
+  const getNextNodeIndex = (index: number): number => {
+    const node = nodes[index]
+    let nextIndex = index + 1
+    for (let childIndex = 0; childIndex < (node.childCount ?? 0); childIndex++) {
+      nextIndex = getNextNodeIndex(nextIndex)
+    }
+    return nextIndex
+  }
+
+  const rows = []
+  let index = 0
+  while (index < nodes.length) {
+    rows.push(nodes[index])
+    index = getNextNodeIndex(index)
+  }
+
+  expect(index).toBe(nodes.length)
+  expect(rows).toHaveLength(2)
+  expect(rows.map((row) => row.name)).toEqual(['editor.background', 'editor.showUnused'])
+  expect(rows[0].childCount).toBe(2)
+  expect(rows[1].childCount).toBe(2)
 })

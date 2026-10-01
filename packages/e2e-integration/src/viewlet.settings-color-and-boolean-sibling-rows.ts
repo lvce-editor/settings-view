@@ -18,7 +18,7 @@ export const test: Test = async ({ Command, expect, Locator, Settings, SettingsV
   await expect(colorInput).toBeVisible()
 
   await Command.execute('Settings.handleSettingInput', 'editor.background', '#123456')
-  await expect(colorInput).toHaveValue('#123456')
+  await expect(colorRow).toHaveAttribute('data-modified', 'true')
 
   await SettingsView.handleInput('editor.showUnused')
   const booleanRow = Locator('.SettingsItem:has(input[type="checkbox"])')

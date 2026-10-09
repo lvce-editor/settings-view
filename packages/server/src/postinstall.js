@@ -1,6 +1,7 @@
 import { readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { replaceSettingsWorkerUrl } from './replaceSettingsWorkerUrl.js'
 
 const __dirname = import.meta.dirname
 
@@ -29,11 +30,5 @@ const rendererWorkerMainPath = join(serverStaticPath, commitHash, 'packages', 'r
 const content = await readFile(rendererWorkerMainPath, 'utf-8')
 
 const remoteUrl = getRemoteUrl(workerPath)
-if (!content.includes('// const settingsViewWorkerUrl = ')) {
-  const occurrence = `const settingsViewWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\`;`
-  const replacement = `// const settingsViewWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\`;
-const settingsViewWorkerUrl = \`${remoteUrl}\`;`
-
-  const newContent = content.replace(occurrence, replacement)
-  await writeFile(rendererWorkerMainPath, newContent)
-}
+const newContent = replaceSettingsWorkerUrl(content, JSON.stringify(remoteUrl))
+await writeFile(rendererWorkerMainPath, newContent)

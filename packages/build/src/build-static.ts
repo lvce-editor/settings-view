@@ -26,13 +26,14 @@ const content = await readFile(rendererWorkerPath, 'utf8')
 const workerPath = join(root, '.tmp/dist/dist/settingsViewWorkerMain.js')
 const remoteUrl = getRemoteUrl(workerPath)
 
-const occurrence = `// const settingsViewWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\`;
-const settingsViewWorkerUrl = \`${remoteUrl}\`;`
-const replacement = `const settingsViewWorkerUrl = \`\${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js\`;`
-if (!content.includes(occurrence)) {
-  throw new Error('occurrence not found')
+const occurrence = `settingsViewWorkerUrl = ${JSON.stringify(remoteUrl)};`
+const replacement = 'settingsViewWorkerUrl = `${assetDir}/packages/settings-view/dist/settingsViewWorkerMain.js`;'
+if (content.split(occurrence).length !== 2) {
+  throw new Error('Expected exactly one development settings worker URL')
 }
 const newContent = content.replace(occurrence, replacement)
 await writeFile(rendererWorkerPath, newContent)
+
+await cp(workerPath, join(root, 'dist', commitHash, 'packages', 'settings-view', 'dist', 'settingsViewWorkerMain.js'))
 
 await cp(join(root, 'dist'), join(root, '.tmp', 'static'), { recursive: true })

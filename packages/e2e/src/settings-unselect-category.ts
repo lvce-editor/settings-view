@@ -12,6 +12,7 @@ export const test: Test = async ({ expect, Locator, SettingsView }) => {
   await expect(applicationsTab).toHaveAttribute('aria-selected', 'true')
 
   const sideBar = Locator('.SettingsSideBar')
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Dispatch the bubbling click required by this unselect regression test.
   await sideBar.dispatchEvent('click', { bubbles: true } as unknown as string)
 
   await expect(applicationsTab).toHaveAttribute('aria-selected', 'false')

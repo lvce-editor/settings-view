@@ -26,8 +26,10 @@ export const test: Test = async ({ expect, KeyBoard, Locator, Main, Settings, Se
   await expect(remoteHosts.locator('h3')).toHaveText('Remote Hosts')
   await expect(input).toHaveValue('{"github.com":"https://github.com"}')
 
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep the existing direct input interaction in this regression test.
   await input.click()
   await KeyBoard.press('Control+A')
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep typing into the focused input after selecting its contents.
   await input.type('{"github.com":"https://example.com"}')
   await expect(input).toHaveValue('{"github.com":"https://example.com"}')
   await Main.closeActiveEditor()
@@ -35,8 +37,10 @@ export const test: Test = async ({ expect, KeyBoard, Locator, Main, Settings, Se
   await SettingsView.handleInput('remote hosts')
   await expect(input).toHaveValue('{"github.com":"https://example.com"}')
 
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep the existing direct input interaction in this regression test.
   await input.click()
   await KeyBoard.press('Control+A')
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep typing into the focused input after selecting its contents.
   await input.type('[]')
   await Main.closeActiveEditor()
   await SettingsView.show()

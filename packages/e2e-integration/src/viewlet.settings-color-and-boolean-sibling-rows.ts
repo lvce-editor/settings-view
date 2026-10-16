@@ -23,6 +23,7 @@ export const test: Test = async ({ expect, Locator, Settings, SettingsView }) =>
   await expect(booleanRow).toBeVisible()
   await expect(booleanInput).toBeVisible()
 
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep this direct DOM click assertion for the label interaction.
   await booleanRow.locator('.Label').click()
   await expect(booleanInput).toHaveJSProperty('checked', true)
 }

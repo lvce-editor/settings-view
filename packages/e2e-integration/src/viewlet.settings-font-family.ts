@@ -9,7 +9,9 @@ export const test: Test = async ({ expect, Locator, Main, Settings, SettingsView
 
   const fontFamily = Locator('input[name="editor.fontFamily"]')
   await expect(fontFamily).toBeVisible()
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep the focused input interaction used by this regression test.
   await fontFamily.click()
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep the focused input interaction used by this regression test.
   await fontFamily.type('serif')
 
   await expect(fontFamily).toHaveValue('serif')
